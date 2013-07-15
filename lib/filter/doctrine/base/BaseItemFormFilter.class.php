@@ -1,0 +1,161 @@
+<?php
+
+/**
+ * Item filter form base class.
+ *
+ * @package    noradVMS
+ * @subpackage filter
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
+ */
+abstract class BaseItemFormFilter extends BaseFormFilterDoctrine
+{
+  public function setup()
+  {
+    $this->setWidgets(array(
+      'token'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'task_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
+      'task_order_id'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'category_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
+      'category_group_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CategoryGroups'), 'add_empty' => true)),
+      'clss'                 => new sfWidgetFormFilterInput(),
+      'unit_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unit'), 'add_empty' => true)),
+      'quantity'             => new sfWidgetFormFilterInput(),
+      'used_quantity'        => new sfWidgetFormFilterInput(),
+      'current_quantity'     => new sfWidgetFormFilterInput(),
+      'serial_no'            => new sfWidgetFormFilterInput(),
+      'old_pin'              => new sfWidgetFormFilterInput(),
+      'new_pin'              => new sfWidgetFormFilterInput(),
+      'pin_num'              => new sfWidgetFormFilterInput(),
+      'is_present'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'effective_date'       => new sfWidgetFormFilterInput(),
+      'status'               => new sfWidgetFormFilterInput(),
+      'description'          => new sfWidgetFormFilterInput(),
+      'type'                 => new sfWidgetFormFilterInput(),
+      'plate_number'         => new sfWidgetFormFilterInput(),
+      'plate_code'           => new sfWidgetFormFilterInput(),
+      'initial_mileage'      => new sfWidgetFormFilterInput(),
+      'current_mileage'      => new sfWidgetFormFilterInput(),
+      'vehicle_type_id'      => new sfWidgetFormFilterInput(),
+      'litter_per_km'        => new sfWidgetFormFilterInput(),
+      'sitting_capacity'     => new sfWidgetFormFilterInput(),
+      'engine_no'            => new sfWidgetFormFilterInput(),
+      'chesis_no'            => new sfWidgetFormFilterInput(),
+      'vehicle_model'        => new sfWidgetFormFilterInput(),
+      'vehicl_color'         => new sfWidgetFormFilterInput(),
+      'weight'               => new sfWidgetFormFilterInput(),
+      'service_type_id'      => new sfWidgetFormFilterInput(),
+      'fuel_type_id'         => new sfWidgetFormFilterInput(),
+      'purchased_date'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'service_year'         => new sfWidgetFormFilterInput(),
+      'checkup_period_id'    => new sfWidgetFormFilterInput(),
+      'vehicle_status'       => new sfWidgetFormFilterInput(),
+      'fuel_setting_id'      => new sfWidgetFormFilterInput(),
+      'is_assigned'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'spare_Identification' => new sfWidgetFormFilterInput(),
+    ));
+
+    $this->setValidators(array(
+      'token'                => new sfValidatorPass(array('required' => false)),
+      'task_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
+      'task_order_id'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'category_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Category'), 'column' => 'id')),
+      'category_group_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('CategoryGroups'), 'column' => 'id')),
+      'clss'                 => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'unit_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Unit'), 'column' => 'id')),
+      'quantity'             => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'used_quantity'        => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'current_quantity'     => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'serial_no'            => new sfValidatorPass(array('required' => false)),
+      'old_pin'              => new sfValidatorPass(array('required' => false)),
+      'new_pin'              => new sfValidatorPass(array('required' => false)),
+      'pin_num'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_present'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'effective_date'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'status'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'description'          => new sfValidatorPass(array('required' => false)),
+      'type'                 => new sfValidatorPass(array('required' => false)),
+      'plate_number'         => new sfValidatorPass(array('required' => false)),
+      'plate_code'           => new sfValidatorPass(array('required' => false)),
+      'initial_mileage'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'current_mileage'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'vehicle_type_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'litter_per_km'        => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'sitting_capacity'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'engine_no'            => new sfValidatorPass(array('required' => false)),
+      'chesis_no'            => new sfValidatorPass(array('required' => false)),
+      'vehicle_model'        => new sfValidatorPass(array('required' => false)),
+      'vehicl_color'         => new sfValidatorPass(array('required' => false)),
+      'weight'               => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'service_type_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'fuel_type_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'purchased_date'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'service_year'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'checkup_period_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'vehicle_status'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'fuel_setting_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_assigned'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'spare_Identification' => new sfValidatorPass(array('required' => false)),
+    ));
+
+    $this->widgetSchema->setNameFormat('item_filters[%s]');
+
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $this->setupInheritance();
+
+    parent::setup();
+  }
+
+  public function getModelName()
+  {
+    return 'Item';
+  }
+
+  public function getFields()
+  {
+    return array(
+      'id'                   => 'Number',
+      'token'                => 'Text',
+      'task_id'              => 'ForeignKey',
+      'task_order_id'        => 'Number',
+      'category_id'          => 'ForeignKey',
+      'category_group_id'    => 'ForeignKey',
+      'clss'                 => 'Number',
+      'unit_id'              => 'ForeignKey',
+      'quantity'             => 'Number',
+      'used_quantity'        => 'Number',
+      'current_quantity'     => 'Number',
+      'serial_no'            => 'Text',
+      'old_pin'              => 'Text',
+      'new_pin'              => 'Text',
+      'pin_num'              => 'Number',
+      'is_present'           => 'Boolean',
+      'effective_date'       => 'Number',
+      'status'               => 'Number',
+      'description'          => 'Text',
+      'type'                 => 'Text',
+      'plate_number'         => 'Text',
+      'plate_code'           => 'Text',
+      'initial_mileage'      => 'Number',
+      'current_mileage'      => 'Number',
+      'vehicle_type_id'      => 'Number',
+      'litter_per_km'        => 'Number',
+      'sitting_capacity'     => 'Number',
+      'engine_no'            => 'Text',
+      'chesis_no'            => 'Text',
+      'vehicle_model'        => 'Text',
+      'vehicl_color'         => 'Text',
+      'weight'               => 'Number',
+      'service_type_id'      => 'Number',
+      'fuel_type_id'         => 'Number',
+      'purchased_date'       => 'Date',
+      'service_year'         => 'Number',
+      'checkup_period_id'    => 'Number',
+      'vehicle_status'       => 'Number',
+      'fuel_setting_id'      => 'Number',
+      'is_assigned'          => 'Boolean',
+      'spare_Identification' => 'Text',
+    );
+  }
+}
