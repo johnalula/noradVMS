@@ -160,7 +160,7 @@ abstract class BaseTask extends sfDoctrineRecord
              array(
               'type' => 1,
              ),
-             'Maintenance' => 
+             'MaintenanceTask' => 
              array(
               'type' => 2,
              ),

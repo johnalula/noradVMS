@@ -248,7 +248,7 @@ ServiceAccident:
     descriptioin: { type: clob }
     
     
-Maintenance:
+MaintenanceTask:
   package: MaintenanceMangement
   inheritance:
     extends: Task
@@ -635,7 +635,7 @@ UserGroup:
    description: { type: clob }
    
 
-permission:
+Permission:
   package: UserManagement
   columns:
     group_id: { type: integer }

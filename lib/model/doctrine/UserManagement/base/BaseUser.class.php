@@ -77,7 +77,7 @@ abstract class BaseUser extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('permission as userModulePermissions', array(
+        $this->hasMany('Permission as userModulePermissions', array(
              'local' => 'id',
              'foreign' => 'user_id'));
     }

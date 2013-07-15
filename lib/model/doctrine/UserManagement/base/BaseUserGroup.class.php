@@ -41,7 +41,7 @@ abstract class BaseUserGroup extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'group_id'));
 
-        $this->hasMany('permission as groupModulePermissions', array(
+        $this->hasMany('Permission as groupModulePermissions', array(
              'local' => 'id',
              'foreign' => 'group_id'));
     }

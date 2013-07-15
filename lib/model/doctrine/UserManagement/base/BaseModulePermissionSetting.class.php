@@ -31,7 +31,7 @@ abstract class BaseModulePermissionSetting extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('permission as modulePermissions', array(
+        $this->hasMany('Permission as modulePermissions', array(
              'local' => 'id',
              'foreign' => 'module_id'));
     }
