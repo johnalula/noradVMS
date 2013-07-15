@@ -1,0 +1,149 @@
+/*
+	 *	NOTE: All CSS is purely cosmetic - it does not affect functionality
+	 */
+
+	/* customize borders to avoid double-borders around inner-layouts */
+	.ui-layout-pane {
+		border:			0; /* override layout-default-latest.css */
+		border-top:		1px solid #BBB;
+		border-bottom:	1px solid #BBB;
+	}
+	.ui-layout-pane-north ,
+	.ui-layout-pane-south {
+		border:			1px solid #BBB;
+		overflow:		hidden;
+	}
+	.ui-layout-pane-west ,
+	.ui-layout-pane-east {
+	}
+	.ui-layout-pane-center	{
+		border-left:	0;
+		border-right:	0;
+		}
+		.inner-center {
+			border:		1px solid #BBB;
+		}
+
+	/* add shading to outer sidebar-panes */
+	.outer-west ,
+	.outer-east {
+		background-color: #EEE;
+	}
+	.middle-west ,
+	.middle-east {
+		background-color: #F8F8F8;
+	}
+
+	/* remove padding & scrolling from panes that are 'containers' for nested layouts */
+	.outer-center ,
+	.middle-center {
+		border:			0; /* cosmetic */
+		padding:		0;
+		overflow:		hidden;
+	}
+
+	/*
+	 *	customize borders on panes/resizers to make pretty
+	 */
+	.ui-layout-pane-west		{ border-right:		0; }
+	.ui-layout-resizer-west		{ border-left:		1px solid #BBB; }
+	.ui-layout-pane-east		{ border-left:		0; }
+	.ui-layout-resizer-east		{ border-right:		1px solid #BBB; }
+	.ui-layout-pane-north		{ border-bottom:	0; }
+	.ui-layout-resizer-north	{ border-top:		1px solid #BBB; }
+	.ui-layout-pane-south		{ border-top:		0; }
+	.ui-layout-resizer-south	{ border-bottom: 	1px solid #BBB; }
+	/*
+	 *	add borders to resizers when pane is 'closed'
+	 *
+	 *.ui-layout-resizer-closed	{ border:			1px solid #BBB; }
+	 */
+	/*
+	 *	show both borders when the resizer is 'dragging'
+	 */
+	.ui-layout-resizer-west-dragging ,
+	.ui-layout-resizer-east-dragging {
+		border-left:		1px solid #BBB;
+		border-right:		1px solid #BBB;
+	}
+	.ui-layout-resizer-north-dragging ,
+	.ui-layout-resizer-south-dragging {
+		border-top:		1px solid #BBB;
+		border-bottom:	1px solid #BBB;
+	}
+
+/*************************************/
+
+
+/*demo page css*/
+body{ font: 82.5% "Trebuchet MS", sans-serif; margin: 50px;}
+.demoHeaders { margin-top: 2em; }
+#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+ul#icons {margin: 0; padding: 0;}
+ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+ul#icons span.ui-icon {float: left; margin: 0 4px;}
+
+/*************************************/
+
+.ui-layout-west ,
+.ui-layout-east ,
+.ui-layout-center {
+	padding:		0;
+	}
+	h3 ,
+	p.footer {
+		font-size:		1.2em;
+		background:		#F6F6F6;
+		border-bottom:	1px solid #BBB;
+		padding:		5px 15px;
+		margin:			0;
+	}
+	p.footer {
+		font-size:		1em;
+		border-top:		1px solid #BBB;
+		border-bottom:	0;
+	}
+	.ui-layout-east ,
+	.ui-layout-content {
+		padding:		0;
+		overflow:		hidden !important; /* prevent scrollbars auto-added by Layout */
+		}
+		.scrolling-content {
+			height:			100%;
+			padding:		0 15px 10px; /* extra paddingTop being added by scrollpane? */
+			padding-right:	0; /* for pseudo-scrollbar on right */
+		}
+
+
+.jScrollPaneTrack {
+	background: url(css/scrollpane/osx_track.gif) repeat-y;
+}
+.jScrollPaneDrag {
+	background: url(css/scrollpane/osx_drag_middle.gif) repeat-y;
+}
+.jScrollPaneDragTop {
+	background: url(css/scrollpane/osx_drag_top.gif) no-repeat;
+	height: 6px;
+}
+.jScrollPaneDragBottom {
+	background: url(css/scrollpane/osx_drag_bottom.gif) no-repeat;
+	height: 7px;
+}
+a.jScrollArrowUp {
+	height: 24px;
+	background: url(css/scrollpane/osx_arrow_up.png) no-repeat 0 -30px;
+}
+a.jScrollArrowUp:hover {
+	background-position: 0 0;
+}
+a.jScrollArrowDown {
+	height: 24px;
+	background: url(css/scrollpane/osx_arrow_down.png) no-repeat 0 -30px;
+}
+a.jScrollArrowDown:hover {
+	background-position: 0 0;
+}
+
+
+

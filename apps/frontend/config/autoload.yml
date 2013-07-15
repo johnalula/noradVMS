@@ -1,0 +1,6 @@
+autoload:
+  project:
+    name: project
+    path: %SF_LIB_DIR%
+    recursive: true
+    exclude: [model, symfony, vendor/large_lib]

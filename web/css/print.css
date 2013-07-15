@@ -1,0 +1,132 @@
+body {margin:0; padding:0; line-height: 1.4em; word-spacing:1px; letter-spacing:0.2px; font: 13px Arial, Helvetica,"Lucida Grande", serif; color: #000;}
+a:link, a:visited {background: transparent; color:#333; text-decoration:none;}
+a:link[href^="http://"]:after, a[href^="http://"]:visited:after {content: " (" attr(href) ") "; font-size: 11px;}
+a[href^="http://"] {color:#000;} 
+#comments {page-break-before: always;}
+#accordion {display:none;}
+#myleft {display:none;}
+#myhome {display:none;}
+.ui-layout-north {display:none;}
+#habereta, #egpms_banner,#home_title {display:none;}
+#selector_table {display:none;}
+.paginate {display:none;}
+/*.DTTT_Print{
+	display:none;
+}
+*/
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate,
+.paging_two_button,
+.the_table_info,
+.dataTables_length
+{
+display: none;
+}
+table{
+	width:800px;
+	border:1px solid black;
+	border-collapse:collapse;
+}
+/*body{
+	width: 50%;
+	margin: auto;
+}
+table{
+	width:50%;
+	margin:auto;
+	border:1px solid black;
+	border-collapse:collapse;
+}
+* 
+tr{
+	border:1px solid black;
+}
+td{
+	border:1px solid black;
+}*/
+.banner {display:none;}
+/**
+	 *	PRINT Stylesheet
+	 * 
+	 *	First 'neutralize' all the positioning/overflow CSS added by Layout
+	 *	Then change or add cosmetic styles (borders, padding) for printing
+	 *
+	 *	MUST use "!important" for all size, position, margin & overflow rules,
+	 *	so these will 'override' styles applied to the elements by Layout
+	 */
+
+	html, body {
+		/* NEUTRALIZE 'layout container' styles */
+		overflow:	visible 	!important;
+		width:		auto		!important;
+		height:		auto		!important;
+		position:	static		!important;
+		padding-bottom:		120px;
+	}
+	table {
+            -fs-table-paginate: paginate;
+        }
+	.ui-layout-pane ,
+	.ui-layout-resizer ,
+	.ui-layout-toggler {
+		/* NEUTRALIZE 'layout element' styles */
+		display:	none		!important; /* hide ALL by default */
+		position:	relative	!important;
+		top:		auto		!important;
+		bottom:		auto		!important;
+		left:		auto		!important;
+		right:		auto		!important;
+		width:		auto		!important;
+		height:		auto		!important;
+		overflow:	visible		!important;
+	}
+	/* SHOW ONLY the panes you want */
+	.ui-layout-pane-center {
+		display:	block		!important;
+		/* OPTIONAL: change cosmetic styles as desired
+		border:		0			!important;
+		padding:	0			!important;
+		background:	transparent	!important;
+		*/
+	}
+	/* float the east pane to create a sidebar */
+	.ui-layout-pane-east {
+		float:			right;
+		width:			25%			!important;
+		margin-left:	1em			!important;
+		margin-bottom:	2ex			!important;
+		margin-top:	2em			!important;
+	}
+	.modal{
+			display: none;
+	}
+	#save{
+	display: none;
+	}
+	#next{
+	display: none;
+	}
+	#cancel{
+	display: none;
+	}
+	#postpond{
+	display: none;
+	}
+	.row{
+	display: none;
+	}
+	.noprint{
+		display: none;
+	}
+/*.DTTT_Print{
+	display:none;
+}*/
+@media print
+{
+  table { page-break-after:auto }
+  tr    { page-break-inside:avoid; page-break-after:auto }
+  td    { page-break-inside:avoid; page-break-after:auto }
+  thead { display:table-header-group }
+  tfoot { display:table-footer-group }
+}

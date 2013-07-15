@@ -1,0 +1,56 @@
+	var myLayout; // a var is required because this page utilizes: myLayout.allowOverflow() method
+
+	$(document).ready(function () {
+		myLayout = $('body').layout({
+			// enable showOverflow on west-pane so popups will overlap north pane
+			west__showOverflowOnHover: true
+
+		//,	west__fxSettings_open: { easing: "easeOutBounce", duration: 750 }
+		});
+ 	});
+  
+
+	var outerLayout, middleLayout, innerLayout; 
+
+	$(document).ready(function () { 
+
+		outerLayout = $('body').layout({ 
+			center__paneSelector:	".outer-center" 
+		,	west__paneSelector:		".outer-west" 
+		,	east__paneSelector:		".outer-east" 
+		,	west__size:				120 
+		,	east__size:				125 
+		,	spacing_open:			8 // ALL panes
+		,	spacing_closed:			12 // ALL panes
+		,	north__spacing_open:	0
+		,	south__spacing_open:	0
+		,	center__onresize:		"middleLayout.resizeAll" 
+		}); 
+
+		middleLayout = $('div.outer-center').layout({ 
+			center__paneSelector:	".middle-center" 
+		,	west__paneSelector:		".middle-west" 
+		,	east__paneSelector:		".middle-east" 
+		,	west__size:				260 
+		,	east__size:				100 
+		,	spacing_open:			8  // ALL panes
+		,	spacing_closed:			12 // ALL panes
+		,	center__onresize:		"innerLayout.resizeAll" 
+		}); 
+
+		innerLayout = $('div.middle-center').layout({ 
+			paneSelector:			"#mainContent" 			// sample: use an ID to select pane instead of a class
+		,	west__paneSelector:		".inner-west" 
+		,	east__paneSelector:		".inner-east" 
+		,	west__size:				120 
+		,	east__size:				75
+		,	scroll:				true
+		,	spacing_open:			8  // ALL panes
+		,	spacing_closed:			8  // ALL panes
+		,	west__spacing_closed:	12
+		,	east__spacing_closed:	12
+		}); 
+
+	}); 
+
+
