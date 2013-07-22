@@ -2157,3 +2157,41 @@ Jul 22 17:27:02 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2
 Jul 22 17:27:02 symfony [info] {sfWebDebugLogger} View "Success" for "section/index" 10.83 ms (1)
 Jul 22 17:27:02 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.84 ms (1)
 Jul 22 17:27:02 symfony [info] {sfWebResponse} Send content (53597 o)
+Jul 22 17:28:44 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /institution with parameters array (  'module' => 'institution',  'action' => 'index',)
+Jul 22 17:28:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 17:28:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 17:28:44 symfony [info] {institutionActions} Call "institutionActions->executeIndex()"
+Jul 22 17:28:44 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 17:28:44 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.token_id AS p__token_id, p.name AS p__name, p.alias AS p__alias, p.participant_type_id AS p__participant_type_id, p.status_id AS p__status_id, p.parent_id AS p__parent_id, p.leader_participant_id AS p__leader_participant_id, p.vat_number AS p__vat_number, p.project_no AS p__project_no, p.campus_id AS p__campus_id, p.description AS p__description, p.type AS p__type, p.title AS p__title, p.father_name AS p__father_name, p.grand_father_name AS p__grand_father_name, p.gender AS p__gender, p.birth_date AS p__birth_date, p.birth_place AS p__birth_place, p.job_title AS p__job_title, p.dean_name AS p__dean_name, p.director_name AS p__director_name, p.section_no AS p__section_no, p.section_leader_name AS p__section_leader_name, p.project_code AS p__project_code, p.project_director AS p__project_director, p.participant_id AS p__participant_id, p.license_type AS p__license_type, p.work_experience AS p__work_experience, p.established_date AS p__established_date, p.company_owner AS p__company_owner, p.company_license_type AS p__company_license_type FROM participant p WHERE (p.type = 4) - ()
+Jul 22 17:28:44 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/institution/templates/indexSuccess.php"
+Jul 22 17:28:44 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 17:28:44 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 17:28:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 17:28:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 17:28:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 17:28:44 symfony [info] {sfWebDebugLogger} Configuration 14.13 ms (10)
+Jul 22 17:28:44 symfony [info] {sfWebDebugLogger} Factories 22.78 ms (1)
+Jul 22 17:28:44 symfony [info] {sfWebDebugLogger} Action "institution/index" 21.40 ms (1)
+Jul 22 17:28:44 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 17:28:44 symfony [info] {sfWebDebugLogger} View "Success" for "institution/index" 15.15 ms (1)
+Jul 22 17:28:44 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.96 ms (1)
+Jul 22 17:28:44 symfony [info] {sfWebResponse} Send content (53698 o)
+Jul 22 17:31:36 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /department with parameters array (  'module' => 'department',  'action' => 'index',)
+Jul 22 17:31:36 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 17:31:36 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 17:31:36 symfony [info] {departmentActions} Call "departmentActions->executeIndex()"
+Jul 22 17:31:36 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 17:31:36 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.token_id AS p__token_id, p.name AS p__name, p.alias AS p__alias, p.participant_type_id AS p__participant_type_id, p.status_id AS p__status_id, p.parent_id AS p__parent_id, p.leader_participant_id AS p__leader_participant_id, p.vat_number AS p__vat_number, p.project_no AS p__project_no, p.campus_id AS p__campus_id, p.description AS p__description, p.type AS p__type, p.title AS p__title, p.father_name AS p__father_name, p.grand_father_name AS p__grand_father_name, p.gender AS p__gender, p.birth_date AS p__birth_date, p.birth_place AS p__birth_place, p.job_title AS p__job_title, p.dean_name AS p__dean_name, p.director_name AS p__director_name, p.section_no AS p__section_no, p.section_leader_name AS p__section_leader_name, p.project_code AS p__project_code, p.project_director AS p__project_director, p.participant_id AS p__participant_id, p.license_type AS p__license_type, p.work_experience AS p__work_experience, p.established_date AS p__established_date, p.company_owner AS p__company_owner, p.company_license_type AS p__company_license_type FROM participant p WHERE (p.type = 5) - ()
+Jul 22 17:31:36 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/department/templates/indexSuccess.php"
+Jul 22 17:31:36 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 17:31:36 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 17:31:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 17:31:36 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 17:31:36 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 17:31:36 symfony [info] {sfWebDebugLogger} Configuration 0.82 ms (9)
+Jul 22 17:31:36 symfony [info] {sfWebDebugLogger} Factories 19.81 ms (1)
+Jul 22 17:31:36 symfony [info] {sfWebDebugLogger} Action "department/index" 18.29 ms (1)
+Jul 22 17:31:36 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 17:31:36 symfony [info] {sfWebDebugLogger} View "Success" for "department/index" 10.37 ms (1)
+Jul 22 17:31:36 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.91 ms (1)
+Jul 22 17:31:36 symfony [info] {sfWebResponse} Send content (53672 o)
