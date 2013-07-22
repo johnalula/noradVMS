@@ -1885,3 +1885,135 @@ Jul 22 16:08:39 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2
 Jul 22 16:08:39 symfony [info] {sfWebDebugLogger} View "Success" for "institution/index" 9.96 ms (1)
 Jul 22 16:08:39 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.89 ms (1)
 Jul 22 16:08:39 symfony [info] {sfWebResponse} Send content (53724 o)
+Jul 22 16:25:33 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /section with parameters array (  'module' => 'section',  'action' => 'index',)
+Jul 22 16:25:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 16:25:33 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 16:25:33 symfony [info] {sectionActions} Call "sectionActions->executeIndex()"
+Jul 22 16:25:33 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 16:25:33 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.token_id AS p__token_id, p.name AS p__name, p.alias AS p__alias, p.participant_type_id AS p__participant_type_id, p.status_id AS p__status_id, p.parent_id AS p__parent_id, p.leader_participant_id AS p__leader_participant_id, p.vat_number AS p__vat_number, p.project_no AS p__project_no, p.campus_id AS p__campus_id, p.description AS p__description, p.type AS p__type, p.title AS p__title, p.father_name AS p__father_name, p.grand_father_name AS p__grand_father_name, p.gender AS p__gender, p.birth_date AS p__birth_date, p.birth_place AS p__birth_place, p.job_title AS p__job_title, p.dean_name AS p__dean_name, p.director_name AS p__director_name, p.section_no AS p__section_no, p.section_leader_name AS p__section_leader_name, p.project_code AS p__project_code, p.project_director AS p__project_director, p.participant_id AS p__participant_id, p.license_type AS p__license_type, p.work_experience AS p__work_experience, p.established_date AS p__established_date, p.company_owner AS p__company_owner, p.company_license_type AS p__company_license_type FROM participant p WHERE (p.type = 6) - ()
+Jul 22 16:25:33 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/section/templates/indexSuccess.php"
+Jul 22 16:25:33 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:25:33 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:25:33 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 16:25:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 16:25:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:25:33 symfony [info] {sfWebDebugLogger} Configuration 122.63 ms (9)
+Jul 22 16:25:33 symfony [info] {sfWebDebugLogger} Factories 54.35 ms (1)
+Jul 22 16:25:33 symfony [info] {sfWebDebugLogger} Action "section/index" 21.08 ms (1)
+Jul 22 16:25:33 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 16:25:33 symfony [info] {sfWebDebugLogger} View "Success" for "section/index" 15.91 ms (1)
+Jul 22 16:25:33 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.96 ms (1)
+Jul 22 16:25:34 symfony [info] {sfWebResponse} Send content (53612 o)
+Jul 22 16:27:16 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /section with parameters array (  'module' => 'section',  'action' => 'index',)
+Jul 22 16:27:16 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 16:27:16 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 16:27:16 symfony [info] {sectionActions} Call "sectionActions->executeIndex()"
+Jul 22 16:27:16 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 16:27:16 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.token_id AS p__token_id, p.name AS p__name, p.alias AS p__alias, p.participant_type_id AS p__participant_type_id, p.status_id AS p__status_id, p.parent_id AS p__parent_id, p.leader_participant_id AS p__leader_participant_id, p.vat_number AS p__vat_number, p.project_no AS p__project_no, p.campus_id AS p__campus_id, p.description AS p__description, p.type AS p__type, p.title AS p__title, p.father_name AS p__father_name, p.grand_father_name AS p__grand_father_name, p.gender AS p__gender, p.birth_date AS p__birth_date, p.birth_place AS p__birth_place, p.job_title AS p__job_title, p.dean_name AS p__dean_name, p.director_name AS p__director_name, p.section_no AS p__section_no, p.section_leader_name AS p__section_leader_name, p.project_code AS p__project_code, p.project_director AS p__project_director, p.participant_id AS p__participant_id, p.license_type AS p__license_type, p.work_experience AS p__work_experience, p.established_date AS p__established_date, p.company_owner AS p__company_owner, p.company_license_type AS p__company_license_type FROM participant p WHERE (p.type = 6) - ()
+Jul 22 16:27:16 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/section/templates/indexSuccess.php"
+Jul 22 16:27:16 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:27:16 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:27:16 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 16:27:16 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 16:27:16 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:27:16 symfony [info] {sfWebDebugLogger} Configuration 0.81 ms (9)
+Jul 22 16:27:16 symfony [info] {sfWebDebugLogger} Factories 22.28 ms (1)
+Jul 22 16:27:16 symfony [info] {sfWebDebugLogger} Action "section/index" 20.93 ms (1)
+Jul 22 16:27:16 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 16:27:16 symfony [info] {sfWebDebugLogger} View "Success" for "section/index" 11.28 ms (1)
+Jul 22 16:27:16 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.90 ms (1)
+Jul 22 16:27:16 symfony [info] {sfWebResponse} Send content (53629 o)
+Jul 22 16:27:33 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /house with parameters array (  'module' => 'house',  'action' => 'index',)
+Jul 22 16:27:33 symfony [info] {sfFrontWebController} Action "house/index" does not exist
+Jul 22 16:27:33 symfony [err] {sfError404Exception} Action "house/index" does not exist.
+Jul 22 16:27:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 22 16:27:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:27:33 symfony [info] {sfWebDebugLogger} Configuration 0.43 ms (5)
+Jul 22 16:27:33 symfony [info] {sfWebDebugLogger} Factories 20.20 ms (1)
+Jul 22 16:27:45 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /user with parameters array (  'module' => 'user',  'action' => 'index',)
+Jul 22 16:27:45 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 16:27:45 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 16:27:45 symfony [info] {userActions} Call "userActions->executeIndex()"
+Jul 22 16:27:45 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 16:27:45 symfony [info] {Doctrine_Connection_Mysql} query : SELECT u.id AS u__id, u.username AS u__username, u.password AS u__password, u.token_id AS u__token_id, u.group_id AS u__group_id, u.is_active AS u__is_active, u.is_blocked AS u__is_blocked, u.status AS u__status, u.permission_type AS u__permission_type, u.ui_theme_color_setting AS u__ui_theme_color_setting, u.ui_language_setting AS u__ui_language_setting FROM user u - ()
+Jul 22 16:27:45 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/user/templates/indexSuccess.php"
+Jul 22 16:27:45 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:27:45 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:27:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 16:27:45 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 16:27:45 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:27:45 symfony [info] {sfWebDebugLogger} Configuration 12.65 ms (10)
+Jul 22 16:27:45 symfony [info] {sfWebDebugLogger} Factories 20.61 ms (1)
+Jul 22 16:27:45 symfony [info] {sfWebDebugLogger} Action "user/index" 17.54 ms (1)
+Jul 22 16:27:45 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 16:27:45 symfony [info] {sfWebDebugLogger} View "Success" for "user/index" 16.68 ms (1)
+Jul 22 16:27:45 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.83 ms (1)
+Jul 22 16:27:45 symfony [info] {sfWebResponse} Send content (44274 o)
+Jul 22 16:27:50 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /user/new with parameters array (  'module' => 'user',  'action' => 'new',)
+Jul 22 16:27:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 16:27:50 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 16:27:50 symfony [info] {userActions} Call "userActions->executeNew()"
+Jul 22 16:27:50 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/user/templates/newSuccess.php"
+Jul 22 16:27:50 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/user/templates/_form.php"
+Jul 22 16:27:50 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 16:27:50 symfony [info] {Doctrine_Connection_Mysql} query : SELECT u.id AS u__id, u.token_id AS u__token_id, u.name AS u__name, u.description AS u__description FROM user_group u - ()
+Jul 22 16:27:50 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:27:50 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:27:50 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 16:27:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 16:27:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} Configuration 0.76 ms (9)
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} Factories 20.04 ms (1)
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} Action "user/new" 15.90 ms (1)
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} View "Success" for "user/new" 25.71 ms (1)
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} Partial "user/_form" 16.03 ms (1)
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 16:27:50 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.92 ms (1)
+Jul 22 16:27:50 symfony [info] {sfWebResponse} Send content (51530 o)
+Jul 22 16:27:56 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /registrationtask with parameters array (  'module' => 'registrationtask',  'action' => 'index',)
+Jul 22 16:27:56 symfony [info] {sfFrontWebController} Action "registrationtask/index" does not exist
+Jul 22 16:27:56 symfony [err] {sfError404Exception} Action "registrationtask/index" does not exist.
+Jul 22 16:27:56 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 22 16:27:56 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:27:56 symfony [info] {sfWebDebugLogger} Configuration 0.41 ms (5)
+Jul 22 16:27:56 symfony [info] {sfWebDebugLogger} Factories 20.44 ms (1)
+Jul 22 16:28:11 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /user/new with parameters array (  'module' => 'user',  'action' => 'new',)
+Jul 22 16:28:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 16:28:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 16:28:11 symfony [info] {userActions} Call "userActions->executeNew()"
+Jul 22 16:28:11 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/user/templates/newSuccess.php"
+Jul 22 16:28:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/user/templates/_form.php"
+Jul 22 16:28:11 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 16:28:11 symfony [info] {Doctrine_Connection_Mysql} query : SELECT u.id AS u__id, u.token_id AS u__token_id, u.name AS u__name, u.description AS u__description FROM user_group u - ()
+Jul 22 16:28:11 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:28:11 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:28:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 16:28:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 16:28:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} Configuration 0.81 ms (9)
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} Factories 22.89 ms (1)
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} Action "user/new" 18.28 ms (1)
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} View "Success" for "user/new" 28.55 ms (1)
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} Partial "user/_form" 17.92 ms (1)
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 16:28:11 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.87 ms (1)
+Jul 22 16:28:11 symfony [info] {sfWebResponse} Send content (51531 o)
+Jul 22 16:56:02 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /section with parameters array (  'module' => 'section',  'action' => 'index',)
+Jul 22 16:56:02 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 22 16:56:02 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 22 16:56:02 symfony [info] {sectionActions} Call "sectionActions->executeIndex()"
+Jul 22 16:56:02 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 22 16:56:02 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.token_id AS p__token_id, p.name AS p__name, p.alias AS p__alias, p.participant_type_id AS p__participant_type_id, p.status_id AS p__status_id, p.parent_id AS p__parent_id, p.leader_participant_id AS p__leader_participant_id, p.vat_number AS p__vat_number, p.project_no AS p__project_no, p.campus_id AS p__campus_id, p.description AS p__description, p.type AS p__type, p.title AS p__title, p.father_name AS p__father_name, p.grand_father_name AS p__grand_father_name, p.gender AS p__gender, p.birth_date AS p__birth_date, p.birth_place AS p__birth_place, p.job_title AS p__job_title, p.dean_name AS p__dean_name, p.director_name AS p__director_name, p.section_no AS p__section_no, p.section_leader_name AS p__section_leader_name, p.project_code AS p__project_code, p.project_director AS p__project_director, p.participant_id AS p__participant_id, p.license_type AS p__license_type, p.work_experience AS p__work_experience, p.established_date AS p__established_date, p.company_owner AS p__company_owner, p.company_license_type AS p__company_license_type FROM participant p WHERE (p.type = 6) - ()
+Jul 22 16:56:02 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/section/templates/indexSuccess.php"
+Jul 22 16:56:02 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:56:02 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 22 16:56:02 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 22 16:56:02 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 22 16:56:02 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 22 16:56:02 symfony [info] {sfWebDebugLogger} Configuration 0.79 ms (9)
+Jul 22 16:56:02 symfony [info] {sfWebDebugLogger} Factories 20.81 ms (1)
+Jul 22 16:56:02 symfony [info] {sfWebDebugLogger} Action "section/index" 18.18 ms (1)
+Jul 22 16:56:02 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 22 16:56:02 symfony [info] {sfWebDebugLogger} View "Success" for "section/index" 10.53 ms (1)
+Jul 22 16:56:02 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.86 ms (1)
+Jul 22 16:56:02 symfony [info] {sfWebResponse} Send content (53597 o)
