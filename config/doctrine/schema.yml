@@ -247,7 +247,7 @@ FleetServiceTask:
     service_reason: { type: string(255) }
     destination: { type: string(255) }
     service_number_of_days: { type: integer }
-    service_delay_status: { type: boolean, defaulet: false }
+    service_delay_status: { type: boolean, default: false }
     number_of_delay_days: { type: integer, default: 0 }
     delay_reason: { type: clob }
   relations:

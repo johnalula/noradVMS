@@ -12,6 +12,7 @@
  * @property Doctrine_Collection $itemCategorys
  * @property Doctrine_Collection $categoryCategories
  * @property Doctrine_Collection $categoryGroupsCategories
+ * @property Doctrine_Collection $taskOrderCategories
  * 
  * @package    noradVMS
  * @subpackage model
@@ -55,6 +56,10 @@ abstract class BaseCategory extends sfDoctrineRecord
              'foreign' => 'parent_category_id'));
 
         $this->hasMany('CategoryGroups as categoryGroupsCategories', array(
+             'local' => 'id',
+             'foreign' => 'category_id'));
+
+        $this->hasMany('TaskOrder as taskOrderCategories', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 

@@ -30,9 +30,9 @@
  * @property integer $current_mileage
  * @property integer $vehicle_type_id
  * @property float $litter_per_km
- * @property integer $sitting_capacity
- * @property string $engine_no
- * @property string $chesis_no
+ * @property integer $seatng_capacity
+ * @property string $engine_number
+ * @property string $chesis_number
  * @property string $vehicle_model
  * @property string $vehicl_color
  * @property float $weight
@@ -47,6 +47,7 @@
  * @property string $spare_Identification
  * @property Category $Category
  * @property Task $Task
+ * @property TaskOrder $TaskOrder
  * @property CategoryGroups $CategoryGroups
  * @property Unit $Unit
  * @property Doctrine_Collection $ServiceVehicleItemAcquired
@@ -159,14 +160,14 @@ abstract class BaseItem extends sfDoctrineRecord
         $this->hasColumn('litter_per_km', 'float', null, array(
              'type' => 'float',
              ));
-        $this->hasColumn('sitting_capacity', 'integer', null, array(
+        $this->hasColumn('seatng_capacity', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('engine_no', 'string', 100, array(
+        $this->hasColumn('engine_number', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('chesis_no', 'string', 100, array(
+        $this->hasColumn('chesis_number', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));
@@ -236,6 +237,11 @@ abstract class BaseItem extends sfDoctrineRecord
 
         $this->hasOne('Task', array(
              'local' => 'task_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('TaskOrder', array(
+             'local' => 'task_order_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

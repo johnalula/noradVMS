@@ -15,17 +15,17 @@ abstract class BaseVehicleFuelSettingForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'           => new sfWidgetFormInputHidden(),
-      'fuel_ammount' => new sfWidgetFormInputText(),
-      'no_of_days'   => new sfWidgetFormInputText(),
-      'description'  => new sfWidgetFormTextarea(),
+      'id'             => new sfWidgetFormInputHidden(),
+      'fuel_ammount'   => new sfWidgetFormInputText(),
+      'number_of_days' => new sfWidgetFormInputText(),
+      'description'    => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
-      'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'fuel_ammount' => new sfValidatorNumber(array('required' => false)),
-      'no_of_days'   => new sfValidatorInteger(array('required' => false)),
-      'description'  => new sfValidatorString(array('required' => false)),
+      'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'fuel_ammount'   => new sfValidatorNumber(array('required' => false)),
+      'number_of_days' => new sfValidatorInteger(array('required' => false)),
+      'description'    => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('vehicle_fuel_setting[%s]');

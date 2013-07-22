@@ -8,6 +8,7 @@
  * @property string $name
  * @property string $alias
  * @property boolean $is_default
+ * @property Doctrine_Collection $taskOrderCurrencies
  * @property Doctrine_Collection $tocurrencies
  * 
  * @package    noradVMS
@@ -39,6 +40,10 @@ abstract class BaseCurrency extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('TaskOrder as taskOrderCurrencies', array(
+             'local' => 'id',
+             'foreign' => 'currency_id'));
+
         $this->hasMany('CurrencyExchange as tocurrencies', array(
              'local' => 'id',
              'foreign' => 'to_currency_id'));

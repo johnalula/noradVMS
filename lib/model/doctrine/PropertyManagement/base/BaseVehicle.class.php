@@ -8,11 +8,10 @@
  * @property VehicleType $VehicleType
  * @property VehicleServiceType $VehicleServiceType
  * @property FuelType $FuelType
- * @property VehicleChakupSetting $VehicleChakupSetting
  * @property VehicleFuelSetting $VehicleFuelSetting
  * @property ServiceType $ServiceType
+ * @property Doctrine_Collection $VehicleInsuranceSetting
  * @property Doctrine_Collection $assignedVehicle
- * @property Doctrine_Collection $Task
  * @property Doctrine_Collection $serviceVehicleCosts
  * @property Doctrine_Collection $serviceVehicleItemAcquiredAttachments
  * @property Doctrine_Collection $serviceVehicleAttachmentVehicles
@@ -44,11 +43,6 @@ abstract class BaseVehicle extends Item
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('VehicleChakupSetting', array(
-             'local' => 'checkup_period_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
-
         $this->hasOne('VehicleFuelSetting', array(
              'local' => 'fuel_setting_id',
              'foreign' => 'id',
@@ -58,11 +52,11 @@ abstract class BaseVehicle extends Item
              'local' => 'service_type_id',
              'foreign' => 'id'));
 
-        $this->hasMany('AssignedVehicle as assignedVehicle', array(
+        $this->hasMany('VehicleInsuranceSetting', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
-        $this->hasMany('Task', array(
+        $this->hasMany('AssignedVehicle as assignedVehicle', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

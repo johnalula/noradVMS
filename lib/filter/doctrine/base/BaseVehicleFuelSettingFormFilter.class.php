@@ -13,15 +13,15 @@ abstract class BaseVehicleFuelSettingFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'fuel_ammount' => new sfWidgetFormFilterInput(),
-      'no_of_days'   => new sfWidgetFormFilterInput(),
-      'description'  => new sfWidgetFormFilterInput(),
+      'fuel_ammount'   => new sfWidgetFormFilterInput(),
+      'number_of_days' => new sfWidgetFormFilterInput(),
+      'description'    => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'fuel_ammount' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'no_of_days'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'description'  => new sfValidatorPass(array('required' => false)),
+      'fuel_ammount'   => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'number_of_days' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'description'    => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('vehicle_fuel_setting_filters[%s]');
@@ -41,10 +41,10 @@ abstract class BaseVehicleFuelSettingFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'           => 'Number',
-      'fuel_ammount' => 'Number',
-      'no_of_days'   => 'Number',
-      'description'  => 'Text',
+      'id'             => 'Number',
+      'fuel_ammount'   => 'Number',
+      'number_of_days' => 'Number',
+      'description'    => 'Text',
     );
   }
 }

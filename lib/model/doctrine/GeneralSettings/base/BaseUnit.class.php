@@ -11,6 +11,7 @@
  * @property string $description
  * @property Metric $Metric
  * @property Doctrine_Collection $itemUnits
+ * @property Doctrine_Collection $taskOrderUnits
  * @property Doctrine_Collection $units
  * 
  * @package    noradVMS
@@ -52,6 +53,10 @@ abstract class BaseUnit extends sfDoctrineRecord
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('Item as itemUnits', array(
+             'local' => 'id',
+             'foreign' => 'unit_id'));
+
+        $this->hasMany('TaskOrder as taskOrderUnits', array(
              'local' => 'id',
              'foreign' => 'unit_id'));
 
