@@ -12,6 +12,41 @@ class CampusTable extends PluginCampusTable
      *
      * @return object CampusTable
      */
+    public static function selectCampusObject()
+    {}
+    
+    public static function selectCampus()
+    {}
+    
+    public static function selectCandidateParents()
+    {}
+    
+    public static function addCampus()
+    {}
+    
+    public static function updateCampus()
+    {}
+    
+    public static function deleteCampus()
+    {}
+    
+    public static function addKeywordQuery()
+    {}
+    
+    public static function addStatusQuery()
+    {}
+    
+    public static function addExclusionQuery()
+    {}
+    
+    public static function addUmbrellaQuery()
+    {}
+    
+    public static function selectStatusList()
+    {}
+    
+    public static function selectTypeList()
+    {}
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Campus');

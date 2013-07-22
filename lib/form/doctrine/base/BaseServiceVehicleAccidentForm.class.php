@@ -20,7 +20,7 @@ abstract class BaseServiceVehicleAccidentForm extends BaseFormDoctrine
       'vehicle_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'accident_type_id' => new sfWidgetFormInputText(),
       'accident_place'   => new sfWidgetFormInputText(),
-      'accident_date'    => new sfWidgetFormDate(),
+      'accident_date'    => new sfWidgetFormInputText(),
       'accident_time'    => new sfWidgetFormInputText(),
     ));
 
@@ -30,7 +30,7 @@ abstract class BaseServiceVehicleAccidentForm extends BaseFormDoctrine
       'vehicle_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'required' => false)),
       'accident_type_id' => new sfValidatorInteger(array('required' => false)),
       'accident_place'   => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'accident_date'    => new sfValidatorDate(array('required' => false)),
+      'accident_date'    => new sfValidatorPass(array('required' => false)),
       'accident_time'    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
     ));
 

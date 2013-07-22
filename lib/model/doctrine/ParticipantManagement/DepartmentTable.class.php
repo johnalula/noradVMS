@@ -12,6 +12,43 @@ class DepartmentTable extends PluginDepartmentTable
      *
      * @return object DepartmentTable
      */
+     
+    public static function selectDepartmentObject()
+    {}
+    
+    public static function selectDepartment()
+    {}
+    
+    public static function selectCandidateParents()
+    {}
+    
+    public static function addDepartment()
+    {}
+    
+    public static function updateDepartment()
+    {}
+    
+    public static function deleteDepartment()
+    {}
+    
+    public static function addKeywordQuery()
+    {}
+    
+    public static function addStatusQuery()
+    {}
+    
+    public static function addExclusionQuery()
+    {}
+    
+    public static function addUmbrellaQuery()
+    {}
+    
+    public static function selectStatusList()
+    {}
+    
+    public static function selectTypeList()
+    {}
+    
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Department');

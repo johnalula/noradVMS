@@ -16,4 +16,26 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
     {
         return Doctrine_Core::getTable('FleetServiceTask');
     }
+    
+    public static $SERVICETYPE= array(1 => "Owner-Self", 2 => "Tenant", 3 => "Other");
+	public static function queryRelationWithOwnerTypeList ( ) {
+		return self::$RELATION_WITH_OWNER_TYPES;
+	}
+
+	public static function getRelationWithOwnerValue($id) {
+		foreach(self::$RELATION_WITH_OWNER_TYPES as $key => $value )
+			if( $key == $id )
+				return $value;
+		return "-";
+	}
+	public static $REPRESENTATIVE_STATUS_TYPE= array(1 => "Active", 2 => "Moved", 3 => "Other");
+	public static function queryStatusTypeList ( ) {
+		return self::$REPRESENTATIVE_STATUS_TYPE;
+	}	
+	public static function getStatusValue($id) {
+		foreach(self::$REPRESENTATIVE_STATUS_TYPE as $key => $value )
+			if( $key == $id )
+				return $value;
+		return "-";
+	}
 }

@@ -15,6 +15,7 @@ class employeeActions extends sfActions
     $this->employees = Doctrine_Core::getTable('Employee')
       ->createQuery('a')
       ->execute();
+       $this->form = new EmployeeForm();
   }
 
   public function executeShow(sfWebRequest $request)

@@ -12,6 +12,41 @@ class CenterTable extends PluginCenterTable
      *
      * @return object CenterTable
      */
+    public static function selectCenterObject()
+    {}
+    
+    public static function selectCenter()
+    {}
+    
+    public static function selectCandidateParents()
+    {}
+    
+    public static function addCenter()
+    {}
+    
+    public static function updateCenter()
+    {}
+    
+    public static function deleteCenter()
+    {}
+    
+    public static function addKeywordQuery()
+    {}
+    
+    public static function addStatusQuery()
+    {}
+    
+    public static function addExclusionQuery()
+    {}
+    
+    public static function addUmbrellaQuery()
+    {}
+    
+    public static function selectStatusList()
+    {}
+    
+    public static function selectTypeList()
+    {}
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Center');

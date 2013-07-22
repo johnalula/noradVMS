@@ -8,7 +8,11 @@
  * @property integer $task_id
  * @property integer $driver_id
  * @property integer $vehicle_id
- * @property date $assigned_date
+ * @property datetime $assigned_date
+ * @property boolean $maintenance_status
+ * @property boolean $departure_status
+ * @property boolean $return_status
+ * @property boolean $reasigned_status
  * @property Task $Task
  * @property Participant $Participant
  * @property Vehicle $Vehicle
@@ -34,8 +38,24 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
         $this->hasColumn('vehicle_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('assigned_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('assigned_date', 'datetime', null, array(
+             'type' => 'datetime',
+             ));
+        $this->hasColumn('maintenance_status', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('departure_status', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('return_status', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('reasigned_status', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
     }
 

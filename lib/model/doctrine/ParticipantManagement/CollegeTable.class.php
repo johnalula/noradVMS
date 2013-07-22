@@ -12,6 +12,41 @@ class CollegeTable extends PluginCollegeTable
      *
      * @return object CollegeTable
      */
+    public static function selectCollegeObject()
+    {}
+    
+    public static function selectCollege()
+    {}
+    
+    public static function selectCandidateParents()
+    {}
+    
+    public static function addCollege()
+    {}
+    
+    public static function updateCollege()
+    {}
+    
+    public static function deleteCollege()
+    {}
+    
+    public static function addKeywordQuery()
+    {}
+    
+    public static function addStatusQuery()
+    {}
+    
+    public static function addExclusionQuery()
+    {}
+    
+    public static function addUmbrellaQuery()
+    {}
+    
+    public static function selectStatusList()
+    {}
+    
+    public static function selectTypeList()
+    {}
     public static function getInstance()
     {
         return Doctrine_Core::getTable('College');

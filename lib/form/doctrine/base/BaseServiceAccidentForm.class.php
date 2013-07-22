@@ -17,7 +17,7 @@ abstract class BaseServiceAccidentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
       'task_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
-      'accident_date' => new sfWidgetFormDate(),
+      'accident_date' => new sfWidgetFormInputText(),
       'accident_type' => new sfWidgetFormInputText(),
       'descriptioin'  => new sfWidgetFormTextarea(),
     ));
@@ -25,7 +25,7 @@ abstract class BaseServiceAccidentForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'task_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'required' => false)),
-      'accident_date' => new sfValidatorDate(array('required' => false)),
+      'accident_date' => new sfValidatorPass(array('required' => false)),
       'accident_type' => new sfValidatorInteger(array('required' => false)),
       'descriptioin'  => new sfValidatorString(array('required' => false)),
     ));

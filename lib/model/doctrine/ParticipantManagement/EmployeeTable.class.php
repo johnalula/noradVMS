@@ -12,8 +12,157 @@ class EmployeeTable extends PluginEmployeeTable
      *
      * @return object EmployeeTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Employee');
-    }
+     
+	public static function selectEmployeeObject($part_id, $token_id)
+	{
+		$q= Doctrine_Query::create()
+			->select("prt.* ")
+			->from("Participant prt") // 
+			->where("prt.id = ? AND prt.token_id = ?",array($part_id, $token_id) )
+			->fetchOne(); 
+		return (! $q ? null : $q ); 	
+		
+	}
+
+	public static function selectEmployee($status=null, $keyword=null, $exclusion=null , $parent=null, $offset=0, $limit=10, $dept=null ) 
+	{
+		$q= Doctrine_Query::create()
+			->select("prt.* ")
+			->from("Participant prt") 
+			//->leftJoin("prt.Participant dept on dept.id = prt.dept_id")
+			->offset($offset)
+			->limit($limit)
+			->where("prt.parent_id IS NOT NULL AND prt.participant_type_id = ?", ParticipantCore::$EMPLOYEE ); 
+		$q= self::addStatusQuery($q, $status );
+		$q= self::addKeywordQuery($q, $keyword );
+		$q= self::addExclusionQuery($q, $exclusion );
+		$q= self::addUmbrellaQuery($q, $parent );
+		if(! is_null($dept))
+			$q=$q->andWhere("dept.id=?", $dept);
+		$q= $q->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+
+	public static function selectCandidateParents()
+	{
+		
+	}
+
+	public static function addEmployee($parent_id, $title, $name, $father_name, $grand_father_name, $job_title, $birth_date, $birth_place, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	{
+	$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
+	$token = trim($name).rand('11111', '99999');
+	$emp = new Employee(); //
+	$emp->token_id = MD5($token);
+	$emp->name = trim($name);
+	$emp->father_name = trim($father_name);
+	$emp->grand_father_name = trim($grand_father_name);
+	$emp->job_title = trim($job_title);
+	$emp->title = $title;
+	$emp->birth_date = $birth_date; 
+	$emp->birth_place = trim($birth_place); 
+	$emp->status_id = $status; 
+	$emp->vat_number = trim($vat_number);
+	$emp->description = trim($description);
+	//$emp->street_number = trim($street_no);
+	//$emp->house_number = trim($house_no);
+	//$emp->pobox = trim($pobox);
+	//$emp->mobile_number = trim($mobile_no);
+	//$emp->phone_number = trim($phone_no);
+	//$emp->fax_number = trim($fax_no);
+	//$emp->email = trim($email);
+	//$emp->website = trim($website);
+	//$emp->participant_type_id = ParticipantCore::$EMPLOYEE; //
+	$emp->parent_id= $parent_id;
+	$emp->save(); 
+	return true; 
+	 
+	}
+
+	public static function updateEmployee()
+	{}
+
+   public static function deleteEmployee()
+   {
+		$q = Doctrine_Query::create()
+			->select("prt.*, to.id as TOID")
+			->from("Participant prt")
+			->innerJoin("prt.taskParticipantParticipants to")
+			->offset(0)
+			->limit(4)
+			->where("prt.id = ? ",  $id )
+			->execute(); 
+		if( count($q) > 0 )
+			return false; 			
+
+		$q2 = Doctrine_Query::create()
+				->delete("*")
+				->from("Participant prt")
+				->where("prt.id=?", $id )
+				->execute( );
+		return ( $q2 > 0  ) ;
+		//calculate relation => deletability 
+	}
+    
+	public static function addKeywordQuery($q, $keyword)
+	{
+		if( is_null($keyword))
+			return $q; 
+		$q= $q->andWhere("prt.name LIKE ?", $keyword); 
+		return $q; 
+	}
+
+	public static function addStatusQuery($q, $status)
+	{
+		if( is_null($status))
+			return $q; 
+		$q= $q->andWhere("prt.status_id=?",  $status); 
+		return $q; 
+	}
+
+	public static function addExclusionQuery($q, $exclusion)
+	{
+		if(! is_array($exclusion) )
+			return $q; 
+		if( count($exclusion) <= 0 )
+			return $q; 
+		$q= $q->andWhereNotIn("prt.id",  $exclusion); 
+		return $q; 
+	}
+
+	public static function addParentQuery($q, $parent_id)
+	{
+		if( is_null($parent_id))
+			return $q; 
+		$q = $q->andWhere("prt.parent_id=?",  $parent_id); 
+		return $q; 
+	}
+
+	public static function selectStatusList()
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(to.type_id) AS statuses")
+			->from("Participant to")
+			->where("to.id IS NOT NULL"); 
+			
+		$q = $q->andWhereIn("to.participant_type_id", ParticipantCore::$EMPLOYEE)
+		  	->execute( ); 
+		$st = array(); 
+		$count= count($q);
+		if ($count <= 0 )
+			return $st; 
+		foreach($q as $prt )
+			$st[] = $prt->statuses; 
+		return $st; 
+	}
+
+	public static function selectTypeList()
+	{}
+
+
+	public static function getInstance()
+	{
+	return Doctrine_Core::getTable('Employee');
+	}
 }

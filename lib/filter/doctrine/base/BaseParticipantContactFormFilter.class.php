@@ -13,25 +13,27 @@ abstract class BaseParticipantContactFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'street_number' => new sfWidgetFormFilterInput(),
-      'house_number'  => new sfWidgetFormFilterInput(),
-      'pobox'         => new sfWidgetFormFilterInput(),
-      'mobile_no'     => new sfWidgetFormFilterInput(),
-      'phone_no'      => new sfWidgetFormFilterInput(),
-      'fax'           => new sfWidgetFormFilterInput(),
-      'email'         => new sfWidgetFormFilterInput(),
-      'website'       => new sfWidgetFormFilterInput(),
+      'participant_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
+      'street_number'  => new sfWidgetFormFilterInput(),
+      'house_number'   => new sfWidgetFormFilterInput(),
+      'pobox'          => new sfWidgetFormFilterInput(),
+      'mobile_number'  => new sfWidgetFormFilterInput(),
+      'phone_number'   => new sfWidgetFormFilterInput(),
+      'fax'            => new sfWidgetFormFilterInput(),
+      'email'          => new sfWidgetFormFilterInput(),
+      'website'        => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'street_number' => new sfValidatorPass(array('required' => false)),
-      'house_number'  => new sfValidatorPass(array('required' => false)),
-      'pobox'         => new sfValidatorPass(array('required' => false)),
-      'mobile_no'     => new sfValidatorPass(array('required' => false)),
-      'phone_no'      => new sfValidatorPass(array('required' => false)),
-      'fax'           => new sfValidatorPass(array('required' => false)),
-      'email'         => new sfValidatorPass(array('required' => false)),
-      'website'       => new sfValidatorPass(array('required' => false)),
+      'participant_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Participant'), 'column' => 'id')),
+      'street_number'  => new sfValidatorPass(array('required' => false)),
+      'house_number'   => new sfValidatorPass(array('required' => false)),
+      'pobox'          => new sfValidatorPass(array('required' => false)),
+      'mobile_number'  => new sfValidatorPass(array('required' => false)),
+      'phone_number'   => new sfValidatorPass(array('required' => false)),
+      'fax'            => new sfValidatorPass(array('required' => false)),
+      'email'          => new sfValidatorPass(array('required' => false)),
+      'website'        => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('participant_contact_filters[%s]');
@@ -51,15 +53,16 @@ abstract class BaseParticipantContactFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'            => 'Number',
-      'street_number' => 'Text',
-      'house_number'  => 'Text',
-      'pobox'         => 'Text',
-      'mobile_no'     => 'Text',
-      'phone_no'      => 'Text',
-      'fax'           => 'Text',
-      'email'         => 'Text',
-      'website'       => 'Text',
+      'id'             => 'Number',
+      'participant_id' => 'ForeignKey',
+      'street_number'  => 'Text',
+      'house_number'   => 'Text',
+      'pobox'          => 'Text',
+      'mobile_number'  => 'Text',
+      'phone_number'   => 'Text',
+      'fax'            => 'Text',
+      'email'          => 'Text',
+      'website'        => 'Text',
     );
   }
 }

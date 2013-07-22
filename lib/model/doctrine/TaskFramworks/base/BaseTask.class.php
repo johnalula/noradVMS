@@ -14,10 +14,10 @@
  * @property clob $description
  * @property string $type
  * @property integer $agreement_participant_id
- * @property date $departure_date
+ * @property datetime $departure_date
  * @property time $departure_time
  * @property integer $departure_status
- * @property date $return_date
+ * @property datetime $return_date
  * @property time $return_time
  * @property integer $return_status
  * @property integer $no_of_passangers
@@ -84,8 +84,8 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('agreement_participant_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('departure_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('departure_date', 'datetime', null, array(
+             'type' => 'datetime',
              ));
         $this->hasColumn('departure_time', 'time', null, array(
              'type' => 'time',
@@ -94,8 +94,8 @@ abstract class BaseTask extends sfDoctrineRecord
              'type' => 'integer',
              'default' => 1,
              ));
-        $this->hasColumn('return_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('return_date', 'datetime', null, array(
+             'type' => 'datetime',
              ));
         $this->hasColumn('return_time', 'time', null, array(
              'type' => 'time',

@@ -26,7 +26,7 @@ abstract class BaseServiceVehicleAccidentFormFilter extends BaseFormFilterDoctri
       'vehicle_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicle'), 'column' => 'id')),
       'accident_type_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'accident_place'   => new sfValidatorPass(array('required' => false)),
-      'accident_date'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'accident_date'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'accident_time'    => new sfValidatorPass(array('required' => false)),
     ));
 

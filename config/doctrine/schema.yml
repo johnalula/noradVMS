@@ -43,9 +43,9 @@ Vehicle:
     current_mileage: { type: integer }
     vehicle_type_id: { type: integer } 
     litter_per_km: { type: float }
-    sitting_capacity: { type: integer } 
-    engine_no: { type: string(100) }
-    chesis_no: { type: string(100) }
+    seatng_capacity: { type: integer } 
+    engine_number: { type: string(100) }
+    chesis_number: { type: string(100) }
     vehicle_model: { type: string(100) }
     vehicl_color: { type: string(50) }
     weight: { type: float }
@@ -75,13 +75,38 @@ Sparepart:
   columns:
     spare_Identification: {type : string(100) } 
 
+VehicleCheckupSetting:
+  package: VehicleSetting
+  columns:
+    check_up_name: { type: string(100) }
+    pass_value: { type: boolean, default: true }
+    fail_value: { type: boolean, default: false }
+    na_value: { type: boolean, default: false }
+
+VehicleInsuranceSetting:
+  package: VehicleSetting
+  columns:
+    vehicle_id: { type: integer}
+    insurer_name: { type: string(255) }
+    insurance_number: { type: string(100) }
+    insurance_type: { type: integer }
+    insurance_period: { type: integer }
+    insurance_expiry_date: { type: string(100) }
+    last_insurance_renewal: { type: string(100) }
+    insurance_status: { type: boolean, default: false }
+    
+    
 AssignedVehicle:
   package: VehicleSetting
   columns:
     task_id: { type: integer }
     driver_id: { type: integer }   
     vehicle_id: { type: integer }   
-    assigned_date: { type: date }
+    assigned_date: { type: datetime }
+    maintenance_status: { type: boolean, default: false }
+    departure_status: { type: boolean, default: false }
+    return_status: { type: boolean, default: false }
+    reasigned_status: { type: boolean, default: false }
   relations: 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: vehicleAssignmentTasks }
     Participant: { onDelete: CASCADE, local: driver_id, foreign: id, foreignAlias: vehicleDrivers } 
@@ -93,7 +118,7 @@ VehicleType:
     name: { type: string(255) }
     description: { type: clob }
     
-VehicleChakupSetting:
+VehicleChakupPeriod:
   package: VehicleSetting
   columns:
     service_period: { type: integer }
@@ -103,7 +128,7 @@ VehicleFuelSetting:
   package: VehicleSetting
   columns:
     fuel_ammount: { type: float }
-    no_of_days: { type: integer }
+    number_of_days: { type: integer }
     description: { type: clob }
     
 VehicleServiceType:
@@ -150,15 +175,52 @@ CategoryGroups:
       
 Task:
   package: TaskFramworks
-  columns: 
-    vehicle_id: { type: integer }
+  columns:  
     token_id: { type: integer  }
     start_date: { type: date }
     end_date: { type: date }
     effective_date: { type: date}
     status: { type: integer, default: 1 }
     description: { type: clob }
-    
+
+
+TaskOrder:
+  package: PropertyManagement
+  actAs:
+    Timestampable: ~
+  columns:
+    task_id: { type: integer , notnull: true }
+    pb_id: { type: integer , notnull: false }
+    acquired_for: { type: integer , notnull: false }
+    budget_source: { type: integer , notnull: false }
+    category_id: { type: integer, notnull: true }
+    category_group_id: { type: integer, default: 2 }
+    clss: { type: integer, default: 5 }
+    unit_id: { type: integer, default: 1 }
+    planned_quantity: { type: float }
+    actual_quantity: { type: float, notnull: true }
+    remaining: { type: float, default: 0.0 }
+    unit_price: { type: float }
+    vat: { type: boolean, default: 0 }
+    currency_id: { type: integer, default: 1 }
+    amount: { type: float }
+    effective_date:  { type: integer }
+    status: { type: integer, default: 1 }
+    description: { type: string(255) }
+    sealed_count: { type: float, default: 0 }
+    used_count: { type: float, default: 0 }
+    concrete_count: { type: float, default: 0 }
+    nasty_count: { type: float, default: 0 }
+    disposed_count: { type: float, default: 0 }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskOrderTasks }
+    Category: { onDelete: CASCADE, local: category_id, foreign: id, foreignAlias: taskOrderCategories }
+    Unit: { onDelete: CASCADE, local: unit_id, foreign: id, foreignAlias: taskOrderUnits }
+    Currency: { onDelete: CASCADE, local: currency_id, foreign: id, foreignAlias: taskOrderCurrencies }
+    Participant: { onDelete: CASCADE, local: pb_id, foreign: id, foreignAlias: taskOrderPublicBodies }   
+    Participant: { onDelete: CASCADE, local: acquired_for, foreign: id, foreignAlias: taskOrderParticipants }   
+    BudgetSource: { onDelete: CASCADE, local: budget_source, foreign: id, foreignAlias: taskOrderBudgetSources }
+  
 FleetServiceTask:
   package: ServiceManagement
   inheritance:
@@ -168,13 +230,13 @@ FleetServiceTask:
     keyValue: 1
   columns: 
     agreement_participant_id: { type: integer }
-    departure_date: { type: date }
+    departure_date: { type: datetime }
     departure_time: { type: time } 
     departure_status: { type: integer, default: 1}
-    return_date: { type: date }
+    return_date: { type: datetime }
     return_time: { type: time }
     return_status: { type: integer, default: 0 }
-    no_of_passangers: { type: integer }
+    number_of_passangers: { type: integer }
     service_agreement_cost: { type: float }
     service_reason: { type: string(255) }
     departure_mileage: { type: integer }
@@ -184,7 +246,10 @@ FleetServiceTask:
     duel_acquire_id: { type: integer }
     service_reason: { type: string(255) }
     destination: { type: string(255) }
-    service_no_days: { type: integer }
+    service_number_of_days: { type: integer }
+    service_delay_status: { type: boolean, defaulet: false }
+    number_of_delay_days: { type: integer, default: 0 }
+    delay_reason: { type: clob }
   relations:
     ServiceType: { onDelete: CASCADE, local: service_type_id, foreign: id, foreignAlias: serviceTypeServices } 
     Participant: { onDelete: CASCADE, local: agreement_participant_id, foreign: id, foreignAlias: acquisitionTaskTargetParticipants }
@@ -233,7 +298,7 @@ ServiceVehicleAccident:
     vehicle_id: { type: integer }
     accident_type_id: { type: integer }
     accident_place: { type: string(100) }
-    accident_date: { type: date }
+    accident_date: { type: datetime }
     accident_time: { type: string(50) }
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: serviceVehicleAccidentTasks }
@@ -243,7 +308,7 @@ ServiceAccident:
   package: ServiceManagement
   columns:
     task_id: { type: integer }
-    accident_date: { type: date }
+    accident_date: { type: datetime }
     accident_type: { type: integer }
     descriptioin: { type: clob }
     
@@ -263,6 +328,9 @@ RegistrationTask:
     type: concrete
     keyField: type
     keyValue: 3  
+  columns:
+    registration_mode: { type: integer }
+    
     
 FuelingTask:
   package: FuelingMangement
@@ -448,20 +516,17 @@ Participant:
    token_id: { type: integer, unique: true, notnull: true }
    name:  { type: string(255), notnull: true }
    alias: { type: string(20) } 
-   participant_type_id:  { type: integer, notnull: true}
-   status: { type: integer , default: 1 } 
+   participant_type_id:  { type: integer }
+   status_id: { type: integer , default: 1 } 
    parent_id: { type: integer } 
    leader_participant_id: { type: integer }
-   participant_contact_id: { type: integer }
    vat_number:  { type: string(255) }
    project_no: { type: integer }
    campus_id: { type: integer }
    description:  { type: string(255) }  
   relations:
     Participant: { onDelete: CASCADE, local: parent_id, foreign: id, foreignAlias: participantParentParticipants }   
-    Participant: { onDelete: CASCADE, local: leader_participant_id, foreign: id, foreignAlias: participantParentParticipants }   
-    ParticipantContact: { onDelete: CASCADE, local: participant_contact_id, foreign: id, foreignAlias: participantContactParticipants }   
-    ParticipantType: { onDelete: CASCADE, local: participant_type_id, foreign: id, foreignAlias: participantTypeParticipants }  
+    Participant: { onDelete: CASCADE, local: leader_participant_id, foreign: id, foreignAlias: participantParentParticipants }  
     Campus: { onDelete: CASCADE, local: campus_id, foreign: id, foreignAlias: participantCampusParticipants }  
    
 ParticipantType:
@@ -473,14 +538,17 @@ ParticipantType:
 ParticipantContact:
   package: ParticipantManagement
   columns:
+    participant_id: { type: integer }
     street_number:  { type: string(255)}
     house_number:  { type: string(255)}
     pobox:  { type: string(255)}
-    mobile_no:  { type: string(255)}
-    phone_no:  { type: string(255)}
+    mobile_number:  { type: string(255)}
+    phone_number:  { type: string(255)}
     fax:  { type: string(255)}
     email:  { type: string(255)}
     website:  { type: string(255)}
+  relations:
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: participantContacts }
   
 Employee:
   package: ParticipantManagement
@@ -489,16 +557,14 @@ Employee:
     type: concrete
     keyField: type
     keyValue: 1
-  columns:
-    dept_id:  { type: integer  }
+  columns: 
     title:  { type: string(40) }
-    first_name:  { type: string(100) }
-    last_name: { type: string(100) }
+    father_name:  { type: string(100) }
+    grand_father_name: { type: string(100) }
     gender: { type: integer, default: 1 }
-    birth_date:  { type: integer }
+    birth_date:  { type: datetime }
+    birth_place:  { type: string(100) } 
     job_title: { type: string( 50) }
-  relations:
-    Participant: { onDelete: CASCADE, local: dept_id, foreign: id, foreignAlias: participantEmployeeParticipants }
   
 College:
   package: ParticipantManagement

@@ -9,7 +9,7 @@
  * @property integer $vehicle_id
  * @property integer $accident_type_id
  * @property string $accident_place
- * @property date $accident_date
+ * @property datetime $accident_date
  * @property string $accident_time
  * @property Task $Task
  * @property Vehicle $Vehicle
@@ -37,8 +37,8 @@ abstract class BaseServiceVehicleAccident extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('accident_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('accident_date', 'datetime', null, array(
+             'type' => 'datetime',
              ));
         $this->hasColumn('accident_time', 'string', 50, array(
              'type' => 'string',

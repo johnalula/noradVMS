@@ -24,7 +24,7 @@
 									<fieldset  style="min-width:330px;">
 										<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
 										<div class="ui-content-form" >		
-											 
+											 <?php include_partial('form', array()) ?>
 										</div><!-- end of ui-content-form -->
 									</fieldset>
 								</td>
@@ -105,3 +105,111 @@
 	<div class="clearFix"></div>
 </div>
 
+
+<div class="modal" id="representativePrompts">
+	<div class="ui-modal">
+		<div class="ui-modal-header">
+			<h1>Eployee Date</h1>
+		
+		</div>
+	<form>   
+		<div class="partialFilterBox">
+			<div class="filterBox" style="text-align:left;margin-right:20px;">
+				  
+			 </div>
+			 
+		</div>
+		 <div class="partialBox">
+			  
+			 <div class="clearFix"></div>
+		</div>
+		<div class="partialPagination">
+		 <table>		
+			<tfoot>
+					<tr>
+						<td colspan=11> 
+							<div class="paginationCont">
+								<form class="form-horizontal" action="" method="get">
+									<div class="paginateValue">
+										<ul class="display">
+											<input type="hidden" id="representative_pageOffset" name="representative_pageOffset" >
+											<li class="display_list" id="representative_display">Display: #  
+												<select onclick="" name="representative_pagesize" class="selspan" id="representative_pagesize"> 
+													<option value="2"  >10</option>
+													<option value="30"  >30</option> 
+													<option value="50"  >50</option>
+													<option value="100"  >100</option>
+												</select>
+											</li>
+											<li></li>
+										</ul>
+									</div>
+								</form> 
+								<div class="paginationLayer">
+									<div class="paginatNav">
+										<ul>	 
+											
+											<li class="prev_page"><span id="representative_prevPage" class="imag">
+												<a href=""><img src="<?php echo image_path('page-prev') ?>">Prev</a></span>  
+												<span id="representative_disabledPrevPage" class="imag displayNone">
+												<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
+											</li>
+											
+											<li class="next_page">
+												<span id="representative_nextPage" class="imag">
+													<a href=""><img src="<?php echo image_path('page-next') ?>">Next</a>
+												</span> 
+												<span id="representative_disabledNextPage" class="imag displayNone">
+													<img src="<?php echo image_path('page-next-disabled') ?>">Next
+													</span>
+											</li>
+												<input type="hidden" id="representative_nextpageOffset" name="representative_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
+												<input type="hidden" id="representative_prevpageOffset" name="representative_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
+										</ul> 
+									</div> 
+								</div> 
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</form>
+</div>
+<div class="clearFix"></div>
+</div>
+<script>
+
+	 var triggerRepresentative = $(".representativeModal").overlay({ 
+
+		mask: {
+		color: '#ebecff',
+		loadSpeed: 200,
+		opacity: 0.9
+		},
+
+		closeOnClick: false
+
+	});
+ 
+	$("#representativePrompts form").submit(function(e) {
+
+		if($("input[name=selectRepresentative]:checked", this).length == 0)
+			$("input[id=selectRepresentative-1]").attr("checked", "checked");
+
+		triggerRepresentative.eq(0).overlay().close();
+
+		var input = $("input[name=selectRepresentative]:checked", this).val();
+		var arrOwner = input.split("$");
+		var fullName = arrOwner[1]+' '+arrOwner[2]+' '+arrOwner[3];
+		document.getElementById("representativeID").value = arrOwner[0];
+		document.getElementById("representativeName").value = arrOwner[1];
+		document.getElementById("familyName").value = fullName;
+		
+		//$('#owner_name_validate').addClass('displayNone');
+		//$('#ownerName').removeClass('validation_error_border'); 
+
+		return e.preventDefault();
+	});
+
+</script>

@@ -408,3 +408,9 @@ h3.ui-main-menu div ul li img {padding:5px;}
 .ui-main-tool-bar ul.ui-tool-bar {list-style:none;float:right;margin-right:60px;}
 .ui-main-tool-bar ul.ui-tool-bar li {padding:2px 6px;display:inline-block;list-style:none;border:1px solid #eee;-webkit-border-radius:3px 3px 3px 3px!important;-moz-border-radius:3px 3px 3px 3px!important;border-radius:3px 3px 3px 3px!important;}
 .ui-main-tool-bar ul.ui-tool-bar li img {vertical-align:middle;}
+
+/***************************/
+
+.ui-modal { background:#f00;}
+.ui-modal-header {padding:5px 20px;background:#90b2c8;}
+.ui-modal-header h1 {padding:0px;margin:0px;color:#fff;font-size:16px;}
