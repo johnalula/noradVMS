@@ -526,6 +526,7 @@ Participant:
    description:  { type: string(255) }  
   relations:
     Participant: { onDelete: CASCADE, local: parent_id, foreign: id, foreignAlias: participantParentParticipants }   
+    ParticipantType: { onDelete: CASCADE, local: participant_type_id, foreign: id, foreignAlias: participantTypeParticipants }   
     Participant: { onDelete: CASCADE, local: leader_participant_id, foreign: id, foreignAlias: participantParentParticipants }  
     Campus: { onDelete: CASCADE, local: campus_id, foreign: id, foreignAlias: participantCampusParticipants }  
    

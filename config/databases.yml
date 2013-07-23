@@ -4,4 +4,4 @@ all:
     param:
       dsn: 'mysql:host=localhost;dbname=db_norad_vms'
       username: root
-      password: muapp12
+      password: root

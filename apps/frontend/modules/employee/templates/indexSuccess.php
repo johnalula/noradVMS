@@ -21,10 +21,28 @@
 						<table>
 							<tr>
 								<td rowspan=2>
-									<fieldset  style="min-width:330px;">
+									<fieldset  style="">
 										<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
 										<div class="ui-content-form" >		
 											 <?php include_partial('form', array()) ?>
+										</div><!-- end of ui-content-form -->
+									</fieldset>
+								</td>
+								<td >
+									<fieldset  style="">
+										<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+										<div class="ui-content-form" >		
+											 <?php include_partial('generalInfoForm', array()) ?>
+										</div><!-- end of ui-content-form -->
+									</fieldset>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<fieldset  style="">
+										<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+										<div class="ui-content-form" >		
+											 <?php include_partial('addressForm', array()) ?>
 										</div><!-- end of ui-content-form -->
 									</fieldset>
 								</td>
@@ -106,7 +124,7 @@
 </div>
 
 
-<div class="modal" id="representativePrompts">
+<div class="modal" id="departmentPrompts">
 	<div class="ui-modal">
 		<div class="ui-modal-header">
 			<h1>Eployee Date</h1>
@@ -115,12 +133,12 @@
 	<form>   
 		<div class="partialFilterBox">
 			<div class="filterBox" style="text-align:left;margin-right:20px;">
-				  
+				<?php include_partial('departmentFilter') ?> 
 			 </div>
 			 
 		</div>
 		 <div class="partialBox">
-			  
+			 <?php include_partial('departmentList',  array('departments' => $departments)) ?>
 			 <div class="clearFix"></div>
 		</div>
 		<div class="partialPagination">
@@ -178,9 +196,10 @@
 </div>
 <div class="clearFix"></div>
 </div>
+
 <script>
 
-	 var triggerRepresentative = $(".representativeModal").overlay({ 
+	 var triggerDepartment = $(".departmentModal").overlay({ 
 
 		mask: {
 		color: '#ebecff',
@@ -192,20 +211,18 @@
 
 	});
  
-	$("#representativePrompts form").submit(function(e) {
+	$("#departmentPrompts form").submit(function(e) {
 
-		if($("input[name=selectRepresentative]:checked", this).length == 0)
-			$("input[id=selectRepresentative-1]").attr("checked", "checked");
+		if($("input[name=selectDepartment]:checked", this).length == 0)
+			$("input[id=selectDepartment-1]").attr("checked", "checked");
 
-		triggerRepresentative.eq(0).overlay().close();
+		triggerDepartment.eq(0).overlay().close();
 
-		var input = $("input[name=selectRepresentative]:checked", this).val();
-		var arrOwner = input.split("$");
-		var fullName = arrOwner[1]+' '+arrOwner[2]+' '+arrOwner[3];
-		document.getElementById("representativeID").value = arrOwner[0];
-		document.getElementById("representativeName").value = arrOwner[1];
-		document.getElementById("familyName").value = fullName;
+		var input = $("input[name=selectDepartment]:checked", this).val();
+		var arrOwner = input.split("$"); 
 		
+		document.getElementById("empDepartmentID").value = arrOwner[0];
+		document.getElementById("empDeparment").value = arrOwner[1]; 
 		//$('#owner_name_validate').addClass('displayNone');
 		//$('#ownerName').removeClass('validation_error_border'); 
 

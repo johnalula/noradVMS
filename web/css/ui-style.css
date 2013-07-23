@@ -3,7 +3,7 @@
 .closeAlert {float:right;border:1px solid #f00;}
 .ui-messageBox {border:0px solid #f00;margin-bottom:8px;padding:2px 10px 2px 6px;}
 .ui-message-box {margin-bottom:20px;margin-top:-10px;margin-left:4px;}
-span.ui-mandatory {font-size:10px;color:#f00;}
+span.ui-mandatory {font-size:12px;color:#f00;}
 .ui-photo {border:1px solid #eee;margin:0px;padding:1px;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;background:#fff;width:117px;}
 .ui-photo img {margin:0px;padding:0px;vertical-align:top;width:115px;height:115px;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;border:1px solid #eee;}
 .rightSide {white-space:nowrap!important;}
