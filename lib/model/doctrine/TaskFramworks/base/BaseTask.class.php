@@ -40,12 +40,16 @@
  * @property integer $returnee_id
  * @property Doctrine_Collection $itemTasks
  * @property Doctrine_Collection $vehicleAssignmentTasks
+ * @property Doctrine_Collection $taskCostTransactions
  * @property Doctrine_Collection $taskOrderTasks
  * @property Doctrine_Collection $serviceVehicleCostTasks
  * @property Doctrine_Collection $serviceVehicleAttachmentTasks
  * @property Doctrine_Collection $serviceVehicleAccidentTasks
  * @property Doctrine_Collection $ServiceAccident
  * @property Doctrine_Collection $taskAttachmentTasks
+ * @property Doctrine_Collection $taskAttachmentTask
+ * @property Doctrine_Collection $taskAccidents
+ * @property Doctrine_Collection $taskIncident
  * 
  * @package    noradVMS
  * @subpackage model
@@ -219,6 +223,10 @@ abstract class BaseTask extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'task_id'));
 
+        $this->hasMany('TaskTransaction as taskCostTransactions', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
         $this->hasMany('TaskOrder as taskOrderTasks', array(
              'local' => 'id',
              'foreign' => 'task_id'));
@@ -240,6 +248,18 @@ abstract class BaseTask extends sfDoctrineRecord
              'foreign' => 'task_id'));
 
         $this->hasMany('TaskParticipant as taskAttachmentTasks', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('TaskExpenseRequired as taskAttachmentTask', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('TaskAccident as taskAccidents', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('TaskIncident as taskIncident', array(
              'local' => 'id',
              'foreign' => 'task_id'));
     }

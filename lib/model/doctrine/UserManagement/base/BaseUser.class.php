@@ -17,6 +17,7 @@
  * @property integer $ui_language_setting
  * @property UserGroup $UserGroup
  * @property Doctrine_Collection $userModulePermissions
+ * @property Doctrine_Collection $userSystemLogFileActivities
  * 
  * @package    noradVMS
  * @subpackage model
@@ -78,6 +79,10 @@ abstract class BaseUser extends sfDoctrineRecord
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('Permission as userModulePermissions', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('SystemLogFile as userSystemLogFileActivities', array(
              'local' => 'id',
              'foreign' => 'user_id'));
     }

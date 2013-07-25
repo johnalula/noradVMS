@@ -12,8 +12,44 @@ class OtherTable extends PluginOtherTable
      *
      * @return object OtherTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Other');
-    }
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('Other');
+	}
+	
+	 public static function addOther ($name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	{
+		$token = trim($name).trim($project_no).rand('11111', '99999');
+		$_nw = new Other(); //
+		$_nw->token_id = MD5($token);
+		$_nw->participant_type_id = ParticipantTable::$OTHER; 
+		$_nw->name = trim($name);  
+		$_nw->status_id = $status; 
+		$_nw->project_no = trim($project_no);
+		$_nw->vat_number = trim($vat_number);
+		$_nw->description = trim($description); 
+		$_nw->save(); 
+		$_nw_id = $_nw->id;
+		
+			$contact = ParticipantContactTable::addContact($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+		return true; 
+	}
+
+	public static function updateOther($_id, $token_id, $name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	{
+		$q = Doctrine_Query::create( )
+			->update('Other prt')
+			->set('prt.participant_type_id', '?', ParticipantTable::$OTHER )
+			->set('prt.name', '?', trim($name)) 
+			->set('prt.status_id', '?', trim($status)) 
+			->set('prt.project_no', '?', trim($project_no)) 
+			->set('prt.vat_number', '?', trim($vat_number)) 
+			->set('prt.description', '?', trim($description))  
+			->where('prt.id = ? AND prt.token_id = ?', array($_id, $token_id))
+			->execute();	
+			
+			$contact = ParticipantContactTable::updateContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+			
+		return ( $q > 0 );   
+	}
 }

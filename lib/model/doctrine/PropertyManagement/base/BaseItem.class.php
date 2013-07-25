@@ -51,7 +51,7 @@
  * @property CategoryGroups $CategoryGroups
  * @property Unit $Unit
  * @property Doctrine_Collection $ServiceVehicleItemAcquired
- * @property Doctrine_Collection $tasAttachmentItems
+ * @property Doctrine_Collection $taskAttachmentItems
  * 
  * @package    noradVMS
  * @subpackage model
@@ -259,7 +259,7 @@ abstract class BaseItem extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'item_id'));
 
-        $this->hasMany('ItemAcquiredAttachment as tasAttachmentItems', array(
+        $this->hasMany('ItemAcquiredAttachment as taskAttachmentItems', array(
              'local' => 'id',
              'foreign' => 'item_id'));
     }

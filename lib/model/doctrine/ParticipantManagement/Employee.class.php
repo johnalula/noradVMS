@@ -12,4 +12,15 @@
  */
 class Employee extends PluginEmployee
 {
+	
+	public function getFullName()
+	{
+		return $this->name.' '.$this->father_name .' '.$this->grand_father_name;
+	}
+	
+	public function changeEmploymentType($employment_type)
+	{
+		$this->setEmploymentType($employment_type);
+		$this->save();		
+	}
 }

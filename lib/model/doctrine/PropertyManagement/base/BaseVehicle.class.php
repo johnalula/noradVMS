@@ -17,6 +17,8 @@
  * @property Doctrine_Collection $serviceVehicleAttachmentVehicles
  * @property Doctrine_Collection $serviceVehicleAccidentVehicles
  * @property Doctrine_Collection $vehicleReplacementVehicle
+ * @property Doctrine_Collection $taskAccidentVehicle
+ * @property Doctrine_Collection $taskIncidentVehicle
  * 
  * @package    noradVMS
  * @subpackage model
@@ -79,5 +81,13 @@ abstract class BaseVehicle extends Item
         $this->hasMany('ReplacementTask as vehicleReplacementVehicle', array(
              'local' => 'id',
              'foreign' => 'new_vehicle_id'));
+
+        $this->hasMany('TaskAccident as taskAccidentVehicle', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('TaskIncident as taskIncidentVehicle', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
     }
 }

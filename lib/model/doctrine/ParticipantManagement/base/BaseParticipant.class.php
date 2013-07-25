@@ -23,22 +23,22 @@
  * @property integer $gender
  * @property datetime $birth_date
  * @property string $birth_place
+ * @property string $id_no
  * @property string $job_title
+ * @property integer $employment_type_id
  * @property string $dean_name
  * @property string $director_name
+ * @property string $head_name
  * @property integer $section_no
  * @property string $section_leader_name
  * @property integer $project_code
  * @property string $project_director
- * @property integer $participant_id
- * @property integer $license_type
- * @property integer $work_experience
  * @property date $established_date
  * @property string $company_owner
  * @property integer $company_license_type
  * @property Participant $Participant
- * @property Campus $Campus
  * @property ParticipantType $ParticipantType
+ * @property Campus $Campus
  * @property Doctrine_Collection $vehicleDrivers
  * @property Doctrine_Collection $taskOrderParticipants
  * @property Doctrine_Collection $acquisitionTaskTargetParticipants
@@ -48,7 +48,7 @@
  * @property Doctrine_Collection $taskParticipants
  * @property Doctrine_Collection $participantParentParticipants
  * @property Doctrine_Collection $participantContacts
- * @property Doctrine_Collection $Driver
+ * @property Doctrine_Collection $participantDrivers
  * 
  * @package    noradVMS
  * @subpackage model
@@ -74,9 +74,8 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'type' => 'string',
              'length' => 20,
              ));
-        $this->hasColumn('participant_type_id', 'integer', 8, array(
+        $this->hasColumn('participant_type_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 8,
              ));
         $this->hasColumn('status_id', 'integer', null, array(
              'type' => 'integer',
@@ -129,17 +128,28 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
+        $this->hasColumn('id_no', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
         $this->hasColumn('job_title', 'string', 50, array(
              'type' => 'string',
              'length' => 50,
              ));
-        $this->hasColumn('dean_name', 'string', 100, array(
+        $this->hasColumn('employment_type_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('dean_name', 'string', 255, array(
              'type' => 'string',
-             'length' => 100,
+             'length' => 255,
              ));
         $this->hasColumn('director_name', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('head_name', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('section_no', 'integer', null, array(
              'type' => 'integer',
@@ -154,16 +164,6 @@ abstract class BaseParticipant extends sfDoctrineRecord
         $this->hasColumn('project_director', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
-             ));
-        $this->hasColumn('participant_id', 'integer', 8, array(
-             'type' => 'integer',
-             'length' => 8,
-             ));
-        $this->hasColumn('license_type', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('work_experience', 'integer', null, array(
-             'type' => 'integer',
              ));
         $this->hasColumn('established_date', 'date', null, array(
              'type' => 'date',
@@ -209,17 +209,13 @@ abstract class BaseParticipant extends sfDoctrineRecord
              array(
               'type' => 8,
              ),
-             'Driver' => 
+             'Other' => 
              array(
               'type' => 9,
              ),
-             'Other' => 
-             array(
-              'type' => 10,
-             ),
              'Company' => 
              array(
-              'type' => 11,
+              'type' => 10,
              ),
              ));
     }
@@ -232,14 +228,15 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
+        $this->hasOne('ParticipantType', array(
+             'local' => 'participant_type_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $this->hasOne('Campus', array(
              'local' => 'campus_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
-
-        $this->hasOne('ParticipantType', array(
-             'local' => 'participant_type_id',
-             'foreign' => 'id'));
 
         $this->hasMany('AssignedVehicle as vehicleDrivers', array(
              'local' => 'id',
@@ -277,8 +274,8 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'participant_id'));
 
-        $this->hasMany('Driver', array(
+        $this->hasMany('Driver as participantDrivers', array(
              'local' => 'id',
-             'foreign' => 'participant_id'));
+             'foreign' => 'employee_id'));
     }
 }

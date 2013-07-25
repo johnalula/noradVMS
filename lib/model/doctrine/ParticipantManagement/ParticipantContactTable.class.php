@@ -16,4 +16,40 @@ class ParticipantContactTable extends PluginParticipantContactTable
     {
         return Doctrine_Core::getTable('ParticipantContact');
     }
+    
+   public static function addContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	{
+		$_add = new ParticipantContact();  
+		$_add->participant_id = $_id;
+		$_add->street_number = trim($street_no);
+		$_add->house_number = trim($house_no);
+		$_add->pobox = trim($pobox);
+		$_add->mobile_number = trim($mobile_no);
+		$_add->phone_number = trim($phone_no);
+		$_add->fax_number = trim($fax_no);
+		$_add->email = trim($email);
+		$_add->website = trim($website); 
+		$_add->save(); 
+	
+		return true; 
+	}
+	
+   public static function updateContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	{
+		$q = Doctrine_Query::create( )
+			->update('ParticipantContact cont')
+			->set('cont.street_number', '?', trim($street_no))
+			->set('cont.house_number', '?', trim($house_no))
+			->set('cont.pobox', '?', trim($pobox_no))
+			->set('cont.mobile_number', '?', trim($mobile_no))
+			->set('cont.phone_number', '?', trim($phone_no))
+			->set('cont.fax_number', '?', trim($fax_no))
+			->set('cont.email', '?', trim($email))
+			->set('cont.webiste', '?', trim($website)) 
+			->where('cont.id=?', $_id)
+			->execute();	
+		return ( $q > 0 );   
+	 
+	}
+	
 }

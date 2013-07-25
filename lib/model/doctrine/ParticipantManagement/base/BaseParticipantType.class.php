@@ -7,7 +7,7 @@
  * 
  * @property string $name
  * @property clob $description
- * @property Doctrine_Collection $Participant
+ * @property Doctrine_Collection $participantTypeParticipants
  * 
  * @package    noradVMS
  * @subpackage model
@@ -31,7 +31,7 @@ abstract class BaseParticipantType extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Participant', array(
+        $this->hasMany('Participant as participantTypeParticipants', array(
              'local' => 'id',
              'foreign' => 'participant_type_id'));
     }

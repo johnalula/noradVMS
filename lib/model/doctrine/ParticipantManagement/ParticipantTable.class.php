@@ -12,6 +12,26 @@ class ParticipantTable extends PluginParticipantTable
      *
      * @return object ParticipantTable
      */
+     
+		public static $OFFiCE = 1; 
+		public static $COLLEGE = 2; 
+		public static $INSTITUTION = 3; 
+		public static $CENTER	= 4; 
+		public static $DEPARTEMENT = 5; 
+		public static $SECTION = 6; 
+		public static $PROJECT = 7; 
+		public static $EMPLOYEE =  8; 
+		public static $DRIVER =  9; 
+		public static $COMITTEE =  10; 	
+		public static $COMPANY = 11;  
+		public static $OTHER = 12;  
+		
+		
+		public static $ACTIVE =  1; 
+		public static $BLOCKED =  2; 	
+		public static $TERMINATE = 3;  
+		public static $OTHER = 4;  
+	
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Participant');

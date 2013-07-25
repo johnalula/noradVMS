@@ -12,8 +12,17 @@ class EmployeeTable extends PluginEmployeeTable
      *
      * @return object EmployeeTable
      */
-     
-	public static function selectEmployeeObject($part_id, $token_id)
+   public static $PRESIDENT = 1;
+   public static $DIRECTOR = 2;
+   public static $DEAN = 3;
+   public static $HEAD = 4;
+   public static $ACADEMIC_STAFF = 5;
+   public static $ADMINISTRATIVE_STAFF = 6;
+   public static $DRIVER = 7;
+   public static $MECHANIC = 8;
+   public static $OTHER = 9;
+   
+	public static function getEmployeeObject($part_id, $token_id)
 	{
 		$q= Doctrine_Query::create()
 			->select("prt.* ")
@@ -24,12 +33,12 @@ class EmployeeTable extends PluginEmployeeTable
 		
 	}
 
-	public static function selectEmployee($status=null, $keyword=null, $exclusion=null , $parent=null, $offset=0, $limit=10, $dept=null ) 
+	public static function getEmployeeList($status=null, $keyword=null, $exclusion=null , $parent=null, $offset=0, $limit=10, $dept=null ) 
 	{
 		$q= Doctrine_Query::create()
 			->select("prt.* ")
 			->from("Participant prt") 
-			//->leftJoin("prt.Participant dept on dept.id = prt.dept_id")
+			->leftJoin("prt.Participant dept on dept.id = prt.dept_id")
 			->offset($offset)
 			->limit($limit)
 			->where("prt.parent_id IS NOT NULL AND prt.participant_type_id = ?", ParticipantCore::$EMPLOYEE ); 
@@ -44,44 +53,60 @@ class EmployeeTable extends PluginEmployeeTable
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
 
-	public static function selectCandidateParents()
+	public static function getCandidateParents()
 	{
 		
 	}
 
-	public static function addEmployee($parent_id, $title, $name, $father_name, $grand_father_name, $job_title, $birth_date, $birth_place, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function addEmployee($parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $birth_place, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
-	$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
-	$token = trim($name).rand('11111', '99999');
-	$emp = new Employee(); //
-	$emp->token_id = MD5($token);
-	$emp->name = trim($name);
-	$emp->father_name = trim($father_name);
-	$emp->grand_father_name = trim($grand_father_name);
-	$emp->job_title = trim($job_title);
-	$emp->title = $title;
-	$emp->birth_date = $birth_date; 
-	$emp->birth_place = trim($birth_place); 
-	$emp->status_id = $status; 
-	$emp->vat_number = trim($vat_number);
-	$emp->description = trim($description);
-	//$emp->street_number = trim($street_no);
-	//$emp->house_number = trim($house_no);
-	//$emp->pobox = trim($pobox);
-	//$emp->mobile_number = trim($mobile_no);
-	//$emp->phone_number = trim($phone_no);
-	//$emp->fax_number = trim($fax_no);
-	//$emp->email = trim($email);
-	//$emp->website = trim($website);
-	//$emp->participant_type_id = ParticipantCore::$EMPLOYEE; //
-	$emp->parent_id= $parent_id;
-	$emp->save(); 
-	return true; 
+		$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
+		$token = trim($name).trim($id_no).rand('11111', '99999');
+		$_nw = new Employee(); //
+		$_nw->token_id = MD5($token);
+		$_nw->participant_type_id = ParticipantTable::$EMPLOYEE;
+		$_nw->name = trim($name);
+		$_nw->father_name = trim($father_name);
+		$_nw->grand_father_name = trim($grand_father_name);
+		$_nw->job_title = trim($job_title);
+		$_nw->employment_type = $employment_type;
+		$_nw->title = $title;
+		$_nw->birth_date = $birth_date;  
+		$_nw->status_id = $status; 
+		$_nw->vat_number = trim($vat_number);
+		$_nw->description = trim($description);
+		$_nw->parent_id= $parent_id;
+		$_nw->save(); 
+		$_nw_id = $_nw->id;
+			$contact = ParticipantContactTable::addContact($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+		return true; 
 	 
 	}
 
-	public static function updateEmployee()
-	{}
+	public static function updateEmployee($_id, $token_id, $parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	{
+		$q = Doctrine_Query::create( )
+			->update('Employee prt')
+			->set('prt.participant_type_id', '?', ParticipantTable::$EMPLOYEE)
+			->set('prt.name', '?', trim($name))
+			->set('prt.father_name', '?', trim($father_name))
+			->set('prt.grand_father_name', '?', trim($grand_father_name))
+			->set('prt.job_title', '?', trim($job_title))
+			->set('prt.employment_type', '?', $employment_type )
+			->set('prt.id_no', '?', trim($id_no))
+			->set('prt.title', '?', trim($title))
+			->set('prt.birth_date', '?', trim($birth_date))
+			->set('prt.status_id', '?', trim($status)) 
+			->set('prt.vat_number', '?', trim($vat_number)) 
+			->set('prt.description', '?', trim($description)) 
+			->set('prt.parent_id', '?', $parent_id) 
+			->where('prt.id = ? AND prt.token_id = ?', array($_id, $token_id))
+			->execute();	
+			
+			$contact = ParticipantContactTable::updateContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+			
+		return ( $q > 0 );   
+	}
 
    public static function deleteEmployee()
    {
@@ -139,7 +164,7 @@ class EmployeeTable extends PluginEmployeeTable
 		return $q; 
 	}
 
-	public static function selectStatusList()
+	public static function getStatusList()
 	{
 		$q = Doctrine_Query::create()
 			->select("DISTINCT(to.type_id) AS statuses")
@@ -157,7 +182,7 @@ class EmployeeTable extends PluginEmployeeTable
 		return $st; 
 	}
 
-	public static function selectTypeList()
+	public static function getTypeList()
 	{}
 
 

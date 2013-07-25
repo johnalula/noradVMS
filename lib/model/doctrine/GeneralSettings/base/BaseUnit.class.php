@@ -12,6 +12,7 @@
  * @property Metric $Metric
  * @property Doctrine_Collection $itemUnits
  * @property Doctrine_Collection $taskOrderUnits
+ * @property Doctrine_Collection $taskExpenseUnit
  * @property Doctrine_Collection $units
  * 
  * @package    noradVMS
@@ -57,6 +58,10 @@ abstract class BaseUnit extends sfDoctrineRecord
              'foreign' => 'unit_id'));
 
         $this->hasMany('TaskOrder as taskOrderUnits', array(
+             'local' => 'id',
+             'foreign' => 'unit_id'));
+
+        $this->hasMany('TaskExpenseRequired as taskExpenseUnit', array(
              'local' => 'id',
              'foreign' => 'unit_id'));
 

@@ -172,7 +172,20 @@ CategoryGroups:
     grp:  { type: integer, default: 1 }
   relations:
     Category: { onDelete: CASCADE, local: category_id, foreign: id, foreignAlias: categoryGroupsCategories } 
-      
+
+TaskTransaction:
+  package: TaskFrameworks
+  columns:
+    task_id: { type: integer }     
+    token_id: { type: integer }     
+    cost_description: { type: clob }
+    transaction_date: { type: string(100) }
+    cost_credited: { type: float }
+    cost_debited: { type: float }
+    cost_balance: { type: float }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskCostTransactions }
+    
 Task:
   package: TaskFramworks
   columns:  
@@ -434,10 +447,56 @@ ItemAcquiredAttachment:
    description: { type: clob } 
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTasks }   
-    Item: { onDelete: CASCADE, local: item_id, foreign: id, foreignAlias: tasAttachmentItems }  
+    Item: { onDelete: CASCADE, local: item_id, foreign: id, foreignAlias: taskAttachmentItems }  
   
-
+TaskExpenseRequired:
+  package: TransactionManagement
+  columns: 
+    task_id: { type: integer }
+    expense_type_id: { type: integer }
+    expense_date: { type: string(100) }
+    reference_no: { type: integer }
+    unit_id: { type: integer }
+    currency_id: { type: integer }
+    quantity: { type: float }
+    unit_price: { type: float }
+    total_price: { type: float }
+    total_price: { type: float }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTask }   
+    Unit: { onDelete: CASCADE, local: unit_id, foreign: id, foreignAlias: taskExpenseUnit } 
+    Currency: { onDelete: CASCADE, local: currency_id, foreign: id, foreignAlias: taskExpenseCurrency } 
    
+TaskAccident:
+  package: TaskAccidentManagement
+  columns:
+    task_id: { type: integer }
+    vehicle_id: { type: integer }
+    accident_type_id: { type: integer }
+    accident_location: { type: string(100) }
+    accident_date: { type: string(100) }
+    accident_time: { type: timestamp }
+    expense_required: { type: float }
+    description: { type: string(100) }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAccidents } 
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: taskAccidentVehicle } 
+    
+TaskIncident:
+  package: TaskAccidentManagement
+  columns:
+    task_id: { type: integer }
+    vehicle_id: { type: integer }
+    incident_type_id: { type: integer }
+    incident_location: { type: string(100) }
+    incident_date: { type: string(100) }
+    incident_time: { type: timestamp }
+    expense_required: { type: float }
+    description: { type: string(100) }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskIncident } 
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: taskIncidentVehicle } 
+    
   
 #*** General Settings 
 
@@ -565,7 +624,9 @@ Employee:
     gender: { type: integer, default: 1 }
     birth_date:  { type: datetime }
     birth_place:  { type: string(100) } 
+    id_no: { type: string(100) }
     job_title: { type: string( 50) }
+    employment_type_id: { type: integer }
   
 College:
   package: ParticipantManagement
@@ -605,7 +666,7 @@ Department:
     keyField: type
     keyValue: 5
   columns:
-   dean_name: { type: string(100) }
+   head_name: { type: string(100) }
   
 Section:
   package: ParticipantManagement
@@ -637,20 +698,7 @@ Project:
     keyValue: 8
   columns:
    project_code: { type: integer }
-   project_director: { type: string(255) } 
-  
-Driver:
-  package: ParticipantManagement
-  inheritance:
-    extends: Participant
-    type: concrete
-    keyField: type
-    keyValue: 9
-  columns: 
-    participant_id: { type: integer }
-    license_type: { type: integer }
-    work_experience: { type: integer }
-    
+   project_director: { type: string(255) }  
   
 Other:
   package: ParticipantManagement
@@ -658,7 +706,7 @@ Other:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 10 
+    keyValue: 9 
   
 Company:
   package: ParticipantManagement
@@ -666,12 +714,23 @@ Company:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 11
+    keyValue: 10
   columns:
     established_date: { type: date }
     company_owner: { type: string(255) }
     company_license_type: { type: integer }
-  
+
+Driver:
+  package: ParticipantManagement
+  columns: 
+    token_id: { type: string(255) }
+    employee_id: { type: integer }
+    license_type: { type: integer }
+    work_experience: { type: integer }
+    desctiption: { type: clob }
+  relations:
+    Participant: { onDelete: CASCADE, local: employee_id, foreign: id, foreignAlias: participantDrivers }
+    
 Campus:
   package: ParticipantManagement
   columns:
@@ -723,4 +782,14 @@ ModulePermissionSetting:
     module_name: { type: string(255) }
     description: { type: clob }
 
-
+SystemLogFile:
+  package: UserManagement
+  columns:
+    user_id: { type: integer }
+    action_date: { type: string(100)}
+    action_time: { type: time }
+    module_name: { type: string(100) }
+    action_type_id: { type: integer }
+  relations:
+    User: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: userSystemLogFileActivities }
+    
