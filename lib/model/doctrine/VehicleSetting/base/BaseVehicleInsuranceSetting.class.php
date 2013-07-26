@@ -25,9 +25,8 @@ abstract class BaseVehicleInsuranceSetting extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('vehicle_insurance_setting');
-        $this->hasColumn('vehicle_id', 'integer', 8, array(
+        $this->hasColumn('vehicle_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 8,
              ));
         $this->hasColumn('insurer_name', 'string', 255, array(
              'type' => 'string',
@@ -62,6 +61,7 @@ abstract class BaseVehicleInsuranceSetting extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Vehicle', array(
              'local' => 'vehicle_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
     }
 }

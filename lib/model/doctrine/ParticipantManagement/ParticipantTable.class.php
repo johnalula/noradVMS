@@ -30,7 +30,7 @@ class ParticipantTable extends PluginParticipantTable
 		public static $ACTIVE =  1; 
 		public static $BLOCKED =  2; 	
 		public static $TERMINATE = 3;  
-		public static $OTHER = 4;  
+		public static $OTHER_STATUS = 4;  
 	
     public static function getInstance()
     {

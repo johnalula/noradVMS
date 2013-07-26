@@ -12,8 +12,64 @@ class CategoryTable extends PluginCategoryTable
      *
      * @return object CategoryTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Category');
-    }
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('Category');
+	}
+    
+   public static function addCategory ($name, $description )
+	{
+		$_nw = new Category ();   
+		$_nw->name = trim($name);   
+		$_nw->description = trim($description); 
+		$_nw->save(); 
+		
+		return true; 
+	}
+
+	public static function updateCategory($_id, $name, $description )
+	{
+		$q = Doctrine_Query::create( )
+			->update('Category cat')
+			->set('cat.name', '?', trim($name))  
+			->set('cat.description', '?', trim($description))  
+			->where('cat.id = ?', $_id)
+			->execute();	
+
+		return ( $q > 0 );   
+	}
+	
+	public static function deleteCategory ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+			->delete ('Category cat')
+			->where('cat.id=?', $_id)
+			->execute ( );	
+		return ( $q	> 0  );  	
+	}
+
+	public static function getCategoryObject ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("cat.*, cat.name as categoryName")
+							->from("Category cat") 
+							->where("cat.id=?", $_id)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+    
+	public static function getAllCategories ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("cat.*, cat.name as categoryName")
+							->from("Category cat") 
+							->offset($offset)
+							->limit($limit)
+							->execute ( );
+		return ( count($q) <= 0 ? null : $q ); 
+	}
+		
+    public static function selectCategories (  $offset=0, $limit=100  )  {
+        return self::getAllCategories ($offset, $limit ); 
+    } 
 }

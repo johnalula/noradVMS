@@ -1,28 +1,102 @@
-<h1>Categorys List</h1>
+ 
+<div class="ui-container">
+	<div class="ui-list-cont">		
+		<div class="ui-main-list-cont">
+			<div class="ui-list-header">				
+				<h1><img src="<?php echo image_path('icons/details') ?>"><?php echo __('Category')  ?></h1>				
+				<div class="clearFix"></div>
+			</div><!-- end of ui-list-header -->
+			
+			<div class="ui-main-list">
+				<div class="ui-content-minimize opened" id="collaps-participant" style="margin-top:8px;">
+					<span class="minus-btn" id="minus-button" ><img src="<?php echo image_path('icons/minus') ?>"></span>
+					<span class="plus-btn displayNone" id="plus-button"><img src="<?php echo image_path('icons/plus') ?>"></span>
+				</div><!-- end of ui-content-minimize -->
+			
+				<div class="ui-main-content-cont" >	
+					<div class="ui-main-content">
+						<fieldset class="ui-content-fieldset">
+							<legend><img src="<?php echo image_path('icons/add_small') ?>" ><?php echo ('New Category')  ?></legend>
+						</fieldset><!-- end of ui-content-fieldset -->
+						
+						<div class="ui-main-form-content">
+							<table>
+								<tr>
+									<td rowspan=2>
+										<fieldset  style="">
+											<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+											<div class="ui-main-form" >		
+												 <?php include_partial('form', array()) ?>
+											</div><!-- end of ui-content-form -->
+										</fieldset>
+									</td>
+									<td rowspan=2>
+										<fieldset  style="">
+											<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+											<div class="ui-main-form" >		
+												 <?php include_partial('form', array()) ?>
+											</div><!-- end of ui-content-form -->
+										</fieldset>
+									</td>
+								</tr>
+							</table>
+						</div><!-- end of ui-main-form-content -->
+					</div><!-- end of ui-main-content -->
+				</div><!-- end of ui-main-content-cont -->
+			</div>
+		</div> <!-- end of ui-main-list-cont -->
+	</div>  <!-- end of ui-list-cont -->
+</div> <!-- end of ui-container -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Parent category</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($categorys as $category): ?>
-    <tr>
-      <td><a href="<?php echo url_for('category/show?id='.$category->getId()) ?>"><?php echo $category->getId() ?></a></td>
-      <td><?php echo $category->getName() ?></td>
-      <td><?php echo $category->getDescription() ?></td>
-      <td><?php echo $category->getParentCategoryId() ?></td>
-      <td><?php echo $category->getCreatedAt() ?></td>
-      <td><?php echo $category->getUpdatedAt() ?></td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+<!-- list container -->
+ 
+<div class="ui-container">
+	<div class="ui-list-cont">		
+		<div class="ui-main-list-cont">
+			<div class="ui-list-header">				
+				<h1><img src="<?php echo image_path('icons/details') ?>"><?php echo __('Category Lists')  ?></h1>				
+				<div class="clearFix"></div>
+			</div><!-- end of ui-list-header -->
+			
+			<div class="ui-main-list">
+				<div class="ui-content-minimize opened" id="collaps-participant" style="margin-top:8px;">
+					<span class="minus-btn" id="minus-button" ><img src="<?php echo image_path('icons/minus') ?>"></span>
+					<span class="plus-btn displayNone" id="plus-button"><img src="<?php echo image_path('icons/plus') ?>"></span>
+				</div><!-- end of ui-content-minimize -->
+			
+				<div class="ui-main-content-cont" >	
+					<div class="ui-main-content">
+						<fieldset class="ui-content-fieldset">
+							<legend><img src="<?php echo image_path('icons/add_small') ?>" ><?php echo ('New Category')  ?></legend>
+						</fieldset><!-- end of ui-content-fieldset -->
+						
+						<div class="ui-main-form-content">
+							<table>
+								<tr>
+									<td rowspan=2>
+										<fieldset  style="">
+											<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+											<div class="ui-main-form" >		
+												 <?php include_partial('form', array()) ?>
+											</div><!-- end of ui-content-form -->
+										</fieldset>
+									</td>
+									<td rowspan=2>
+										<fieldset  style="">
+											<legend><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+											<div class="ui-main-form" >		
+												 <?php include_partial('form', array()) ?>
+											</div><!-- end of ui-content-form -->
+										</fieldset>
+									</td>
+								</tr>
+							</table>
+						</div><!-- end of ui-main-form-content -->
+					</div><!-- end of ui-main-content -->
+				</div><!-- end of ui-main-content-cont -->
+			</div>
+		</div> <!-- end of ui-main-list-cont -->
+	</div>  <!-- end of ui-list-cont -->
+</div> <!-- end of ui-container -->
 
-  <a href="<?php echo url_for('category/new') ?>">New</a>
+ 

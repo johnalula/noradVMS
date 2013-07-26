@@ -12,8 +12,64 @@ class VehicleTypeTable extends PluginVehicleTypeTable
      *
      * @return object VehicleTypeTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('VehicleType');
-    }
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('VehicleType');
+	}
+	
+	public static function addVehicleType ($name, $description )
+	{
+		$_nw = new VehicleType ();   
+		$_nw->name = trim($name);   
+		$_nw->description = trim($description); 
+		$_nw->save(); 
+		
+		return true; 
+	}
+
+	public static function updateVehicleType($_id, $name, $description )
+	{
+		$q = Doctrine_Query::create( )
+			->update('VehicleType vt')
+			->set('vt.name', '?', trim($name))  
+			->set('vt.description', '?', trim($description))  
+			->where('vt.id = ?', $_id)
+			->execute();	
+
+		return ( $q > 0 );   
+	}
+	
+	public static function deleteVehicleType ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+			->delete ('VehicleType vt')
+			->where('vt.id=?', $_id)
+			->execute ( );	
+		return ( $q	> 0  );  	
+	}
+	
+	public static function getVehicleTypeObject ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("vt.*, vt.name as vehicleTypeName")
+							->from("VehicleType vt") 
+							->where("vt.id=?", $_id)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+    
+	public static function getAllVehicleTypes ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("vt.*, vt.name as vehicleTypeName")
+							->from("VehicleType vt") 
+							->offset($offset)
+							->limit($limit)
+							->execute ( );
+		return ( count($q) <= 0 ? null : $q ); 
+	}
+		
+    public static function selectVehicleTypes (  $offset=0, $limit=100  )  {
+        return self::getAllVehicleTypes ($offset, $limit ); 
+    } 
 }

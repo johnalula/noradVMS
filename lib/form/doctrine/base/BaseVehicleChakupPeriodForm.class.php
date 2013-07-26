@@ -16,12 +16,14 @@ abstract class BaseVehicleChakupPeriodForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
+      'vehicle_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'service_period'   => new sfWidgetFormInputText(),
       'period_frequency' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'vehicle_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'required' => false)),
       'service_period'   => new sfValidatorInteger(array('required' => false)),
       'period_frequency' => new sfValidatorInteger(array('required' => false)),
     ));

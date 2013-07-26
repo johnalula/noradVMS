@@ -12,8 +12,64 @@ class ServiceTypeTable extends PluginServiceTypeTable
      *
      * @return object ServiceTypeTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('ServiceType');
-    }
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('ServiceType');
+	}
+	
+	public static function addServiceType ($name, $description )
+	{
+		$_nw = new VehicleType ();   
+		$_nw->name = trim($name);   
+		$_nw->description = trim($description); 
+		$_nw->save(); 
+		
+		return true; 
+	}
+
+	public static function updateServiceType($_id, $name, $description )
+	{
+		$q = Doctrine_Query::create( )
+			->update('ServiceType st')
+			->set('st.name', '?', trim($name))  
+			->set('st.description', '?', trim($description))  
+			->where('st.id = ?', $_id)
+			->execute();	
+
+		return ( $q > 0 );   
+	}
+	
+	public static function deleteServiceType ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+			->delete ('ServiceType st')
+			->where('st.id=?', $_id)
+			->execute ( );	
+		return ( $q	> 0  );  	
+	}
+	
+	public static function getServiceTypeObject ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("st.*, st.name as serviceTypeName")
+							->from("ServiceType st") 
+							->where("st.id=?", $_id)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+    
+	public static function getAllServiceTypes ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("st.*, st.name as serviceTypeName")
+							->from("ServiceType st") 
+							->offset($offset)
+							->limit($limit)
+							->execute ( );
+		return ( count($q) <= 0 ? null : $q ); 
+	}
+		
+    public static function selectServiceTypes (  $offset=0, $limit=100  )  {
+        return self::getAllServiceTypes ($offset, $limit ); 
+    } 
 }

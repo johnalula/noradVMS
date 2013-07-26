@@ -13,6 +13,7 @@ abstract class BaseVehicleCheckupSettingFormFilter extends BaseFormFilterDoctrin
   public function setup()
   {
     $this->setWidgets(array(
+      'vehicle_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'check_up_name' => new sfWidgetFormFilterInput(),
       'pass_value'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fail_value'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
@@ -20,6 +21,7 @@ abstract class BaseVehicleCheckupSettingFormFilter extends BaseFormFilterDoctrin
     ));
 
     $this->setValidators(array(
+      'vehicle_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicle'), 'column' => 'id')),
       'check_up_name' => new sfValidatorPass(array('required' => false)),
       'pass_value'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fail_value'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
@@ -44,6 +46,7 @@ abstract class BaseVehicleCheckupSettingFormFilter extends BaseFormFilterDoctrin
   {
     return array(
       'id'            => 'Number',
+      'vehicle_id'    => 'ForeignKey',
       'check_up_name' => 'Text',
       'pass_value'    => 'Boolean',
       'fail_value'    => 'Boolean',

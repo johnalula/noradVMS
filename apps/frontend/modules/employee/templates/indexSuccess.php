@@ -125,72 +125,75 @@
 
 
 <div class="modal" id="departmentPrompts">
+	
 	<div class="ui-modal">
-		<div class="ui-modal-header">
-			<h1>Eployee Date</h1>
-		
-		</div>
 	<form>   
-		<div class="partialFilterBox">
+	
+		<div class="ui-modal-header">
+			<h1>House</h1>		
+			<span class="ui-modal-close"> X </span>
+			<div class="clearFix"></div>
+		</div>
+		<div class="ui-modal-filter-box">
 			<div class="filterBox" style="text-align:left;margin-right:20px;">
-				<?php include_partial('departmentFilter') ?> 
-			 </div>
-			 
+				  dd
+			</div>			 
 		</div>
-		 <div class="partialBox">
-			 <?php include_partial('departmentList',  array('departments' => $departments)) ?>
-			 <div class="clearFix"></div>
+	<div class="ui-partial-list-box">
+		 <div class="ui-partial-list">
+			<div class="ui-partial-content">
+				 
+				<div class="clearFix"></div>	
+			</div>
+		
+			<div class="ui-list-pagination">
+					<div class="ui-pagination-box"> 
+						 
+						<div class="paginateValue">
+							<ul class="" style="margin-bottom:2px;">
+								<input type="hidden" id="location_pageOffset" name="location_pageOffset">
+								<li class="display_list" id="location_display">Display: #  
+									<select style="padding:2px;" onclick="" name="location_pagesize" class="selspan" id="location_pagesize"> 
+										<option value="10"  >10</option>
+										<option value="30"  >30</option> 
+										<option value="50"  >50</option>
+										<option value="100"  >100</option>
+									</select>
+								</li>
+								<li></li>
+							</ul>
+						</div>
+					 
+						<div class="ui-pagination">
+							<ul>	 
+								
+								<li class="prev_page"><span id="location_prevPage" class="imag"><a href=""><img src="<?php echo image_path('page-prev') ?>">Prev</a></span>  
+								 <span id="location_disabledPrevPage" class="imag  displayNone"><img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span> </li>
+								<li> </li>
+								
+								
+								<li class="next_page"> <span id="location_nextPage" class="imag"><a href=""><img src="<?php echo image_path('page-next') ?>">Next</a></span> 
+								 <span id="location_disabledNextPage" class="imag  displayNone"><img src="<?php echo image_path('page-next-disabled') ?>">Next</span></li>
+								<input type="hidden" id="location_nextpageOffset" name="location_nextpageOffset">
+								<input type="hidden" id="location_prevpageOffset" name="location_prevpageOffset" >
+								
+								
+							</ul>  
+						</div><!-- end of ui-pagination -->
+						<div class="clearFix"></div>
+					</div><!-- end of ui-pagination-box -->
+				</div><!-- end of ui-list-pagination -->
+			</div>
 		</div>
-		<div class="partialPagination">
-		 <table>		
-			<tfoot>
-					<tr>
-						<td colspan=11> 
-							<div class="paginationCont">
-								<form class="form-horizontal" action="" method="get">
-									<div class="paginateValue">
-										<ul class="display">
-											<input type="hidden" id="representative_pageOffset" name="representative_pageOffset" >
-											<li class="display_list" id="representative_display">Display: #  
-												<select onclick="" name="representative_pagesize" class="selspan" id="representative_pagesize"> 
-													<option value="2"  >10</option>
-													<option value="30"  >30</option> 
-													<option value="50"  >50</option>
-													<option value="100"  >100</option>
-												</select>
-											</li>
-											<li></li>
-										</ul>
-									</div>
-								</form> 
-								<div class="paginationLayer">
-									<div class="paginatNav">
-										<ul>	 
-											
-											<li class="prev_page"><span id="representative_prevPage" class="imag">
-												<a href=""><img src="<?php echo image_path('page-prev') ?>">Prev</a></span>  
-												<span id="representative_disabledPrevPage" class="imag displayNone">
-												<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
-											</li>
-											
-											<li class="next_page">
-												<span id="representative_nextPage" class="imag">
-													<a href=""><img src="<?php echo image_path('page-next') ?>">Next</a>
-												</span> 
-												<span id="representative_disabledNextPage" class="imag displayNone">
-													<img src="<?php echo image_path('page-next-disabled') ?>">Next
-													</span>
-											</li>
-												<input type="hidden" id="representative_nextpageOffset" name="representative_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
-												<input type="hidden" id="representative_prevpageOffset" name="representative_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
-										</ul> 
-									</div> 
-								</div> 
-							</div>
-						</td>
-					</tr>
-				</tfoot>
-			</table>
+		
+		<div class="ui-modal-footer-box">
+			<div class="ui-modal-footer">
+				<ul>
+					<li><button class="ui-modal-button" type="submit" style=""><?php echo ('OK') ?> </button></li>
+					<li><button class="ui-modal-button-cancel" type="submit" style=""><?php echo ('Cancel') ?> </button></li>
+				</ul>
+				<div class="clearFix"></div>
+			</div>		
 		</div>
 	</form>
 </div>

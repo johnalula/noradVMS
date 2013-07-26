@@ -27,11 +27,11 @@
 	/* add shading to outer sidebar-panes */
 	.outer-west ,
 	.outer-east {
-		background-color: #EEE;
+		background-color: #f00;
 	}
 	.middle-west ,
 	.middle-east {
-		background-color: #F8F8F8;
+		background-color: #f00;
 	}
 
 	/* remove padding & scrolling from panes that are 'containers' for nested layouts */

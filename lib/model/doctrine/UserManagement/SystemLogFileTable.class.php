@@ -13,10 +13,10 @@ class SystemLogFileTable extends PluginSystemLogFileTable
      * @return object SystemLogFileTable
      */
      
-    public static $CREATE = 1
-    public static $UPDATE = 2
-    public static $READ = 3
-    public static $DELETE = 4
+    public static $CREATE = 1;
+    public static $UPDATE = 2;
+    public static $READ = 3;
+    public static $DELETE = 4;
     
     public static function getInstance()
     {

@@ -16,6 +16,7 @@ abstract class BaseVehicleCheckupSettingForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
+      'vehicle_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'check_up_name' => new sfWidgetFormInputText(),
       'pass_value'    => new sfWidgetFormInputCheckbox(),
       'fail_value'    => new sfWidgetFormInputCheckbox(),
@@ -24,6 +25,7 @@ abstract class BaseVehicleCheckupSettingForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'vehicle_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'required' => false)),
       'check_up_name' => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'pass_value'    => new sfValidatorBoolean(array('required' => false)),
       'fail_value'    => new sfValidatorBoolean(array('required' => false)),

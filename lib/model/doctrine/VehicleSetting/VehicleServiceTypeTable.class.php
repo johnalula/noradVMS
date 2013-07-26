@@ -12,8 +12,64 @@ class VehicleServiceTypeTable extends PluginVehicleServiceTypeTable
      *
      * @return object VehicleServiceTypeTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('VehicleServiceType');
-    }
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('VehicleServiceType');
+	}
+    
+	public static function addVehicleServiceType ($name, $description )
+	{
+		$_nw = new VehicleServiceType ();   
+		$_nw->name = trim($name);   
+		$_nw->description = trim($description); 
+		$_nw->save(); 
+		
+		return true; 
+	}
+
+	public static function updateVehicleServiceType($_id, $name, $description )
+	{
+		$q = Doctrine_Query::create( )
+			->update('VehicleServiceType vst')
+			->set('vst.name', '?', trim($name))  
+			->set('vst.description', '?', trim($description))  
+			->where('vst.id = ?', $_id)
+			->execute();	
+
+		return ( $q > 0 );   
+	}
+	
+	public static function deleteVehicleServiceType ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+			->delete ('VehicleServiceType vst')
+			->where('vst.id=?', $_id)
+			->execute ( );	
+		return ( $q	> 0  );  	
+	}
+	
+	public static function getVehicleServiceTypeObject ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("vst.*, vst.name as vehicleServiceTypeName")
+							->from("VehicleServiceType vst") 
+							->where("vst.id=?", $_id)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+    
+	public static function getAllVehicleServiceTypes ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("vst.*, vst.name as vehicleServiceTypeName")
+							->from("VehicleServiceType vst") 
+							->offset($offset)
+							->limit($limit)
+							->execute ( );
+		return ( count($q) <= 0 ? null : $q ); 
+	}
+		
+    public static function selectVehicleServiceTypes (  $offset=0, $limit=100  )  {
+        return self::getAllVehicleServiceTypes($offset, $limit); 
+    } 
 }

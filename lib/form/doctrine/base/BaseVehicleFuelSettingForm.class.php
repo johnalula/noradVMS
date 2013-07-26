@@ -16,6 +16,7 @@ abstract class BaseVehicleFuelSettingForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
+      'vehicle_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'fuel_ammount'   => new sfWidgetFormInputText(),
       'number_of_days' => new sfWidgetFormInputText(),
       'description'    => new sfWidgetFormTextarea(),
@@ -23,6 +24,7 @@ abstract class BaseVehicleFuelSettingForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'vehicle_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'required' => false)),
       'fuel_ammount'   => new sfValidatorNumber(array('required' => false)),
       'number_of_days' => new sfValidatorInteger(array('required' => false)),
       'description'    => new sfValidatorString(array('required' => false)),

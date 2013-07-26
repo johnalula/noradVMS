@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="shortcut icon" href="/favicon.ico" />
-	<title>electronic Government Property Management System - eGPMS</title> 
+	<title>Vehicle Management System - eGPMS</title> 
  	<?php include_stylesheets() ?>
     <?php include_javascripts() ?>  
     <style type="text/css"  media="print">
@@ -82,7 +82,7 @@ body{
 		width:			90%			!important;
 		margin-right:	1em			!important;
 		margin-bottom:	80px		!important;
-		padding:	0px!important;
+		padding:	0px!important; 
 	}
 	
 	 
@@ -102,43 +102,31 @@ h1{
  </script>
 </head>
 <body>
-	<div class="outer-center">
+	<div class="outer-center" style="">
 		<div class="middle-center">
 			<div class="inner-center">
-			    <div style="height:560px;width:100%;border:0px inset white;padding:!important;" >
+			    <div style="" >
 				 
 				<?php echo $sf_content ?>	
 			
 			    </div>
 			</div>
-			<div class="ui-layout-north" id="maroon_gradiant" class="banner" style="padding:5px 15px;margin:0px;">
-				<a  class="banner" href="<?php echo url_for('dashboard/index') ?>"><?php echo __('Home') ?> : </a>
-				<span class="banner"> </span>
-				<span style="padding-left:650px;">
-				
-				<?php 
-					if($task_id){
-					  $url=TaskTable::getBreadcram($sf_user->getAttribute('task_id',1));
-					  //echo link_to(__('Edit Task'),$url.'/edit?id='.$task_id);
-					 }
-				?> 
-				</span> 
-			</div> 
+			 
 		</div>
 			<div class="middle-west" class="banner"> 	
-				<div style="border:0px solid yellow;float:left;width:100%;margin-top:0px;" class="banner">				
+				<div style="" class="banner">				
 					<div id="accordion" class="accordion" >
-						 	<h2 class="ui-widget-header primary" style="padding:7px; 18px!important;font-size:15px!important;" ><?php echo __('Stock Management'); ?></h2> 
+						 	<h2 class="ui-widget-header primary" style="padding:7px; 18px!important;font-size:15px!important;" ><?php echo __('Vehicle Management'); ?></h2> 
 							<?php include_partial('global/sideMenu'); ?> 
 					</div>
 				</div>
 			</div> 
 		</div>
 	</div>
-	<div class="outer-east" style="">
-		 
+	<div class="outer-east" style="width:0px;">
+		  
 	</div>
-	<div class="outer-west" style="display:none;width:1px;">
+	<div class="outer-west" style="display:none;width:0px;">
 		 
 	</div>
 	<div class="ui-layout-north ui-fixed-height" style="" class="banner">
@@ -156,27 +144,7 @@ h1{
 				</span>	
 			</div>
 			
-			<div class="ui-user-login-box">
-				<div class="ui-user-cont">
-					<div class="ui-user-avatar-image">
-						<span class="ui-avatar-img"><img class="avatar-img"  style="" src="<?php echo image_path('no_picture') ?>"   ></span>
-					</div>
-					
-					<div class="ui-user-login-info">
-						<span class="ui-user-display">
-							<?php echo $sf_user->getAttribute('displayname') ?>
-						</span>
-						<br>
-						<span class="ui-user-account">
-							<?php echo $sf_user->getAttribute('username') ?>
-						</span>
-						<br>
-						<span class="ui-user-logout">
-							 
-						</span>
-					</div>
-				</div>
-			</div>
+			 
 		</div>
 		 
 	</div> 

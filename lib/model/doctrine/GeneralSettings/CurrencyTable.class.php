@@ -16,4 +16,91 @@ class CurrencyTable extends PluginCurrencyTable
     {
         return Doctrine_Core::getTable('Currency');
     }
+
+	 public static function getDefaultCurrency ()
+	 {
+        try{
+            return self::getCurrencyObject(1); 
+        } catch ( Exception $e ) {
+            return null; 
+        }
+        
+   }
+    
+	public static function addCurrency ( $name, $alias, $description) 
+	{
+        try{
+            $nw= new Currency(); 
+            $nw->name = trim($name);
+            $nw->alias = trim($alias);
+            $nw->description = $description;
+            $nw->save();
+            return self::getCurrencyObject($nw->id);
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	
+	public static function updateCurrency ( $_id, $name, $alias, $description ) 
+	{
+		$q = Doctrine_Query::create( )
+							->update('Currency cat')
+							->set('cat.name', '?', trim($name))
+							->set('cat.alias', '?', trim($alias))
+							->set('cat.description', '?', trim($description))
+							->where('cat.id=?', $_id)
+							->execute();	
+		return ( $q > 0 ); 
+	}
+
+	public static function deleteCurrency ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("cr.*, to.id as to_id") //////////////////////
+							->from("Currency  bs")
+							->innerJoin("bs.taskOrderCurrencies to")
+							->offset(0)
+							->limit(4)						
+							->where("bs.id=?", $_id)
+							->execute ( );
+		$count= count($q); 
+		if( $count > 0 )
+			return false; 
+		$q = Doctrine_Query::create( )
+			->delete ('Currency to')
+			->where('to.id=?', $id)
+			->execute ( );	
+		return ( $q	> 0  );  	
+	}
+ 
+	public static function getCurrencyObject ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("crr.* ")
+							->from("Currency  crr")
+							//->leftJoin("bs.taskOrderCurrencies to")
+							//->groupBy("crr.id")				
+							->where("crr.id=?", $_id)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+   }
+   
+	public static function getAllCurrencies ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("crr.*")
+							->from("Currency crr")
+							//->leftJoin("bs.taskOrderCurrencies to")
+							//->groupBy("bs.id")			
+							->offset($offset)
+							->limit($limit)
+							->execute ( );
+		return ( count($q) <= 0 ? null : $q ); 
+	}	
+	
+    public static function selectionCurrencies (  $offset=0, $limit=100  )  
+    {
+        return self::getAllCurrencies ($offset, $limit); 
+    } 
+    
 }

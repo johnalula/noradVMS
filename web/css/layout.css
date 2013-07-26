@@ -1,22 +1,25 @@
 	.ui-layout-pane { /* all 'panes' */ 
 		padding: 10px; 
-		background: #FFF; 
-		border-top: 1px solid #BBB;
-		border-bottom: 1px solid #BBB;
+		background: #f6f8fc; 
+		border-top: 0px solid #f00;
+		border-bottom: 0px solid #f00;
 		}
 		.ui-layout-pane-north ,
 		.ui-layout-pane-south {
-			border: 1px solid #BBB;
+			border: 0px solid #f00;
+			background:#eaeff3;
 		} 
 		.ui-layout-pane-west {
-			border-left: 1px solid #BBB;
+			border-left: 0px solid #f00;
 		} 
 		.ui-layout-pane-east {
-			border-right: 1px solid #BBB;
+			border-right: 0px solid #f00;
 		} 
 		.ui-layout-pane-center {
 			border-left: 0;
 			border-right: 0;
+			background:#f6f8fc;
+			padding:0px 0px;
 			} 
 			.inner-center {
 				border: 0px solid red;
@@ -24,11 +27,12 @@
 
 		.outer-west ,
 		.outer-east {
-			background-color: #efefef;
+			background-color: #f6f8fc;
+			width:2px;
 		}
 		.middle-west ,
 		.middle-east {
-			background-color: #BBB;
+			background-color: #f6f8fc;
 
 		}
 
@@ -39,10 +43,11 @@
 			background: #FED; 
 		}
 		.ui-layout-resizer-west {
-			border-left: 0px solid #BBB;
+			border-left: 0px solid #f00;
+			padding:0px;margin:0px;
 		}
 		.ui-layout-resizer-east {
-			border-right: 0px solid #BBB;
+			border-right: 0px solid #f00;
 		}
 
 	.ui-layout-toggler { /* all 'toggler-buttons' */ 
@@ -57,5 +62,6 @@
 		/* center pane that are 'containers' for a nested layout */ 
 		padding: 0; 
 		border: 0; 
+		background:#f6f8fc;
 	} 
 

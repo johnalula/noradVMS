@@ -61,9 +61,7 @@ Vehicle:
   relations:
    VehicleType: { onDelete: CASCADE, local: vehicle_type_id, foreign: id, foreignAlias: vehicleTypes }
    VehicleServiceType: { onDelete: CASCADE, local: service_type_id, foreign: id, foreignAlias: vehicleTypes }
-   FuelType: { onDelete: CASCADE, local: fuel_type_id, foreign: id, foreignAlias: vehicleTypes } 
-   VehicleChakupSetting: { onDelete: CASCADE, local: checkup_period_id, foreign: id, foreignAlias: vehicleTypes }
-   VehicleFuelSetting: { onDelete: CASCADE, local: fuel_setting_id, foreign: id, foreignAlias: vehicleTypes }
+   FuelType: { onDelete: CASCADE, local: fuel_type_id, foreign: id, foreignAlias: vehicleTypes }  
 
 Sparepart:
   package: PropertyManagement
@@ -78,10 +76,13 @@ Sparepart:
 VehicleCheckupSetting:
   package: VehicleSetting
   columns:
+    vehicle_id: { type: integer }
     check_up_name: { type: string(100) }
     pass_value: { type: boolean, default: true }
     fail_value: { type: boolean, default: false }
     na_value: { type: boolean, default: false }
+  relations:
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vehicleCheckupSettings }
 
 VehicleInsuranceSetting:
   package: VehicleSetting
@@ -94,6 +95,8 @@ VehicleInsuranceSetting:
     insurance_expiry_date: { type: string(100) }
     last_insurance_renewal: { type: string(100) }
     insurance_status: { type: boolean, default: false }
+  relations:
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vehicleCheckupSettings }
     
     
 AssignedVehicle:
@@ -121,15 +124,21 @@ VehicleType:
 VehicleChakupPeriod:
   package: VehicleSetting
   columns:
+    vehicle_id: { type: integer }
     service_period: { type: integer }
     period_frequency: { type: integer }
+  relations:
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vehicleCheckupPeriod }
     
 VehicleFuelSetting:
   package: VehicleSetting
   columns:
+    vehicle_id: { type: integer }
     fuel_ammount: { type: float }
     number_of_days: { type: integer }
     description: { type: clob }
+  relations:
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vehicleCheckupSettings }
     
 VehicleServiceType:
   package: VehicleSetting
@@ -156,22 +165,8 @@ Category:
     Timestampable: ~
   columns: 
     name: { type: string(255), notnull: true, unique: false } 
-    description: { type: string(255) }
-    parent_category_id: { type: integer } 
-  relations:
-    Category: { onDelete: CASCADE, local: parent_category_id, foreign: id, foreignAlias: categoryCategories } 
-
-CategoryGroups:
-  package: CategorySettings
-  columns:  
-    characterization_id: {  type: integer, default: 1} 
-    category_id: {  type: integer, notnull: true}  
-    pin_applies: { type: boolean, default: false }
-    is_sparepart:  { type: boolean, default: false }
-    is_document:  { type: boolean, default: false } 
-    grp:  { type: integer, default: 1 }
-  relations:
-    Category: { onDelete: CASCADE, local: category_id, foreign: id, foreignAlias: categoryGroupsCategories } 
+    description: { type: string(255) } 
+ 
 
 TaskTransaction:
   package: TaskFrameworks
@@ -527,6 +522,7 @@ Currency:
   columns:
     name: { type: string(255), notnull: true }
     alias: { type: string(40), notnull: false }
+    description: { type: clob }
     is_default: { type: boolean, default: false }
 
 CurrencyExchange:
@@ -549,13 +545,10 @@ Metric:
 
 Unit:
   package: GeneralSettings
-  columns:
-    metrictype_id: {  type: integer }
+  columns: 
     name: { type: string(255), notnull: true }
     alias: { type: string(40), notnull: false }   
-    description: { type: string(255), notnull: true }
-  relations:
-    Metric: { onDelete: CASCADE, local: metrictype_id, foreign: id, foreignAlias: metrics}
+    description: { type: string(255), notnull: true } 
 
 UnitConversion:
   package: GeneralSettings

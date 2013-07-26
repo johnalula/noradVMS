@@ -17,7 +17,7 @@ class OtherTable extends PluginOtherTable
 	  return Doctrine_Core::getTable('Other');
 	}
 	
-	 public static function addOther ($name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function addOther ($name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$token = trim($name).trim($project_no).rand('11111', '99999');
 		$_nw = new Other(); //

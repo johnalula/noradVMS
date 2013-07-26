@@ -48,7 +48,6 @@
  * @property Category $Category
  * @property Task $Task
  * @property TaskOrder $TaskOrder
- * @property CategoryGroups $CategoryGroups
  * @property Unit $Unit
  * @property Doctrine_Collection $ServiceVehicleItemAcquired
  * @property Doctrine_Collection $taskAttachmentItems
@@ -242,11 +241,6 @@ abstract class BaseItem extends sfDoctrineRecord
 
         $this->hasOne('TaskOrder', array(
              'local' => 'task_order_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
-
-        $this->hasOne('CategoryGroups', array(
-             'local' => 'category_group_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

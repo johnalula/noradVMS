@@ -12,8 +12,64 @@ class FuelTypeTable extends PluginFuelTypeTable
      *
      * @return object FuelTypeTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('FuelType');
-    }
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('FuelType');
+	}
+    
+   public static function addFuelType ($name, $description )
+	{
+		$_nw = new FuelType();   
+		$_nw->name = trim($name);   
+		$_nw->description = trim($description); 
+		$_nw->save(); 
+		
+		return true; 
+	}
+
+	public static function updateFuelType($_id, $name, $description )
+	{
+		$q = Doctrine_Query::create( )
+			->update('FuelType ft')
+			->set('ft.name', '?', trim($name))  
+			->set('ft.description', '?', trim($description))  
+			->where('ft.id = ?', $_id)
+			->execute();	
+
+		return ( $q > 0 );   
+	}
+   
+   public static function deleteFuelType ( $_id ) 
+   {
+		$q = Doctrine_Query::create( )
+			->delete ('FuelType ft')
+			->where('ft.id=?', $_id)
+			->execute ( );	
+		return ( $q	> 0  );  	
+	}
+	
+	public static function getFuelTypeObject ( $_id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("ft.*, ft.name as fuelTypeName")
+							->from("FuelType ft") 
+							->where("ft.id=?", $_id)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+    
+	public static function getAllFuelTypes ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("ft.*, ft.name as fuelTypeName")
+							->from("FuelType ft") 
+							->offset($offset)
+							->limit($limit)
+							->execute ( );
+		return ( count($q) <= 0 ? null : $q ); 
+	}
+		
+    public static function selectFuelTypes (  $offset=0, $limit=100  )  {
+        return self::getAllFuelTypes($offset, $limit); 
+    } 
 }
