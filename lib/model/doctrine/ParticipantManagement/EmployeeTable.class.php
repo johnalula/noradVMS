@@ -58,7 +58,7 @@ class EmployeeTable extends PluginEmployeeTable
 		
 	}
 
-	public static function addEmployee($parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $birth_place, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processCreate($parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $birth_place, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
 		$token = trim($name).trim($id_no).rand('11111', '99999');
@@ -83,7 +83,7 @@ class EmployeeTable extends PluginEmployeeTable
 	 
 	}
 
-	public static function updateEmployee($_id, $token_id, $parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processUpdate($_id, $token_id, $parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $status, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$q = Doctrine_Query::create( )
 			->update('Employee prt')

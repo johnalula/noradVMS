@@ -13,17 +13,15 @@ abstract class BaseUnitFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'metrictype_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Metric'), 'add_empty' => true)),
-      'name'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'alias'         => new sfWidgetFormFilterInput(),
-      'description'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'alias'       => new sfWidgetFormFilterInput(),
+      'description' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'metrictype_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Metric'), 'column' => 'id')),
-      'name'          => new sfValidatorPass(array('required' => false)),
-      'alias'         => new sfValidatorPass(array('required' => false)),
-      'description'   => new sfValidatorPass(array('required' => false)),
+      'name'        => new sfValidatorPass(array('required' => false)),
+      'alias'       => new sfValidatorPass(array('required' => false)),
+      'description' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('unit_filters[%s]');
@@ -43,11 +41,10 @@ abstract class BaseUnitFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'            => 'Number',
-      'metrictype_id' => 'ForeignKey',
-      'name'          => 'Text',
-      'alias'         => 'Text',
-      'description'   => 'Text',
+      'id'          => 'Number',
+      'name'        => 'Text',
+      'alias'       => 'Text',
+      'description' => 'Text',
     );
   }
 }

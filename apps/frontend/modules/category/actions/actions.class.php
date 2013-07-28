@@ -12,9 +12,9 @@ class categoryActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->categorys = Doctrine_Core::getTable('Category')
-      ->createQuery('a')
-      ->execute();
+		$offset = 0;
+		$limit = 10;
+		$this->categorys = CategoryTable::processSelection( $offset, $limit, $keyword );
   }
 
   public function executeShow(sfWebRequest $request)

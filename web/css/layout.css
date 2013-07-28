@@ -1,13 +1,13 @@
 	.ui-layout-pane { /* all 'panes' */ 
 		padding: 10px; 
-		background: #f6f8fc; 
+		background: #f9fafb; 
 		border-top: 0px solid #f00;
 		border-bottom: 0px solid #f00;
 		}
 		.ui-layout-pane-north ,
 		.ui-layout-pane-south {
 			border: 0px solid #f00;
-			background:#eaeff3;
+			background:#f8f9fa;
 		} 
 		.ui-layout-pane-west {
 			border-left: 0px solid #f00;
@@ -18,7 +18,7 @@
 		.ui-layout-pane-center {
 			border-left: 0;
 			border-right: 0;
-			background:#f6f8fc;
+			background:#f9fafb;
 			padding:0px 0px;
 			} 
 			.inner-center {
@@ -27,13 +27,14 @@
 
 		.outer-west ,
 		.outer-east {
-			background-color: #f6f8fc;
+			background-color: #f9fafb;
 			width:2px;
 		}
 		.middle-west ,
 		.middle-east {
-			background-color: #f6f8fc;
-
+			background-color: #f9fafb;
+			padding:3px 5px;
+			width:200px;
 		}
 
 	.ui-layout-resizer { /* all 'resizer-bars' */ 

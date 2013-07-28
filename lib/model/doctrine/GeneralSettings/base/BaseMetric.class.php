@@ -7,7 +7,6 @@
  * 
  * @property string $name
  * @property string $description
- * @property Doctrine_Collection $metrics
  * 
  * @package    noradVMS
  * @subpackage model
@@ -33,8 +32,6 @@ abstract class BaseMetric extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Unit as metrics', array(
-             'local' => 'id',
-             'foreign' => 'metrictype_id'));
+        
     }
 }

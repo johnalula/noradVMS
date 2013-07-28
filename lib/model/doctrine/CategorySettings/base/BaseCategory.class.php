@@ -7,10 +7,7 @@
  * 
  * @property string $name
  * @property string $description
- * @property integer $parent_category_id
- * @property Category $Category
  * @property Doctrine_Collection $itemCategorys
- * @property Doctrine_Collection $categoryCategories
  * @property Doctrine_Collection $taskOrderCategories
  * 
  * @package    noradVMS
@@ -33,26 +30,14 @@ abstract class BaseCategory extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('parent_category_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Category', array(
-             'local' => 'parent_category_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
-
         $this->hasMany('Item as itemCategorys', array(
              'local' => 'id',
              'foreign' => 'category_id'));
-
-        $this->hasMany('Category as categoryCategories', array(
-             'local' => 'id',
-             'foreign' => 'parent_category_id'));
 
         $this->hasMany('TaskOrder as taskOrderCategories', array(
              'local' => 'id',

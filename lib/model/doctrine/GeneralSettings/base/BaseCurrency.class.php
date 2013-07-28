@@ -7,6 +7,7 @@
  * 
  * @property string $name
  * @property string $alias
+ * @property clob $description
  * @property boolean $is_default
  * @property Doctrine_Collection $taskOrderCurrencies
  * @property Doctrine_Collection $taskExpenseCurrency
@@ -31,6 +32,9 @@ abstract class BaseCurrency extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 40,
+             ));
+        $this->hasColumn('description', 'clob', null, array(
+             'type' => 'clob',
              ));
         $this->hasColumn('is_default', 'boolean', null, array(
              'type' => 'boolean',

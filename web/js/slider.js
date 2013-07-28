@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	
-	$('#collaps-participant').click(function(){
+	$('#ui-collaps-list-box').click(function(){
 		
-		$('.collaps-detail-box').slideToggle(1000);
+		$('.ui-collapsible-list-box').slideToggle(1000);
 		
 		if($(this).hasClass('opened'))
 		{

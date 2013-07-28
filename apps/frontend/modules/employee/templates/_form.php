@@ -76,7 +76,13 @@
 
 <script>
 	
-	$('#empBirthDate').datepicker();
+	$('#empBirthDate').datepicker({
+	
+		showOn: "both",
+		buttonImageOnly: true,
+		buttonImage: '<?php echo image_path('icons/calendar_small') ?>' 
+	
+	});
 	
 	$(document).ready(function(){
 		

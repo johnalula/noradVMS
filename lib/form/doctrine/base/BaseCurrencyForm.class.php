@@ -15,17 +15,19 @@ abstract class BaseCurrencyForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'name'       => new sfWidgetFormInputText(),
-      'alias'      => new sfWidgetFormInputText(),
-      'is_default' => new sfWidgetFormInputCheckbox(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'name'        => new sfWidgetFormInputText(),
+      'alias'       => new sfWidgetFormInputText(),
+      'description' => new sfWidgetFormTextarea(),
+      'is_default'  => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'       => new sfValidatorString(array('max_length' => 255)),
-      'alias'      => new sfValidatorString(array('max_length' => 40, 'required' => false)),
-      'is_default' => new sfValidatorBoolean(array('required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'        => new sfValidatorString(array('max_length' => 255)),
+      'alias'       => new sfValidatorString(array('max_length' => 40, 'required' => false)),
+      'description' => new sfValidatorString(array('required' => false)),
+      'is_default'  => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('currency[%s]');

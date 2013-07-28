@@ -1,5 +1,5 @@
 <h3 class="ui-widget-header primary ui-main-menu" style="padding:7px;">
-	<img style="vertical-align:top;" src="<?php echo image_path('setting/task_setting_medium') ?>" ><?php echo __('Residence Setting') ?>
+	<img style="vertical-align:top;" src="<?php echo image_path('setting/task_setting_medium') ?>" ><?php echo __('Main Tasks') ?>
 </h3>
 	<div style="margin:0px;padding:10px 0px 0px 20px;height:400px;">
 		<ul style="list-style:none;margin:0px;">
@@ -54,7 +54,48 @@
 		</ul> 
 	</div>
 <h3 class="ui-widget-header primary ui-main-menu" style="padding:7px;">
-	<img style="vertical-align:top;" src="<?php echo image_path('setting/location_setting_medium') ?>" ><?php echo __('Location Setting') ?>
+	<img style="vertical-align:top;" src="<?php echo image_path('setting/location_setting_medium') ?>" ><?php echo __('Vehicle Setting') ?>
+</h3>
+	<div style="margin:0px;padding:10px 0px 0px 18px;height:100px;" >
+		<ul style="list-style:none;margin:0px;">
+			<li style="padding:4px 5px;margin:0px;">
+				<a href="<?php echo url_for('location/index') ?>">
+					<img style="vertical-align:bottom;margin-right:8px;" src="<?php echo image_path('setting/location_small') ?>" >
+					<?php echo __('Location') ?>
+				</a>
+			</li>
+			<li style="padding:4px 5px;margin:0px;">
+				<a href="<?php echo url_for('jurisdiction/index') ?>">
+					<img style="vertical-align:bottom;margin-right:8px;"  src="<?php echo image_path('setting/jurisdiction_small') ?>" >
+					<?php echo __('Jurisdiction Type') ?>
+				</a>
+			</li>
+			 
+		</ul> 
+	</div>
+<h3 class="ui-widget-header primary ui-main-menu" style="padding:7px;">
+	<img style="vertical-align:top;" src="<?php echo image_path('setting/location_setting_medium') ?>" ><?php echo __('Fleet Setting') ?>
+</h3>
+	<div style="margin:0px;padding:10px 0px 0px 18px;height:100px;" >
+		<ul style="list-style:none;margin:0px;">
+			<li style="padding:4px 5px;margin:0px;">
+				<a href="<?php echo url_for('location/index') ?>">
+					<img style="vertical-align:bottom;margin-right:8px;" src="<?php echo image_path('setting/location_small') ?>" >
+					<?php echo __('Location') ?>
+				</a>
+			</li>
+			<li style="padding:4px 5px;margin:0px;">
+				<a href="<?php echo url_for('jurisdiction/index') ?>">
+					<img style="vertical-align:bottom;margin-right:8px;"  src="<?php echo image_path('setting/jurisdiction_small') ?>" >
+					<?php echo __('Jurisdiction Type') ?>
+				</a>
+			</li>
+			 
+		</ul> 
+	</div>
+	
+<h3 class="ui-widget-header primary ui-main-menu" style="padding:7px;">
+	<img style="vertical-align:top;" src="<?php echo image_path('setting/location_setting_medium') ?>" ><?php echo __('General Setting') ?>
 </h3>
 	<div style="margin:0px;padding:10px 0px 0px 18px;height:100px;" >
 		<ul style="list-style:none;margin:0px;">

@@ -17,9 +17,36 @@ class SystemLogFileTable extends PluginSystemLogFileTable
     public static $UPDATE = 2;
     public static $READ = 3;
     public static $DELETE = 4;
+    public static $LOGIN = 5;
+    public static $LOGOUT = 6;
     
     public static function getInstance()
     {
         return Doctrine_Core::getTable('SystemLogFile');
     }
+    
+    public static function processCreate($user_id, $module_name, $action_id, $action_time, $action_date, $pc_id)
+	{
+		$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
+		$token = trim($name).trim($id_no).rand('11111', '99999');
+		$_nw = new Employee(); //
+		$_nw->token_id = MD5($token);
+		$_nw->participant_type_id = ParticipantTable::$EMPLOYEE;
+		$_nw->name = trim($name);
+		$_nw->father_name = trim($father_name);
+		$_nw->grand_father_name = trim($grand_father_name);
+		$_nw->job_title = trim($job_title);
+		$_nw->employment_type = $employment_type;
+		$_nw->title = $title;
+		$_nw->birth_date = $birth_date;  
+		$_nw->status_id = $status; 
+		$_nw->vat_number = trim($vat_number);
+		$_nw->description = trim($description);
+		$_nw->parent_id= $parent_id;
+		$_nw->save(); 
+		$_nw_id = $_nw->id;
+			$contact = ParticipantContactTable::addContact($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+		return true; 
+	 
+	}
 }

@@ -115,9 +115,13 @@ h1{
 		</div>
 			<div class="middle-west" class="banner"> 	
 				<div style="" class="banner">				
-					<div id="accordion" class="accordion" >
-						 	<h2 class="ui-widget-header primary" style="padding:7px; 18px!important;font-size:15px!important;" ><?php echo __('Vehicle Management'); ?></h2> 
-							<?php include_partial('global/sideMenu'); ?> 
+					<div class="ui-accordion-cont">
+						<div id="accordion" class="accordion" >
+							<div class="ui-accordion-header">
+								<h2 class="" style="" ><?php echo __('Main Menu'); ?></h2> 
+							</div> 	
+								<?php include_partial('global/sideMenu'); ?> 
+						</div>
 					</div>
 				</div>
 			</div> 

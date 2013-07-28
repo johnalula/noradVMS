@@ -783,6 +783,7 @@ SystemLogFile:
     action_time: { type: time }
     module_name: { type: string(100) }
     action_type_id: { type: integer }
+    pc_ip_address: { type: string(100) }
   relations:
     User: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: userSystemLogFileActivities }
     

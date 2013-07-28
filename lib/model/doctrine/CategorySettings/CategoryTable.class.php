@@ -58,10 +58,10 @@ class CategoryTable extends PluginCategoryTable
 		return ( ! $q ? null : $q ); 
 	}
     
-	public static function getAllCategories ( $offset=0, $limit=100 ) 
+	public static function processSelection ( $offset=0, $limit=100, $keyword=null ) 
 	{
 		$q = Doctrine_Query::create( )
-							->select("cat.*, cat.name as categoryName")
+							->select("cat.*, cat.name as categoryName, cat.description as categoryDesc")
 							->from("Category cat") 
 							->offset($offset)
 							->limit($limit)
@@ -69,7 +69,7 @@ class CategoryTable extends PluginCategoryTable
 		return ( count($q) <= 0 ? null : $q ); 
 	}
 		
-    public static function selectCategories (  $offset=0, $limit=100  )  {
-        return self::getAllCategories ($offset, $limit ); 
+    public static function selectCategories (  $offset=0, $limit=100, $keyword=null  )  {
+        return self::processSelection ($offset, $limit, $keyword ); 
     } 
 }

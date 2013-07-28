@@ -13,15 +13,17 @@ abstract class BaseCurrencyFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'name'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'alias'      => new sfWidgetFormFilterInput(),
-      'is_default' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'alias'       => new sfWidgetFormFilterInput(),
+      'description' => new sfWidgetFormFilterInput(),
+      'is_default'  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
-      'name'       => new sfValidatorPass(array('required' => false)),
-      'alias'      => new sfValidatorPass(array('required' => false)),
-      'is_default' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'name'        => new sfValidatorPass(array('required' => false)),
+      'alias'       => new sfValidatorPass(array('required' => false)),
+      'description' => new sfValidatorPass(array('required' => false)),
+      'is_default'  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('currency_filters[%s]');
@@ -41,10 +43,11 @@ abstract class BaseCurrencyFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'         => 'Number',
-      'name'       => 'Text',
-      'alias'      => 'Text',
-      'is_default' => 'Boolean',
+      'id'          => 'Number',
+      'name'        => 'Text',
+      'alias'       => 'Text',
+      'description' => 'Text',
+      'is_default'  => 'Boolean',
     );
   }
 }
