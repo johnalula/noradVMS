@@ -16,8 +16,8 @@ class ParticipantContactTable extends PluginParticipantContactTable
     {
         return Doctrine_Core::getTable('ParticipantContact');
     }
-    
-   public static function addContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+   
+   public static function processCreate ($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$_add = new ParticipantContact();  
 		$_add->participant_id = $_id;
@@ -34,7 +34,7 @@ class ParticipantContactTable extends PluginParticipantContactTable
 		return true; 
 	}
 	
-   public static function updateContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+   public static function processUpdate ($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$q = Doctrine_Query::create( )
 			->update('ParticipantContact cont')

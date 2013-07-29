@@ -7,7 +7,6 @@
  * 
  * @property string $module_name
  * @property clob $description
- * @property Doctrine_Collection $modulePermissions
  * 
  * @package    noradVMS
  * @subpackage model
@@ -31,8 +30,6 @@ abstract class BaseModulePermissionSetting extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Permission as modulePermissions', array(
-             'local' => 'id',
-             'foreign' => 'module_id'));
+        
     }
 }

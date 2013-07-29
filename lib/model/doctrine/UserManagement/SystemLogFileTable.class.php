@@ -20,33 +20,72 @@ class SystemLogFileTable extends PluginSystemLogFileTable
     public static $LOGIN = 5;
     public static $LOGOUT = 6;
     
+    public static $ALL_ACTIONS = array (1 => 'CREATE', 2 => 'UPDATE', 3 => 'READ', 4 => 'DELETE', 5 => 'LOGIN', 6 => 'LOGOUT');
+    
     public static function getInstance()
     {
         return Doctrine_Core::getTable('SystemLogFile');
     }
     
-    public static function processCreate($user_id, $module_name, $action_id, $action_time, $action_date, $pc_id)
+    public static function findActionID ( $value ) {
+        try {
+            foreach( self::$ALL_ACTIONS as $key=> $action ){
+                    if( strcmp($action, $value) == 0 )
+                        return $key; 
+            }
+            return null; 
+            //throw new OutOfBoundException(" '$value'ዘይፍቀድ. "); 	
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	
+	public static function findActionValue ($_id ){
+        try {
+            foreach( self::$ALL_ACTIONS as $key=> $action ){
+                    if( $key == $_id )
+                        return $action; 
+            }
+            return null; 
+        //throw new OutOfBoundException(" '$id' ካብ ዝተፈቐደ ወፃኢ. ");             
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	
+   public static function processCreate($user_id, $module_name, $action_id, $action_time, $action_date, $created_data,  $edited_data, $deleted_data, $viewed_data, $pc_ip_address)
 	{
-		$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
-		$token = trim($name).trim($id_no).rand('11111', '99999');
-		$_nw = new Employee(); //
+		$token = trim($action_date).trim($pc_ip_address).rand('11111', '99999');
+		$_nw = new SystemLogFile();  
 		$_nw->token_id = MD5($token);
-		$_nw->participant_type_id = ParticipantTable::$EMPLOYEE;
-		$_nw->name = trim($name);
-		$_nw->father_name = trim($father_name);
-		$_nw->grand_father_name = trim($grand_father_name);
-		$_nw->job_title = trim($job_title);
-		$_nw->employment_type = $employment_type;
-		$_nw->title = $title;
-		$_nw->birth_date = $birth_date;  
-		$_nw->status_id = $status; 
-		$_nw->vat_number = trim($vat_number);
-		$_nw->description = trim($description);
-		$_nw->parent_id= $parent_id;
+		$_nw->user_id = $user_id;
+		$_nw->module_name = trim($module_name);
+		$_nw->action_type_id = $action_id;
+		$_nw->action_time = $action_time;
+		$_nw->action_date = $action_date;
+		$_nw->created_data = $created_data;
+		$_nw->deleted_data = $deleted_data;
+		$_nw->edited_data = $edited_data;
+		$_nw->viewed_data = $viewed_data;
+		$_nw->pc_ip_address = $pc_ip_address; 
 		$_nw->save(); 
-		$_nw_id = $_nw->id;
-			$contact = ParticipantContactTable::addContact($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+		
 		return true; 
 	 
 	}
+	
+	public static function processSelection($offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("log.*, usr.username as userName, grp.name as groupName ")
+			->from("SystemLogFile log") 
+			->innerJoin("log.User usr on usr.id = log.user_id")
+			->innerJoin("usr.UserGroup grp on grp.id = usr.group_id")
+			->offset($offset)
+			->limit($limit)
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+
 }

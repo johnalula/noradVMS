@@ -13,9 +13,10 @@ abstract class BasePermissionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'token_id'      => new sfWidgetFormFilterInput(),
       'group_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('UserGroup'), 'add_empty' => true)),
       'user_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
-      'module_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ModulePermissionSetting'), 'add_empty' => true)),
+      'module_id'     => new sfWidgetFormFilterInput(),
       'create_action' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'delete_action' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'edit_action'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
@@ -23,9 +24,10 @@ abstract class BasePermissionFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'token_id'      => new sfValidatorPass(array('required' => false)),
       'group_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('UserGroup'), 'column' => 'id')),
       'user_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
-      'module_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ModulePermissionSetting'), 'column' => 'id')),
+      'module_id'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'create_action' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'delete_action' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'edit_action'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
@@ -50,9 +52,10 @@ abstract class BasePermissionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'            => 'Number',
+      'token_id'      => 'Text',
       'group_id'      => 'ForeignKey',
       'user_id'       => 'ForeignKey',
-      'module_id'     => 'ForeignKey',
+      'module_id'     => 'Number',
       'create_action' => 'Boolean',
       'delete_action' => 'Boolean',
       'edit_action'   => 'Boolean',

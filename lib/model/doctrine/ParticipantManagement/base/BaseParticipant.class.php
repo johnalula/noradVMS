@@ -49,6 +49,7 @@
  * @property Doctrine_Collection $participantParentParticipants
  * @property Doctrine_Collection $participantContacts
  * @property Doctrine_Collection $participantDrivers
+ * @property Doctrine_Collection $participantUser
  * 
  * @package    noradVMS
  * @subpackage model
@@ -277,5 +278,9 @@ abstract class BaseParticipant extends sfDoctrineRecord
         $this->hasMany('Driver as participantDrivers', array(
              'local' => 'id',
              'foreign' => 'employee_id'));
+
+        $this->hasMany('User as participantUser', array(
+             'local' => 'id',
+             'foreign' => 'participant_id'));
     }
 }

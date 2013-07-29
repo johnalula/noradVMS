@@ -12,4 +12,21 @@
  */
 class User extends PluginUser
 {
+	public function processPasswordChange($password)
+	{
+			$this->password = $password;
+			$this->save();
+	}
+	
+	public function processUsernameChange($username)
+	{
+			$this->username = $username;
+			$this->save();
+	}
+	
+	public function processPermissionMode($permission_mode)
+	{
+			$this->username = $username;
+			$this->save();
+	}
 }

@@ -17,7 +17,7 @@ class UnitTable extends PluginUnitTable
 	  return Doctrine_Core::getTable('Unit');
 	}
     
-   public static function addUnit ($name, $description )
+   public static function processCreate ($name, $description )
 	{
 		$_nw = new Unit ();   
 		$_nw->name = trim($name);   
@@ -27,7 +27,7 @@ class UnitTable extends PluginUnitTable
 		return true; 
 	}
 
-	public static function updateUnit($_id, $name, $description )
+	public static function processUpdate($_id, $name, $description )
 	{
 		$q = Doctrine_Query::create( )
 			->update('Unit cat')
@@ -39,7 +39,7 @@ class UnitTable extends PluginUnitTable
 		return ( $q > 0 );   
 	}
 	
-	public static function deleteUnit ( $_id ) 
+	public static function processDelete ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 			->delete ('Unit cat')
@@ -48,7 +48,7 @@ class UnitTable extends PluginUnitTable
 		return ( $q	> 0  );  	
 	}
 
-	public static function getUnitObject ( $_id ) 
+	public static function processObject ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("cat.*, cat.name as categoryName")
@@ -58,7 +58,7 @@ class UnitTable extends PluginUnitTable
 		return ( ! $q ? null : $q ); 
 	}
     
-	public static function getAllCategories ( $offset=0, $limit=100 ) 
+	public static function processSelection ( $offset=0, $limit=100 ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("cat.*, cat.name as categoryName")
@@ -69,7 +69,4 @@ class UnitTable extends PluginUnitTable
 		return ( count($q) <= 0 ? null : $q ); 
 	}
 		
-    public static function selectCategories (  $offset=0, $limit=100  )  {
-        return self::getAllCategories ($offset, $limit ); 
-    }  
 }

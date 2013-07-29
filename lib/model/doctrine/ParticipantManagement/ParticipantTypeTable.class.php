@@ -12,8 +12,66 @@ class ParticipantTypeTable extends PluginParticipantTypeTable
      *
      * @return object ParticipantTypeTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('ParticipantType');
-    }
+     
+   public static function processCreate($_name, $_description)
+	{
+		$_nw = new ParticipantTypeTable ();  
+		$_nw->name = trim($_name);
+		$_nw->description = trim($_description); 
+		$_nw->save(); 
+
+		return true; 
+
+	}
+	public static function processUpdate($_id, $_name, $_description)
+	{
+		$q = Doctrine_Query::create( )
+			->update('ParticipantType prttyp') 
+			->set('prttyp.name', '?', trim($_name)) 
+			->set('prttyp.description', '?', trim($_description))  
+			->where('prttyp.id = ? ', $_id)
+			->execute();	
+					
+		return ( $q > 0 );   
+
+	}
+	
+	public static function processDelete($_id )
+   {
+		/*$q = Doctrine_Query::create()
+			->select("grp.*")
+			->from("UserGroup grp")
+			->leftJoin("grp.userGroups usr")
+			->offset(0)
+			->limit(4)
+			->where("prt.id = ? ",  $id )
+			->execute(); 
+		if( count($q) > 0 )
+			return false; 		*/	
+
+		$q2 = Doctrine_Query::create()
+				->delete("*")
+				->from("ParticipantType prttyp")
+				->where('prttyp.id = ?', $_id)
+				->execute( );
+		return ( $q2 > 0  ) ; 
+	}
+	
+	public static function processSelection($keyword=null, $offset=0, $limit=10) 
+	{
+	$q= Doctrine_Query::create()
+		->select("prttyp.*, prttyp.name as partTypeName, (EXISTS (SELECT prttp.id FROM Participant prttp WHERE prttp.participant_type_id = prttyp.id) AS canDelete")
+		->from("ParticipantType prttyp")  
+		->leftJoin("prttyp.participantTypeParticipants prt on prt.participant_type_id = prttyp.id")  
+		->offset($offset)
+		->limit($limit)
+		->execute( ); 
+
+	return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('ParticipantType');
+	}
 }

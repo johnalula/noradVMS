@@ -19,7 +19,7 @@ abstract class BaseUserGroupFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'token_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'token_id'    => new sfValidatorPass(array('required' => false)),
       'name'        => new sfValidatorPass(array('required' => false)),
       'description' => new sfValidatorPass(array('required' => false)),
     ));
@@ -42,7 +42,7 @@ abstract class BaseUserGroupFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'          => 'Number',
-      'token_id'    => 'Number',
+      'token_id'    => 'Text',
       'name'        => 'Text',
       'description' => 'Text',
     );

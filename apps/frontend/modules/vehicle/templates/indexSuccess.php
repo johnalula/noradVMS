@@ -8,6 +8,30 @@
 	</div>
 </div>
 
+<?php  
+
+$ip =  gethostbyname($_SERVER['HTTP_HOST']) ;
+$current_date = date('Y-m-d', time());
+$time = date('h:i:s A');
+$module  = 'Administrator';
+$action = SystemLogFileTable::$UPDATE;
+$user_id = 1;
+
+//$flag = UserGroupTable::processDelete(9, 0);
+//$group = UserGroupTable::processCreate($module, 'admin');
+//$group1 = UserGroupTable::processCreate('Finance', 'finance');
+//$group5 = UserGroupTable::processCreate('Director', 'director');
+//$group6 = UserGroupTable::processCreate('President', 'president');
+//$group2 = UserGroupTable::processCreate('Head', 'head');
+//$group3 = UserGroupTable::processCreate('Dean', 'dean');
+//$group4 = UserGroupTable::processCreate('Mechanic', 'mechanic');
+
+//$flag = SystemLogFileTable::processCreate(1, $module, $action, $time, $current_date, $ip)
+//$flag = SystemLogFileTable::processCreate(1, $module, $action, $time, $current_date, $ip)
+//$flag = SystemLogFileTable::processCreate(2, $module, $action, $time, $current_date, $ip)
+//$flag = SystemLogFileTable::processCreate(2, $module, $action, $time, $current_date, $ip)
+
+?>
 <!-- list container -->
  
 <div class="ui-container">
@@ -26,7 +50,7 @@
 							<div class="clearFix"></div>
 						</div>
 						<div class="ui-content-lists">
-							<?php include_partial('list', array('categorys' => $categorys )) ?>
+							<?php include_partial('list', array('log_files' => $log_files )) ?>
 						</div><!-- end of ui-content-lists -->
 					</div><!-- end of ui-content-list-box -->
 				</div><!-- end of ui-main-content-cont --> 

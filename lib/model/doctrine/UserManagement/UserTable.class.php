@@ -12,8 +12,139 @@ class UserTable extends PluginUserTable
      *
      * @return object UserTable
      */
-    public static function getInstance()
+    public static $USER_PERMISSION = 1;
+    public static $GROUP_PERMISSION = 2; 
+    
+    public static $ALL_PERMISSION_ModeS = array (1 => 'User Permission', 2 => 'Group Permission');
+    
+    
+    
+    public static function findPermissionModeID ( $value ) {
+        try {
+            foreach( self::$ALL_PERMISSION_ModeS as $key=> $permission ){
+                    if( strcmp($permission, $value) == 0 )
+                        return $key; 
+            }
+            return null; 
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	
+	public static function findPermissionModeValue ($_id ){
+        try {
+            foreach( self::$ALL_PERMISSION_ModeS as $key=> $permission ){
+                    if( $key == $_id )
+                        return $permission; 
+            }
+            return null;              
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	public static $BLUE_COLOR = 1;
+	public static $RED_COLOR = 2; 
+	public static $GREEN_COLOR = 3; 
+	public static $GRAY_COLOR = 4; 
+
+	public static $ALL_THEME_COLORS = array (1 => 'Blue', 2 => 'Red', 3 => 'Green', 4 => 'Gray');
+
+	
+	public static function findUIThemeID ( $value ) {
+	  try {
+			foreach( self::$ALL_THEME_COLORS as $key=> $color ){
+					  if( strcmp($color, $value) == 0 )
+							return $key; 
+			}
+			return null; 
+	  } catch ( Exception $e ) {
+			return null; 
+	  }
+	}
+	
+	public static function findUIThemeValue ($_id ){
+        try {
+            foreach( self::$ALL_THEME_COLORS as $key=> $color ){
+                    if( $key == $_id )
+                        return $color; 
+            }
+            return null;       
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+ 
+	public static function processLogin($user_name, $password)
+	{
+		
+	}
+ 
+	public static function processObject($_id, $token_id)
+	{
+		
+	}
+ 
+	public static function processCreate($p_id, $username, $password, $g_id, $status_id, $is_active, $is_blocked, $permission_mode, $ui_theme, $ui_language)
+	{
+		$token = trim($username).trim($password).rand('11111', '99999');
+		$pass = trim($password);
+		$_nw = new User ();  
+		$_nw->token_id = MD5($token); 
+		$_nw->username = trim($username);
+		$_nw->password = md5($pass);
+		$_nw->group_id = $g_id; 
+		$_nw->status = $status_id; 
+		$_nw->is_active = $is_active; 
+		$_nw->is_blocked = $is_blocked; 
+		$_nw->permission_mode = $permission_mode; 
+		$_nw->ui_theme_color_setting = $ui_theme; 
+		$_nw->ui_language_setting = $ui_language; 
+		$_nw->save(); 
+
+		return true; 
+
+	}
+	
+	public static function processUpdate($_id, $token_id, $p_id, $username, $password, $g_id, $status_id, $is_active, $is_blocked, $permission_mode, $ui_theme, $ui_language)
+	{
+		$pass = trim($password);
+		$q = Doctrine_Query::create( )
+			->update('User usr') 
+			->set('usr.participant_id', '?', $p_id) 
+			->set('usr.username', '?', trim($username)) 
+			->set('usr.password', '?', md5($pass)) 
+			->set('usr.group_id', '?', $g_id)  
+			->set('usr.status', '?', $status_id)  
+			->set('usr.is_active', '?', $is_active)  
+			->set('usr.is_active', '?', $is_blocked)  
+			->set('usr.permission_mode', '?', $permission_mode)  
+			->set('usr.ui_theme_color_setting', '?', $ui_theme)  
+			->set('usr.ui_language_setting', '?', $ui_language)  
+			->where('usr.id = ? AND usr.token_id = ?', array($_id, $token_id))
+			->execute();	
+					
+		return ( $q > 0 );   
+
+	}
+
+	public static function processSelection($username=null, $group_id=null, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+	$q= Doctrine_Query::create()
+		->select("usr.*, usr.username as userName, usr.permission_mode as userPermissionMode, ((SELECT COUNT(grpper.id) FROM Permission grpper WHERE grpper.group_id = grp.id) > 0) AS hasPermission")
+		->from("User usr") 
+		->leftJoin("usr.participantUser prt on usr.particiapnt_id = prt.id")
+		->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
+		->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
+		->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+		->offset($offset)
+		->limit($limit)
+		->execute( ); 
+
+	return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function getInstance()
     {
-        return Doctrine_Core::getTable('User');
+        return Doctrine_Core::getTable('SystemLogFile');
     }
 }

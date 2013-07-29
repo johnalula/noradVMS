@@ -733,6 +733,7 @@ Campus:
 User:
   package: UserManagement
   columns:
+    participant_id: { type: integer }
     username: { type: string(255), notnull: true }
     password: { type: string(255), notnull: true }
     token_id: { type: string(255), notnull: true }
@@ -740,16 +741,17 @@ User:
     is_active: { type: boolean, default: 0 }
     is_blocked: { type: boolean, default: 0 }
     status: { type: boolean, default: 0 }
-    permission_type: { type: integer }
+    permission_mode: { type: integer }
     ui_theme_color_setting: { type: integer }
     ui_language_setting: { type: integer }
   relations:
     UserGroup: { onDelete: CASCADE, local: group_id, foreign: id, foreignAlias: userGroups } 
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: participantUser }
   
 UserGroup:
   package: UserManagement
   columns:
-   token_id: { type: integer, notnull: true } 
+   token_id: { type: string(255), notnull: true } 
    name: { type: string(100) }
    description: { type: clob }
    
@@ -757,6 +759,7 @@ UserGroup:
 Permission:
   package: UserManagement
   columns:
+    token_id: { type: string(100) }
     group_id: { type: integer }
     user_id: { type: integer }
     module_id: { type: integer }
@@ -766,8 +769,7 @@ Permission:
     view_action: { type: boolean, default: 0 }
   relations:
     UserGroup: { onDelete: CASCADE, local: group_id, foreign: id, foreignAlias: groupModulePermissions }
-    User: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: userModulePermissions }
-    ModulePermissionSetting: { onDelete: CASCADE, local: module_id, foreign: id, foreignAlias: modulePermissions }
+    User: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: userModulePermissions } 
 
 ModulePermissionSetting:
   package: UserManagement
@@ -779,9 +781,14 @@ SystemLogFile:
   package: UserManagement
   columns:
     user_id: { type: integer }
+    token_id: { type: string(255) }
     action_date: { type: string(100)}
-    action_time: { type: time }
+    action_time: { type: string(50) }
     module_name: { type: string(100) }
+    deleted_date: { type: string(100)}
+    created_date: { type: string(100)}
+    viewed_date: { type: string(100)}
+    edited_date: { type: string(100)}
     action_type_id: { type: integer }
     pc_ip_address: { type: string(100) }
   relations:

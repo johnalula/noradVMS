@@ -33,7 +33,7 @@ class EmployeeTable extends PluginEmployeeTable
 		
 	}
 
-	public static function getEmployeeList($status=null, $keyword=null, $exclusion=null , $parent=null, $offset=0, $limit=10, $dept=null ) 
+	public static function fetchEmployeeList($status=null, $keyword=null, $exclusion=null , $parent=null, $offset=0, $limit=10, $dept=null ) 
 	{
 		$q= Doctrine_Query::create()
 			->select("prt.* ")
@@ -108,7 +108,7 @@ class EmployeeTable extends PluginEmployeeTable
 		return ( $q > 0 );   
 	}
 
-   public static function deleteEmployee()
+   public static function processDelete()
    {
 		$q = Doctrine_Query::create()
 			->select("prt.*, to.id as TOID")
@@ -164,7 +164,7 @@ class EmployeeTable extends PluginEmployeeTable
 		return $q; 
 	}
 
-	public static function getStatusList()
+	public static function fetchStatusList()
 	{
 		$q = Doctrine_Query::create()
 			->select("DISTINCT(to.type_id) AS statuses")
@@ -182,7 +182,7 @@ class EmployeeTable extends PluginEmployeeTable
 		return $st; 
 	}
 
-	public static function getTypeList()
+	public static function fetchTypeList()
 	{}
 
 

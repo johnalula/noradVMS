@@ -17,7 +17,12 @@ class SectionTable extends PluginSectionTable
         return Doctrine_Core::getTable('Section');
     }
 	
-	 public static function addSection ( $parent_id, $leader_id, $name, $section_no, $section_leader_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processSelection()
+	{
+		 
+	}
+	
+	public static function processCreate ( $parent_id, $leader_id, $name, $section_no, $section_leader_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$token = trim($name).trim($project_no).rand('11111', '99999');
 		$_nw = new Section(); //
@@ -35,11 +40,11 @@ class SectionTable extends PluginSectionTable
 		$_nw->save(); 
 		$_nw_id = $_nw->id;
 		
-			$contact = ParticipantContactTable::addContact($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+			$contact = ParticipantContactTable::processCreate($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
 		return true; 
 	}
 
-	public static function updateSection($_id, $token_id, $parent_id, $section_no, $leader_id, $name, $section_leader_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processUpdate($_id, $token_id, $parent_id, $section_no, $leader_id, $name, $section_leader_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$q = Doctrine_Query::create( )
 			->update('Section prt')
@@ -56,7 +61,7 @@ class SectionTable extends PluginSectionTable
 			->where('prt.id = ? AND prt.token_id = ?', array($_id, $token_id))
 			->execute();	
 			
-			$contact = ParticipantContactTable::updateContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+			$contact = ParticipantContactTable::processUpdate($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
 			
 		return ( $q > 0 );   
 	}

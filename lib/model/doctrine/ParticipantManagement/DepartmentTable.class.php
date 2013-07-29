@@ -13,16 +13,16 @@ class DepartmentTable extends PluginDepartmentTable
      * @return object DepartmentTable
      */
      
-    public static function selectDepartmentObject()
+    public static function processObject ()
     {}
     
-    public static function selectDepartment()
+    public static function processSelection ()
     {}
     
-    public static function selectCandidateParents()
+    public static function processCandidateParentsSelection()
     {}
     
-	public static function addDepartment ( $parent_id, $leader_id, $name, $head_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processCreate ( $parent_id, $leader_id, $name, $head_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$token = trim($name).trim($project_no).rand('11111', '99999');
 		$_nw = new Department(); //
@@ -39,11 +39,11 @@ class DepartmentTable extends PluginDepartmentTable
 		$_nw->save(); 
 		$_nw_id = $_nw->id;
 		
-			$contact = ParticipantContactTable::addContact($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+			$contact = ParticipantContactTable::processCreate($_nw_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
 		return true; 
 	}
 
-	public static function updateDepartment ($_id, $token_id, $parent_id, $leader_id, $name, $head_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processUpdate ($_id, $token_id, $parent_id, $leader_id, $name, $head_name, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$q = Doctrine_Query::create( )
 			->update('Department prt')
@@ -59,12 +59,12 @@ class DepartmentTable extends PluginDepartmentTable
 			->where('prt.id = ? AND prt.token_id = ?', array($_id, $token_id))
 			->execute();	
 			
-			$contact = ParticipantContactTable::updateContact($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
+			$contact = ParticipantContactTable::processUpdate ($_id, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website);
 			
 		return ( $q > 0 );   
 	}
     
-    public static function deleteDepartment()
+    public static function processDelete ()
     {}
     
     public static function addKeywordQuery()
@@ -79,10 +79,10 @@ class DepartmentTable extends PluginDepartmentTable
     public static function addUmbrellaQuery()
     {}
     
-    public static function selectStatusList()
+    public static function processStatusSelection ()
     {}
     
-    public static function selectTypeList()
+    public static function processTypeSelection()
     {}
     
     public static function getInstance()

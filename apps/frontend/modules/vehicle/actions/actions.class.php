@@ -17,6 +17,10 @@ class vehicleActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    $offset = 0;
+    $limit = 10;
+    $keyword = null;
     
+    $this->log_files = UserGroupTable::processSelection($keyword, $offset, $limit);
   }
 }

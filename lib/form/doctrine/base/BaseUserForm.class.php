@@ -16,6 +16,7 @@ abstract class BaseUserForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                     => new sfWidgetFormInputHidden(),
+      'participant_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
       'username'               => new sfWidgetFormInputText(),
       'password'               => new sfWidgetFormInputText(),
       'token_id'               => new sfWidgetFormInputText(),
@@ -23,13 +24,14 @@ abstract class BaseUserForm extends BaseFormDoctrine
       'is_active'              => new sfWidgetFormInputCheckbox(),
       'is_blocked'             => new sfWidgetFormInputCheckbox(),
       'status'                 => new sfWidgetFormInputCheckbox(),
-      'permission_type'        => new sfWidgetFormInputText(),
+      'permission_type_level'  => new sfWidgetFormInputText(),
       'ui_theme_color_setting' => new sfWidgetFormInputText(),
       'ui_language_setting'    => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'participant_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'required' => false)),
       'username'               => new sfValidatorString(array('max_length' => 255)),
       'password'               => new sfValidatorString(array('max_length' => 255)),
       'token_id'               => new sfValidatorString(array('max_length' => 255)),
@@ -37,7 +39,7 @@ abstract class BaseUserForm extends BaseFormDoctrine
       'is_active'              => new sfValidatorBoolean(array('required' => false)),
       'is_blocked'             => new sfValidatorBoolean(array('required' => false)),
       'status'                 => new sfValidatorBoolean(array('required' => false)),
-      'permission_type'        => new sfValidatorInteger(array('required' => false)),
+      'permission_type_level'  => new sfValidatorInteger(array('required' => false)),
       'ui_theme_color_setting' => new sfValidatorInteger(array('required' => false)),
       'ui_language_setting'    => new sfValidatorInteger(array('required' => false)),
     ));

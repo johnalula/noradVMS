@@ -12,8 +12,103 @@ class PermissionTable extends PluginPermissionTable
      *
      * @return object PermissionTable
      */
+     
+   public static $USER_MANAGEMENT = 1;
+   public static $PARTICIPANT_MANAGEMENT = 2;
+   public static $GENERAL_SETTING = 3;
+   public static $VEHICLE_SETTING = 4;
+   public static $FLEET_SETTING = 5;
+   public static $FLEET_TASK = 6;
+   public static $REGISTRATION_TASK = 7;
+   public static $ASSIGNMENT_TASK = 8;
+   
+   
+    public static $ALL_MODULES = array (1 => 'User Management', 2 => 'Participant Management', 3 => 'General Setting', 4 => 'Vehicle Setting', 5 => 'Fleet Setting', 6 => 'Fleet Task', 7 => 'Registration Task', 8 => 'Assignment Task', 6 => 'Transfer Task');
+    
     public static function getInstance()
     {
-        return Doctrine_Core::getTable('Permission');
+        return Doctrine_Core::getTable('SystemLogFile');
     }
+    
+    public static function findModuleID ( $_value ) {
+        try {
+            foreach( self::$ALL_MODULES as $key=> $module ){
+                    if( strcmp($module, $_value) == 0 )
+                        return $key; 
+            }
+            return null;  	
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	
+	public static function findModuleValue ($_id ){
+        try {
+            foreach( self::$ALL_MODULES as $key=> $module ){
+                    if( $key == $_id )
+                        return $module; 
+            }
+            return null;           
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+   
+   public static function processCreate($group_id, $user_id, $module_id, $create_action, $delete_action, $edit_action, $view_action )
+	{
+		$token = trim($group_id).trim($user_id).rand('11111', '99999');
+		$_nw = new Permission ();  
+		$_nw->token_id = MD5($token);
+		$_nw->group_id = $group_id;
+		$_nw->user_id = $user_id;
+		$_nw->module_id = $module_id;
+		$_nw->create_action = $create_action;
+		$_nw->edit_action = $edit_action;
+		$_nw->delete_action = $delete_action;
+		$_nw->view_action = $view_action;		 
+		$_nw->save(); 
+		
+		return true; 
+	}
+   
+   public static function processUpdate($_id, $token_id, $group_id, $user_id, $module_id, $create_action, $delete_action, $edit_action, $view_action )
+	{
+		$pass = trim($password);
+		$q = Doctrine_Query::create( )
+			->update('Permission per') 
+			->set('per.user_id', '?', $p_id) 
+			->set('per.group_id', '?', trim($username)) 
+			->set('per.module_id', '?', md5($pass)) 
+			->set('per.create_action', '?', $create_action)
+			->set('per.edit_action', '?', $edit_action)
+			->set('per.delete_action', '?', $delete_action)
+			->set('per.view_action', '?', $view_action)
+			->where('per.id = ? AND per.token_id = ?', array($_id, $token_id))
+			->execute();	
+					
+		return ( $q > 0 );   
+
+	}
+	
+	public static function processObject($_id, $token_id)
+	{
+		$q= Doctrine_Query::create()
+			->select("per.*, usr.username as userName, grp.name as groupName, ")
+			->from("Permission per") 
+			->innerJoin("per.User usr on usr.id = log.user_id")
+			->innerJoin("per.UserGroup grp on grp.id = usr.group_id")
+			->offset($offset)
+			->limit($limit)
+			->where('per.id = ? AND per.token_id = ? ', array($_id, $token_id))
+			->fetchOne( ); 
+			
+		return ( count ( $q ) <= 0 ? null : $q );
+	
+	}
+	
+	
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('Permission');
+	}
 }

@@ -23,7 +23,7 @@ abstract class BaseUserGroupForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'token_id'    => new sfValidatorInteger(),
+      'token_id'    => new sfValidatorString(array('max_length' => 255)),
       'name'        => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
     ));

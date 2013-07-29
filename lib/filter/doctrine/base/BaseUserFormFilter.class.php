@@ -13,6 +13,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'participant_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
       'username'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'password'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'token_id'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -20,12 +21,13 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
       'is_active'              => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'is_blocked'             => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'status'                 => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'permission_type'        => new sfWidgetFormFilterInput(),
+      'permission_type_level'  => new sfWidgetFormFilterInput(),
       'ui_theme_color_setting' => new sfWidgetFormFilterInput(),
       'ui_language_setting'    => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
+      'participant_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Participant'), 'column' => 'id')),
       'username'               => new sfValidatorPass(array('required' => false)),
       'password'               => new sfValidatorPass(array('required' => false)),
       'token_id'               => new sfValidatorPass(array('required' => false)),
@@ -33,7 +35,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
       'is_active'              => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'is_blocked'             => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'status'                 => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'permission_type'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'permission_type_level'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'ui_theme_color_setting' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'ui_language_setting'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
@@ -56,6 +58,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                     => 'Number',
+      'participant_id'         => 'ForeignKey',
       'username'               => 'Text',
       'password'               => 'Text',
       'token_id'               => 'Text',
@@ -63,7 +66,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
       'is_active'              => 'Boolean',
       'is_blocked'             => 'Boolean',
       'status'                 => 'Boolean',
-      'permission_type'        => 'Number',
+      'permission_type_level'  => 'Number',
       'ui_theme_color_setting' => 'Number',
       'ui_language_setting'    => 'Number',
     );
