@@ -65,7 +65,7 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-content-lists table tbody tr td .ui-list-action ul {list-style:none;}
 .ui-content-lists table tbody tr td .ui-list-action ul li {display:inline-block;}
 
-.ui-main-menu-cont {margin:1px;margin-bottom:3px;padding:3px 6px;border:1px solid #b9cbdb;background-color: #f6fafc; background: -moz-linear-gradient(100% 100% 90deg, #cbddea, #f6fafc);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6fafc), to(#cbddea));
+.ui-main-menu-cont {min-width:815px;margin:1px;margin-bottom:3px;padding:3px 6px;border:1px solid #b9cbdb;background-color: #f6fafc; background: -moz-linear-gradient(100% 100% 90deg, #cbddea, #f6fafc);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6fafc), to(#cbddea));
 background: -webkit-linear-gradient(#cbddea, #f6fafc);background: -o-linear-gradient(#cbddea, #f6fafc);}
 .ui-main-menu-actions {padding:3px 0px;border:0px solid #f00;}
 .ui-main-menu-actions ul {list-style:none;margin:0px;}
@@ -101,4 +101,36 @@ background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-grad
 
 
 .ui-dashboard-container {padding}
+.ui-dashboard-content {}
+.ui-dashboard-box {padding:10px 10px;background:#fff;margin-right:5px;border:1px solid #b9cbdb;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;-webkit-box-shadow: 0 0px 1px #ddd;-moz-box-shadow: 0 0px 1px #ddd;box-shadow: 0 0px 1px #ddd;}
+.ui-dashboard-box table {width:600px;border:0px solid #00f;}
+.ui-dashboard-box table tbody {}
+.ui-dashboard-box table tbody tr {}
+.ui-dashboard-box table tbody tr td {width:120px;padding:10px;}
+
+.ui-dashboard {height:80px;text-align:center;padding-bottom:10px;background:#f9fafb;border:1px solid #b9cbdb;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;-webkit-box-shadow: 0 0px 1px #ddd;-moz-box-shadow: 0 0px 1px #ddd;box-shadow: 0 0px 1px #ddd;}
+.ui-dashboard-shadowed {-webkit-box-shadow: 0 0px 8px #bbb;-moz-box-shadow: 0 0px 8px #bbb;box-shadow: 0 0px 8px #bbb;}
+.ui-dashboard img {margin-top:10px;}
+.ui-dashboard span.ui-dashboard-label {padding:6px;text-align:center;white-space:nowrap!important;color:#000;font-size:11px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
