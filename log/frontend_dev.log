@@ -32533,3 +32533,1280 @@ Jul 30 22:22:25 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_form" 0
 Jul 30 22:22:25 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_list" 1.73 ms (1)
 Jul 30 22:22:25 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.26 ms (1)
 Jul 30 22:22:25 symfony [info] {sfWebResponse} Send content (56454 o)
+Jul 31 10:10:41 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:10:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:10:42 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:10:42 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:10:42 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:10:42 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:10:42 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:10:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:10:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:10:42 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:10:42 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:10:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:10:42 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:10:42 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Configuration 1.42 ms (9)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Factories 256.26 ms (1)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 236.51 ms (1)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 118.34 ms (1)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.47 ms (1)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 2.29 ms (1)
+Jul 31 10:10:42 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 9.28 ms (1)
+Jul 31 10:10:42 symfony [info] {sfWebResponse} Send content (56843 o)
+Jul 31 10:13:45 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:13:45 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:13:45 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:13:45 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:13:45 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:13:45 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:13:45 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:13:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:13:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:13:45 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:13:45 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:13:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:13:45 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:13:45 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Configuration 0.80 ms (9)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Factories 21.48 ms (1)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 19.90 ms (1)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.00 ms (1)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.33 ms (1)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.47 ms (1)
+Jul 31 10:13:45 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.25 ms (1)
+Jul 31 10:13:45 symfony [info] {sfWebResponse} Send content (57151 o)
+Jul 31 10:13:51 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:13:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:13:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:13:51 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:13:51 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:13:51 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:13:51 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:13:51 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:13:51 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:13:51 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:13:51 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:13:51 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:13:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:13:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Configuration 0.72 ms (9)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Factories 18.57 ms (1)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 23.91 ms (1)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 12.03 ms (1)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.30 ms (1)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.38 ms (1)
+Jul 31 10:13:51 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.02 ms (1)
+Jul 31 10:13:51 symfony [info] {sfWebResponse} Send content (57151 o)
+Jul 31 10:14:10 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:14:10 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:14:10 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:14:10 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:14:10 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:14:10 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:14:10 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:14:10 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:14:10 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:14:10 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:14:10 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:14:10 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:14:10 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:14:10 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Configuration 0.78 ms (9)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Factories 20.69 ms (1)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 28.94 ms (1)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 15.84 ms (1)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.44 ms (1)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.77 ms (1)
+Jul 31 10:14:10 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.06 ms (1)
+Jul 31 10:14:10 symfony [info] {sfWebResponse} Send content (57162 o)
+Jul 31 10:16:42 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:16:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:16:42 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:16:42 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:16:42 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:16:42 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:16:42 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:16:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:16:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:16:42 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:16:42 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:16:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:16:42 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:16:42 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Configuration 0.78 ms (9)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Factories 18.25 ms (1)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 23.86 ms (1)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 13.51 ms (1)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.31 ms (1)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.37 ms (1)
+Jul 31 10:16:42 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.20 ms (1)
+Jul 31 10:16:42 symfony [info] {sfWebResponse} Send content (57155 o)
+Jul 31 10:18:09 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/createFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'createFuelType',)
+Jul 31 10:18:09 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:18:09 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:18:09 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeCreateFuelType()"
+Jul 31 10:18:09 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:18:09 symfony [info] {Doctrine_Connection_Statement} execute : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description FROM fuel_type f WHERE (f.name LIKE ?) - (Gas)
+Jul 31 10:18:09 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO fuel_type (name, description) VALUES (?, ?) - (Gas, sdfgsdf)
+Jul 31 10:18:09 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:18:09 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:18:09 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:18:09 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:18:09 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:18:09 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:18:09 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:18:09 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:18:09 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:18:09 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:18:09 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:18:09 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:18:09 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:18:09 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:18:09 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:18:09 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Configuration 1.03 ms (9)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Factories 23.58 ms (1)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 20.08 ms (1)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 15.95 ms (1)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.44 ms (1)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.97 ms (1)
+Jul 31 10:18:09 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.50 ms (1)
+Jul 31 10:18:09 symfony [info] {sfWebResponse} Send content (58514 o)
+Jul 31 10:18:23 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:18:23 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:18:23 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:18:23 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:18:23 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:18:23 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:18:23 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:18:23 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:18:23 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:18:23 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:18:23 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:18:23 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:18:23 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:18:23 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Configuration 0.75 ms (9)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Factories 20.70 ms (1)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 20.04 ms (1)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 13.10 ms (1)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.33 ms (1)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.64 ms (1)
+Jul 31 10:18:23 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.03 ms (1)
+Jul 31 10:18:23 symfony [info] {sfWebResponse} Send content (58514 o)
+Jul 31 10:18:28 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/createFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'createFuelType',)
+Jul 31 10:18:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:18:28 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:18:28 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeCreateFuelType()"
+Jul 31 10:18:28 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:18:28 symfony [info] {Doctrine_Connection_Statement} execute : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description FROM fuel_type f WHERE (f.name LIKE ?) - (Diesel)
+Jul 31 10:18:28 symfony [err] {sfRenderException} The template "createFuelType.php" does not exist or is unreadable in "".
+Jul 31 10:18:28 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Jul 31 10:18:28 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:18:28 symfony [info] {sfWebDebugLogger} Configuration 0.65 ms (9)
+Jul 31 10:18:28 symfony [info] {sfWebDebugLogger} Factories 18.54 ms (1)
+Jul 31 10:18:28 symfony [info] {sfWebDebugLogger} Action "fuel_type/createFuelType" 18.03 ms (1)
+Jul 31 10:18:28 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:18:28 symfony [info] {sfWebDebugLogger} View "" for "fuel_type/createFuelType" 43.25 ms (1)
+Jul 31 10:18:45 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'dashboard',  'action' => 'index',)
+Jul 31 10:18:45 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:18:45 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:18:45 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Jul 31 10:18:45 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/indexSuccess.php"
+Jul 31 10:18:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_list.php"
+Jul 31 10:18:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_activityList.php"
+Jul 31 10:18:45 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:18:45 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:18:45 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:18:45 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:18:45 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} Configuration 0.96 ms (9)
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} Factories 18.64 ms (1)
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 0.08 ms (1)
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 11.55 ms (1)
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} Partial "dashboard/_list" 0.88 ms (1)
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} Partial "dashboard/_activityList" 0.34 ms (1)
+Jul 31 10:18:45 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.94 ms (1)
+Jul 31 10:18:45 symfony [info] {sfWebResponse} Send content (48732 o)
+Jul 31 10:19:33 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:19:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:19:33 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:19:33 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:19:33 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:19:33 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:19:33 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:19:33 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:19:33 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:19:33 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:19:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:19:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} Configuration 1.35 ms (9)
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} Factories 20.32 ms (1)
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.37 ms (1)
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 17.86 ms (1)
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.69 ms (1)
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.36 ms (1)
+Jul 31 10:19:33 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.01 ms (1)
+Jul 31 10:19:33 symfony [info] {sfWebResponse} Send content (48118 o)
+Jul 31 10:19:37 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:19:37 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:19:37 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:19:37 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:19:37 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:19:37 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:19:37 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:19:37 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:19:37 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:19:37 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:19:37 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:19:37 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:19:37 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:19:37 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Configuration 0.81 ms (9)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Factories 19.88 ms (1)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 20.16 ms (1)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.03 ms (1)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.43 ms (1)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.81 ms (1)
+Jul 31 10:19:37 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.25 ms (1)
+Jul 31 10:19:37 symfony [info] {sfWebResponse} Send content (58554 o)
+Jul 31 10:19:57 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/createFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'createFuelType',)
+Jul 31 10:19:57 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:19:57 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:19:57 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeCreateFuelType()"
+Jul 31 10:19:57 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:19:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description FROM fuel_type f WHERE (f.name LIKE ?) - (fgsdfg)
+Jul 31 10:19:57 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO fuel_type (name, description) VALUES (?, ?) - (fgsdfg, sdfgsdf)
+Jul 31 10:19:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:19:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:19:57 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:19:57 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:19:57 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:19:57 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:19:57 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:19:57 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:19:57 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:19:57 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:19:57 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:19:57 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:19:57 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:19:57 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:19:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:19:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Configuration 0.76 ms (9)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Factories 19.65 ms (1)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 20.31 ms (1)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.64 ms (1)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.54 ms (1)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 2.22 ms (1)
+Jul 31 10:19:57 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.02 ms (1)
+Jul 31 10:19:57 symfony [info] {sfWebResponse} Send content (59949 o)
+Jul 31 10:20:00 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/deleteFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'deleteFuelType',)
+Jul 31 10:20:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:20:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:20:00 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeDeleteFuelType()"
+Jul 31 10:20:00 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:20:00 symfony [info] {Doctrine_Connection_Statement} execute : DELETE FROM fuel_type WHERE (id = ?) - (5)
+Jul 31 10:20:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:20:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:20:00 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:20:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:20:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:20:00 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:20:00 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:20:00 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:20:00 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:20:00 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:20:00 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:20:00 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:00 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:00 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:20:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:20:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Configuration 0.91 ms (9)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Factories 26.53 ms (1)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 24.46 ms (1)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 13.31 ms (1)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.49 ms (1)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.81 ms (1)
+Jul 31 10:20:00 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.08 ms (1)
+Jul 31 10:20:00 symfony [info] {sfWebResponse} Send content (58586 o)
+Jul 31 10:20:28 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:20:28 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:20:28 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:20:28 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:20:28 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:20:28 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:20:28 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:20:28 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:28 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:28 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:20:28 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:20:28 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} Configuration 0.80 ms (9)
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} Factories 18.41 ms (1)
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.06 ms (1)
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 10.34 ms (1)
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.62 ms (1)
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.36 ms (1)
+Jul 31 10:20:28 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.02 ms (1)
+Jul 31 10:20:28 symfony [info] {sfWebResponse} Send content (48127 o)
+Jul 31 10:20:31 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle with parameters array (  'module' => 'vehicle',  'action' => 'index',)
+Jul 31 10:20:31 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:20:31 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:20:31 symfony [info] {vehicleActions} Call "vehicleActions->executeIndex()"
+Jul 31 10:20:31 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:20:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT DISTINCT u3.id FROM user_group u3 LIMIT 10 - ()
+Jul 31 10:20:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT u.id AS u__id, u.token_id AS u__token_id, u.name AS u__name, u.description AS u__description, u2.id AS u2__id, u2.username AS u2__0, u2.username AS u2__0, u.token_id AS u__1, (NOT EXISTS (SELECT p2.id AS p2__id FROM permission p2 WHERE (p2.group_id = u.id))) AS u__2 FROM user_group u LEFT JOIN user u2 ON (u2.group_id = u.id) LEFT JOIN permission p ON (p.group_id = u.id) WHERE u.id IS NULL - ()
+Jul 31 10:20:31 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle/templates/indexSuccess.php"
+Jul 31 10:20:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle/templates/_filter.php"
+Jul 31 10:20:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle/templates/_list.php"
+Jul 31 10:20:31 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:31 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:20:31 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:20:31 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Configuration 1.47 ms (9)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Factories 18.31 ms (1)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Action "vehicle/index" 151.42 ms (1)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (3)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle/index" 84.81 ms (1)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Partial "vehicle/_filter" 18.53 ms (1)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Partial "vehicle/_list" 1.45 ms (1)
+Jul 31 10:20:31 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.25 ms (1)
+Jul 31 10:20:32 symfony [info] {sfWebResponse} Send content (50976 o)
+Jul 31 10:20:36 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:20:36 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:20:36 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:20:36 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:20:36 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:20:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:20:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:20:36 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:36 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:20:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:20:36 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:20:36 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} Configuration 0.77 ms (9)
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} Factories 19.70 ms (1)
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.07 ms (1)
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 10.44 ms (1)
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.58 ms (1)
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.34 ms (1)
+Jul 31 10:20:36 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.94 ms (1)
+Jul 31 10:20:36 symfony [info] {sfWebResponse} Send content (48127 o)
+Jul 31 10:21:00 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'dashboard',  'action' => 'index',)
+Jul 31 10:21:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:21:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:21:00 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Jul 31 10:21:00 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/indexSuccess.php"
+Jul 31 10:21:00 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_list.php"
+Jul 31 10:21:00 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_activityList.php"
+Jul 31 10:21:00 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:21:00 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:21:00 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:21:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:21:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} Configuration 0.81 ms (9)
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} Factories 21.65 ms (1)
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 0.06 ms (1)
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 12.02 ms (1)
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} Partial "dashboard/_list" 1.06 ms (1)
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} Partial "dashboard/_activityList" 0.37 ms (1)
+Jul 31 10:21:00 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.18 ms (1)
+Jul 31 10:21:00 symfony [info] {sfWebResponse} Send content (48738 o)
+Jul 31 10:21:31 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:21:31 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:21:31 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:21:31 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:21:31 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:21:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:21:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:21:31 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:21:31 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:21:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:21:31 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:21:31 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} Configuration 0.67 ms (9)
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} Factories 18.05 ms (1)
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.06 ms (1)
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 10.30 ms (1)
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.59 ms (1)
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.34 ms (1)
+Jul 31 10:21:31 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.08 ms (1)
+Jul 31 10:21:31 symfony [info] {sfWebResponse} Send content (48118 o)
+Jul 31 10:21:51 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle with parameters array (  'module' => 'vehicle',  'action' => 'index',)
+Jul 31 10:21:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:21:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:21:51 symfony [info] {vehicleActions} Call "vehicleActions->executeIndex()"
+Jul 31 10:21:51 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:21:51 symfony [info] {Doctrine_Connection_Mysql} query : SELECT DISTINCT u3.id FROM user_group u3 LIMIT 10 - ()
+Jul 31 10:21:51 symfony [info] {Doctrine_Connection_Mysql} query : SELECT u.id AS u__id, u.token_id AS u__token_id, u.name AS u__name, u.description AS u__description, u2.id AS u2__id, u2.username AS u2__0, u2.username AS u2__0, u.token_id AS u__1, (NOT EXISTS (SELECT p2.id AS p2__id FROM permission p2 WHERE (p2.group_id = u.id))) AS u__2 FROM user_group u LEFT JOIN user u2 ON (u2.group_id = u.id) LEFT JOIN permission p ON (p.group_id = u.id) WHERE u.id IS NULL - ()
+Jul 31 10:21:51 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle/templates/indexSuccess.php"
+Jul 31 10:21:51 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle/templates/_filter.php"
+Jul 31 10:21:51 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle/templates/_list.php"
+Jul 31 10:21:51 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:21:51 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:21:51 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:21:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:21:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Configuration 0.81 ms (9)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Factories 18.51 ms (1)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Action "vehicle/index" 23.75 ms (1)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (3)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle/index" 10.49 ms (1)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Partial "vehicle/_filter" 0.32 ms (1)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Partial "vehicle/_list" 0.29 ms (1)
+Jul 31 10:21:51 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.06 ms (1)
+Jul 31 10:21:51 symfony [info] {sfWebResponse} Send content (50974 o)
+Jul 31 10:22:50 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:22:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:22:50 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:22:50 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:22:50 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:22:50 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:22:50 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:22:50 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:22:50 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:22:50 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:22:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:22:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} Configuration 0.80 ms (9)
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} Factories 18.60 ms (1)
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.07 ms (1)
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 11.37 ms (1)
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.75 ms (1)
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.38 ms (1)
+Jul 31 10:22:50 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.00 ms (1)
+Jul 31 10:22:50 symfony [info] {sfWebResponse} Send content (48118 o)
+Jul 31 10:22:53 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:22:53 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:22:53 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:22:53 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:22:53 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:22:53 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:22:53 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:22:53 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:22:53 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:22:53 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:22:53 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:22:53 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:22:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:22:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Configuration 0.76 ms (9)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Factories 19.74 ms (1)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 24.43 ms (1)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 13.59 ms (1)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.32 ms (1)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.51 ms (1)
+Jul 31 10:22:53 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.08 ms (1)
+Jul 31 10:22:53 symfony [info] {sfWebResponse} Send content (58554 o)
+Jul 31 10:23:07 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:23:07 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:23:07 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:23:07 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:23:07 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:23:07 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:23:07 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:23:07 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:23:07 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:23:07 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:23:07 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:23:07 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:23:07 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:23:07 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Configuration 0.89 ms (9)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Factories 18.88 ms (1)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 21.72 ms (1)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 15.15 ms (1)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.47 ms (1)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.97 ms (1)
+Jul 31 10:23:07 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.19 ms (1)
+Jul 31 10:23:07 symfony [info] {sfWebResponse} Send content (58514 o)
+Jul 31 10:23:15 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/createFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'createFuelType',)
+Jul 31 10:23:15 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:23:15 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:23:15 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeCreateFuelType()"
+Jul 31 10:23:15 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:23:15 symfony [info] {Doctrine_Connection_Statement} execute : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description FROM fuel_type f WHERE (f.name LIKE ?) - (asdfasdf)
+Jul 31 10:23:15 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO fuel_type (name, description) VALUES (?, ?) - (asdfasdf, asdfasdf)
+Jul 31 10:23:15 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:23:15 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:23:15 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:23:15 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:23:15 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:23:15 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:23:15 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:23:15 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:23:15 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:23:15 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:23:15 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:23:15 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:23:15 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:23:15 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:23:15 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:23:15 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Configuration 0.76 ms (9)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Factories 19.89 ms (1)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 25.77 ms (1)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.87 ms (1)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.35 ms (1)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.78 ms (1)
+Jul 31 10:23:15 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.08 ms (1)
+Jul 31 10:23:15 symfony [info] {sfWebResponse} Send content (59880 o)
+Jul 31 10:23:29 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/createFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'createFuelType',)
+Jul 31 10:23:29 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:23:29 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:23:29 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeCreateFuelType()"
+Jul 31 10:23:29 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:23:29 symfony [info] {Doctrine_Connection_Statement} execute : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description FROM fuel_type f WHERE (f.name LIKE ?) - (Diesel)
+Jul 31 10:23:29 symfony [err] {sfRenderException} The template "createFuelType.php" does not exist or is unreadable in "".
+Jul 31 10:23:29 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Jul 31 10:23:29 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:23:29 symfony [info] {sfWebDebugLogger} Configuration 0.75 ms (9)
+Jul 31 10:23:29 symfony [info] {sfWebDebugLogger} Factories 19.51 ms (1)
+Jul 31 10:23:29 symfony [info] {sfWebDebugLogger} Action "fuel_type/createFuelType" 19.42 ms (1)
+Jul 31 10:23:29 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:23:29 symfony [info] {sfWebDebugLogger} View "" for "fuel_type/createFuelType" 16.36 ms (1)
+Jul 31 10:23:34 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:23:34 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:23:34 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:23:34 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:23:34 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:23:34 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:23:34 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:23:34 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:23:34 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:23:34 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:23:34 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:23:34 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:23:34 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:23:34 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Configuration 0.74 ms (9)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Factories 21.24 ms (1)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 22.49 ms (1)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.16 ms (1)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.37 ms (1)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.84 ms (1)
+Jul 31 10:23:34 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.06 ms (1)
+Jul 31 10:23:34 symfony [info] {sfWebResponse} Send content (59880 o)
+Jul 31 10:24:35 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/deleteFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'deleteFuelType',)
+Jul 31 10:24:35 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:24:35 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:24:35 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeDeleteFuelType()"
+Jul 31 10:24:35 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:24:35 symfony [info] {Doctrine_Connection_Statement} execute : DELETE FROM fuel_type WHERE (id = ?) - (6)
+Jul 31 10:24:35 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:24:35 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:24:35 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:24:35 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:24:35 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:24:35 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:24:35 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:24:35 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:24:35 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:24:35 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:24:35 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:24:35 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:24:35 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:24:35 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:24:35 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:24:35 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Configuration 0.80 ms (9)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Factories 20.59 ms (1)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 18.84 ms (1)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 13.67 ms (1)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.34 ms (1)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.85 ms (1)
+Jul 31 10:24:35 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.33 ms (1)
+Jul 31 10:24:35 symfony [info] {sfWebResponse} Send content (58514 o)
+Jul 31 10:25:43 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:25:43 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:25:43 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:25:43 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:25:43 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:25:43 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:25:43 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:25:43 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:25:43 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:25:43 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:25:43 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:25:43 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} Configuration 0.82 ms (9)
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} Factories 22.56 ms (1)
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 0.08 ms (1)
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 12.08 ms (1)
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.36 ms (1)
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 0.30 ms (1)
+Jul 31 10:25:43 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.11 ms (1)
+Jul 31 10:25:43 symfony [info] {sfWebResponse} Send content (51310 o)
+Jul 31 10:26:57 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:26:57 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:26:57 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:26:57 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:26:57 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:26:57 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 1 - ()
+Jul 31 10:26:57 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:26:57 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:26:57 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:26:57 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:26:57 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:26:57 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:26:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:26:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Configuration 1.02 ms (9)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Factories 19.71 ms (1)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 23.87 ms (1)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.93 ms (1)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.36 ms (1)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.47 ms (1)
+Jul 31 10:26:57 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.99 ms (1)
+Jul 31 10:26:57 symfony [info] {sfWebResponse} Send content (55787 o)
+Jul 31 10:27:03 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:27:03 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:27:03 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:27:03 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:27:03 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:27:03 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 2 - ()
+Jul 31 10:27:03 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:27:03 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:27:03 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:27:03 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:27:03 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:27:03 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:27:03 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:27:03 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Configuration 1.08 ms (9)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Factories 19.96 ms (1)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 30.97 ms (1)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 19.31 ms (1)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.40 ms (1)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.49 ms (1)
+Jul 31 10:27:03 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.99 ms (1)
+Jul 31 10:27:03 symfony [info] {sfWebResponse} Send content (57154 o)
+Jul 31 10:27:14 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:27:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:27:14 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:27:14 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:27:14 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:27:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:27:14 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:27:14 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:27:14 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:27:14 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:27:14 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:27:14 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:27:14 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:27:14 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Configuration 0.82 ms (9)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Factories 20.48 ms (1)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 17.77 ms (1)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.73 ms (1)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.41 ms (1)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 2.04 ms (1)
+Jul 31 10:27:14 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.10 ms (1)
+Jul 31 10:27:14 symfony [info] {sfWebResponse} Send content (58514 o)
+Jul 31 10:29:36 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:29:36 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:29:36 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:29:36 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:29:36 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:29:36 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:29:36 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:29:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:29:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:29:36 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:29:36 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:29:36 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:29:36 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:29:36 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Configuration 0.90 ms (9)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Factories 19.83 ms (1)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 18.10 ms (1)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.30 ms (1)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.39 ms (1)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 2.02 ms (1)
+Jul 31 10:29:36 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.10 ms (1)
+Jul 31 10:29:36 symfony [info] {sfWebResponse} Send content (58543 o)
+Jul 31 10:29:44 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:29:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:29:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:29:44 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:29:44 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:29:44 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:29:44 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:29:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:29:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:29:44 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:29:44 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:29:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:29:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:29:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Configuration 0.85 ms (9)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Factories 22.13 ms (1)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 20.33 ms (1)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 14.86 ms (1)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.34 ms (1)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.78 ms (1)
+Jul 31 10:29:44 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.16 ms (1)
+Jul 31 10:29:44 symfony [info] {sfWebResponse} Send content (58542 o)
+Jul 31 10:29:48 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:29:48 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:29:48 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:29:48 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:29:48 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:29:48 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:29:48 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:29:48 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:29:48 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:29:48 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:29:48 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:29:48 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:29:48 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:29:48 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Configuration 1.07 ms (9)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Factories 20.49 ms (1)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 21.35 ms (1)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 19.48 ms (1)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.53 ms (1)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.76 ms (1)
+Jul 31 10:29:48 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 1.96 ms (1)
+Jul 31 10:29:48 symfony [info] {sfWebResponse} Send content (58542 o)
+Jul 31 10:31:41 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:31:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:31:41 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:31:41 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:31:41 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:31:41 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:31:41 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:31:41 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:31:41 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:31:41 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:31:41 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:31:41 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:31:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:31:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Configuration 0.96 ms (9)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Factories 22.37 ms (1)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 30.57 ms (1)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 19.68 ms (1)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.36 ms (1)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 2.00 ms (1)
+Jul 31 10:31:41 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.12 ms (1)
+Jul 31 10:31:41 symfony [info] {sfWebResponse} Send content (58532 o)
+Jul 31 10:31:46 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:31:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:31:46 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:31:46 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:31:46 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:31:46 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:31:46 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:31:46 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:31:46 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:31:46 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:31:46 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:31:46 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:31:46 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:31:46 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Configuration 0.90 ms (9)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Factories 18.51 ms (1)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 24.50 ms (1)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 21.35 ms (1)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.44 ms (1)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.78 ms (1)
+Jul 31 10:31:46 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.06 ms (1)
+Jul 31 10:31:46 symfony [info] {sfWebResponse} Send content (58542 o)
+Jul 31 10:35:11 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /fuel_type/createFuelType with parameters array (  'module' => 'fuel_type',  'action' => 'createFuelType',)
+Jul 31 10:35:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:35:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:35:11 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeCreateFuelType()"
+Jul 31 10:35:11 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:35:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description FROM fuel_type f WHERE (f.name LIKE ?) - (sdfgs)
+Jul 31 10:35:11 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO fuel_type (name, description) VALUES (?, ?) - (sdfgs, ssdfg)
+Jul 31 10:35:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:35:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:35:11 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:35:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:35:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:35:11 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:35:11 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:35:11 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:35:11 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:35:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:35:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:35:11 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:35:11 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:35:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:35:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:35:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Configuration 0.83 ms (9)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Factories 23.40 ms (1)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 19.61 ms (1)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 13.95 ms (1)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.44 ms (1)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 1.92 ms (1)
+Jul 31 10:35:11 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.20 ms (1)
+Jul 31 10:35:11 symfony [info] {sfWebResponse} Send content (59902 o)
+Jul 31 10:37:43 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:37:43 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:37:43 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:37:43 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:37:43 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:37:43 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:37:43 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:37:43 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:37:43 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:37:43 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:37:43 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:37:43 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} Configuration 0.79 ms (9)
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} Factories 22.19 ms (1)
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.06 ms (1)
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 10.29 ms (1)
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.57 ms (1)
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.34 ms (1)
+Jul 31 10:37:43 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.01 ms (1)
+Jul 31 10:37:43 symfony [info] {sfWebResponse} Send content (48127 o)
+Jul 31 10:37:46 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_type with parameters array (  'module' => 'vehicle_type',  'action' => 'index',)
+Jul 31 10:37:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:37:46 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:37:46 symfony [info] {vehicle_typeActions} Call "vehicle_typeActions->executeIndex()"
+Jul 31 10:37:46 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:37:46 symfony [info] {Doctrine_Connection_Mysql} query : SELECT v.id AS v__id, v.name AS v__name, v.description AS v__description, v.name AS v__0 FROM vehicle_type v LIMIT 10 - ()
+Jul 31 10:37:46 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/indexSuccess.php"
+Jul 31 10:37:46 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/_form.php"
+Jul 31 10:37:46 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/_list.php"
+Jul 31 10:37:46 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:37:46 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:37:46 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:37:46 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:37:46 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Configuration 1.18 ms (9)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Factories 18.42 ms (1)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Action "vehicle_type/index" 75.06 ms (1)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_type/index" 22.39 ms (1)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_form" 0.36 ms (1)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_list" 1.68 ms (1)
+Jul 31 10:37:46 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.27 ms (1)
+Jul 31 10:37:46 symfony [info] {sfWebResponse} Send content (56455 o)
+Jul 31 10:38:05 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /vehicle_type/createVehicleType with parameters array (  'module' => 'vehicle_type',  'action' => 'createVehicleType',)
+Jul 31 10:38:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:05 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:05 symfony [info] {vehicle_typeActions} Call "vehicle_typeActions->executeCreateVehicleType()"
+Jul 31 10:38:05 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:38:05 symfony [info] {Doctrine_Connection_Statement} execute : SELECT v.id AS v__id, v.name AS v__name, v.description AS v__description FROM vehicle_type v WHERE (v.name LIKE ?) - (vfgsdfg)
+Jul 31 10:38:05 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO vehicle_type (name, description) VALUES (?, ?) - (vfgsdfg, sfgdsfg)
+Jul 31 10:38:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:38:05 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:05 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_type with parameters array (  'module' => 'vehicle_type',  'action' => 'index',)
+Jul 31 10:38:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:06 symfony [info] {vehicle_typeActions} Call "vehicle_typeActions->executeIndex()"
+Jul 31 10:38:06 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:38:06 symfony [info] {Doctrine_Connection_Mysql} query : SELECT v.id AS v__id, v.name AS v__name, v.description AS v__description, v.name AS v__0 FROM vehicle_type v LIMIT 10 - ()
+Jul 31 10:38:06 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/indexSuccess.php"
+Jul 31 10:38:06 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/_form.php"
+Jul 31 10:38:06 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/_list.php"
+Jul 31 10:38:06 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:06 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:06 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:38:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:38:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Configuration 0.88 ms (9)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Factories 20.20 ms (1)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Action "vehicle_type/index" 19.30 ms (1)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_type/index" 14.30 ms (1)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_form" 0.39 ms (1)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_list" 1.78 ms (1)
+Jul 31 10:38:06 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.20 ms (1)
+Jul 31 10:38:06 symfony [info] {sfWebResponse} Send content (57780 o)
+Jul 31 10:38:08 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /vehicle_type/deleteVehicleType with parameters array (  'module' => 'vehicle_type',  'action' => 'deleteVehicleType',)
+Jul 31 10:38:08 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:08 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:08 symfony [info] {vehicle_typeActions} Call "vehicle_typeActions->executeDeleteVehicleType()"
+Jul 31 10:38:08 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:38:08 symfony [info] {Doctrine_Connection_Statement} execute : DELETE FROM vehicle_type WHERE (id = ?) - ()
+Jul 31 10:38:08 symfony [err] {sfRenderException} The template "deleteVehicleType.php" does not exist or is unreadable in "".
+Jul 31 10:38:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Jul 31 10:38:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:08 symfony [info] {sfWebDebugLogger} Configuration 0.67 ms (9)
+Jul 31 10:38:08 symfony [info] {sfWebDebugLogger} Factories 18.92 ms (1)
+Jul 31 10:38:08 symfony [info] {sfWebDebugLogger} Action "vehicle_type/deleteVehicleType" 16.14 ms (1)
+Jul 31 10:38:08 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:38:08 symfony [info] {sfWebDebugLogger} View "" for "vehicle_type/deleteVehicleType" 15.78 ms (1)
+Jul 31 10:38:14 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_type with parameters array (  'module' => 'vehicle_type',  'action' => 'index',)
+Jul 31 10:38:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:14 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:14 symfony [info] {vehicle_typeActions} Call "vehicle_typeActions->executeIndex()"
+Jul 31 10:38:14 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:38:14 symfony [info] {Doctrine_Connection_Mysql} query : SELECT v.id AS v__id, v.name AS v__name, v.description AS v__description, v.name AS v__0 FROM vehicle_type v LIMIT 10 - ()
+Jul 31 10:38:14 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/indexSuccess.php"
+Jul 31 10:38:14 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/_form.php"
+Jul 31 10:38:14 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_type/templates/_list.php"
+Jul 31 10:38:14 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:14 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:14 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:38:14 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:38:14 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Configuration 0.83 ms (9)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Factories 21.56 ms (1)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Action "vehicle_type/index" 24.75 ms (1)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_type/index" 14.62 ms (1)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_form" 0.45 ms (1)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Partial "vehicle_type/_list" 1.77 ms (1)
+Jul 31 10:38:14 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.10 ms (1)
+Jul 31 10:38:14 symfony [info] {sfWebResponse} Send content (57780 o)
+Jul 31 10:38:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:38:17 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:17 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:17 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:38:17 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:38:17 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:38:17 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:38:17 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:17 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:17 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:38:17 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:38:17 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} Configuration 0.74 ms (9)
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} Factories 19.48 ms (1)
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.07 ms (1)
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 11.65 ms (1)
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.77 ms (1)
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.48 ms (1)
+Jul 31 10:38:17 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.17 ms (1)
+Jul 31 10:38:17 symfony [info] {sfWebResponse} Send content (48130 o)
+Jul 31 10:38:37 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /assigned_vehicles with parameters array (  'module' => 'assigned_vehicles',  'action' => 'index',)
+Jul 31 10:38:37 symfony [info] {sfFrontWebController} Action "assigned_vehicles/index" does not exist
+Jul 31 10:38:37 symfony [err] {sfError404Exception} Action "assigned_vehicles/index" does not exist.
+Jul 31 10:38:37 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jul 31 10:38:37 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:37 symfony [info] {sfWebDebugLogger} Configuration 0.41 ms (5)
+Jul 31 10:38:37 symfony [info] {sfWebDebugLogger} Factories 20.76 ms (1)
+Jul 31 10:38:39 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:38:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:39 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:39 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:38:39 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:38:39 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:38:39 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:38:39 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:39 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:39 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:38:39 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:38:39 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} Configuration 0.89 ms (9)
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} Factories 18.43 ms (1)
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.07 ms (1)
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 11.12 ms (1)
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.66 ms (1)
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.41 ms (1)
+Jul 31 10:38:39 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.15 ms (1)
+Jul 31 10:38:39 symfony [info] {sfWebResponse} Send content (48130 o)
+Jul 31 10:38:42 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'dashboard',  'action' => 'index',)
+Jul 31 10:38:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:38:42 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:38:42 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Jul 31 10:38:42 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/indexSuccess.php"
+Jul 31 10:38:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_list.php"
+Jul 31 10:38:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_activityList.php"
+Jul 31 10:38:42 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:42 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:38:42 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:38:42 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:38:42 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} Configuration 0.66 ms (9)
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} Factories 19.16 ms (1)
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 0.06 ms (1)
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 10.84 ms (1)
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} Partial "dashboard/_list" 0.95 ms (1)
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} Partial "dashboard/_activityList" 0.35 ms (1)
+Jul 31 10:38:42 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.04 ms (1)
+Jul 31 10:38:42 symfony [info] {sfWebResponse} Send content (48738 o)
+Jul 31 10:43:52 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:43:52 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:43:52 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:43:52 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:43:52 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:43:52 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:43:52 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:43:52 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:43:52 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:43:52 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:43:52 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:43:52 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} Configuration 0.73 ms (9)
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} Factories 20.88 ms (1)
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.07 ms (1)
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 11.27 ms (1)
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.65 ms (1)
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.36 ms (1)
+Jul 31 10:43:52 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.11 ms (1)
+Jul 31 10:43:52 symfony [info] {sfWebResponse} Send content (48118 o)
+Jul 31 10:43:54 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:43:54 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:43:54 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:43:54 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:43:54 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:43:54 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:43:54 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:43:54 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO user_group (token_id, name, description) VALUES (?, ?, ?) - (b75cb6ab9c379892879aafbf8a269bb9, Finance, finance)
+Jul 31 10:43:54 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:43:54 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:43:54 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:43:54 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:43:54 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:43:54 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:43:54 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Configuration 0.74 ms (9)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Factories 18.47 ms (1)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 24.80 ms (1)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (3)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 133.65 ms (1)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.41 ms (1)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 0.94 ms (1)
+Jul 31 10:43:54 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.31 ms (1)
+Jul 31 10:43:54 symfony [info] {sfWebResponse} Send content (60240 o)
+Jul 31 10:47:44 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'dashboard',  'action' => 'index',)
+Jul 31 10:47:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:47:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:47:44 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Jul 31 10:47:44 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/indexSuccess.php"
+Jul 31 10:47:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_list.php"
+Jul 31 10:47:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_activityList.php"
+Jul 31 10:47:44 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:47:44 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:47:44 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:47:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:47:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} Configuration 0.85 ms (9)
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} Factories 21.19 ms (1)
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 0.07 ms (1)
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 12.02 ms (1)
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} Partial "dashboard/_list" 1.05 ms (1)
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} Partial "dashboard/_activityList" 0.42 ms (1)
+Jul 31 10:47:44 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.18 ms (1)
+Jul 31 10:47:44 symfony [info] {sfWebResponse} Send content (48732 o)
+Jul 31 10:48:08 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fleet_setting with parameters array (  'module' => 'fleet_setting',  'action' => 'index',)
+Jul 31 10:48:08 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:08 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:08 symfony [info] {fleet_settingActions} Call "fleet_settingActions->executeIndex()"
+Jul 31 10:48:08 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fleet_setting/templates/indexSuccess.php"
+Jul 31 10:48:08 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fleet_setting/templates/_list.php"
+Jul 31 10:48:08 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fleet_setting/templates/_activityList.php"
+Jul 31 10:48:08 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:08 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:08 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} Configuration 1.40 ms (9)
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} Factories 21.32 ms (1)
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} Action "fleet_setting/index" 0.11 ms (1)
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} View "Success" for "fleet_setting/index" 16.51 ms (1)
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} Partial "fleet_setting/_list" 1.05 ms (1)
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} Partial "fleet_setting/_activityList" 0.42 ms (1)
+Jul 31 10:48:08 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.15 ms (1)
+Jul 31 10:48:08 symfony [info] {sfWebResponse} Send content (48831 o)
+Jul 31 10:48:11 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /tasks with parameters array (  'module' => 'tasks',  'action' => 'index',)
+Jul 31 10:48:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:11 symfony [info] {tasksActions} Call "tasksActions->executeIndex()"
+Jul 31 10:48:11 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/tasks/templates/indexSuccess.php"
+Jul 31 10:48:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/tasks/templates/_list.php"
+Jul 31 10:48:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/tasks/templates/_activityList.php"
+Jul 31 10:48:11 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:11 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:11 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} Configuration 1.39 ms (9)
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} Factories 18.50 ms (1)
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} Action "tasks/index" 0.22 ms (1)
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} View "Success" for "tasks/index" 22.21 ms (1)
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} Partial "tasks/_list" 0.76 ms (1)
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} Partial "tasks/_activityList" 0.44 ms (1)
+Jul 31 10:48:11 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.77 ms (1)
+Jul 31 10:48:11 symfony [info] {sfWebResponse} Send content (48083 o)
+Jul 31 10:48:17 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'dashboard',  'action' => 'index',)
+Jul 31 10:48:17 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:17 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:17 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Jul 31 10:48:17 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/indexSuccess.php"
+Jul 31 10:48:17 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_list.php"
+Jul 31 10:48:17 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_activityList.php"
+Jul 31 10:48:17 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:17 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:17 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:17 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:17 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} Configuration 0.77 ms (9)
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} Factories 21.04 ms (1)
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 0.07 ms (1)
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 12.49 ms (1)
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} Partial "dashboard/_list" 1.13 ms (1)
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} Partial "dashboard/_activityList" 0.45 ms (1)
+Jul 31 10:48:17 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.32 ms (1)
+Jul 31 10:48:17 symfony [info] {sfWebResponse} Send content (48728 o)
+Jul 31 10:48:20 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fleet_setting with parameters array (  'module' => 'fleet_setting',  'action' => 'index',)
+Jul 31 10:48:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:20 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:20 symfony [info] {fleet_settingActions} Call "fleet_settingActions->executeIndex()"
+Jul 31 10:48:20 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fleet_setting/templates/indexSuccess.php"
+Jul 31 10:48:20 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fleet_setting/templates/_list.php"
+Jul 31 10:48:20 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fleet_setting/templates/_activityList.php"
+Jul 31 10:48:20 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:20 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:20 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} Configuration 0.71 ms (9)
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} Factories 19.56 ms (1)
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} Action "fleet_setting/index" 0.06 ms (1)
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} View "Success" for "fleet_setting/index" 10.88 ms (1)
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} Partial "fleet_setting/_list" 0.93 ms (1)
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} Partial "fleet_setting/_activityList" 0.35 ms (1)
+Jul 31 10:48:20 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.07 ms (1)
+Jul 31 10:48:20 symfony [info] {sfWebResponse} Send content (48831 o)
+Jul 31 10:48:25 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'dashboard',  'action' => 'index',)
+Jul 31 10:48:25 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:25 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:25 symfony [info] {dashboardActions} Call "dashboardActions->executeIndex()"
+Jul 31 10:48:25 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/indexSuccess.php"
+Jul 31 10:48:25 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_list.php"
+Jul 31 10:48:25 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/dashboard/templates/_activityList.php"
+Jul 31 10:48:25 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:25 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:25 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:25 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:25 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} Configuration 0.74 ms (9)
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} Factories 19.59 ms (1)
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} Action "dashboard/index" 0.06 ms (1)
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} View "Success" for "dashboard/index" 10.87 ms (1)
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} Partial "dashboard/_list" 0.90 ms (1)
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} Partial "dashboard/_activityList" 0.35 ms (1)
+Jul 31 10:48:25 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.00 ms (1)
+Jul 31 10:48:25 symfony [info] {sfWebResponse} Send content (48728 o)
+Jul 31 10:48:27 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /vehicle_setting with parameters array (  'module' => 'vehicle_setting',  'action' => 'index',)
+Jul 31 10:48:27 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:27 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:27 symfony [info] {vehicle_settingActions} Call "vehicle_settingActions->executeIndex()"
+Jul 31 10:48:27 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/indexSuccess.php"
+Jul 31 10:48:27 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_list.php"
+Jul 31 10:48:27 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/vehicle_setting/templates/_activityList.php"
+Jul 31 10:48:27 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:27 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:27 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:27 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:27 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} Configuration 0.72 ms (9)
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} Factories 19.90 ms (1)
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} Action "vehicle_setting/index" 0.06 ms (1)
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} View "Success" for "vehicle_setting/index" 10.59 ms (1)
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_list" 0.58 ms (1)
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} Partial "vehicle_setting/_activityList" 0.35 ms (1)
+Jul 31 10:48:27 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.00 ms (1)
+Jul 31 10:48:27 symfony [info] {sfWebResponse} Send content (48118 o)
+Jul 31 10:48:30 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /fuel_type with parameters array (  'module' => 'fuel_type',  'action' => 'index',)
+Jul 31 10:48:30 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 10:48:30 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 10:48:30 symfony [info] {fuel_typeActions} Call "fuel_typeActions->executeIndex()"
+Jul 31 10:48:31 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 10:48:31 symfony [info] {Doctrine_Connection_Mysql} query : SELECT f.id AS f__id, f.name AS f__name, f.description AS f__description, f.name AS f__0 FROM fuel_type f LIMIT 10 - ()
+Jul 31 10:48:31 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/indexSuccess.php"
+Jul 31 10:48:31 symfony [info] {Doctrine_Connection_Statement} execute : INSERT INTO user_group (token_id, name, description) VALUES (?, ?, ?) - (5c64df02458e2f2089263ef32a11adac, Finance, finance)
+Jul 31 10:48:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_form.php"
+Jul 31 10:48:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/fuel_type/templates/_list.php"
+Jul 31 10:48:31 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:31 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 10:48:31 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 10:48:31 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 10:48:31 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Configuration 0.73 ms (9)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Factories 19.40 ms (1)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Action "fuel_type/index" 18.87 ms (1)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (3)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} View "Success" for "fuel_type/index" 62.53 ms (1)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_form" 0.39 ms (1)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Partial "fuel_type/_list" 0.89 ms (1)
+Jul 31 10:48:31 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 2.01 ms (1)
+Jul 31 10:48:31 symfony [info] {sfWebResponse} Send content (60240 o)
+Jul 31 11:55:20 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /employee with parameters array (  'module' => 'employee',  'action' => 'index',)
+Jul 31 11:55:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 11:55:20 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 11:55:20 symfony [info] {employeeActions} Call "employeeActions->executeIndex()"
+Jul 31 11:55:20 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 11:55:20 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.token_id AS p__token_id, p.name AS p__name, p.alias AS p__alias, p.participant_type_id AS p__participant_type_id, p.status_id AS p__status_id, p.parent_id AS p__parent_id, p.leader_participant_id AS p__leader_participant_id, p.vat_number AS p__vat_number, p.project_no AS p__project_no, p.campus_id AS p__campus_id, p.description AS p__description, p.type AS p__type, p.title AS p__title, p.father_name AS p__father_name, p.grand_father_name AS p__grand_father_name, p.gender AS p__gender, p.birth_date AS p__birth_date, p.birth_place AS p__birth_place, p.id_no AS p__id_no, p.job_title AS p__job_title, p.employment_type_id AS p__employment_type_id, p.dean_name AS p__dean_name, p.director_name AS p__director_name, p.head_name AS p__head_name, p.section_no AS p__section_no, p.section_leader_name AS p__section_leader_name, p.project_code AS p__project_code, p.project_director AS p__project_director, p.established_date AS p__established_date, p.company_owner AS p__company_owner, p.company_license_type AS p__company_license_type FROM participant p WHERE (p.type = 1) - ()
+Jul 31 11:55:21 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/employee/templates/indexSuccess.php"
+Jul 31 11:55:21 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/employee/templates/_form.php"
+Jul 31 11:55:21 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/employee/templates/_generalInfoForm.php"
+Jul 31 11:55:21 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/employee/templates/_addressForm.php"
+Jul 31 11:55:21 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/employee/templates/_list.php"
+Jul 31 11:55:21 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 11:55:21 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 11:55:21 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 11:55:21 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 11:55:21 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Configuration 0.99 ms (9)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Factories 23.51 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Action "employee/index" 307.88 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} View "Success" for "employee/index" 122.93 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Partial "employee/_form" 1.42 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Partial "employee/_generalInfoForm" 17.21 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Partial "employee/_addressForm" 24.77 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Partial "employee/_list" 0.99 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 7.14 ms (1)
+Jul 31 11:55:21 symfony [info] {sfWebResponse} Send content (68255 o)
+Jul 31 14:31:04 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /category with parameters array (  'module' => 'category',  'action' => 'index',)
+Jul 31 14:31:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jul 31 14:31:05 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jul 31 14:31:05 symfony [info] {categoryActions} Call "categoryActions->executeIndex()"
+Jul 31 14:31:05 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Jul 31 14:31:05 symfony [info] {Doctrine_Connection_Mysql} query : SELECT c.id AS c__id, c.name AS c__name, c.description AS c__description, c.created_at AS c__created_at, c.updated_at AS c__updated_at, c.name AS c__0 FROM category c LIMIT 10 - ()
+Jul 31 14:31:05 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/modules/category/templates/indexSuccess.php"
+Jul 31 14:31:05 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/category/templates/_form.php"
+Jul 31 14:31:05 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/modules/category/templates/_list.php"
+Jul 31 14:31:05 symfony [info] {sfPHPView} Decorate content with "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 14:31:05 symfony [info] {sfPHPView} Render "/var/www/noradVMS/apps/frontend/templates/layout.php"
+Jul 31 14:31:05 symfony [info] {sfPartialView} Render "/var/www/noradVMS/apps/frontend/templates/_sideMenu.php"
+Jul 31 14:31:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jul 31 14:31:05 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Configuration 24.98 ms (9)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Factories 503.36 ms (1)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Action "category/index" 358.83 ms (1)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} View "Success" for "category/index" 228.07 ms (1)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Partial "category/_form" 17.23 ms (1)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Partial "category/_list" 15.95 ms (1)
+Jul 31 14:31:05 symfony [info] {sfWebDebugLogger} Partial "global/_sideMenu" 8.68 ms (1)
+Jul 31 14:31:05 symfony [info] {sfWebResponse} Send content (56201 o)

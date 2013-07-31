@@ -23,7 +23,7 @@ class fuel_typeActions extends sfActions
 	  $this->fuel_types = FuelTypeTable::processSelection ( $offset, $limit );
   }
   
-  public function executeSelection(sfWebRequest $request)
+ /* public function executeSelection(sfWebRequest $request)
   {
 	  $offset = 0;
 	  $limit = 10;
@@ -32,9 +32,9 @@ class fuel_typeActions extends sfActions
 	  $this->fuel_types = FuelTypeTable::processSelection ( $offset, $limit );
 		
 		return $this->renderPartial('list', array('fuel_types' => $this->fuel_types));
-  }
+  }*/
   
-  public function executePagination(sfWebRequest $request)
+ /* public function executePagination(sfWebRequest $request)
   {
 	  $offset = 0;
 	  $limit = 10;
@@ -43,7 +43,7 @@ class fuel_typeActions extends sfActions
 	  $this->fuel_types = FuelTypeTable::processSelection ( $offset, $limit );
 		
 		return $this->renderPartial('list', array('fuel_types' => $this->fuel_types));
-  }
+  }*/
   
   public function executeCreateFuelType(sfWebRequest $request)
   {
