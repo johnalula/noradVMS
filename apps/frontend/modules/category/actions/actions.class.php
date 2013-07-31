@@ -12,68 +12,63 @@ class categoryActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-		$offset = 0;
-		$limit = 10;
-		$this->categorys = CategoryTable::processSelection( $offset, $limit, $keyword );
+	  $offset = 0;
+	  $limit = 10;
+	  
+	  $this->categorys = CategoryTable::processSelection ( $offset, $limit );
   }
-
-  public function executeShow(sfWebRequest $request)
+  
+  public function executeSelection(sfWebRequest $request)
   {
-    $this->category = Doctrine_Core::getTable('Category')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->category);
+	  $offset = 0;
+	  $limit = 10;
+	  
+	  $this->categorys = CategoryTable::processSelection ( $offset, $limit );
+	  $this->categorys = CategoryTable::processSelection ( $offset, $limit );
+		
+		return $this->renderPartial('list', array('categorys' => $this->categorys));
   }
-
-  public function executeNew(sfWebRequest $request)
+  
+  public function executePagination(sfWebRequest $request)
   {
-    $this->form = new CategoryForm();
+	  $offset = 0;
+	  $limit = 10;
+	  
+	  $this->categorys = CategoryTable::processSelection ( $offset, $limit );
+	  $this->categorys = CategoryTable::processSelection ( $offset, $limit );
+		
+		return $this->renderPartial('list', array('categorys' => $this->categorys));
   }
-
-  public function executeCreate(sfWebRequest $request)
+  
+  public function executeCreateCategory(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new CategoryForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
+	  $offset = 0;
+	  $limit = 10;
+	  
+	  $name = $request->getParameter('name');
+	  $description = $request->getParameter('description');
+	  
+		$flags = CategoryTable::processCreate ( $name, $description );
+		
+		//if($flag)
+		return $flags;
   }
-
-  public function executeEdit(sfWebRequest $request)
+  
+  public function executeUpdateCategory (sfWebRequest $request)
   {
-    $this->forward404Unless($category = Doctrine_Core::getTable('Category')->find(array($request->getParameter('id'))), sprintf('Object category does not exist (%s).', $request->getParameter('id')));
-    $this->form = new CategoryForm($category);
+	  $_id = $request->getParameter('category_id');
+	   $name = $request->getParameter('name');
+	  $description = $request->getParameter('description');
+	  
+	  $flag = CategoryTable::processUpdate ( $_id, $name, $description );
   }
-
-  public function executeUpdate(sfWebRequest $request)
+  
+  public function executeDeleteCategory (sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($category = Doctrine_Core::getTable('Category')->find(array($request->getParameter('id'))), sprintf('Object category does not exist (%s).', $request->getParameter('id')));
-    $this->form = new CategoryForm($category);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($category = Doctrine_Core::getTable('Category')->find(array($request->getParameter('id'))), sprintf('Object category does not exist (%s).', $request->getParameter('id')));
-    $category->delete();
-
-    $this->redirect('category/index');
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $category = $form->save();
-
-      $this->redirect('category/edit?id='.$category->getId());
-    }
+	  $_id = $request->getParameter('category_id');
+	  
+	  $flags = CategoryTable::processDelete ( $_id );
+	  
+	  return $flags;
   }
 }

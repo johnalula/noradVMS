@@ -48,7 +48,7 @@ Vehicle:
     chesis_number: { type: string(100) }
     vehicle_model: { type: string(100) }
     vehicl_color: { type: string(50) }
-    weight: { type: float }
+    vehicle_weight: { type: float }
     service_type_id: { type: integer }
     fuel_type_id: { type: integer }
     purchased_date: { type: date }

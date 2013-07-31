@@ -17,17 +17,38 @@ class CategoryTable extends PluginCategoryTable
 	  return Doctrine_Core::getTable('Category');
 	}
     
-   public static function addCategory ($name, $description )
+ 
+	public static function isNameDuplicated( $name )
+   {
+		return self::findWtithName ( $name );
+	}
+   
+   public static function processCreate ($name, $description )
 	{
-		$_nw = new Category ();   
-		$_nw->name = trim($name);   
-		$_nw->description = trim($description); 
-		$_nw->save(); 
+		$is_duplicated = self::isNameDuplicated ( $name );
 		
-		return true; 
+		try {
+			
+			if($is_duplicated)
+				return false;
+				
+			if(is_null($name) || empty($name))
+				return false;
+				
+			$_nw = new Category();   
+			$_nw->name = trim($name);   
+			$_nw->description = trim($description); 
+			$_nw->save(); 
+			
+			return true;
+			
+		} catch ( Exception $e ) {			
+			return false; 
+		}	 
+		  
 	}
 
-	public static function updateCategory($_id, $name, $description )
+	public static function processUpdate ($_id, $name, $description )
 	{
 		$q = Doctrine_Query::create( )
 			->update('Category cat')
@@ -38,17 +59,17 @@ class CategoryTable extends PluginCategoryTable
 
 		return ( $q > 0 );   
 	}
-	
-	public static function deleteCategory ( $_id ) 
-	{
+   
+   public static function processDelete ( $_id ) 
+   {
 		$q = Doctrine_Query::create( )
 			->delete ('Category cat')
 			->where('cat.id=?', $_id)
 			->execute ( );	
-		return ( $q	> 0  );  	
+		return ( $q	> 0  );  
 	}
-
-	public static function getCategoryObject ( $_id ) 
+	
+	public static function processObject ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("cat.*, cat.name as categoryName")
@@ -57,19 +78,26 @@ class CategoryTable extends PluginCategoryTable
 							->fetchOne ( );
 		return ( ! $q ? null : $q ); 
 	}
-    
-	public static function processSelection ( $offset=0, $limit=100, $keyword=null ) 
+	
+	public static function findWtithName ( $name ) 
 	{
 		$q = Doctrine_Query::create( )
-							->select("cat.*, cat.name as categoryName, cat.description as categoryDesc")
+							->select("cat.*")
+							->from("Category cat") 
+							->where("cat.name LIKE ?", trim($name))
+							->fetchOne ( );
+							
+		return ( count($q) <= 0 ? null : $q); 
+	}
+    
+	public static function processSelection ( $offset=0, $limit=100 ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("cat.*, cat.name as categoryName")
 							->from("Category cat") 
 							->offset($offset)
 							->limit($limit)
 							->execute ( );
 		return ( count($q) <= 0 ? null : $q ); 
 	}
-		
-    public static function selectCategories (  $offset=0, $limit=100, $keyword=null  )  {
-        return self::processSelection ($offset, $limit, $keyword ); 
-    } 
 }

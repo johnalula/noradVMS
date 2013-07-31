@@ -25,10 +25,7 @@ class PermissionTable extends PluginPermissionTable
    
     public static $ALL_MODULES = array (1 => 'User Management', 2 => 'Participant Management', 3 => 'General Setting', 4 => 'Vehicle Setting', 5 => 'Fleet Setting', 6 => 'Fleet Task', 7 => 'Registration Task', 8 => 'Assignment Task', 6 => 'Transfer Task');
     
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('SystemLogFile');
-    }
+     
     
     public static function findModuleID ( $_value ) {
         try {

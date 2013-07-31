@@ -6,6 +6,7 @@
 background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-gradient(#accade, #cbddea);border-bottom:1px solid #b9cbdb;-webkit-box-shadow:  0px 1px 1px #b9cbdb;-moz-box-shadow:  0px 1px 1px #b9cbdb;box-shadow:  0px 1px 1px #b9cbdb;}
 .ui-list-header h1 { padding:2px 0px;font-size:13px;margin:0px;letter-spacing:1px;float:left; color:#000;border-bottom:1px solid #b9cbdb;font-weight:normal;}
 .ui-list-header img {width:16px!important;height:16px!important;margin:0px;margin-right:8px;margin-top:0px;vertical-align:bottom;padding:0px;margin-left:6px;}
+.ui-list-header span.ui-minimize-arrow { float:right;cursor:pointer;margin-top:5px;}
 
 .ui-list-footer {height:10px;padding:2px 10px;margin-right:0px;background-color:#dfe2e7;border:1px solid #b9cbdb;border-top:none;}
 
@@ -68,9 +69,10 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-main-menu-cont {min-width:815px;margin:1px;margin-bottom:3px;padding:3px 6px;border:1px solid #b9cbdb;background-color: #f6fafc; background: -moz-linear-gradient(100% 100% 90deg, #cbddea, #f6fafc);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6fafc), to(#cbddea));
 background: -webkit-linear-gradient(#cbddea, #f6fafc);background: -o-linear-gradient(#cbddea, #f6fafc);}
 .ui-main-menu-actions {padding:3px 0px;border:0px solid #f00;}
-.ui-main-menu-actions ul {list-style:none;margin:0px;}
-.ui-main-menu-actions ul li {vertical-align:middle;display:inline-block;padding:0px 12px;margin-right:2px;border-right:1px solid #b9cbdb;}
+.ui-main-menu-actions ul {list-style:none;margin:0px;margin-left:5px;}
+.ui-main-menu-actions ul li {vertical-align:middle;display:inline-block;padding:0px 12px;margin-right:2px;border-right:1px dotted #000;}
 .ui-main-menu-actions ul li a span.ui-gray-font {color:gray;}
+.ui-main-menu-actions ul li:first-child {border-left:1px dotted #000;}
 .ui-main-menu-actions ul li:last-child {border-right:0px solid #b9cbdb;}
 .ui-main-menu-actions ul li a {color:#000;font-size:11px;}
 .ui-main-menu-actions ul li a img {vertical-align:bottom;margin-right:8px;width:14px;height:14px;}
@@ -109,13 +111,23 @@ background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-grad
 .ui-dashboard-box table tbody tr td {width:120px;padding:10px;}
 
 .ui-dashboard {height:80px;text-align:center;padding-bottom:10px;background:#f9fafb;border:1px solid #b9cbdb;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;-webkit-box-shadow: 0 0px 1px #ddd;-moz-box-shadow: 0 0px 1px #ddd;box-shadow: 0 0px 1px #ddd;}
-.ui-dashboard-shadowed {-webkit-box-shadow: 0 0px 8px #bbb;-moz-box-shadow: 0 0px 8px #bbb;box-shadow: 0 0px 8px #bbb;}
+.ui-dashboard-shadowed {-webkit-box-shadow: 0 0px 6px #bbb;-moz-box-shadow: 0 0px 6px #bbb;box-shadow: 0 0px 6px #bbb;}
 .ui-dashboard img {margin-top:10px;}
 .ui-dashboard span.ui-dashboard-label {padding:6px;text-align:center;white-space:nowrap!important;color:#000;font-size:11px;}
 
 
 
+#ui-display-error-cont { border:0px solid #f00;padding:8px 15px 5px 15px;}
+.ui-error-box { border:0px solid #eee;padding:6px 10px;background:#9b1d07;color:#fff;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;-webkit-box-shadow: 0 0px 5px #ddd;-moz-box-shadow: 0 0px 5px #ddd;box-shadow: 0 0px 5px #ddd;}
+.ui-error-list { border:0px solid #f00;padding:2px 0px;color:#fff;}
+.ui-error-list span.ui-error-close{float:right;font-weight:bold;margin-right:5px;cursor:pointer;}
 
+#ui-display-delete-cont { border:0px solid #f00;padding:8px 15px 5px 15px;}
+
+#ui-display-success-cont { border:0px solid #f00;padding:8px 15px 5px 15px;}
+.ui-success-box { border:0px solid #eee;padding:6px 10px;background:#65c167;color:#fff;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;-webkit-box-shadow: 0 0px 5px #ddd;-moz-box-shadow: 0 0px 5px #ddd;box-shadow: 0 0px 5px #ddd;}
+.ui-success-list { border:0px solid #f00;padding:2px 0px;color:#fff;}
+.ui-success-list span.ui-success-close{float:right;font-weight:bold;margin-right:5px;cursor:pointer;}
 
 
 
