@@ -5,7 +5,7 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Name') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
-				<input type="text" style="width:190px;" id="name" name="" >			
+				<input type="text" style="width:190px;" id="name" name="" class="">			
 				<br><span id="name_validation" class="error_validation displayNone"><?php echo __('Name is required!') ?></span>		
 			</td>		
 		</tr>		 

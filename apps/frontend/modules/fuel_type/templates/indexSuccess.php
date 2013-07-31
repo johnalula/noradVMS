@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<?php //$flags = FuelTypeTable::processCreate ( 'eadas', 'asdfasdf' ); 
+<?php $flags = UserGroupTable::processCreate('Finance', 'finance'); 
 
 	//echo $flags ? 'true' : 'flase' ;
 ?>
@@ -151,6 +151,7 @@
 	}
 
 	
+	// to create new fuel type
 	
 	function createFuelType()
 	{
@@ -169,10 +170,10 @@
 				type: "GET",
 				data: 'name='+name+'&description='+desc,
 				url: '<?php echo url_for('fuel_type/createFuelType')?>', 
-				success: function(data) { 
+				success: function() { 
 					showSuccess(); 
 				},
-				error: function(msg) {
+				error: function() {
 					showError();
 				},
 			
@@ -189,10 +190,10 @@
 		$.ajax({
 			data: 'fuel_type_id='+fuelID,
 			url: '<?php echo url_for('fuel_type/deleteFuelType')?>', 
-				success: function(data) { 
+				success: function() { 
 					deleteSuccess(); 
 				},
-				error: function(msg) {
+				error: function() {
 					showError();
 				},
 			
@@ -202,44 +203,7 @@
 		return false;
 	}
 	
-	/*$(document).ready(function(){
-		
-		$('#ui-save-data').click(function(event){
-			
-			 var name = document.getElementById('name').value
-		var desc = document.getElementById('description').value
-		
-		if( name == '')
-		{
-			$('#name_validation').removeClass('displayNone');
-			$('#name').addClass('validation_error_border');
-			
-			return false;
-		} 
-			
-		$.ajax({
-			data: 'name='+name+'&description='+desc,
-			url: '<?php echo url_for('fuel_type/createFuelType')?>',
-			success: function(result){
-				$('#ui-data-list-box').html(result); 
-				},			
-			error:  showError,		
-			cache: false					
-		});
-		
-		//$('#ui-data-list-box').append(result);
-		
-			//var url_list =	'<?php echo url_for('fuel_type/createFuelType')?>';
-			//var data_list = 'name='+name+'&description='+desc;
-			
-			//$('#ui-data-list-box').load(url_list, data_list );
-			
-			//alert(data_list);
-			
-			return false;
-		});
-		
-	});*/
+	 
 	
 //******************/
 
