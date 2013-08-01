@@ -13,7 +13,7 @@
  * @property boolean $is_active
  * @property boolean $is_blocked
  * @property boolean $status
- * @property integer $permission_type_level
+ * @property integer $permission_mode
  * @property integer $ui_theme_color_setting
  * @property integer $ui_language_setting
  * @property UserGroup $UserGroup
@@ -64,7 +64,7 @@ abstract class BaseUser extends sfDoctrineRecord
              'type' => 'boolean',
              'default' => 0,
              ));
-        $this->hasColumn('permission_type_level', 'integer', null, array(
+        $this->hasColumn('permission_mode', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('ui_theme_color_setting', 'integer', null, array(

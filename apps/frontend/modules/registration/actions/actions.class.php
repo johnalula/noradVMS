@@ -17,6 +17,30 @@ class registrationActions extends sfActions
       ->execute();
   }
 
+  public function executeCreateTask(sfWebRequest $request)
+  {
+		$mode = $request->getParameter('mode');
+		$date = $request->getParameter('date');
+		$ref_no = $request->getParameter('reference_no');
+		$description = $request->getParameter('description');
+		
+		$task = RegistrationTaskTable::processCreate ( $mode, $date, $description, $ref_no );
+		
+		$this->redirect('registration/view?task_id='.$task->id.'&token_id='.$task->token_id);
+    
+  }
+  
+  public function executeView(sfWebRequest $request)
+  {
+		$_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		
+		$this->getUser()->setFlash('saved.success', 0);
+		
+		$this->taskObj = RegistrationTaskTable::processObject ( $_id, $token_id );
+    
+  }
+
   public function executeShow(sfWebRequest $request)
   {
     $this->registration_task = Doctrine_Core::getTable('RegistrationTask')->find(array($request->getParameter('id')));

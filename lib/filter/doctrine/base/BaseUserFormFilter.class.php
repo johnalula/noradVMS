@@ -21,7 +21,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
       'is_active'              => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'is_blocked'             => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'status'                 => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'permission_type_level'  => new sfWidgetFormFilterInput(),
+      'permission_mode'        => new sfWidgetFormFilterInput(),
       'ui_theme_color_setting' => new sfWidgetFormFilterInput(),
       'ui_language_setting'    => new sfWidgetFormFilterInput(),
     ));
@@ -35,7 +35,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
       'is_active'              => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'is_blocked'             => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'status'                 => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'permission_type_level'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'permission_mode'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'ui_theme_color_setting' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'ui_language_setting'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
@@ -66,7 +66,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterDoctrine
       'is_active'              => 'Boolean',
       'is_blocked'             => 'Boolean',
       'status'                 => 'Boolean',
-      'permission_type_level'  => 'Number',
+      'permission_mode'        => 'Number',
       'ui_theme_color_setting' => 'Number',
       'ui_language_setting'    => 'Number',
     );

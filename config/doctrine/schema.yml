@@ -42,6 +42,7 @@ Vehicle:
     initial_mileage: { type: integer }
     current_mileage: { type: integer }
     vehicle_type_id: { type: integer } 
+    vehicle_make: { type: string(50) }
     litter_per_km: { type: float }
     seatng_capacity: { type: integer } 
     engine_number: { type: string(100) }
@@ -184,11 +185,12 @@ TaskTransaction:
 Task:
   package: TaskFramworks
   columns:  
-    token_id: { type: integer  }
-    start_date: { type: date }
-    end_date: { type: date }
-    effective_date: { type: date}
-    status: { type: integer, default: 1 }
+    token_id: { type: string(100)  }
+    start_date: { type: string(50) }
+    end_date: { type: string(50) }
+    effective_date: { type: string(50) }
+    status_id: { type: integer, default: 1 }
+    reference_no: { type: integer }
     description: { type: clob }
 
 

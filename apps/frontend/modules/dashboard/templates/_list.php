@@ -23,7 +23,7 @@
 			<td > 
 				<a href="<?php echo url_for('fleet_setting/index') ?>">
 					<div class="ui-dashboard">
-						<img src="<?php echo image_path('new_icons/fleet_manage') ?>"><br>
+						<img src="<?php echo image_path('new_icons/fleet_large') ?>"><br>
 						<span class="ui-dashboard-label">Fleet Setting</span>
 						&nbsp;
 					</div>
@@ -32,7 +32,7 @@
 			<td > 
 				<a href="<?php echo url_for('participant/index') ?>">
 					<div class="ui-dashboard">
-						<img src="<?php echo image_path('new_icons/group_xlarge') ?>"><br>
+						<img src="<?php echo image_path('new_icons/participant_large') ?>"><br>
 						<span class="ui-dashboard-label">Participant Management</span>
 						&nbsp;
 					</div>

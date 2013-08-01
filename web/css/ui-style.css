@@ -27,7 +27,7 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-main-content table tr td a.ui-button-nav {padding:4px 12px!important;}
 
 .ui-main-form-content {padding:0px 0px;margin:0px;margin-top:-6px;}
-.ui-main-form-content fieldset {border:1px solid #b9cbdb;padding:4px 0px 15px 10px;margin:1px 5px 0px 0px;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;background:#fff;}
+.ui-main-form-content fieldset {border:1px solid #b9cbdb;padding:4px 0px 10px 10px;margin:1px 5px 0px 0px;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;background:#fff;}
 .ui-main-form-content fieldset legend.ui-form-legend {padding:2px 6px;background:#f9fafb;font-size:10px;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;border:1px solid #b9cbdb;}
 .ui-main-form-content fieldset legend img {margin-right:5px;width:12px;height:12px;vertical-align:middle;}
 .ui-main-form-content table{border:none;}
@@ -38,8 +38,13 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-main-form table {border:none;}
 .ui-main-form table tr {border:none;}
 .ui-main-form table tr td {border:none;padding:1px!important;}
-.ui-main-form table tr td button.ui-button {padding:2px 10px;margin:0px!important;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;font-size:11px!important;z-index:3000;position:relative;}
+.ui-main-form table tr td.ui-save-button {padding-left:7px!important;}
+.ui-main-form table tr td button.ui-button {padding:2px 10px;margin:0px!important;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;font-size:11px!important;z-index:3000;position:relative;margin-left:4px;}
 .ui-main-form table tr td input {margin-left:5px;margin-bottom:1px;padding:3px 3px!important;font-size:11px!important;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;}
+.ui-main-form table tr td button {padding:4px 6px!important;margin-left:6px!important;}
+.ui-main-form table tr td button input.ui-submit-form {margin-left:0px;margin-bottom:0px;padding:0px 0px!important;font-size:11px!important;border:none;-webkit-box-shadow: 0 0px 0px #ddd;-moz-box-shadow: 0 0px 0px #ddd;box-shadow: 0 0px 0px #ddd;}
+.ui-main-form table tr td button img {width:15px;height:15px;vertical-align:middle;margin-right:3px;}
+
 .ui-main-form table tr td textarea {margin-left:5px;margin-bottom:1px;padding:3px 3px!important;font-size:11px!important;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;}
 .ui-main-form table tr td select {margin-left:5px;margin-bottom:1px;padding:3px 3px!important;font-size:11px!important;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;}
 .ui-main-form table tr td.rightSide {border:none;width:12%;text-align:right;white-space:nowrap!important;text-transform:capitalize!important;font-size:11px!important;vertical-align:top;}
@@ -57,6 +62,32 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-content-lists table thead tr th {text-align:left;border:0px;padding:4px 10px;background:#dfe2e7;border-top:1px solid #eee;border-bottom:1px solid #bbb;border-right:1px solid #bbb;color:#000;font-size:12px!important;}
 .ui-content-lists table thead tr th.ui-table-border {width:4px!important;background:#dfe2e7;}
 
+.ui-content-lists table thead tr.ui-input-header {padding:0px!important;border:0px solid #ddd;border-bottom:0px solid #ddd;background:#dfe2e7;}
+.ui-content-lists table thead tr.ui-input-header th.ui-inpu-box {padding:0px!important;border-right:1px solid #ddd;border-bottom:1px solid #ddd;}
+.ui-content-lists table thead tr.ui-input-header th input {background:#fff;margin:0px!important;padding:3px 3px!important;font-size:11px!important;-webkit-border-radius:1px 1px 1px 1px;-moz-border-radius:1px 1px 1px 1px;border-radius:1px 1px 1px 1px;border:1px solid #aaa;}
+.ui-content-lists table thead tr.ui-input-header th select {background:#fff;margin:0px!important;padding:2px 3px!important;font-size:11px!important;-webkit-border-radius:1px 1px 1px 1px;-moz-border-radius:1px 1px 1px 1px;border-radius:1px 1px 1px 1px;border:1px solid #aaa;}
+.ui-content-lists table thead tr.ui-input-header th a button.ui-action-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;padding:2px 8px;
+border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;}
+
+
+.ui-content-lists table thead tr.ui-input-header th.ui-add-button-action button.ui-add-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;padding:2px 4px;
+border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;}
+
+.ui-content-lists table thead tr.ui-input-header th a button.ui-action-button img {width:16px;height:16padding:0px!important;margin:0px!important;}
+
+
+.ui-content-lists table tbody tr.ui-input-body-header {background:#dfe2e7;padding:0px!important;border:0px solid #ddd;border-bottom:0px solid #ddd;}
+.ui-content-lists table tbody tr.ui-input-body-header td.ui-input-body-box {padding:0px!important;border-right:1px solid #ddd;border-bottom:1px solid #ddd;background:#dfe2e7;}
+.ui-content-lists table tbody tr.ui-input-body-header td input {background:#fff;margin:0px!important;padding:3px 3px!important;font-size:11px!important;-webkit-border-radius:1px 1px 1px 1px;-moz-border-radius:1px 1px 1px 1px;border-radius:1px 1px 1px 1px;border:1px solid #aaa;}
+.ui-content-lists table tbody tr.ui-input-body-header td select {background:#fff;margin:0px!important;padding:2px 3px!important;font-size:11px!important;-webkit-border-radius:1px 1px 1px 1px;-moz-border-radius:1px 1px 1px 1px;border-radius:1px 1px 1px 1px;border:1px solid #aaa;}
+.ui-content-lists table tbody tr.ui-input-body-header td a button.ui-action-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;padding:2px 8px;
+border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;}
+
+.ui-content-lists table tbody tr.ui-input-body-header td.ui-add-button-action button.ui-add-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;padding:2px 4px;
+border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;}
+
+.ui-content-lists table tbody tr.ui-input-body-header td a button.ui-action-button img {width:16px;height:16padding:0px!important;margin:0px!important;}
+
 .ui-content-lists table tbody tr {border:0px;}
 .ui-content-lists table tbody tr td {border:0px;font-size:11px!important;padding:1px 10px;background:#fff;border-bottom:1px solid #ddd;border-right:1px solid #ddd;}
 .ui-content-lists table tbody tr td.ui-table-list-border {background:#dfe2e7;}
@@ -65,6 +96,8 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-content-lists table tbody tr td .ui-list-action {padding:0px;}
 .ui-content-lists table tbody tr td .ui-list-action ul {list-style:none;}
 .ui-content-lists table tbody tr td .ui-list-action ul li {display:inline-block;}
+.ui-content-lists table tbody tr td .ui-list-action ul li button.ui-button {margin:0px;padding:3px;}
+.ui-content-lists table tbody tr td .ui-list-action ul li button.ui-button img {margin:0px;width:15px;height:15px;}
 
 .ui-main-menu-cont {min-width:815px;margin:1px;margin-bottom:3px;padding:3px 6px;border:1px solid #b9cbdb;background-color: #f6fafc; background: -moz-linear-gradient(100% 100% 90deg, #cbddea, #f6fafc);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6fafc), to(#cbddea));
 background: -webkit-linear-gradient(#cbddea, #f6fafc);background: -o-linear-gradient(#cbddea, #f6fafc);}
@@ -129,13 +162,22 @@ background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-grad
 .ui-success-list { border:0px solid #f00;padding:2px 0px;color:#fff;}
 .ui-success-list span.ui-success-close{float:right;font-weight:bold;margin-right:5px;cursor:pointer;}
 
+.ui-tab-detail-list-box {margin:0px!important;border:0px solid #f00;background:#f9fafb!important;padding:0px!important;}
 
+.ui-tab-main-cont {padding:15px 15px;background:#f9fafb;}
+.ui-tab-container-box {margin:0px!important;border:0px solid #f00;background:#f9fafb!important;padding:0px!important;}
+.ui-tab-detail-list-box {margin:0px!important;border:0px solid #ff0;background:#f9fafb;padding:0px;}
+.ui-tab-detail-list-box ul.ui-tab-list {margin:0!important;background:#f9fafb;border:none;padding:0px 0px;border:0px solid #ff0;}
 
+.ui-tab-detail-list-box ul.ui-tab-list li {background:#f9fafb;font-size:11px!important;background-color: #cbddea; background: -moz-linear-gradient(100% 100% 90deg, #accade, #cbddea);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cbddea), to(#accade));
+background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-gradient(#accade, #cbddea);border:1px solid #b9cbdb;color:#000;margin-right:8px;border-bottom:0px;}
 
+.ui-tab-detail-list-box ul.ui-tab-list li a { font-size:11px!important;}
 
+.ui-detail-tab-list {padding:0px;border:1px solid #b9cbdb;-webkit-border-radius:0px 3px 3px 3px;-moz-border-radius:0px 3px 3px 3px;border-radius:0px 3px 3px 3px;margin:0px;}
 
-
-
+.ui-tab {padding:1px!important;}
+.ui-tab-content-frame {margin:0px;padding:0px;}
 
 
 

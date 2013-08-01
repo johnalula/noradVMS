@@ -1,6 +1,13 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+
+registration:
+  class: sfDoctrineRouteCollection
+  options: { model: Audio}
+
+
+
 # default rules
 homepage:
   url:   /

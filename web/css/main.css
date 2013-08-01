@@ -381,13 +381,13 @@ h3.ui-main-menu div ul li img {padding:5px;}
  
 /*********************************/
 
-.ui-fixed-height {height:75px!important;min-height:75px!important;max-height:75px!important;padding:0px!important;}
-.ui-logo-box {height:65px!important;max-height:65px!important;min-height:65px!important;background:#688ba0;padding:5px 25px;}
+.ui-fixed-height {height:60px!important;min-height:60px!important;max-height:60px!important;padding:0px!important;}
+.ui-logo-box {height:50px!important;min-height:50px!important;background:#688ba0;padding:5px 25px;}
 .ui-logo-box .ui-logo {padding:0px;float:left;}
 .ui-logo-box .ui-logo-header {border:0px solid #f00;width:500px;min-width:300px;float:left;margin-top:10px;margin-left:5px;line-height:20px!important;}
 .ui-logo-box .ui-logo-header span.ui-title {padding:10px!important; font-size:18px;font-weight:bold;color:#fff;margin-top:15px;}
 .ui-logo-box .ui-logo-header span.ui-sub-title {letter-spacing:0.08em;padding:10px!important;margin-top:10px;margin-left:10px;font-size:12px;font-weight:bold;color:#fff;}
-.ui-logo-box img.logo-img {width:70px!important;min-width:70px!important;max-width:70px!important;height:62px!important;max-height:62px!important;min-height:62px!important;}
+.ui-logo-box img.logo-img {width:54px!important;min-width:54px!important;height:50px!important;max-height:50px!important;min-height:50px!important;}
 
 .ui-user-login-box {padding:0px 5px;margin-left:20px;margin-top:-15px;}
 .ui-user-login-box .ui-user-cont {padding:3px 5px 0px 5px;margin-top:-8px;float:left;width:200px;background:#d7d7d7;border:1px solid #fff;-webkit-box-shadow: 0px 0px 3px black;

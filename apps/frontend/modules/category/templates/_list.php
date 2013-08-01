@@ -39,10 +39,9 @@
 								</button> 
 							</a>
 						</li> 
-						<li> 												
-							<button class="ui-button" onClick="Javascript:deleteCategory(<?php echo $category->id ?>);">
-								<img src="<?php echo image_path('icons/icon-16-delete')  ?>" >
-							</button>
+						<li> 
+							<a href="">
+							<?php echo link_to(image_tag('del', array('alt'=>'Delete this user')), array('method' => 'delete', 'confirm' => 'Are you sure you want to delete this user?', 'class'=>'ico', 'title'=>('Delete this user'))) ?></a>
 						</a>
 						</li>
 					</ul>

@@ -24,7 +24,7 @@ abstract class BaseUserForm extends BaseFormDoctrine
       'is_active'              => new sfWidgetFormInputCheckbox(),
       'is_blocked'             => new sfWidgetFormInputCheckbox(),
       'status'                 => new sfWidgetFormInputCheckbox(),
-      'permission_type_level'  => new sfWidgetFormInputText(),
+      'permission_mode'        => new sfWidgetFormInputText(),
       'ui_theme_color_setting' => new sfWidgetFormInputText(),
       'ui_language_setting'    => new sfWidgetFormInputText(),
     ));
@@ -39,7 +39,7 @@ abstract class BaseUserForm extends BaseFormDoctrine
       'is_active'              => new sfValidatorBoolean(array('required' => false)),
       'is_blocked'             => new sfValidatorBoolean(array('required' => false)),
       'status'                 => new sfValidatorBoolean(array('required' => false)),
-      'permission_type_level'  => new sfValidatorInteger(array('required' => false)),
+      'permission_mode'        => new sfValidatorInteger(array('required' => false)),
       'ui_theme_color_setting' => new sfValidatorInteger(array('required' => false)),
       'ui_language_setting'    => new sfValidatorInteger(array('required' => false)),
     ));

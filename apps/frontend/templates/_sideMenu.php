@@ -4,15 +4,27 @@
 	<div style="margin:0px;padding:10px 0px 0px 20px;height:400px;">
 		<ul style="list-style:none;margin:0px;">
 			<li style="padding:4px 5px;">
-				<a href="<?php echo url_for('house/index') ?>">
+				<a href="<?php echo url_for('registration/index') ?>">
 					<img  style="vertical-align:bottom;margin-right:8px;"src="<?php echo image_path('task/registration_small') ?>" >
-					<?php echo __('residence') ?>
+					<?php echo __('Registration') ?>
 				</a>
 			</li>
 			<li style="padding:4px 5px;">
-				<a href="<?php echo url_for('resident/index') ?>">
+				<a href="<?php echo url_for('assignment/index') ?>">
 					<img style="vertical-align:bottom;margin-right:8px;" src="<?php echo image_path('task/acquisition_small') ?>" >
-					<?php echo __('Residents') ?>
+					<?php echo __('Assignment') ?>
+				</a>
+			</li>
+			<li style="padding:4px 5px;">
+				<a href="<?php echo url_for('fleet/index') ?>">
+					<img style="vertical-align:bottom;margin-right:8px;" src="<?php echo image_path('task/acquisition_small') ?>" >
+					<?php echo __('Fleet') ?>
+				</a>
+			</li>
+			<li style="padding:4px 5px;">
+				<a href="<?php echo url_for('fueling/index') ?>">
+					<img style="vertical-align:bottom;margin-right:8px;" src="<?php echo image_path('task/acquisition_small') ?>" >
+					<?php echo __('Fueling') ?>
 				</a>
 			</li>
 		 

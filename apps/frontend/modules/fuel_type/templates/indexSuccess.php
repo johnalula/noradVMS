@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<?php $flags = UserGroupTable::processCreate('Finance', 'finance'); 
+<?php //$flags = UserGroupTable::processCreate('Finance', 'finance'); 
 
 	//echo $flags ? 'true' : 'flase' ;
 ?>

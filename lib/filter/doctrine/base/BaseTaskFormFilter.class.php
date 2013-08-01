@@ -14,10 +14,11 @@ abstract class BaseTaskFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'token_id'                 => new sfWidgetFormFilterInput(),
-      'start_date'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'end_date'                 => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'effective_date'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'status'                   => new sfWidgetFormFilterInput(),
+      'start_date'               => new sfWidgetFormFilterInput(),
+      'end_date'                 => new sfWidgetFormFilterInput(),
+      'effective_date'           => new sfWidgetFormFilterInput(),
+      'status_id'                => new sfWidgetFormFilterInput(),
+      'reference_no'             => new sfWidgetFormFilterInput(),
       'description'              => new sfWidgetFormFilterInput(),
       'type'                     => new sfWidgetFormFilterInput(),
       'agreement_participant_id' => new sfWidgetFormFilterInput(),
@@ -49,11 +50,12 @@ abstract class BaseTaskFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'token_id'                 => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'start_date'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'end_date'                 => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'effective_date'           => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
-      'status'                   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'token_id'                 => new sfValidatorPass(array('required' => false)),
+      'start_date'               => new sfValidatorPass(array('required' => false)),
+      'end_date'                 => new sfValidatorPass(array('required' => false)),
+      'effective_date'           => new sfValidatorPass(array('required' => false)),
+      'status_id'                => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'reference_no'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'description'              => new sfValidatorPass(array('required' => false)),
       'type'                     => new sfValidatorPass(array('required' => false)),
       'agreement_participant_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -102,11 +104,12 @@ abstract class BaseTaskFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                       => 'Number',
-      'token_id'                 => 'Number',
-      'start_date'               => 'Date',
-      'end_date'                 => 'Date',
-      'effective_date'           => 'Date',
-      'status'                   => 'Number',
+      'token_id'                 => 'Text',
+      'start_date'               => 'Text',
+      'end_date'                 => 'Text',
+      'effective_date'           => 'Text',
+      'status_id'                => 'Number',
+      'reference_no'             => 'Number',
       'description'              => 'Text',
       'type'                     => 'Text',
       'agreement_participant_id' => 'Number',

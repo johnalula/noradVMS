@@ -12,4 +12,12 @@
  */
 class RegistrationTask extends PluginRegistrationTask
 {
+	
+	public function getTokenIdSlug()
+	{
+		return SlugifyCore::slugify($this->token_id);
+	}
+
+	 
+		
 }
