@@ -17,17 +17,17 @@ class CurrencyTable extends PluginCurrencyTable
         return Doctrine_Core::getTable('Currency');
     }
 
-	 public static function getDefaultCurrency ()
+	 public static function processDefault ()
 	 {
         try{
-            return self::getCurrencyObject(1); 
+            return self::processObject(1); 
         } catch ( Exception $e ) {
             return null; 
         }
         
    }
     
-	public static function addCurrency ( $name, $alias, $description) 
+	public static function processCreate ( $name, $alias, $description) 
 	{
         try{
             $nw= new Currency(); 
@@ -35,13 +35,13 @@ class CurrencyTable extends PluginCurrencyTable
             $nw->alias = trim($alias);
             $nw->description = $description;
             $nw->save();
-            return self::getCurrencyObject($nw->id);
+            return true;
         } catch ( Exception $e ) {
-            return null; 
+            return false; 
         }
 	}
 	
-	public static function updateCurrency ( $_id, $name, $alias, $description ) 
+	public static function processUpdate ( $_id, $name, $alias, $description ) 
 	{
 		$q = Doctrine_Query::create( )
 							->update('Currency cat')
@@ -53,7 +53,7 @@ class CurrencyTable extends PluginCurrencyTable
 		return ( $q > 0 ); 
 	}
 
-	public static function deleteCurrency ( $_id ) 
+	public static function processDelete ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("cr.*, to.id as to_id") //////////////////////
@@ -73,7 +73,7 @@ class CurrencyTable extends PluginCurrencyTable
 		return ( $q	> 0  );  	
 	}
  
-	public static function getCurrencyObject ( $_id ) 
+	public static function processObject ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("crr.* ")
@@ -85,10 +85,10 @@ class CurrencyTable extends PluginCurrencyTable
 		return ( ! $q ? null : $q ); 
    }
    
-	public static function getAllCurrencies ( $offset=0, $limit=100 ) 
+	public static function processSelection ( $offset=0, $limit=100 ) 
 	{
 		$q = Doctrine_Query::create( )
-							->select("crr.*")
+							->select("crr.*, crr.name as currencyName, crr.alias as currencyAlias")
 							->from("Currency crr")
 							//->leftJoin("bs.taskOrderCurrencies to")
 							//->groupBy("bs.id")			
@@ -97,10 +97,5 @@ class CurrencyTable extends PluginCurrencyTable
 							->execute ( );
 		return ( count($q) <= 0 ? null : $q ); 
 	}	
-	
-    public static function selectionCurrencies (  $offset=0, $limit=100  )  
-    {
-        return self::getAllCurrencies ($offset, $limit); 
-    } 
     
 }

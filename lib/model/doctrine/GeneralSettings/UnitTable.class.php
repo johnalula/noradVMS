@@ -61,8 +61,8 @@ class UnitTable extends PluginUnitTable
 	public static function processSelection ( $offset=0, $limit=100 ) 
 	{
 		$q = Doctrine_Query::create( )
-							->select("cat.*, cat.name as categoryName")
-							->from("Unit cat") 
+							->select("unt.*, unt.name as unitName, unt.alias unitAlias")
+							->from("Unit unt") 
 							->offset($offset)
 							->limit($limit)
 							->execute ( );

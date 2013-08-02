@@ -2,7 +2,7 @@
 
 <table class="autoWidth" style="margin-left:10px;margin-top:5px;" id="detailTable" >
 	<tbody style="width:40%;"> 
-		<tr>
+		<!--<tr>
 			<td class="rightSide"><?php echo __('Registration Mode') ?>:</td>
 			<td>
 				<select id="mode" style="width:128px;" name="mode">
@@ -12,14 +12,7 @@
 				</select>
 				<br><span id="name_validation" class="error_validation displayNone"><?php echo __('Name is required!') ?></span>		
 			</td>		
-		</tr>		 
-		<tr>
-			<td class="rightSide"><?php echo __('Date') ?>:<span class="ui-mandatory">*</span></td>
-			<td>
-				<input style="width:120px;" id="date" name="date" >		
-				<br><span id="date_validation" class="error_validation displayNone"><?php echo __('Date is required!') ?></span>	
-			</td> 
-		</tr> 
+		</tr>		--> 
 		<tr>
 			<td class="rightSide"><?php echo __('Reference No') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
@@ -28,9 +21,17 @@
 			</td> 
 		</tr> 
 		<tr>
+			<td class="rightSide"><?php echo __('Date') ?>:<span class="ui-mandatory">*</span></td>
+			<td>
+				<input style="width:120px;" id="date" name="date" >		
+				<br><span id="date_validation" class="error_validation displayNone"><?php echo __('Date is required!') ?></span>	
+			</td> 
+		</tr> 
+		
+		<tr>
 			<td class="rightSide"><?php echo __('Description') ?>:</td>
 			<td>
-				<textarea style="width:190px;" id="description" name="description" ></textarea>		
+				<textarea style="width:190px;" rows=1 id="description" name="description" ></textarea>		
 			</td>
 		</tr>
 		<tr>

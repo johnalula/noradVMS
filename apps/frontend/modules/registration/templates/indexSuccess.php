@@ -120,7 +120,7 @@
 								<div class="clearFix"></div>
 							</div>
 							<div class="ui-content-lists">
-								<?php include_partial('list', array('fuel_types' => $fuel_types )) ?>
+								<?php include_partial('list', array('tasks' => $tasks )) ?>
 							</div><!-- end of ui-content-lists -->
 						</div><!-- end of ui-content-list-box -->
 					</div><!-- end of ui-main-content-cont --> 
@@ -163,7 +163,8 @@
 	
 	function createTask()
 	{
-		var modeValue = document.getElementById('mode').value
+		//var modeValue = document.getElementById('mode').value
+		var refnoValue = document.getElementById('reference_no').value
 		var dateValue = document.getElementById('date').value
 		var descValue = document.getElementById('description').value
 		
@@ -177,7 +178,7 @@
 		 			
 			$.ajax({
 				type: "GET",
-				data: 'mode='+modeValue+'&date='+dateValue+'&description='+desc,
+				data: 'reference_no='+refnoValue+'&date='+dateValue+'&description='+desc,
 				url: '<?php echo url_for('registration/createTask')?>', 
 				success: function() { 
 					showSuccess(); 

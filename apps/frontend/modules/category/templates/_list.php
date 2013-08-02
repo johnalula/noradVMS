@@ -1,13 +1,15 @@
 
-<div id="ui-data-list-box">
+<div id="categoryList">
 <table class="" id="ui-data-list" >
 	<thead>
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
 			<th class=""><?php echo  ('Name') ?></th> 
+			<th class=""><?php echo  ('Group') ?></th> 
+			<th class=""><?php echo  ('Class') ?></th> 
 			<th class=""><?php echo  ('Description') ?></th>  
-			<th class="" style="padding:2px 6px;text-align:center;"><?php echo  (' Actions') ?></th>
+			<th class="" style="padding:2px 3px;text-align:center;"><?php echo  (' Actions') ?></th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
 		</tr>				 
 	</thead>
@@ -26,23 +28,29 @@
 			<td class="" style="width:220px;min-width:220px;"> 
 				<?php echo $category->categoryName ?>
 			</td>
+			<td class="" style="width:220px;min-width:220px;"> 
+				<?php echo CategoryCharacterization::fetchValue($category->category_group_id) ?>
+			</td>
+			<td class="" style="width:220px;min-width:220px;"> 
+				<?php echo PropertyClassCore::fetchItemTypeValue($category->category_class_id) ?>
+			</td>
 			<td class="" style="width:99%;"> 
 				<?php echo $category->description  ?> 
 			</td>  
-			<td  class="" style="padding:0px 0px 0px 3px;width:45px;min-width:45px;border-right:0px solid #ddd;"> 
-				<div class="ui-list-action" style="width:45px;min-width:45px;padding:0x 0px;text-align:center;">
+			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
+				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">
 					<ul>
 						<li>
-							<a href="#" class="" rel="<?php echo $category->id ?>">	
-								<button class="ui-button"  >
-									<img src="<?php echo image_path('icons/icon-16-preview')  ?>" >
-								</button> 
+							<a href="<?php echo url_for('category/view?category_id='.$category->id) ?>" class="ui-action-button" rel="<?php echo $category->id ?>">									 
+									<img src="<?php echo image_path('new_icons/view')  ?>" >								 
 							</a>
 						</li> 
 						<li> 
-							<a href="">
-							<?php echo link_to(image_tag('del', array('alt'=>'Delete this user')), array('method' => 'delete', 'confirm' => 'Are you sure you want to delete this user?', 'class'=>'ico', 'title'=>('Delete this user'))) ?></a>
-						</a>
+							<a href="#" class="ui-action-button" onclick="Javascript:deleteCategory(<?php echo $category->id ?>);" rel="<?php echo $category->id ?>">	
+								 
+									<img src="<?php echo image_path('icons/delete')  ?>" >
+								 
+							</a>
 						</li>
 					</ul>
 				</div>

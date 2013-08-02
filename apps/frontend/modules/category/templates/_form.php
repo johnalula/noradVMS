@@ -1,7 +1,7 @@
 
 
 <table class="autoWidth" id="detailTable" >
-	<tbody style="width:40%;"> 
+	<tbody style="width:30%;"> 
 		<tr>
 			<td class="rightSide"><?php echo __('Name') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
@@ -12,9 +12,9 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Description') ?>:</td>
 			<td>
-				<textarea style="width:190px;" id="description" name="" ></textarea>		
+				<textarea style="width:190px;" rows="1" id="description" name="" ></textarea>		
 			</td> 
-		</tr> 
+		</tr>  
 	</tbody>     
-</table> 
+</table>
   

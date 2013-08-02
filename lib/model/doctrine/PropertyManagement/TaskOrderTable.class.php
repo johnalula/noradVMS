@@ -12,8 +12,57 @@ class TaskOrderTable extends PluginTaskOrderTable
      *
      * @return object TaskOrderTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('TaskOrder');
-    }
+	 
+    
+	public static function processCreate ($task_id, $token_id, $cat_id, $class_id, $unit_id, $quantity, $unit_price, $vat, $currency_id, $amount, $date, $status, $description )
+	{
+		try{
+			
+			if(is_null($task_id) && is_null($token_id) )
+				return false;
+    
+				$_nw = new TaskOrder ();  
+				$_nw->task_id = $task_id;
+				$_nw->token_id = $token_id; 
+				$_nw->category_id = $cat_id;
+				$_nw->clss = $class_id;
+				$_nw->unit_id = $unit_id;
+				$_nw->actual_quantity = $quantity;
+				$_nw->unit_price = $unit_price;
+				$_nw->vat = $vat;
+				$_nw->currency_id = $currency_id;
+				$_nw->amount = $amount;
+				$_nw->effective_date = $date; 
+				$_nw->status = $status; 
+				$_nw->description = $description; 
+				$_nw->save(); 
+				
+				return true;
+			
+		} catch ( Exception $e ) {
+            return false; 
+        }
+	}
+	
+	public static function processSelection($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tsk.*, cat.name as categoryName, unt.name as unitName, crr.name as currencyName ")
+			->from("TaskOrder tsk") 
+			->innerJoin("tsk.Category cat on tsk.category_id = cat.id")
+			->innerJoin("tsk.Unit unt on tsk.unit_id = unt.id")
+			->innerJoin("tsk.Currency crr on tsk.currency_id = crr.id")
+			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->offset($offset)
+			->limit($limit)
+			->where('tsk.task_id = ? AND tsk.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+	return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function getInstance()
+	{
+		return Doctrine_Core::getTable('TaskOrder');
+	}
 }

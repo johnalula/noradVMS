@@ -12,22 +12,52 @@ class registrationActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->registration_tasks = Doctrine_Core::getTable('RegistrationTask')
-      ->createQuery('a')
-      ->execute();
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		
+    $this->tasks = RegistrationTaskTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    $this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
   }
 
   public function executeCreateTask(sfWebRequest $request)
   {
-		$mode = $request->getParameter('mode');
+		//$mode = $request->getParameter('mode');
 		$date = $request->getParameter('date');
 		$ref_no = $request->getParameter('reference_no');
 		$description = $request->getParameter('description');
 		
-		$task = RegistrationTaskTable::processCreate ( $mode, $date, $description, $ref_no );
+		$task = RegistrationTaskTable::processCreate ( $date, $description, $ref_no );
 		
 		$this->redirect('registration/view?task_id='.$task->id.'&token_id='.$task->token_id);
     
+  }
+  public function executeUpdateTask(sfWebRequest $request)
+  {
+		$_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$date = $request->getParameter('date');
+		$ref_no = $request->getParameter('reference_no');
+		$description = $request->getParameter('description');
+		
+		$flag = RegistrationTaskTable::processUpdate ( $_id, $token_id, $date, $description, $ref_no );
+		
+		return $flag; 
+    
+  }
+  
+  public function executeDeleteTask(sfWebRequest $request)
+  {
+		$_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$date = $request->getParameter('date');
+		$ref_no = $request->getParameter('reference_no');
+		$description = $request->getParameter('description');
+		
+		$flag = RegistrationTaskTable::processUpdate ( $_id, $token_id, $date, $description, $ref_no );
+		
+		return $flag; 
   }
   
   public function executeView(sfWebRequest $request)
@@ -35,11 +65,62 @@ class registrationActions extends sfActions
 		$_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 		
-		$this->getUser()->setFlash('saved.success', 0);
+		//$this->getUser()->setFlash('saved.success', 0);
 		
 		$this->taskObj = RegistrationTaskTable::processObject ( $_id, $token_id );
     
   }
+  
+  public function executeOrder(sfWebRequest $request)
+  {
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		
+		$this->units = UnitTable::processSelection ( $offset, $limit );
+		$this->currencys = CurrencyTable::processSelection ( $offset, $limit );
+		
+		$this->task_orders = RegistrationTaskTable::processTaskOrderSelection ($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10);
+		$this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+  }
+  
+  public function executeCreateTaskOrder(sfWebRequest $request)
+  {
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$cat_id = $request->getParameter('cadidate_id');
+		$class_id = PropertyClassCore::$VEHICLE;
+		$unit_id = 1;
+		$quantity = $request->getParameter('quantity');
+		$unit_price = 5000;
+		$vat = 1;
+		$currency_id = 1;
+		$amount = $unit_price * $quantity;
+		$date = date('Y-m-d', time());
+		$status = TaskCore::$ACTIVE;
+		$description = 'task order';
+		
+		$flag = RegistrationTaskTable::processCreateTaskOrder ($task_id, $token_id, $cat_id, $class_id, $unit_id, $quantity, $unit_price, $vat, $currency_id, $amount, $date, $status, $description );
+		
+		return $flag;
+  }
+  
+  public function executeDetail(sfWebRequest $request)
+  {
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+	
+	 $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    $this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+  }
+  
+  
+  
 
   public function executeShow(sfWebRequest $request)
   {

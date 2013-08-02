@@ -40,7 +40,6 @@
  * @property ParticipantType $ParticipantType
  * @property Campus $Campus
  * @property Doctrine_Collection $vehicleDrivers
- * @property Doctrine_Collection $taskOrderParticipants
  * @property Doctrine_Collection $acquisitionTaskTargetParticipants
  * @property Doctrine_Collection $vehicleAssignDriverParticipant
  * @property Doctrine_Collection $transferTaskTransferee
@@ -242,10 +241,6 @@ abstract class BaseParticipant extends sfDoctrineRecord
         $this->hasMany('AssignedVehicle as vehicleDrivers', array(
              'local' => 'id',
              'foreign' => 'driver_id'));
-
-        $this->hasMany('TaskOrder as taskOrderParticipants', array(
-             'local' => 'id',
-             'foreign' => 'acquired_for'));
 
         $this->hasMany('FleetServiceTask as acquisitionTaskTargetParticipants', array(
              'local' => 'id',

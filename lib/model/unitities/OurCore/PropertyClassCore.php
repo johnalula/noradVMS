@@ -1,16 +1,15 @@
 <?php 
 class PropertyClassCore {
 	//TaskTypes
-	public static $ITEM= 0; 
-	public static $DOCUMENT= 1; 
-	public static $UNDERCONSTRUCTION= 2; 
+	public static $ITEM= 1; 
+	public static $DOCUMENT= 2;  
 	public static $SPAREPART= 3; 
 	public static $VEHICLE= 4; 	
 	public static $OTHER= 5; 
-	public static $ALL_ITEM_TYPES= array ( 0=> "ፒን ዝወሃቦ", 1=> "ቕጥዓቕጥዒ" ,2=> " ህንፃን ህንፀት ኣቑሑት" , 3=> "መለዋወጢ",  4=> "ተሽከተርካሪ", 5 =>"ካሊእ" );
-	public static $ALL_ITEM_DISPLAY_TYPES= array (0=> "ፒን ዝወሃቦ",  1=> "ቕጥዓቕጥዒ" , 3=> "መለዋወጢ",  4=> "ተሽከተርካሪ", 5 =>"ካሊእ" );
+	public static $ALL_ITEM_TYPES= array ( 1 => "Item", 1 => "Document", 3 => "Sparepart",  4 => "Vehicle", 5 => "Other" );
+	public static $ALL_ITEM_DISPLAY_TYPES= array (1 => "Pinnable",  2 => "Document" , 3 => "Sparepart",  4 => "Vehicle", 5 => "Other" );
     
-	public static function getItemTypeID ( $value ) {
+	public static function fetchItemTypeID ( $value ) {
         try {
             foreach( self::$ALL_ITEM_TYPES as $key=> $item ) {
                     if( strcmp($item, $value) == 0 )
@@ -23,7 +22,7 @@ class PropertyClassCore {
         }
 	}
 	
-	public static function getItemTypeValue ($id ){
+	public static function fetchItemTypeValue ($id ){
         try {
             foreach( self::$ALL_ITEM_TYPES as $key=> $item ){
                     if( $key == $id )
@@ -35,7 +34,7 @@ class PropertyClassCore {
             return null; 
         }
 	}
-	public static function getPropertyIcon ($grp_id) {
+	public static function fetchPropertyIcon ($grp_id) {
 		
 		switch($grp_id) {			
 			case self::$ITEM:

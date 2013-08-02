@@ -65,20 +65,18 @@
 						</fieldset><!-- end of ui-content-fieldset -->
 						
 						<div class="ui-main-form-content ui-collapsible-list-box">
-							<form action="<?php echo url_for('registration/createTask') ?>" id="taskForm">
-								<table>
-									<tr>
-										<td rowspan=2>
-											<fieldset  style="">
-												<legend class="ui-form-legend"><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
-												<div class="ui-main-form" >		
-													 <?php include_partial('viewForm', array('taskObj' => $taskObj)) ?>													
-												</div><!-- end of ui-content-form -->
-											</fieldset>
-										</td>																				 
-									</tr>									 
-								</table>
-							</form>
+							<table>
+								<tr>
+									<td rowspan=2>
+										<fieldset  style="">
+											<legend class="ui-form-legend"><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
+											<div class="ui-main-form" >		
+												 <?php include_partial('viewForm', array('taskObj' => $taskObj)) ?>													
+											</div><!-- end of ui-content-form -->
+										</fieldset>
+									</td>																				 
+								</tr>									 
+							</table>
 						</div><!-- end of ui-main-form-content -->
 					</div><!-- end of ui-main-content -->
 				</div><!-- end of ui-main-content-cont -->
@@ -213,6 +211,21 @@
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
 
+<div class="ui-navigation-cont">
+	<div class="ui-navigation-box">
+		<div class="ui-navigation-list">
+			<ul class="ui-left-button">
+				<li><a href="<?php echo url_for('registration/index') ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
+			</ul>
+			<ul class="ui-right-button">
+				<li><a href="<?php echo url_for('registration/order?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
+			</ul>
+			<div class="clearFix"></div>
+		</div>
+	
+	</div>
+</div>
+
 <script>
 
 	function showSuccess()
@@ -236,11 +249,13 @@
 	
 	// to create new fuel type
 	
-	function createTask()
+	function updateTask ()
 	{
-		var modeValue = document.getElementById('mode').value
-		var dateValue = document.getElementById('date').value
-		var descValue = document.getElementById('description').value
+		var taskID = document.getElementById('taskID').value;
+		var tokenID = document.getElementById('tokenID').value;
+		var dateValue = document.getElementById('date').value;
+		var refnoValue = document.getElementById('reference_no').value;
+		var descValue = document.getElementById('description').value;
 		
 		if( dateValue == '')
 		{
@@ -252,8 +267,8 @@
 		 			
 			$.ajax({
 				type: "GET",
-				data: 'mode='+modeValue+'&date='+dateValue+'&description='+desc,
-				url: '<?php echo url_for('registration/createTask')?>', 
+				data: 'task_id='+taskID+'&token_id='+tokenID+'&reference_no='+refnoValue+'&date='+dateValue+'&description='+descValue,
+				url: '<?php echo url_for('registration/updateTask')?>', 
 				success: function() { 
 					showSuccess(); 
 				},
@@ -263,30 +278,16 @@
 			
 				async: false
 				});
-
-		
-		return false;
-		
-	}
-	
-	function deleteFuelType(fuelID)
-	{
-		$.ajax({
-			data: 'fuel_type_id='+fuelID,
-			url: '<?php echo url_for('fuel_type/deleteFuelType')?>', 
-				success: function() { 
-					deleteSuccess(); 
-				},
-				error: function() {
-					showError();
-				},
 			
-				async: false
-				});
-	
+			
+			//var data = 'task_id='+taskID+'&token_id='+tokenID+'&reference_no='+refnoValue+'&date='+dateValue+'&description='+descValue;
+			//alert(data);
+		
 		return false;
+		
 	}
 	
+	 
 	 
 	
 //******************/

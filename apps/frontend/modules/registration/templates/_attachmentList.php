@@ -1,4 +1,6 @@
-
+<?php
+	$attachments = AttachmentCore::$ALL;
+?>
 <table class="" id="locationList" >
 	<thead>
 		<tr class="">
@@ -17,9 +19,13 @@
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
 			<th class="ui-inpu-box" style="width:140px;min-width:140px;">
 				<select id="certificate_type" style="width:140px;min-width:140px;" >
-					<option value="1"><?php echo 'Project' ?></option>
-					<option value="2"><?php echo 'Donated' ?></option>
-					<option value="3"><?php echo 'Purchased' ?></option>
+					<option>&nbsp;</option>
+					<?php foreach($attachments as $key => $attachment): ?>								 
+						<option value="<?php echo  $key ?>" >
+							<?php echo $attachment ?>
+						</option>								 
+					<?php endforeach; ?>
+				</select>
 				</select>
 			</th> 
 			<th class="ui-inpu-box" style="width:130px;min-width:130px;">

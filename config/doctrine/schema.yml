@@ -166,6 +166,8 @@ Category:
     Timestampable: ~
   columns: 
     name: { type: string(255), notnull: true, unique: false } 
+    category_group_id: { type: integer, default: 1 }
+    category_class_id: { type: integer, default: 4 }
     description: { type: string(255) } 
  
 
@@ -200,14 +202,10 @@ TaskOrder:
     Timestampable: ~
   columns:
     task_id: { type: integer , notnull: true }
-    pb_id: { type: integer , notnull: false }
-    acquired_for: { type: integer , notnull: false }
-    budget_source: { type: integer , notnull: false }
+    token_id: { type: string(100) , notnull: false }
     category_id: { type: integer, notnull: true }
-    category_group_id: { type: integer, default: 2 }
-    clss: { type: integer, default: 5 }
+    clss: { type: integer, default: 1 }
     unit_id: { type: integer, default: 1 }
-    planned_quantity: { type: float }
     actual_quantity: { type: float, notnull: true }
     remaining: { type: float, default: 0.0 }
     unit_price: { type: float }
@@ -217,19 +215,11 @@ TaskOrder:
     effective_date:  { type: integer }
     status: { type: integer, default: 1 }
     description: { type: string(255) }
-    sealed_count: { type: float, default: 0 }
-    used_count: { type: float, default: 0 }
-    concrete_count: { type: float, default: 0 }
-    nasty_count: { type: float, default: 0 }
-    disposed_count: { type: float, default: 0 }
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskOrderTasks }
     Category: { onDelete: CASCADE, local: category_id, foreign: id, foreignAlias: taskOrderCategories }
     Unit: { onDelete: CASCADE, local: unit_id, foreign: id, foreignAlias: taskOrderUnits }
-    Currency: { onDelete: CASCADE, local: currency_id, foreign: id, foreignAlias: taskOrderCurrencies }
-    Participant: { onDelete: CASCADE, local: pb_id, foreign: id, foreignAlias: taskOrderPublicBodies }   
-    Participant: { onDelete: CASCADE, local: acquired_for, foreign: id, foreignAlias: taskOrderParticipants }   
-    BudgetSource: { onDelete: CASCADE, local: budget_source, foreign: id, foreignAlias: taskOrderBudgetSources }
+    Currency: { onDelete: CASCADE, local: currency_id, foreign: id, foreignAlias: taskOrderCurrencies } 
   
 FleetServiceTask:
   package: ServiceManagement
