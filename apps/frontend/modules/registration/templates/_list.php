@@ -23,7 +23,7 @@
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $task->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="" style="width:220px;min-width:220px;"> 
-				<?php echo $task->registration_mode ?>
+				<?php echo $task->referenceNo ?>
 			</td>
 			<td class="" style="width:99%;"> 
 				<?php echo $task->description  ?> 

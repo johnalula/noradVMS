@@ -16,7 +16,7 @@
  * @property boolean $vat
  * @property integer $currency_id
  * @property float $amount
- * @property integer $effective_date
+ * @property string $effective_date
  * @property integer $status
  * @property string $description
  * @property Task $Task
@@ -78,8 +78,9 @@ abstract class BaseTaskOrder extends sfDoctrineRecord
         $this->hasColumn('amount', 'float', null, array(
              'type' => 'float',
              ));
-        $this->hasColumn('effective_date', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('effective_date', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('status', 'integer', null, array(
              'type' => 'integer',

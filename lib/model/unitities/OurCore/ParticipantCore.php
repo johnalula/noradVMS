@@ -1,285 +1,216 @@
 <?php
 class ParticipantCore {
-    public static $ACTIVE= 1; 
-    public static $BLOCKED= 2; 
-    public static $BLACK_LISTED= 3; 
-    public static $SUSPENDED= 4; 
-    public static $IN_ACTIVE= 5; 
-    public static $OTHER= 6; 
-
-    public static $ALL= array ( 1=> "ንጡፍ ", 2 => "ዝተኸልከለ ", 3 => "ኣብ ፀሊም መዝገብ ዝሰፈረ ", 4 =>"ዝተኣገደ ", 5 => "ዘይንጡፍ ", 6 => "ካልእ"  ) ; 
-    
-    public static function getID (  $value ) {
-       try{
-            foreach( self::$ALL as $key=> $item ){
-                if( strcmp($item, $value) == 0 )
-                    return $key; 
-            }
-             return null; 
-             //throw new OutOfBoundException(" '$value' ዘይፍቀድ "); 	
-        } catch ( Exception $e ) {
-            return null; 
-        }
-	}
-	public static function getValue (  $id ){
-       try{
-            foreach( self::$ALL as $key=> $item ){
-                    if( $key == $id )
-                        return $item; 
-            }
-             return "Other Status Type"; 
-             //throw new OutOfBoundException(" '$value' ዘይፍቀድ "); 	
-        } catch ( Exception $e ) {
-            return "Unknown Status Type";  
-        }
-		 //throw new OutOfBoundException(" '$id' ካብ ዝተፈቐደ ወፃኢ "); 
-	}
-	
-	public static function getDefaultID() {
-		return self::$ACTIVE; 
-	}
-	
-	public static function getDefaultValue () {
-		return self::getValue(self::$ACTIVE); 
-	}
-	public static $PUBLIC_BODY= 1; 
-	public static $INSTITUTION= 2; 
-	public static $SECTOR= 3; 
-	public static $NGO	= 4; 
-	public static $DEPARTMENT= 5; 
-	public static $SUB_DEPARTMENT= 6; 
-	public static $PROJECT= 7; 
-	public static $EMPLOYEE=  8; 
-	public static $CITIZEN=  9; 
-	public static $COMITTEE=  10; 	
-	public static $PROCESS= 11; 
-	public static $OTHER_PARTICIPANT= 12;  
-	public static $ROOM= 13;  
-	public static $SHELF= 14;  
-    public static $OTHER_PARTICIPANT_TYPE= 15; 
-	public static $ALL_PARTICIPANT_TYPES= array ( 1=> "ቤት ዕዮ", 2=> "ትካል" ,3=> "ሴክተር" , 4=> "NGO",  5=> "ዲፓርትመንት", 6=> "ንዑስ ዲፓርትመን", 7=> "ፕሮጀክት" , 8=> "ሰራሕተኛ " ,9=> "ዜግነት" ,10=> "ኮሚቴ", 11=> "ህንፃ" , 12=> "Store", 13=> "ክፍሊ", 14=> "ሸልፍ", 15 => "ካልእ ዓይነት ተሳታፋይ" );
-	public static $ALL_LIST= array ( 1=> "ቤት ዕዮ", 2=> "ትካል" ,3=> "ሴክተር" , 4=> "NGO",  5=> "ዲፓርትመንት", 6=> "ንዑስ ዲፓርትመን", 7=> "ፕሮጀክት" , 8=> "ሰራሕተኛ " ,9=> "ዜግነት" ,10=> "ኮሚቴ", 15 => "ካልእ ዓይነት ተሳታፋይ" );
-	public static $AQUISITION_PARTICIPANT_TYPES= array ( 1=> "ቤት ዕዮ ", 2=> "ትካል" ,3=> "ሴክተር" , 4=> "NGO",  5=> "ዲፓርትመንት", 6=> "ንዑስ ዲፓርትመንት", 7=> "ፕሮጀክት " ,8=> "ሰራሕተኛ " ,9=> "ዜጋ",10=> "ኮሚቴ", 15 => "ካልእ ዓይነት ተሳታፋይ" );
-	public static $ISSUANCE_PARTICIPANT_TYPES= array ( 1=> "ቤት ዕዮ ", 2=> "ትካል" ,3=> "ሴክተር" , 4=> "NGO",  5=> "ዲፓርትመንት", 6=> "ንዑስ ዲፓርትመንት", 7=> "ፕሮጀክት " ,8=> "ሰራሕተኛ " ,9=> "ዜጋ",10=> "ኮሚቴ", 15 => "ካልእ ዓይነት ተሳታፋይ" );
-
-
-
-    public static $parCollaborators; 
-    public static function getParticipantID (  $value ) {
-       try{
-            foreach( self::$ALL_PARTICIPANT_TYPES as $key=> $item ){
-                if( strcmp($item, $value) == 0 )
-                    return $key; 
-            }
-			
-             return 15; 
-             //throw new OutOfBoundException(" '$value' ዘይፍቀድ "); 	
-        } catch ( Exception $e ) {
-            return 15; 
-        }
-	}
-	
-	public static function getParticipantValue  (  $id ){
-       try{
-            foreach( self::$ALL_PARTICIPANT_TYPES as $key=> $item ){
-                    if( $key == $id )
-                        return $item; 
-            }
-             return "Other Participant Type"; 
-             //throw new OutOfBoundException(" '$value' ዘይፍቀድ "); 	
-        } catch ( Exception $e ) {
-             return "Other Participant Type"; 
-        }
-		 //throw new OutOfBoundException(" '$id' ካብ ዝተፈቐደ ወፃኢ "); 
-	}
-	
-	public static function getDefaultParticipantID() {
-		return self::$PUBLIC_BODY; 
-	}
-	
-	public static function getDefaultParticipantValue () {
-		return self::getParticipantValue(self::getDefaultParticipantID() ); 
-	}    
-    public static function hasFilledCollaborators() {
-        try{
-            return ( count ( self::$parCollaborators ) >= 1 ? true :false ); 
-        } catch ( Exception $e ) {
-            return false; 
-        }
-    }
-    public static function fillCollaborators () {
-        self::$parCollaborators= array(); 
-        self::$parCollaborators[]=ParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=EmployeeParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=ProjectParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=CitizenParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=InstitutionParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=NGOParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=CommitteeParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=StoreParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=BuildingTable::getInstance() ; 
-        self::$parCollaborators[]=ParticipantPBLocationTable::getInstance() ; 
-        self::$parCollaborators[]=ParticipantContactAddressTable::getInstance() ; 
-        self::$parCollaborators[]=ParticipantLocationTable::getInstance() ; 
-        self::$parCollaborators[]=ParticipantCodeTable::getInstance() ; 
-        self::$parCollaborators[]=PublicbureauParticipantTable::getInstance() ; 
-        self::$parCollaborators[]=TaskPlayerSettingTable::getInstance() ; 
-        self::$parCollaborators[]=UserTable::getInstance() ; 
-        return self::$parCollaborators; 
-    }
-    public static function queryAllCollaborators() {
-        if( !  self::hasFilledCollaborators() )
-            self::fillCollaborators(); 
-
-        return self::$parCollaborators;  
-    }
-	public static function queryViableCollaborators ($participant) {
-		$temp=array(); 
-		$allColls= self::queryAllCollaborators(); 
-		if( ! $allColls )
-			return null; 
-		try {
-			foreach( $allColls as $collaborator )
-				if( ($collaborator) && ($collaborator->canCollaborate($participant) ) )
-					$temp[]= $collaborator;
-			return ( count($temp) <= 0 ? null: $temp); 
-		} catch ( Exception $e ) {
-			return null; 
-		}
-	}
-		public static function queryAllAspectCollaborators () {
-			$temp= array(); 
-			$temp[]=ParticipantPBLocationTable::getInstance() ; 
-			$temp[]=ParticipantContactAddressTable::getInstance() ; 
-			$temp[]=ParticipantCodeTable::getInstance() ; 
-			$temp[]=PublicbureauParticipantTable::getInstance() ; 
-			$temp[]=TaskPlayerSettingTable::getInstance() ; 
-			$temp[]=UserTable::getInstance() ; 
-			return $temp; 
-		}
-		public static function queryAspectCollaborators ( $participant ) {
-			$temp=array(); 
-			$allColls= self::queryAllAspectCollaborators(); 
-			if( ! $allColls )
-				return null; 
+    	public static $OFFICE = 1; 
+		public static $COLLEGE = 2; 
+		public static $INSTITUTION = 3; 
+		public static $CENTER	= 4; 
+		public static $DEPARTEMENT = 5; 
+		public static $SECTION = 6; 
+		public static $PROJECT = 7; 
+		public static $EMPLOYEE =  8; 
+		public static $DRIVER =  9; 
+		public static $COMITTEE =  10; 	
+		public static $COMPANY = 11;  
+		public static $PASSENGER = 12;
+		public static $OTHER = 13;  
+		public static $ALL_PARTICIPANTS = array ( 1 => "Office", 2 => "College" , 3 => "Institution" , 4 => "Center",  5 => "Department", 6 => "Section", 7 => "Project" , 8 => "Eployee ", 9 => "Driver",10 => "Committee", 11 => "Company" , 12=> "Passanger", 13 => "Other");
+		
+		public static function fetchParticipantID ( $value ) 
+		{
 			try {
-				foreach( $allColls as $collaborator )
-					if( ($collaborator) && ($collaborator->canCollaborate($participant) ) )
-						$temp[]= $collaborator;
-				return ( count($temp) <= 0 ? null: $temp); 
-			} catch ( Exception $e ) {
-				return null; 
-			}			
-		}
-		public static function hasAspectCollaborators ( $participant ) {
-			if(! $participant )
-				return false; 
-			return ( ! self::queryAspectCollaborators($participant) ? false : true ); 
-		}
-		public static function queryAllGrossCollaborators () {
-			$temp= array(); 
-			$temp[]=EmployeeParticipantTable::getInstance() ; 
-			$temp[]=ProjectParticipantTable::getInstance() ; 
-			$temp[]=CitizenParticipantTable::getInstance() ; 
-			$temp[]=InstitutionParticipantTable::getInstance() ; 
-			$temp[]=NGOParticipantTable::getInstance() ; 
-			$temp[]=CommitteeParticipantTable::getInstance() ; 
-			$temp[]=StoreParticipantTable::getInstance() ; 
-			$temp[]=BuildingTable::getInstance() ; 
-			$temp[]=TaskPlayerSettingTable::getInstance() ; 
-			$temp[]=UserTable::getInstance() ; 
-			return $temp; 			
+					foreach( self::$ALL_PARTICIPANTS as $key=> $participant ){
+						if( strcmp($participant, $value) == 0 )
+                    return $key; 
+            }
 			
+             return $OTHER; 
+        } catch ( Exception $e ) {
+            return $OTHER; 
+        }
 		}
-		public static function queryGrossCollaborators ($participant ) {
-			if( ! $participant )
-				return null; 
+	
+		public static function fetchParticipantValue  (  $id )
+		{
 			try{
-				return ($participant->isPublicBody() ? self::queryAllGrossCollaborators ()  : null );
-			} catch ( Exception $e ) {
-				return null; 
-			}
+					foreach( self::$ALL_PARTICIPANTS as $key=> $participant ){
+                    if( $key == $id )
+                        return $participant; 
+            }
+             return $OTHER; 
+        } catch ( Exception $e ) {
+             return $OTHER; 
+        }
 		}
-		public static function hasGrossCollaborators ( $participant ) {
-			if(! $participant )
-				return false; 
-			return ( ! self::queryGrossCollaborators($participant) ? false : true ); 
+	
+		public static function fetchDefaultParticipantID() 
+		{
+			return self::$OFFICE; 
 		}
 		
-		public static function getParticipantTypeIcon ($type) {
+		public static $ACTIVE =  1; 
+		public static $BLOCKED =  2; 	
+		public static $TERMINATED = 3;  
+		public static $OTHER_STATUS = 4;  
+	
+		public static $ALL_STATUSES = array ( 1 => "Active", 2 => "Blocked" , 3 => "Terminated" , 4 => "Other Status");
+			
+		public static function fetchParticipantStatusID ( $value ) 
+		{
+			try {
+					foreach( self::$ALL_STATUSES as $key=> $status ){
+						if( strcmp($status, $value) == 0 )
+						  return $key; 
+				}
+			
+				 return $OTHER; 
+		  } catch ( Exception $e ) {
+				return $OTHER; 
+		  }
+		}
+	
+		public static function fetchParticipantStatusValue  (  $id )
+		{
+			try{
+					foreach( self::$ALL_STATUSES as $key=> $status ){
+					  if( $key == $id )
+							return $status; 
+				}
+				 return $ACTIVE; 
+		  } catch ( Exception $e ) {
+				 return $ACTIVE; 
+		  }
+		}
+		
+		public static function fetchDefaultParticipantStatusID() 
+		{
+			return self::$ACTIVE; 
+		}
+		
+		public static $PRESIDENT = 1;
+		public static $DIRECTOR = 2;
+		public static $DEAN = 3;
+		public static $HEAD = 4;
+		public static $PORJECT_LEADER = 5;
+		public static $STAFF = 6;
+		public static $COMMITTE_LEADER = 7;
+		public static $APPROVAL = 8;
+		public static $AUTHORIZE = 9;
+		public static $SECTION_LEADER = 10;
+		public static $VEHICLE_DRIVER = 11;
+		public static $CUSTOMER = 12;
+		public static $COMPANY_OWNER = 13;
+		public static $PASSANGER = 14;
+		public static $COORDINATOR = 15;
+		public static $WITNES = 16;
+		public static $DATA_INCODER = 17;
+		public static $OTHER_ROLE = 18;
+		public static $ALL_PARTICIPANT_ROLES = array( 1 => "President", 2 => "Director", 3 => "Dean", 4 => "Head", 5 => "Project Leader", 6 => "Staff", 7 => "Committee Leader", 8 => "Approval ", 9 => "Authorize",10 => "Section Leader", 11 => "Vehicle Driver" , 12 => "Customer", 13 => "Company Owner", 14 => "Passanger", 15 => "Cordinator", 16 => "Witnes", 17 => "Data Incoder", 18 => "Other Role");
+		
+		public static function fetchParticipantRoleID ( $value ) 
+		{
+			try {
+					foreach( self::$ALL_PARTICIPANT_ROLEs as $key=> $role ){
+						if( strcmp($role, $value) == 0 )
+						  return $key; 
+				}			
+				 return true; 
+		  } catch ( Exception $e ) {
+				return false; 
+		  }
+		}
+	
+		public static function fetchParticipantRoleValue  (  $id )
+		{
+			try{
+					foreach( self::$ALL_PARTICIPANT_ROLEs as $key=> $role ){
+					  if( $key == $id )
+							return $role; 
+				}
+				 return true; 
+		  } catch ( Exception $e ) {
+				 return false; 
+		  }
+		}
+		
+		public static function fetchDefaultParticipantRoleID() 
+		{
+			return self::$ACTIVE; 
+		}
+		
+		public static function fetchParticipantIcon ($type) {
     
 		if(is_null($type))
-			return 'other';
+			return 'OTHER';
 			
 		switch($type) {			
-			case self::$PUBLIC_BODY:
-				return 'public_body';
+			case self::$OFFICE:
+				return 'office';
 			break;
-			case self::$INSTITUTION:
+			case self::$COLLEGE:
+				return 'college';
+			break;
+			case self::$INSTITUTION;
 				return 'institution';
 			break;
-			case self::$SECTOR;
-				return 'sector';
-			break;
-			case self::$NGO:
-				return 'ngo';
+			case self::$CENTER:
+				return 'center';
 			break;
 			case self::$DEPARTMENT:
 				return 'department';
 			break;
-			case self::$SUB_DEPARTMENT:
-				return 'sub_department';
+			case self::$SECTION:
+				return 'section';
 			break;			
 			case self::$PROJECT:
 				return 'project';
 			break;			
-			case self::$ROOM:
-				return 'room';
+			case self::$DRIVER:
+				return 'driver';
 			break;			
-			case self::$SHELF:
-				return 'shelf';
+			case self::$COMPANY:
+				return 'company';
 			break;			
 			case self::$EMPLOYEE:
 				return 'employee';
 			break;			
-			case self::$CITIZEN:
-				return 'citizen';
+			case self::$PASSANGER:
+				return 'passanger';
 			break;			
 			case self::$COMITTEE:
 				return 'committee';
 			break;			
 			default:
-				return 'other_participant';
+				return 'other';
 			break;
 		}
 		
 	}
 	
-	public static function getParticipantStatusIcon ($status) {
-		
+	public static function fetchParticipantStatusIcon ($status) 
+	{
+		if(is_null($status))
+			return $OTHER;
+			
 		switch($status) {			
 			case self::$ACTIVE:
 				return 'active';
 			break;
-			case self::$PENDING:
-				return 'pending';
+			case self::$BLOCKED:
+				return 'blocked';
 			break;
-			case self::$CANCELLED;
-				return 'trashed';
+			case self::$TERMINATED;
+				return 'terminated';
 			break;
-			case self::$POSTPOND:
-				return 'postpond';
-			break;
-			case self::$COMPLETED:
-				return 'completed';
+			default:
+				return 'other';
 			break;
 		}
 		
 	}
 	
-	public static function getTaskTypeStatusIcon($taskType, $taskStatus) {
+	public static function fetchParticipantTypeStatusIcon($participant, $status) {
 	
-		return self::getTaskType($taskType).'_'.self::getTaskStatus($taskStatus);
+		return self::fetchParticipantIcon($participant).'_'.self::fetchParticipantStatusIcon($taskStatus);
 	}
 }
 

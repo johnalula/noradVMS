@@ -196,7 +196,7 @@ background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-grad
 .ui-tab-detail-list-box ul.ui-tab-list {margin:0!important;background:#f9fafb;border:none;padding:0px 0px;border:0px solid #ff0;}
 
 .ui-tab-detail-list-box ul.ui-tab-list li {background:#f9fafb;font-size:11px!important;background-color: #cbddea; background: -moz-linear-gradient(100% 100% 90deg, #accade, #cbddea);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cbddea), to(#accade));
-background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-gradient(#accade, #cbddea);border:1px solid #b9cbdb;color:#000;margin-right:8px;border-bottom:0px;}
+background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-gradient(#accade, #cbddea);border:1px solid #b9cbdb;color:#000;margin-right:8px;border-bottom:0px;padding:0px 4px;}
 
 .ui-tab-detail-list-box ul.ui-tab-list li a { font-size:11px!important;}
 

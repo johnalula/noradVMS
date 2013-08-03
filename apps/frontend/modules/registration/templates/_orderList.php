@@ -43,7 +43,7 @@
 				<input type="text" style="width:80px;min-width:80px;" disabled id="" value="<?php echo PropertyClassCore::fetchItemTypeValue($order->clss) ?>"> 
 			</td>
 			<td class="ui-input-body-box" style="width:97%;min-width:90px;"> 
-				<input type="text" style="width:97%;min-width:90px;" id="" value="<?php echo $order->description  ?> ">
+				<input type="text" style="width:97%;min-width:90px;" id="" value="<?php echo $order->tskStatus  ?> ">
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">

@@ -3,11 +3,10 @@ detect_relations: true
 Item:
   package: PropertyManagement
   columns: 
-    token: { type: string(100), notnull: true }
+    token_id: { type: string(100)  }
     task_id: { type: integer , notnull: false }
     task_order_id: { type: integer, notnull: true }
-    category_id: { type: integer, notnull: false }    
-    category_group_id: { type: integer, notnull: false }   
+    category_id: { type: integer, notnull: false }       
     clss: { type: integer, default: 0 }
     unit_id: { type: integer , default: 1 }
     quantity: { type: float , default: 0 }
@@ -24,8 +23,7 @@ Item:
   relations:
    Category: { onDelete: CASCADE, local: category_id, foreign: id, foreignAlias: itemCategorys }
    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: itemTasks }
-   TaskOrder: { onDelete: CASCADE, local: task_order_id, foreign: id, foreignAlias: itemTaskOrders }
-   CategoryGroups: { onDelete: CASCADE, local: category_group_id, foreign: id, foreignAlias: itemCategoryGroups }
+   TaskOrder: { onDelete: CASCADE, local: task_order_id, foreign: id, foreignAlias: itemTaskOrders } 
    Unit: { onDelete: CASCADE, local: unit_id, foreign: id, foreignAlias: itemUnits }
     
   
@@ -185,7 +183,7 @@ TaskTransaction:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskCostTransactions }
     
 Task:
-  package: TaskFramworks
+  package: TaskFrameworks
   columns:  
     token_id: { type: string(100)  }
     start_date: { type: string(50) }
@@ -212,7 +210,7 @@ TaskOrder:
     vat: { type: boolean, default: 0 }
     currency_id: { type: integer, default: 1 }
     amount: { type: float }
-    effective_date:  { type: integer }
+    effective_date:  { type: string(100) }
     status: { type: integer, default: 1 }
     description: { type: string(255) }
   relations:
@@ -402,30 +400,32 @@ ReturnTask:
 
 
 TaskParticipant:
-  package: TaskFramworks
+  package: TaskFrameworks
   columns:
+    token_id: { type: string(100) }
     task_id: { type: integer } 
     participant_role: { type: integer }
     participant_id: { type: integer }
+    description: { type: clob }
   relations:
-    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTasks }   
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskParticipantsTasks }   
     Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: taskParticipants } 
     
 TaskAttachment:
-  package: TaskFramworks
+  package: TaskFrameworks
   columns:
+    token_id: { type: string(100) }
     task_id: { type: integer, notnull: true } 
-    certificate_type_id: { type: integer, notnull: false }
+    certificate_type: { type: integer, notnull: false }
     reference_number: { type: string (100) }
     num_pages: { type: integer, default: 1 }
     folder_stored: { type: string(255) }
     description: { type: string(255) }    
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTasks }   
-    CertificateType: { onDelete: CASCADE, local: certificate_type_id, foreign: id, foreignAlias: taskAttachmentCertificates }  
   
 ItemAcquiredAttachment:
-  package: TaskFramworks
+  package: TaskFrameworks
   columns:
    task_id: { type: integer }
    item_id: { type: integer }
@@ -487,11 +487,6 @@ TaskIncident:
   
 #*** General Settings 
 
-CertificateType:
-  package: GeneralSettings
-  columns:
-   name: { type: string(255), notnull: true }
-   description: { type: string(255)}
    
 TimeMetric:
   package: GeneralSettings
@@ -569,8 +564,7 @@ Participant:
    campus_id: { type: integer }
    description:  { type: string(255) }  
   relations:
-    Participant: { onDelete: CASCADE, local: parent_id, foreign: id, foreignAlias: participantParentParticipants }   
-    ParticipantType: { onDelete: CASCADE, local: participant_type_id, foreign: id, foreignAlias: participantTypeParticipants }   
+    Participant: { onDelete: CASCADE, local: parent_id, foreign: id, foreignAlias: participantParentParticipants } 
     Participant: { onDelete: CASCADE, local: leader_participant_id, foreign: id, foreignAlias: participantParentParticipants }  
     Campus: { onDelete: CASCADE, local: campus_id, foreign: id, foreignAlias: participantCampusParticipants }  
    
@@ -606,6 +600,7 @@ Employee:
     title:  { type: string(40) }
     father_name:  { type: string(100) }
     grand_father_name: { type: string(100) }
+    full_name: { type: string(255) }
     gender: { type: integer, default: 1 }
     birth_date:  { type: datetime }
     birth_place:  { type: string(100) } 

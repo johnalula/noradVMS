@@ -1,5 +1,5 @@
 <?php
-	$attachments = AttachmentCore::$ALL;
+	$attachment_lists = AttachmentCore::$ALL_ATTACHMENTS;
 ?>
 <table class="" id="locationList" >
 	<thead>
@@ -20,7 +20,7 @@
 			<th class="ui-inpu-box" style="width:140px;min-width:140px;">
 				<select id="certificate_type" style="width:140px;min-width:140px;" >
 					<option>&nbsp;</option>
-					<?php foreach($attachments as $key => $attachment): ?>								 
+					<?php foreach($attachment_lists as $key => $attachment): ?>								 
 						<option value="<?php echo  $key ?>" >
 							<?php echo $attachment ?>
 						</option>								 
@@ -29,10 +29,11 @@
 				</select>
 			</th> 
 			<th class="ui-inpu-box" style="width:130px;min-width:130px;">
-				<input type="text" style="width:130px;min-width:130px;" id="reference_no" name="reference_no" >
+				<input type="text" style="width:130px;min-width:130px;" id="ref_no" name="ref_no" >
+				<br><span id="ref_no_validation" class="error_validation displayNone"><?php echo __('Required!') ?></span>	
 			</th>  
-			<th class="ui-inpu-box" style="width:100px;min-width:100px;">
-				<input type="text" style="width:100px;min-width:100px;" id="no_of_pages" name="no_of_pages" >
+			<th class="ui-inpu-box" style="width:90px;min-width:90px;">
+				<input type="text" style="width:90px;min-width:90px;" id="no_of_pages" name="no_of_pages" >
 			</th>  
 			<th class="ui-inpu-box" style="width:120px;min-width:120px;">
 				<input type="text"style="width:120px;min-width:120px;"  id="file_no" name="file_no">
@@ -42,15 +43,15 @@
 			</th>  
 			<th class="" style="padding:0px 1px;text-align:center;border-left:1px solid #ccc;">
 				 <span class="" style=""><a href='#' class='locationModal' rel='#locationPrompts'>
-				<button class="ui-action-button">...</button></a> </span> 	
+				<button class="ui-action-button" onclick="Javascript:createTaskAttachment();" >...</button></a> </span> 	
 			</th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
 		</tr>				 
 	</thead>
 	<tbody>
 		<?php $row=0 ?>
-
 		 
+		 <?php foreach( $attachments as $attachment ): ?>
 
 		<tr class="ui-input-body-header"> 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-right:1px solid #bbb;border-left:1px solid #bbb;border-bottom:1px solid #bbb;"> 
@@ -60,19 +61,19 @@
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $task->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="ui-input-body-box" style="width:132px;min-width:132px;">
-				<input type="text" style="width:132px;min-width:132px;" disabled id="certificate_type" name="certificate_type" >
+				<input type="text" style="width:132px;min-width:132px;background:#fbfbfb;" disabled id="certificate_type" name="certificate_type" value="<?php echo AttachmentCore::fetchAttachmentValue($attachment->certificateTypeID) ?>">
 			</td> 
 			<td class="ui-input-body-box" style="width:130px;min-width:130px;">
-				<input type="text" style="width:130px;min-width:130px;" id="reference_no" name="reference_no" >
+				<input type="text" style="width:130px;min-width:130px;" id="reference_no" name="reference_no" value="<?php echo $attachment->referenceNo ?>">
 			</td>  
-			<td class="ui-input-body-box" style="width:100px;min-width:100px;">
-				<input type="text" style="width:100px;min-width:100px;" id="no_of_pages" name="no_of_pages" >
+			<td class="ui-input-body-box" style="width:90px;min-width:90px;">
+				<input type="text" style="width:90px;min-width:90px;" id="no_of_pages" name="no_of_pages" value="<?php echo $attachment->noOfPages ?>">
 			</td>  
 			<td class="ui-input-body-box" style="width:120px;min-width:120px;">
-				<input type="text"style="width:120px;min-width:120px;"  id="file_no" name="file_no">
+				<input type="text"style="width:120px;min-width:120px;"  id="file_no" name="file_no" value="<?php echo $attachment->folder_stored ?>">
 			</td>  
 			<td class="ui-input-body-box" style="width:97%;min-width:50px;">
-				<input type="text" style="width:97%;min-width:70px;" id="description" name="description">
+				<input type="text" style="width:97%;min-width:70px;" id="description" name="description" value="<?php echo $attachment->description ?>">
 			</td>  
 			<td  class="" style="padding:0px 2px 0px 2px;width:50px;min-width:50px;border-left:1px solid #ddd;background:#dfe2e7;"> 
 				<div class="ui-list-action" style="width:50px;min-width:50px;padding:0x 2px;text-align:center;">
@@ -98,7 +99,7 @@
 		<?php $row++ ?>
 		</tr>
 		 
-		 
+		<?php endforeach; ?>
 
 		</tbody> 
 </table>

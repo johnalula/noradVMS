@@ -7,14 +7,14 @@
 	</div>
 </div>
 
-<?php //$flags = UserGroupTable::processCreate('Finance', 'finance'); 
+<?php //$flag = RegistrationTaskTable::processCreateTaskParticipant ( 8, '04af0a0a982b3eebed63de6fa33f0320', 1, 8, 'adf asfas adfasdfa'); 
 
 	//echo $flags ? 'true' : 'flase' ;
 ?>
 <div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 	<div class="ui-error-box btn-danger">
 		<div class="ui-error-list">
-			<?php echo 'Fule type already existed!' ?>
+			<?php echo 'There was an error!' ?>
 			<span class="ui-error-close">X</span>
 		</div>			
 	</div> 
@@ -34,11 +34,13 @@
 <div id="ui-display-delete-cont" class="ui-success-data displayNone"> 
 	<div class="ui-success-box btn-danger">
 		<div class="ui-success-list">
-			<?php echo 'Fule type successfuly deleted!' ?>
+			<?php echo 'Successfuly deleted!' ?>
 			<span class="ui-success-close">X</span>
 		</div>			
 	</div> 
 </div>
+<input type="hidden" id="taskID" value="<?php echo $sf_request->getParameter('task_id') ?>">
+<input type="hidden" id="tokenID" value="<?php echo $sf_request->getParameter('token_id') ?>">
 
 <div class="ui-container">
 	<div class="ui-list-cont">		
@@ -112,7 +114,7 @@
 											 
 										</ul>
 										<div class="clearFix"></div>
-								
+										
 									<div class="ui-detail-tab-list" >
 										<div id="ui-tab-one" class="ui-tab" style="">
 											<div class="ui-tab-content-frame">
@@ -154,7 +156,6 @@
 											</div><!-- end of ui-content-container-box -->
 												 </div>
 										</div>
-										
 									<div id="ui-tab-two" class="ui-tab" style="">
 										<div class="ui-tab-content-frame">
 											 <div class="ui-tab-content-container-box" style="border:0px;">
@@ -283,6 +284,80 @@
 			//var data = 'task_id='+taskID+'&token_id='+tokenID+'&reference_no='+refnoValue+'&date='+dateValue+'&description='+descValue;
 			//alert(data);
 		
+		return false;
+		
+	}
+	
+//***************************************************
+
+	function createTaskParticipant()
+	{
+		var partID = document.getElementById('participant_id').value
+		var role = document.getElementById('particiapnt_role').value
+		var desc = document.getElementById('description').value
+		var taskID = document.getElementById('taskID').value;
+		var tokenID = document.getElementById('tokenID').value;
+		
+		/*if( ref_no == '')
+		{
+			$('#ref_no_validation').removeClass('displayNone');
+			$('#ref_no').addClass('validation_error_border');
+			
+			return false;
+		}*/
+		 			
+			$.ajax({
+				type: "GET",
+				data: 'taskID='+taskID+'&tokenID='+tokenID+'&participant_id='+partID+'&participant_role='+role+'&description='+desc,
+				url: '<?php echo url_for('registration/createTaskParticipant')?>', 
+				success: function() { 
+					showSuccess(); 
+				},
+				error: function() {
+					showError();
+				},
+			
+				async: false
+				});  
+
+		// alert('hello');
+		return false;
+		
+	}
+	
+	function createTaskAttachment()
+	{
+		var certificate_type = document.getElementById('certificate_type').value
+		var ref_no = document.getElementById('ref_no').value
+		var no_pages = document.getElementById('no_of_pages').value
+		var file_no = document.getElementById('file_no').value
+		var desc = document.getElementById('description').value
+		var taskID = document.getElementById('taskID').value;
+		var tokenID = document.getElementById('tokenID').value;
+		
+		if( ref_no == '')
+		{
+			$('#ref_no_validation').removeClass('displayNone');
+			$('#ref_no').addClass('validation_error_border');
+			
+			return false;
+		}
+		 			
+			$.ajax({
+				type: "GET",
+				data: 'taskID='+taskID+'&tokenID='+tokenID+'&certificate_type='+certificate_type+'&reference_no='+ref_no+'&num_pages='+no_pages+'&folder_stored='+file_no+'&description='+desc,
+				url: '<?php echo url_for('registration/createTaskAttachment')?>', 
+				success: function(data) { 
+					showSuccess(); 
+				},
+				error: function(msg) {
+					showError();
+				},
+			
+				async: false
+				});  
+
+		 
 		return false;
 		
 	}

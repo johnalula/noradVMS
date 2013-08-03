@@ -90,6 +90,111 @@ RegistrationTask:
     transferee_id: null
     new_vehicle_id: null
     returnee_id: null
+  RegistrationTask_3:
+    token_id: 10d0283327ed8388fb0884949d7f1866
+    start_date: 08/28/2013
+    end_date: null
+    effective_date: null
+    status_id: '1'
+    reference_no: null
+    description: 'asfdf adfjalsjdlf asjfoiqruop qwerjkli'
+    type: '3'
+    agreement_participant_id: null
+    departure_date: null
+    departure_time: null
+    departure_status: '1'
+    return_date: null
+    return_time: null
+    return_status: '0'
+    number_of_passangers: null
+    service_agreement_cost: null
+    service_reason: null
+    departure_mileage: null
+    return_mileage: null
+    difference_mileag: null
+    service_type_id: null
+    duel_acquire_id: null
+    destination: null
+    service_number_of_days: null
+    service_delay_status: false
+    number_of_delay_days: '0'
+    delay_reason: null
+    registration_mode: null
+    driver_id: null
+    transferer_id: null
+    transferee_id: null
+    new_vehicle_id: null
+    returnee_id: null
+  RegistrationTask_4:
+    token_id: ac28746b6be492d540d42732395ed965
+    start_date: ''
+    end_date: null
+    effective_date: null
+    status_id: '1'
+    reference_no: null
+    description: ''
+    type: '3'
+    agreement_participant_id: null
+    departure_date: null
+    departure_time: null
+    departure_status: '1'
+    return_date: null
+    return_time: null
+    return_status: '0'
+    number_of_passangers: null
+    service_agreement_cost: null
+    service_reason: null
+    departure_mileage: null
+    return_mileage: null
+    difference_mileag: null
+    service_type_id: null
+    duel_acquire_id: null
+    destination: null
+    service_number_of_days: null
+    service_delay_status: false
+    number_of_delay_days: '0'
+    delay_reason: null
+    registration_mode: null
+    driver_id: null
+    transferer_id: null
+    transferee_id: null
+    new_vehicle_id: null
+    returnee_id: null
+  RegistrationTask_5:
+    token_id: 49b28f6709cc68db6f39e4f9ff5eddaa
+    start_date: 08/31/2013
+    end_date: null
+    effective_date: null
+    status_id: '1'
+    reference_no: null
+    description: asdfasdfds
+    type: '3'
+    agreement_participant_id: null
+    departure_date: null
+    departure_time: null
+    departure_status: '1'
+    return_date: null
+    return_time: null
+    return_status: '0'
+    number_of_passangers: null
+    service_agreement_cost: null
+    service_reason: null
+    departure_mileage: null
+    return_mileage: null
+    difference_mileag: null
+    service_type_id: null
+    duel_acquire_id: null
+    destination: null
+    service_number_of_days: null
+    service_delay_status: false
+    number_of_delay_days: '0'
+    delay_reason: null
+    registration_mode: null
+    driver_id: null
+    transferer_id: null
+    transferee_id: null
+    new_vehicle_id: null
+    returnee_id: null
 Category:
   Category_1:
     name: Vehicle
@@ -140,20 +245,6 @@ Category:
     description: asdfasdfasdf
     created_at: '2013-08-01 20:58:03'
     updated_at: '2013-08-01 20:58:03'
-  Category_8:
-    name: 'asdf adfasdfasd'
-    category_group_id: '1'
-    category_class_id: '4'
-    description: asdfasdfasdf
-    created_at: '2013-08-01 20:58:08'
-    updated_at: '2013-08-01 20:58:08'
-  Category_9:
-    name: 'afasdfasd asdfasd'
-    category_group_id: '1'
-    category_class_id: '4'
-    description: asdfasd
-    created_at: '2013-08-01 20:58:24'
-    updated_at: '2013-08-01 20:58:24'
 TaskOrder:
   TaskOrder_1:
     Task: RegistrationTask_1
@@ -172,3 +263,105 @@ TaskOrder:
     description: 'task order'
     created_at: '2013-08-01 22:50:35'
     updated_at: '2013-08-01 22:50:35'
+  TaskOrder_2:
+    Task: RegistrationTask_1
+    token_id: 51d917d542205e3aba6ec66d54118707
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '6.00'
+    remaining: '0.00'
+    unit_price: '5000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '30000.00'
+    effective_date: '2013'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-01 22:52:29'
+    updated_at: '2013-08-01 22:52:29'
+  TaskOrder_3:
+    Task: RegistrationTask_1
+    token_id: 51d917d542205e3aba6ec66d54118707
+    Category: Category_2
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '4.00'
+    remaining: '0.00'
+    unit_price: '5000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '20000.00'
+    effective_date: '2013'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-01 23:06:34'
+    updated_at: '2013-08-01 23:06:34'
+  TaskOrder_4:
+    Task: RegistrationTask_1
+    token_id: 51d917d542205e3aba6ec66d54118707
+    Category: Category_4
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '5.00'
+    remaining: '0.00'
+    unit_price: '5000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '25000.00'
+    effective_date: '2013'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-01 23:06:46'
+    updated_at: '2013-08-01 23:06:46'
+  TaskOrder_5:
+    Task: RegistrationTask_1
+    token_id: 51d917d542205e3aba6ec66d54118707
+    Category: Category_5
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '6.00'
+    remaining: '0.00'
+    unit_price: '5000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '30000.00'
+    effective_date: '2013'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-01 23:16:08'
+    updated_at: '2013-08-01 23:16:08'
+  TaskOrder_6:
+    Task: RegistrationTask_3
+    token_id: 10d0283327ed8388fb0884949d7f1866
+    Category: Category_3
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '8.00'
+    remaining: '0.00'
+    unit_price: '5000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '40000.00'
+    effective_date: '2013'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-02 11:14:23'
+    updated_at: '2013-08-02 11:14:23'
+  TaskOrder_7:
+    Task: RegistrationTask_3
+    token_id: 10d0283327ed8388fb0884949d7f1866
+    Category: Category_4
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '5.00'
+    remaining: '0.00'
+    unit_price: '5000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '25000.00'
+    effective_date: '2013'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-02 11:14:47'
+    updated_at: '2013-08-02 11:14:47'

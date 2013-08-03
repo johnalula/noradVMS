@@ -31,13 +31,13 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Unit') ?>:<span class="ui-mandatory"> </span></td>
 			<td>
-				<select style="width:80px;margin-right:16px;" id="unit" name="unit" >
+				<select style="width:80px;margin-right:16px;" id="unit_id" name="unit_id" >
 					<?php foreach($units as $unit): ?>
 					<option value="<?php echo $unit->id ?>"><?php echo $unit->unitName ?></option>		
 					<?php endforeach; ?>
 				</select>
 				<?php echo __('Currency') ?>:<span class="ui-mandatory"></span>
-				<select style="width:102px;margin-right:8px;" id="currency" name="currency" >
+				<select style="width:102px;margin-right:8px;" id="currency_id" name="currency_id" >
 					<?php foreach($currencys as $currency): ?>
 					<option value="<?php echo $currency->id ?>"><?php echo $currency->currencyName ?></option>		
 					<?php endforeach; ?>

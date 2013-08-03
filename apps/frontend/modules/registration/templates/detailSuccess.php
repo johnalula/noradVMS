@@ -38,6 +38,7 @@
 	</div> 
 </div>
 
+<?php echo count($vehicles) ?>
 
 <div class="ui-container">
 	<div class="ui-list-cont">		

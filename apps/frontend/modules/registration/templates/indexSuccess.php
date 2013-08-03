@@ -157,13 +157,13 @@
 		$('#ui-display-delete-cont').removeClass('displayNone');
 		location.reload().delay(3000);
 	}
-
 	
 	// to create new fuel type
 	
-	function createTask()
-	{
-		//var modeValue = document.getElementById('mode').value
+	var form = $('#taskForm');
+	
+	form.submit(function(){
+		
 		var refnoValue = document.getElementById('reference_no').value
 		var dateValue = document.getElementById('date').value
 		var descValue = document.getElementById('description').value
@@ -175,25 +175,16 @@
 			
 			return false;
 		}
-		 			
-			$.ajax({
-				type: "GET",
-				data: 'reference_no='+refnoValue+'&date='+dateValue+'&description='+desc,
-				url: '<?php echo url_for('registration/createTask')?>', 
-				success: function() { 
-					showSuccess(); 
-				},
-				error: function() {
-					showError();
-				},
+		
+		else			
+			return true;
 			
-				async: false
-				});
-
-		
-		return false;
-		
-	}
+			
+			return false;				
+	 
+			
+	});
+	
 	
 	function deleteFuelType(fuelID)
 	{

@@ -47,6 +47,7 @@
  * @property Doctrine_Collection $serviceVehicleAttachmentTasks
  * @property Doctrine_Collection $serviceVehicleAccidentTasks
  * @property Doctrine_Collection $ServiceAccident
+ * @property Doctrine_Collection $taskParticipantsTasks
  * @property Doctrine_Collection $taskAttachmentTasks
  * @property Doctrine_Collection $taskAttachmentTask
  * @property Doctrine_Collection $taskAccidents
@@ -255,7 +256,11 @@ abstract class BaseTask extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'task_id'));
 
-        $this->hasMany('TaskParticipant as taskAttachmentTasks', array(
+        $this->hasMany('TaskParticipant as taskParticipantsTasks', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('TaskAttachment as taskAttachmentTasks', array(
              'local' => 'id',
              'foreign' => 'task_id'));
 

@@ -10,6 +10,10 @@
 <?php //$flags = FuelTypeTable::processCreate ( 'eadas', 'asdfasdf' ); 
 
 	//echo $flags ? 'true' : 'flase' ;
+	//$flag = TaskOrderTable::processObject(19, 'a56b04e3aa2e37374de9aa6a84774baa' ) ;
+	//echo intval($flag->actual_quantity);
+	//$flags = VehicleTable::processCreate ( $flag );
+	//echo $flags ? 'true':'false';
 ?>
 <div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 	<div class="ui-error-box btn-danger">
@@ -347,6 +351,9 @@
 	{
 		var catID = document.getElementById('category_id').value
 		var quantity = document.getElementById('quantity').value
+		var unitID = document.getElementById('unit_id').value
+		var currID = document.getElementById('currency_id').value
+		var unit_price = document.getElementById('unit_price').value
 		var desc = document.getElementById('description').value
 		var taskID = document.getElementById('taskID').value
 		var tokenID = document.getElementById('tokenID').value
@@ -383,7 +390,7 @@
 		 			
 			$.ajax({
 				type: "GET",
-				data: 'task_id='+taskID+'&token_id='+tokenID+'&cadidate_id='+catID+'&quantity='+quantity+'&description='+desc,
+				data: 'task_id='+taskID+'&token_id='+tokenID+'&cadidate_id='+catID+'&quantity='+quantity+'&unit_price='+unit_price+'&unit_id='+unitID+'&currency_id='+currID+'&description='+desc,
 				url: '<?php echo url_for('registration/createTaskOrder')?>', 
 				success: function(data) { 
 					showSuccess(); 

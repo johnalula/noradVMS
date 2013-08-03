@@ -13,15 +13,19 @@ abstract class BaseTaskParticipantFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'token_id'         => new sfWidgetFormFilterInput(),
       'task_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'participant_role' => new sfWidgetFormFilterInput(),
       'participant_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
+      'description'      => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
+      'token_id'         => new sfValidatorPass(array('required' => false)),
       'task_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
       'participant_role' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'participant_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Participant'), 'column' => 'id')),
+      'description'      => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('task_participant_filters[%s]');
@@ -42,9 +46,11 @@ abstract class BaseTaskParticipantFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'               => 'Number',
+      'token_id'         => 'Text',
       'task_id'          => 'ForeignKey',
       'participant_role' => 'Number',
       'participant_id'   => 'ForeignKey',
+      'description'      => 'Text',
     );
   }
 }

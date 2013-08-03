@@ -20,6 +20,7 @@
  * @property string $title
  * @property string $father_name
  * @property string $grand_father_name
+ * @property string $full_name
  * @property integer $gender
  * @property datetime $birth_date
  * @property string $birth_place
@@ -37,8 +38,8 @@
  * @property string $company_owner
  * @property integer $company_license_type
  * @property Participant $Participant
- * @property ParticipantType $ParticipantType
  * @property Campus $Campus
+ * @property ParticipantType $ParticipantType
  * @property Doctrine_Collection $vehicleDrivers
  * @property Doctrine_Collection $acquisitionTaskTargetParticipants
  * @property Doctrine_Collection $vehicleAssignDriverParticipant
@@ -74,8 +75,9 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'type' => 'string',
              'length' => 20,
              ));
-        $this->hasColumn('participant_type_id', 'integer', null, array(
+        $this->hasColumn('participant_type_id', 'integer', 8, array(
              'type' => 'integer',
+             'length' => 8,
              ));
         $this->hasColumn('status_id', 'integer', null, array(
              'type' => 'integer',
@@ -116,6 +118,10 @@ abstract class BaseParticipant extends sfDoctrineRecord
         $this->hasColumn('grand_father_name', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
+             ));
+        $this->hasColumn('full_name', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
         $this->hasColumn('gender', 'integer', null, array(
              'type' => 'integer',
@@ -228,15 +234,14 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('ParticipantType', array(
-             'local' => 'participant_type_id',
-             'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
-
         $this->hasOne('Campus', array(
              'local' => 'campus_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('ParticipantType', array(
+             'local' => 'participant_type_id',
+             'foreign' => 'id'));
 
         $this->hasMany('AssignedVehicle as vehicleDrivers', array(
              'local' => 'id',

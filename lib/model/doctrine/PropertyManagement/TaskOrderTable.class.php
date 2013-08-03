@@ -13,7 +13,8 @@ class TaskOrderTable extends PluginTaskOrderTable
      * @return object TaskOrderTable
      */
 	 
-    
+   
+	
 	public static function processCreate ($task_id, $token_id, $cat_id, $class_id, $unit_id, $quantity, $unit_price, $vat, $currency_id, $amount, $date, $status, $description )
 	{
 		try{
@@ -36,26 +37,80 @@ class TaskOrderTable extends PluginTaskOrderTable
 				$_nw->status = $status; 
 				$_nw->description = $description; 
 				$_nw->save(); 
+				$_nw_id = $_nw->id;
+				$token = $_nw->token_id;
 				
-				return true;
+				$order = self::processObject($_nw_id, $token);
+				 
+				//if( ! $order )	return false; 
+				
+				$flag = self::processCreateItems( $order ); 
+				//$flag = VehicleTable::processCreate ( $order );
+				
+				if( !$flag ) {
+					$_nw->delete( ); 
+					return false;
+				}
+					return true;
 			
 		} catch ( Exception $e ) {
             return false; 
         }
 	}
 	
-	public static function processSelection($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	public static function processCreateItems ( $order ) 
+	{ 
+	 
+		//if( ! $order )
+			//return false; 
+			
+		//$clss = $order->classID; 
+		
+		//switch ( $clss ) {
+			
+			//case PropertyClassCore::$DOCUMENT : return DocumentTable::createItems($order); 
+			//	break; 
+			//case PropertyClassCore::$SPAREPART : return SparepartTable::createItems($order); 
+			//	break;
+		 return  VehicleTable::processCreate ( $order ); 
+			//	break;
+			//case PropertyClassCore::$ITEM : return ItemTable::createItems($order); 
+			//	break;
+			//default:
+				//return false; 
+		//}
+		//return true; 
+	}
+	
+	public static function processObject($_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsk.*, cat.name as categoryName, unt.name as unitName, crr.name as currencyName ")
-			->from("TaskOrder tsk") 
-			->innerJoin("tsk.Category cat on tsk.category_id = cat.id")
-			->innerJoin("tsk.Unit unt on tsk.unit_id = unt.id")
-			->innerJoin("tsk.Currency crr on tsk.currency_id = crr.id")
+			->select("tsko.*, cat.name as categoryName, unt.name as unitName, crr.name as currencyName, tsk.status_id as tskStatus, tsko.clss as classID ")
+			->from("TaskOrder tsko") 
+			->innerJoin("tsko.Task tsk")
+			->innerJoin("tsko.Category cat on tsko.category_id = cat.id")
+			->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id")
+			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id") 
+			->where('tsko.id = ? AND tsko.token_id = ?', array($_id, $token_id))
+			->fetchOne ( );
+			
+		return ( ! $q ? null : $q ); 
+	}
+	
+	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tsko.*, cat.name as categoryName, unt.name as unitName, crr.name as currencyName, tsk.status_id as tskStatus ")
+			->from("TaskOrder tsko") 
+			->innerJoin("tsko.Task tsk")
+			->innerJoin("tsko.Category cat on tsko.category_id = cat.id")
+			->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id")
 			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 			->offset($offset)
 			->limit($limit)
-			->where('tsk.task_id = ? AND tsk.token_id = ?', array($task_id, $token_id))
+			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))
 			->execute( ); 
 
 	return ( count ( $q ) <= 0 ? null : $q ); 

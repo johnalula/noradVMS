@@ -13,11 +13,10 @@ abstract class BaseItemFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'token'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'token_id'             => new sfWidgetFormFilterInput(),
       'task_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'task_order_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TaskOrder'), 'add_empty' => true)),
       'category_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
-      'category_group_id'    => new sfWidgetFormFilterInput(),
       'clss'                 => new sfWidgetFormFilterInput(),
       'unit_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unit'), 'add_empty' => true)),
       'quantity'             => new sfWidgetFormFilterInput(),
@@ -57,11 +56,10 @@ abstract class BaseItemFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'token'                => new sfValidatorPass(array('required' => false)),
+      'token_id'             => new sfValidatorPass(array('required' => false)),
       'task_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
       'task_order_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('TaskOrder'), 'column' => 'id')),
       'category_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Category'), 'column' => 'id')),
-      'category_group_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'clss'                 => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'unit_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Unit'), 'column' => 'id')),
       'quantity'             => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -118,11 +116,10 @@ abstract class BaseItemFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                   => 'Number',
-      'token'                => 'Text',
+      'token_id'             => 'Text',
       'task_id'              => 'ForeignKey',
       'task_order_id'        => 'ForeignKey',
       'category_id'          => 'ForeignKey',
-      'category_group_id'    => 'Number',
       'clss'                 => 'Number',
       'unit_id'              => 'ForeignKey',
       'quantity'             => 'Number',

@@ -47,7 +47,7 @@ abstract class BaseTaskOrderForm extends BaseFormDoctrine
       'vat'             => new sfValidatorBoolean(array('required' => false)),
       'currency_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Currency'), 'required' => false)),
       'amount'          => new sfValidatorNumber(array('required' => false)),
-      'effective_date'  => new sfValidatorInteger(array('required' => false)),
+      'effective_date'  => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'status'          => new sfValidatorInteger(array('required' => false)),
       'description'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),

@@ -64,13 +64,47 @@ class registrationActions extends sfActions
   {
 		$_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
-		
+		$limit = 10;
+		$offset = 0;
+		$keyword = null;
 		//$this->getUser()->setFlash('saved.success', 0);
 		
 		$this->taskObj = RegistrationTaskTable::processObject ( $_id, $token_id );
+		$this->attachments = RegistrationTaskTable::processTaskAttachmentSelection ($_id, $token_id, $keyword, $offset, $limit) ;
+		$this->participants = RegistrationTaskTable::processTaskParticipantSelection ($_id, $token_id, $keyword, $offset, $limit) ;
     
   }
   
+  public function executeTaskParticipant(sfWebRequest $request)
+  { 
+		$_id = $request->getParameter('taskID');
+		$token_id = $request->getParameter('tokenID');
+		//$part_id = $request->getParameter('participant_id');
+		$part_role = $request->getParameter('participant_role');
+		$description = $request->getParameter('description');
+		
+		$flag = RegistrationTaskTable::processCreateTaskParticipant ($_id, $token_id, 1, $part_role, $description);
+		
+		return $flag;
+	  
+	}
+	
+	public function executeTaskAttachment(sfWebRequest $request)
+	{ 
+		$_id = $request->getParameter('taskID');
+		$token_id = $request->getParameter('tokenID');
+		$certificate_type = $request->getParameter('certificate_type');
+		$ref_no = $request->getParameter('reference_no');
+		$num_pages = $request->getParameter('num_pages');
+		$folder_stored = $request->getParameter('folder_stored');
+		$description = $request->getParameter('description');
+		
+		$flag = RegistrationTaskTable::processCreateTaskAttachment ( $_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description);
+		
+		return $flag;
+	  
+	 }
+	  
   public function executeOrder(sfWebRequest $request)
   {
 		$offset = 0;
@@ -93,11 +127,11 @@ class registrationActions extends sfActions
 		$token_id = $request->getParameter('token_id');
 		$cat_id = $request->getParameter('cadidate_id');
 		$class_id = PropertyClassCore::$VEHICLE;
-		$unit_id = 1;
+		$unit_id = intval($request->getParameter('unit_id'));
 		$quantity = $request->getParameter('quantity');
-		$unit_price = 5000;
+		$unit_price = $request->getParameter('unit_price');
 		$vat = 1;
-		$currency_id = 1;
+		$currency_id = intval($request->getParameter('currency_id'));
 		$amount = $unit_price * $quantity;
 		$date = date('Y-m-d', time());
 		$status = TaskCore::$ACTIVE;
@@ -114,9 +148,12 @@ class registrationActions extends sfActions
 		$limit = 10;
 		$status = null;
 		$keyword = null;
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
 	
-	 $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
-    $this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    //$this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+    $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
   }
   
   

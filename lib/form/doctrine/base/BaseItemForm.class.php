@@ -16,11 +16,10 @@ abstract class BaseItemForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
-      'token'                => new sfWidgetFormInputText(),
+      'token_id'             => new sfWidgetFormInputText(),
       'task_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'task_order_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TaskOrder'), 'add_empty' => false)),
       'category_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
-      'category_group_id'    => new sfWidgetFormInputText(),
       'clss'                 => new sfWidgetFormInputText(),
       'unit_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Unit'), 'add_empty' => true)),
       'quantity'             => new sfWidgetFormInputText(),
@@ -61,11 +60,10 @@ abstract class BaseItemForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'token'                => new sfValidatorString(array('max_length' => 100)),
+      'token_id'             => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'task_id'              => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'required' => false)),
       'task_order_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TaskOrder'))),
       'category_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'required' => false)),
-      'category_group_id'    => new sfValidatorInteger(array('required' => false)),
       'clss'                 => new sfValidatorInteger(array('required' => false)),
       'unit_id'              => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Unit'), 'required' => false)),
       'quantity'             => new sfValidatorNumber(array('required' => false)),

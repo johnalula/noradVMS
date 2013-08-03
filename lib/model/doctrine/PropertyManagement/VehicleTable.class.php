@@ -12,8 +12,61 @@ class VehicleTable extends PluginVehicleTable
      *
      * @return object VehicleTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Vehicle');
-    }
+     
+   public static function processCreate ( $order ) 
+   {	
+		if( ! $order )
+			return false;
+			
+		$clss = $order->classID; 
+		if( $clss != PropertyClassCore::$VEHICLE )
+		return false; 
+
+		$count = intval($order->actual_quantity);
+		
+		try{
+			$i = 1;
+			for( $i = 1; $i <= $count; $i ++ ) 
+			{
+				$_nw= new Vehicle ( ); 
+				$_nw->task_id = $order->task_id; 
+				$_nw->token_id = $order->token_id; 
+				$_nw->task_order_id = $order->id; 
+				$_nw->status = $order->status; 
+				$_nw->effective_date = $order->effective_date; 
+				$_nw->clss = PropertyClassCore::$VEHICLE; 
+				$_nw->category_id = $order->category_id;  
+				$_nw->quantity = 1;  
+				$_nw->is_present = true; 
+				$_nw->save();
+				}
+			 
+			return true; 
+		} catch ( Exception $e ) {
+			return false; 
+		}
+	}
+	
+	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("vh.*, cat.name as categoryName, tsk.status_id as tskStatus ")
+			->from("Item vh") 
+			->innerJoin("vh.Task tsk")
+			->innerJoin("vh.TaskOrder tsko")
+			->innerJoin("vh.Category cat on vh.category_id = cat.id")
+			->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
+			->offset($offset)
+			->limit($limit)
+			->where('vh.task_id = ? AND vh.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('Vehicle');
+	}
 }
