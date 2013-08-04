@@ -1,49 +1,95 @@
 
-<div class="loginBox">
-	<div class="login-cont">
-		<div class="login-header">
-			<div><img src="<?php echo image_path('mulogo');?>" height="40" width="40"></div>
-			<span class="login-title">MU-momonaPAS</span><br>
-			<span class="sub-login-title">Property Administration System</span>
-		</div> 
-	</div>
+<div class="ui-login-box" id="">
+	<table class="ui-login-table">
+		<tr>
+			<td class="ui-login-table-left-td">
+				<div class="ui-login-box-cont">
+					<div class="ui-login-left-box-top">
+						<div class="ui-login-logo-main">
+							<img style="" class="ui-logo-img-main" src="<?php echo image_path('property_management') ?>">
+						</div>
+					</div>
+					<div class="ui-login-left-box-bottom">
+						<div class="ui-login-logo">
+							<table>
+								<tr>
+									<td>
+										<img style="" class="ui-logo-img" src="<?php echo image_path('logo') ?>">
+									</td>
+									<td>
+										<img style="" class="ui-mu-logo-img" src="<?php echo image_path('mulogo-small') ?>">
+									</td>
+								</tr>
+							</table>
+							
+							
+						</div>
+					</div>
+					<div class="clearFix"></div>
+				</div>
+			</td>
+			<td class="ui-login-table-right" style="border:none;">
+				<div class="ui-login-user-box">							 
+					<div class="ui-login-user-box-content">       
+						<form class="well form-inline ui-form" action="<?php echo url_for('@user_signin'); ?>" method="post">
+							 <table class="ui-login-table-content" style="border:none;">
+								<thead>
+									<th class="ui-login-user-header">User Login</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="ui-login-table-content-left-td ui-padding">
+											<label class="ui-login-label">
+												<span class="label-content">User Account</span>
+											</label>
+										</td>
+									<tr>
+										<td class="ui-login-table-content-left-td">
+											 <span class="input-content"><input type="text" id="user_account" name="user_account" ></span> 
+										</td>
+									</tr>
+									<tr>
+										<td class="ui-login-table-content-left-td ui-padding">
+											<label class="ui-login-label">
+												<span class="label-content">Password</span>
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td class="ui-login-table-content-left-td">
+											 <span class="input-content"><input type="password" id="password" name="password" ></span> 
+										</td>
+									</tr>
+									<tr>
+										<td class="ui-login-table-content-left-td">
+											<label class="ui-form-remember"><a href=""> <?php echo __('Forget your password?') ?></a></label>
+										</td>
+									</tr>
+									</tr>
+									<tr>
+										<td class="ui-login-table-content-left-td">
+											<input type="checkbox"> <label class="checkbox ui-form-remember"><?php echo __('Remember?') ?></label>
+										</td>
+									</tr>
+									<tr>
+										<td class="ui-login-table-content-left-td">
+											<span class="input-content">
+												<input style="" class="btn-primary input-width btn-right-margin" id="" type="submit" value="<?php echo __('Login')  ?>  " />
+											</span>
+										</td>
+									</tr>
+								</tbody>
+							 </table>
+						</form>
+					</div>
+				</div>
+			</td>
+		</tr>
+		 
+	</table>
+	<div class="clearFix"></div>
+</div>
 
-	 <?php if ($sf_user->getFlash('login_failure', false) == true): ?>
-		<div class="loginError">
-			<div class="alert alert-error">
-				<a class="close" data-dismiss="alert">&times;</a>
-				Either your <strong>password</strong> or <strong>username</strong> was wrong, please try again!
-			</div>
-		</div>
-	<?php endif; ?>
-
-	 <?php if ($sf_user->getFlash('login_failure.locked', false) == true): ?>
-		<div class="loginError">
-			<div class="alert alert-error">
-				<a class="close" data-dismiss="alert">&times;</a>
-				This User is <strong>Locked</strong>, you can not use momonaPAS eLibrary anymore!
-			</div>
-		</div>
-	<?php endif; ?>
-
-	 <?php if ($sf_user->getFlash('login_failure.activation', false) == true): ?>
-		<div class="loginError">
-			<div class="alert alert-error">
-				<a class="close" data-dismiss="alert">&times;</a>
-				 This user is not <strong>Activated</strong>, you can not use momonaPAS eLibrary anymore!
-			</div>
-		</div>
-	<?php endif; ?>
-
-   <div class="loginForm">       
-		<form class="well form-inline" action="<?php echo url_for('@signin'); ?>" method="post">
-			<input type="text" class="span2 roundBox" id="username" name="username" >
-			<input type="password" class="span2 roundBox" id="password" name="password" placeholder="Password">
-
-			<input class="btn" type="submit" value="<?php echo 'Login';?>" />
-			<label class="checkbox">
-				<input type="checkbox"> Remember?
-			</label>
-		</form>
-	</div>
+<div class="ui-copyright-box">
+	<?php echo __('eGPMS 2012 All Rights Reserved') ?>
 </div>

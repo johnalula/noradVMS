@@ -1,3 +1,4 @@
+
 .ui-container {padding:8px 15px!important;min-width:800px;margin:0px!important;}
 .ui-list-cont {padding:0px!important;}
 .ui-main-list-cont {border:1px solid #b9cbdb;padding:1px!important;-webkit-border-radius:4px 4px 0px 0px;-moz-border-radius:4px 4px 0px 0px;border-radius:4px 4px 0px 0px;-webkit-box-shadow: 0 0px 1px #ddd;-moz-box-shadow: 0 0px 1px #ddd;box-shadow: 0 0px 1px #ddd;}
@@ -14,15 +15,15 @@ background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-grad
 .ui-main-content-list { margin-top:1px;border-top:1px solid #b9cbdb;padding-bottom:1px;}
 
 
-.ui-content-minimize {border:0px solid #f00;margin:0px 15px;margin-bottom:-15px;text-align:right;}
+.ui-content-minimize {border:0px solid #f00;margin:0px 15px;margin-bottom:-10px;text-align:right;}
 .ui-content-minimize img {margin:0px;vertical-align:bottom;cursor: pointer;}
 
 
-.ui-main-content {padding:2px 8px;border:0px solid #f00;}
+.ui-main-content {padding:1px 8px;border:0px solid #f00;}
 .ui-main-content fieldset {border-top:1px solid #b9cbdb;border-bottom:0px solid #ddd;
-padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
+padding:6px 0px 0px 0px;margin:-3px 4px 0px 5px;}
 .ui-main-content fieldset legend {margin:0px;padding:3px 10px 3px 2px;font-size:11px;letter-spacing:1px;}
-.ui-main-content fieldset legend img {margin-right:10px;vertical-align:middle;padding:0px 0px;}
+.ui-main-content fieldset legend img {margin-right:10px;vertical-align:middle;padding:0px 0px;width:16px;height:16px;}
 .ui-main-content table tr td a.ui-button {padding:4px 12px!important;}
 .ui-main-content table tr td a.ui-button-nav {padding:4px 12px!important;}
 
@@ -58,6 +59,7 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-main-form table tr td.rightSide-medium {border:none;width:8%;text-align:right;white-space:nowrap!important;text-transform:capitalize!important;font-size:11px!important;}
 
 
+.ui-activity-list {white-space:nowrap;}
 
 .ui-content-box {padding:0px!important;margin:0px!important;border:1px solid #00f;}
 .ui-main-content-cont {padding:0px!important;margin:0px!important;border:0px solid #00f;}
@@ -67,6 +69,12 @@ padding:6px 0px 0px 0px;margin:1px 4px 0px 5px;}
 .ui-content-lists table thead {border:0px;}
 .ui-content-lists table thead tr {border:0px;}
 .ui-content-lists table thead tr th {text-align:left;border:0px;padding:4px 10px;background:#dfe2e7;border-top:1px solid #eee;border-bottom:1px solid #bbb;border-right:1px solid #bbb;color:#000;font-size:12px!important;}
+
+.ui-content-lists table thead tr.ui-data-checkbox td {text-align:center!important;border:0px;padding:2px 10px 0px 10px;background:#e8e8e8;border-top:1px solid #eee;border-bottom:1px solid #bbb;border-right:1px solid #bbb;color:#000;font-size:10px!important;vertical-align:middle;}
+.ui-content-lists table thead tr.ui-data-checkbox td input.ui-checkbox {margin:0px;}
+
+.ui-content-lists table thead tr.ui-data-list-center th {text-align:center!important;border:0px;padding:2px 10px;background:#dfe2e7;border-top:1px solid #eee;border-bottom:1px solid #bbb;border-right:1px solid #bbb;color:#000;font-size:12px!important;}
+
 .ui-content-lists table thead tr th.ui-table-border {width:4px!important;background:#dfe2e7;}
 
 .ui-content-lists table thead tr.ui-input-header {padding:0px!important;border:0px solid #ddd;border-bottom:0px solid #ddd;background:#dfe2e7;}
@@ -224,7 +232,7 @@ border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1p
 
 .ui-navigation-list ul.ui-right-button li button.ui-next-button img {width:14px;height:14px;padding:0px!important;margin:0px!important;vertical-align:bottom;margin-right:5px!important;}
 
-
+ 
 
 
 

@@ -26,7 +26,31 @@ class User extends PluginUser
 	
 	public function processPermissionMode($permission_mode)
 	{
-			$this->username = $username;
+			$this->username = $permission_mode;
+			$this->save();
+	}
+	
+	public function processUserActivation()
+	{
+			$this->is_active = true;
+			$this->save();
+	}
+	
+	public function processUserDeactivation()
+	{
+			$this->is_active = false;
+			$this->save();
+	}
+	
+	public function processUserBlocking()
+	{
+			$this->is_blocked = true;
+			$this->save();
+	}
+	
+	public function processUserUnblocking()
+	{
+			$this->is_blocked = false;
 			$this->save();
 	}
 }

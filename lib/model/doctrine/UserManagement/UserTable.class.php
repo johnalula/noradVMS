@@ -74,14 +74,77 @@ class UserTable extends PluginUserTable
         }
 	}
  
-	public static function processLogin($user_name, $password)
-	{
-		
+	public static $TIGRIGNA = 1;
+	public static $AMHARIC = 2; 
+	public static $ENGLISH = 3; 
+
+	public static $ALL_LANGUAGES = array (1 => 'Tigrigna', 2 => 'Amharic', 3 => 'English' );
+
+	
+	public static function findLanguageID ( $value ) {
+	  try {
+			foreach( self::$ALL_LANGUAGES as $key=> $langauge ){
+					  if( strcmp($langauge, $value) == 0 )
+							return $key; 
+			}
+			return null; 
+	  } catch ( Exception $e ) {
+			return null; 
+	  }
 	}
- 
-	public static function processObject($_id, $token_id)
+	
+	public static function findLanguageValue ($_id ){
+        try {
+            foreach( self::$ALL_LANGUAGES as $key=> $langauge ){
+                    if( $key == $_id )
+                        return $langauge; 
+            }
+            return null;       
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+	public static function processLogin($username, $password)
 	{
-		
+		$pass = md5($password);
+		$user_name = trim($username);
+		$q= Doctrine_Query::create()
+			->select("usr.*")
+			->from("User usr")  
+			->where('usr.username = ? AND usr.password = ?', array($user_name, $pass))
+			->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+	
+	public static function processSuperAdminObject ( $_id, $_token_id, $_username, $_password) 
+	{
+		$password = md5($_password);
+		$username = md5($_username);
+		$q= Doctrine_Query::create()
+			->select("usr.*, usr.username as userName, usr.permission_mode as userPermissionMode, ((SELECT COUNT(grpper.id) FROM Permission grpper WHERE grpper.group_id = grp.id) > 0) AS hasPermission")
+			->from("User usr") 
+			->innerJoin("usr.userGroups grp on usr.group_id = grp.id")
+			->where('usr.id = ? AND usr.token_id = ?', array($_id, $_token_id, $username, $password))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processObject ( $_id, $_token_id) 
+	{
+		$q= Doctrine_Query::create()
+			->select("usr.*, usr.username as userName, usr.permission_mode as userPermissionMode, usr.is_active as isActive, usr.is_blocked as isBlocked, usr.ui_theme_color_setting as userThemeColor, usr.ui_language_setting as userLanguage, ((SELECT COUNT(grpper.id) FROM Permission grpper WHERE grpper.group_id = grp.id) > 0) AS hasPermission")
+			->from("User usr") 
+			->leftJoin("usr.participantUser prt on usr.particiapnt_id = prt.id")
+			->innerJoin("usr.userGroups grp on usr.group_id = grp.id")
+			->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
+			->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->offset($offset)
+			->limit($limit)		
+			->where('usr.id = ? AND usr.token_id = ?', array($_id, $_token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
  
 	public static function processCreate($p_id, $username, $password, $g_id, $status_id, $is_active, $is_blocked, $permission_mode, $ui_theme, $ui_language)
@@ -102,7 +165,6 @@ class UserTable extends PluginUserTable
 		$_nw->save(); 
 
 		return true; 
-
 	}
 	
 	public static function processUpdate($_id, $token_id, $p_id, $username, $password, $g_id, $status_id, $is_active, $is_blocked, $permission_mode, $ui_theme, $ui_language)
@@ -130,10 +192,10 @@ class UserTable extends PluginUserTable
 	public static function processSelection($username=null, $group_id=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 	$q= Doctrine_Query::create()
-		->select("usr.*, usr.username as userName, usr.permission_mode as userPermissionMode, ((SELECT COUNT(grpper.id) FROM Permission grpper WHERE grpper.group_id = grp.id) > 0) AS hasPermission")
+		->select("usr.*, usr.username as userName, usr.permission_mode as userPermissionMode, grp.name as groupName, usr.is_active as isActive, usr.is_blocked as isBlocked, usr.ui_theme_color_setting as userThemeColor, usr.ui_language_setting as userLanguage, ((SELECT COUNT(grpper.id) FROM Permission grpper WHERE grpper.group_id = grp.id) > 0) AS hasPermission")
 		->from("User usr") 
-		->leftJoin("usr.participantUser prt on usr.particiapnt_id = prt.id")
-		->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
+		->leftJoin("usr.Participant prt on usr.participant_id = prt.id")
+		->innerJoin("usr.UserGroup grp on usr.group_id = grp.id")
 		->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
 		->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 		->offset($offset)
@@ -142,6 +204,8 @@ class UserTable extends PluginUserTable
 
 	return ( count ( $q ) <= 0 ? null : $q ); 
 	}
+	
+	
 	
 	public static function getInstance()
     {

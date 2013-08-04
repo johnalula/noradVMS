@@ -17,6 +17,8 @@ class dashboardActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    
+		$offset = 0;
+		$limit = 10;
+		$this->activitys = SystemLogFileTable::processSelection($offset, $limit);
   }
 }

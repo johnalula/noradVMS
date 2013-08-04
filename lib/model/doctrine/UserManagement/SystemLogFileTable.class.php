@@ -77,12 +77,13 @@ class SystemLogFileTable extends PluginSystemLogFileTable
 	public static function processSelection($offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("log.*, usr.username as userName, grp.name as groupName ")
+			->select("log.*, usr.username as userName, grp.name as groupName, log.action_date as accessDate, log.action_time as accessTime, log.action_type_id as accessAction ")
 			->from("SystemLogFile log") 
 			->innerJoin("log.User usr on usr.id = log.user_id")
 			->innerJoin("usr.UserGroup grp on grp.id = usr.group_id")
 			->offset($offset)
 			->limit($limit)
+			->orderBy("log.id DESC")
 			->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 

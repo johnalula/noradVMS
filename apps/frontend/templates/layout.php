@@ -146,6 +146,12 @@ h1{
 				<span class="ui-sub-title">
 					<?php echo __('Vehicle Management System') ?>
 				</span>	
+				<span style="float:right;">
+					<span class="ui-user-logout">
+							<a href="<?php echo url_for('@user_signout') ?>">
+						<?php echo __('Signout') ?></a>
+						</span>
+				</span>
 			</div>
 			
 			 

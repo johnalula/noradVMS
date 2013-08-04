@@ -12,16 +12,45 @@ class UserGroupTable extends PluginUserGroupTable
      *
      * @return object UserGroupTable
      */
-	public static function getInstance()
-	{
-	  return Doctrine_Core::getTable('UserGroup');
-	}
+	public static $SUPER_USERS = 1;
+	public static $MANAGERS = 2;
+	public static $REGISTERED = 3;
+	public static $GUEST = 4;
 
-	public static function processCreate($_name, $_description)
+	public static $ALL_GROUP_TYPES = array (1 => 'Supper Users', 2 => 'Managers', 3 => 'Registerd Users', 4 => 'Guest');
+
+	
+	public static function findGroupTypeID ( $value ) {
+	  try {
+			foreach( self::$ALL_GROUP_TYPES as $key => $type ){
+					  if( strcmp($type, $value) == 0 )
+							return $key; 
+			}
+			return null; 
+	  } catch ( Exception $e ) {
+			return null; 
+	  }
+	}
+	
+	public static function findGroupTypeValue ($_id ){
+        try {
+            foreach( self::$ALL_GROUP_TYPES as $key => $type ){
+                    if( $key == $_id )
+                        return $type; 
+            }
+            return null;       
+        } catch ( Exception $e ) {
+            return null; 
+        }
+	}
+ 
+ 
+	public static function processCreate($_name, $_group_type_id, $_description)
 	{
-		$token = trim($_name).rand('1111111', '9999999');
+		$token = trim($_name).($_group_type_id).rand('1111111', '9999999');
 		$_nw = new UserGroup ();  
 		$_nw->token_id = md5($token); 
+		$_nw->group_type_id = $_group_type_id;
 		$_nw->name = trim($_name);
 		$_nw->description = trim($_description); 
 		$_nw->save(); 
@@ -66,14 +95,29 @@ class UserGroupTable extends PluginUserGroupTable
 	public static function processSelection($keyword=null, $offset=0, $limit=10) 
 	{
 	$q= Doctrine_Query::create()
-		->select("grp.*, usr.username as userName, grp.token_id as tokenID, (NOT EXISTS (SELECT grpper.id FROM Permission grpper WHERE grpper.group_id = grp.id)) AS canDeleted")
+		->select("grp.*, grp.name as groupName, grp.group_type_id as groupType, grp.is_active as isActive, grp.is_blocked as isBlocked, grp.ui_theme_color_setting as groupThemeColor, grp.ui_language_setting as groupLanguage, (NOT EXISTS (SELECT grpper.id FROM Permission grpper WHERE grpper.group_id = grp.id)) AS canDeleted")
 		->from("UserGroup grp") 
-		->leftJoin("grp.userGroups usr on usr.group_id = grp.id")
-		->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+		->innerJoin("grp.userGroups usr on usr.group_id = grp.id")
+		//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 		->offset($offset)
 		->limit($limit)
 		->execute( ); 
 
 	return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function fetchGroups() 
+	{
+		$q= Doctrine_Query::create()
+			->select("grp.*, grp.id as groupID, grp.name as groupName")
+			->from("UserGroup grp")  
+			->execute( ); 
+
+	return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function getInstance()
+	{
+	  return Doctrine_Core::getTable('UserGroup');
 	}
 }

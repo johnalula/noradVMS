@@ -4,6 +4,15 @@
 	</div>
 </div>
 
+<?php 
+	//$user = UserTable::processLogin('admin', 'admin11');
+	//echo $user ? 'True':'Fasle';
+	//echo $user->username;
+	//echo count($user);
+	//echo md5('admin11');
+	//e020590f0e18cd6053d7ae0e0a507609
+	//echo count($activitys); 
+?>
 <div class="ui-container">
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont">
@@ -29,7 +38,7 @@
 								<tr>
 									<td >
 											<div class="ui-dashboard-box" >		
-												 <?php include_partial('list', array('activitys' => $activitys)) ?>
+												 <?php include_partial('list', array()) ?>
 											</div><!-- end of ui-content-form --> 
 									</td>
 									 
@@ -56,8 +65,8 @@
 				<div class="ui-main-content-cont" >
 					<div class="ui-content-list-box">
 						 
-						<div class="ui-content-lists">
-							<?php include_partial('activityList', array('categorys' => $categorys )) ?>
+						<div class="ui-content-lists ui-activity-list">
+							<?php include_partial('activityList', array('activitys' => $activitys)) ?>
 						</div><!-- end of ui-content-lists -->
 					</div><!-- end of ui-content-list-box -->
 				</div><!-- end of ui-main-content-cont --> 

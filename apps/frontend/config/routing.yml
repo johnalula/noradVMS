@@ -7,6 +7,17 @@ registration:
   options: { model: Audio}
 
 
+user_login:
+  url: /login
+  param: { module: login, action: login }
+
+user_signin:
+  url: /signin
+  param: { module: login, action: signin}
+
+user_signout:
+  url: /signout
+  param: { module: login, action: signout }
 
 # default rules
 homepage:

@@ -12,9 +12,19 @@ class groupActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->user_groups = Doctrine_Core::getTable('UserGroup')
-      ->createQuery('a')
-      ->execute();
+	  $offset = 0;
+	  $limit = 10;
+	  $keyword = null;
+	  
+    $this->groups = UserGroupTable::processSelection($keyword, $offset, $limit) ;
+  }
+  public function executeView(sfWebRequest $request)
+  {
+	  $offset = 0;
+	  $limit = 10;
+	  $keyword = null;
+	  
+    $this->groups = UserGroupTable::processSelection($keyword, $offset, $limit) ;
   }
 
   public function executeShow(sfWebRequest $request)

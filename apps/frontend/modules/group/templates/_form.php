@@ -1,24 +1,40 @@
-<?php use_stylesheets_for_form($form) ?>
-<?php use_javascripts_for_form($form) ?>
 
-<form action="<?php echo url_for('group/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-<?php if (!$form->getObject()->isNew()): ?>
-<input type="hidden" name="sf_method" value="put" />
-<?php endif; ?>
-  <table>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('group/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'group/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />
-        </td>
-      </tr>
-    </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
-  </table>
-</form>
+ <!-- group_type_id: { type: integer }
+   name: { type: string(100) }   
+   is_active: { type: boolean, default: 0 }
+   is_blocked: { type: boolean, default: 0 }
+   status: { type: boolean, default: 0 }
+   ui_theme_color_setting: { type: integer }
+   ui_language_setting: { type: integer }
+   description: { type: clob }-->
+    
+<table class="autoWidth" id="detailTable" >
+	<tbody style="width:30%;"> 
+		<tr>
+			<td class="rightSide"><?php echo __('Name') ?>:<span class="ui-mandatory">*</span></td>
+			<td>
+				<input type="text" style="width:190px;" id="username" name="" >			
+				<br><span id="username_validation" class="error_validation displayNone"><?php echo __('Username is required!') ?></span>		
+			</td>		
+		</tr>	 
+		<tr>
+			<td class="rightSide"><?php echo __('Active') ?>:<span class="ui-mandatory"></span></td>
+			<td>
+				<input type="checkbox" style="" id="username" name="" >
+					
+				<span style="margin-bottom:3px;margin-left:35px;padding:2px 8px;"><?php echo __('Block') ?>:</span><input style="vertical-align:bottom;" type="checkbox" style="" id="username" name="" >
+				</span>			
+				
+			</td>		
+		</tr>	 
+		<tr>
+			<td class="rightSide"><?php echo __('Description') ?>:</td>
+			<td>
+				<textarea style="width:190px;vertical-align:bottom;" rows="1" id="description" name="" ></textarea>		
+			</td> 
+		</tr>   
+		
+	</tbody>     
+</table>
+  
+

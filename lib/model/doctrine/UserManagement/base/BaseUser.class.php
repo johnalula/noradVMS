@@ -12,6 +12,7 @@
  * @property integer $group_id
  * @property boolean $is_active
  * @property boolean $is_blocked
+ * @property boolean $is_super_admin
  * @property boolean $status
  * @property integer $permission_mode
  * @property integer $ui_theme_color_setting
@@ -57,6 +58,10 @@ abstract class BaseUser extends sfDoctrineRecord
              'default' => 0,
              ));
         $this->hasColumn('is_blocked', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('is_super_admin', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));

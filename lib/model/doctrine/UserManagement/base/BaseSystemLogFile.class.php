@@ -10,10 +10,10 @@
  * @property string $action_date
  * @property string $action_time
  * @property string $module_name
- * @property string $deleted_date
- * @property string $created_date
- * @property string $viewed_date
- * @property string $edited_date
+ * @property string $deleted_data
+ * @property string $created_data
+ * @property string $viewed_data
+ * @property string $edited_data
  * @property integer $action_type_id
  * @property string $pc_ip_address
  * @property User $User
@@ -47,19 +47,19 @@ abstract class BaseSystemLogFile extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('deleted_date', 'string', 100, array(
+        $this->hasColumn('deleted_data', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('created_date', 'string', 100, array(
+        $this->hasColumn('created_data', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('viewed_date', 'string', 100, array(
+        $this->hasColumn('viewed_data', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('edited_date', 'string', 100, array(
+        $this->hasColumn('edited_data', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));
