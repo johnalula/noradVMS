@@ -12,8 +12,185 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
      *
      * @return object AssignmentTaskTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('AssignmentTask');
-    }
+     
+     
+	public static function processCreate (  $date, $description, $ref, $_pid ) 
+	{      
+        $nw;
+        try{
+				
+				$token = trim($date).trim($ref).rand('11111', '99999');
+				$nw= new AssignmentTask(); 
+				$nw->token_id = md5($token)  ; 
+				$nw->description = $description  ;  
+				$nw->status_id = TaskCore::$ACTIVE; 
+				$nw->reference_no = $ref; 
+				$nw->start_date = $date ;   
+				$nw->save(); 
+				
+				//default task attachment			
+				$att = new TaskAttachment ();
+				$att->token_id = $nw->token_id;
+				$att->task_id = $nw->id;
+				$att->certificate_type = AttachmentCore::$MODEL_22;
+				$att->reference_number = $ref;
+				$att->save();
+				
+				//default task participant
+				$prt = new TaskParticipant ();
+				$prt->token_id = $nw->token_id;
+				$prt->task_id = $nw->id;
+				$prt->participant_id = $_pid;
+				$prt->participant_role = ParticipantCore::$DATA_INCODER;
+				$prt->description = trim($description);
+				$prt->save();
+				
+            return $nw; 
+        } catch ( Exception $e) {
+            return false; 
+        }
+	}
+	
+	public static function processUpdate ($_id, $token_id, $date, $description, $ref )
+	{		
+		$q = Doctrine_Query::create( )
+			->update('RegistrationTask tsk')
+			->set('tsk.start_date', '?', trim($date))  
+			//->set('tsk.status_id', '?', TaskCore::$ACTIVE)  
+			->set('tsk.description', '?', trim($description))  
+			->where('tsk.id = ? AND tsk.token_id = ?', array($_id, $token_id))
+			->execute();	
+
+		return ( $q > 0 );   
+	}
+	
+	public static function processObject ( $_id, $token_id ) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
+			->from("Task tsk") 
+			->innerJoin("tsk.taskParticipantsTasks tprt on tprt.task_id = tsk.id")
+			->innerJoin("tsk.taskAttachmentTasks att on att.task_id = tsk.id")
+			->innerJoin("tprt.Participant prt on tprt.participant_id = prt.id")
+			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
+			->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+	}
+	
+	public static function processSelection($status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
+			->from("AssignmentTask tsk") 
+			//->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
+			//->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
+			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->offset($offset)
+			->limit($limit)
+			//->where('tsk.type = ?'. TaskCore::$ASSIGNMENT)
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processTaskParticipantSelection($task_id, $token_id, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tskprt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName ")
+			->from("TaskParticipant tskprt") 
+			->innerJoin("tskprt.Participant prt on tskprt.participant_id = prt.id")
+			->offset($offset)
+			->limit($limit)
+			->where('tskprt.task_id = ? AND tskprt.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processTaskAttachmentSelection ($task_id, $token_id, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tskatt.*, tskatt.reference_number as referenceNo, tskatt.certificate_type as certificateTypeID, tskatt.num_pages as noOfPages ")
+			->from("TaskAttachment tskatt") 
+			->offset($offset)
+			->limit($limit)
+			->where('tskatt.task_id = ? AND tskatt.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processCandidateVehicleSelection($is_assigned=false, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		return VehicleTable::processSelection ( false, $status, $keyword, $offset, $limit) ; 
+	}
+	
+	public static function processCandidateDriverSelection($offset=0, $limit=10, $keyword=null, $type_id=null) 
+	{
+		return DriverTable::processSelection( $offset, $limit, $keyword, $type_id, false); 
+	}
+	
+	public static function processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $driver_id, $description, $date )
+	{
+		return AssignmentOrderTable::processCreate ($task_id, $token_id, $vehicle_id, $driver_id, $description, $date);
+	}
+	
+	public static function processTaskOrderSelection ($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		return AssignmentOrderTable::processSelection($task_id, $token_id, $status, $keyword, $offset, $limit) ;
+	}
+	
+	public static function processCreateTaskAttachment ( $task_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description)
+	{
+		try {
+			//$refer_no = trim($ref_no);
+			//if(is_null($refer_no))
+				//return false;
+				
+			$att = new TaskAttachment ();
+			$att->task_id = $task_id;
+			$att->token_id = $token_id;
+			$att->certificate_type = $certificate_type;
+			$att->reference_number = trim($ref_no);
+			$att->num_pages = trim($num_pages);
+			$att->folder_stored = trim($folder_stored);
+			$att->description = trim($description);
+			$att->save();
+			
+			return true;
+		}
+		catch ( Exception $e) 
+		{
+			return false;
+		}
+		
+	}
+	
+	public static function processCreateTaskParticipant ( $task_id, $token_id, $participant_id, $participant_role, $description)
+	{
+		try {
+				
+			$prt = new TaskParticipant ();
+			$prt->task_id = $task_id;
+			$prt->token_id = $token_id;
+			$prt->participant_id = $participant_id;
+			$prt->participant_role = $participant_role;
+			$prt->description = trim($description);
+			$prt->save();
+			
+			 
+			return true;
+		}
+		catch ( Exception $e) 
+		{
+			return false;
+		}
+		
+	}
+	
+	public static function getInstance()
+	{
+		return Doctrine_Core::getTable('AssignmentTask');
+	}
 }

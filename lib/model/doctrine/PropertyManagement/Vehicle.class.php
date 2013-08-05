@@ -12,4 +12,11 @@
  */
 class Vehicle extends PluginVehicle
 {
+	
+	public function assignVehicle()
+	{
+		$this->is_assigned = true;
+		$this->save();
+			
+	}
 }

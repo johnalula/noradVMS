@@ -319,6 +319,7 @@
 
 		document.getElementById("category_id").value = listArr[0];
 		document.getElementById("category_name").value = listArr[1];
+		document.getElementById("classID").value = listArr[2];
 		
 		$('#name_validateion').addClass('displayNone');
 		$('#category_name').removeClass('validation_error_border'); 
@@ -350,6 +351,7 @@
 	function createTaskOrder( )
 	{
 		var catID = document.getElementById('category_id').value
+		var classID = document.getElementById('classID').value
 		var quantity = document.getElementById('quantity').value
 		var unitID = document.getElementById('unit_id').value
 		var currID = document.getElementById('currency_id').value
@@ -390,7 +392,7 @@
 		 			
 			$.ajax({
 				type: "GET",
-				data: 'task_id='+taskID+'&token_id='+tokenID+'&cadidate_id='+catID+'&quantity='+quantity+'&unit_price='+unit_price+'&unit_id='+unitID+'&currency_id='+currID+'&description='+desc,
+				data: 'task_id='+taskID+'&token_id='+tokenID+'&class_id='+classID+'&cadidate_id='+catID+'&quantity='+quantity+'&unit_price='+unit_price+'&unit_id='+unitID+'&currency_id='+currID+'&description='+desc,
 				url: '<?php echo url_for('registration/createTaskOrder')?>', 
 				success: function(data) { 
 					showSuccess(); 

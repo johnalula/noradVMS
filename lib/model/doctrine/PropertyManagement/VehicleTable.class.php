@@ -28,7 +28,7 @@ class VehicleTable extends PluginVehicleTable
 			$i = 1;
 			for( $i = 1; $i <= $count; $i ++ ) 
 			{
-				$_nw= new Vehicle ( ); 
+				$_nw = new Vehicle ( ); 
 				$_nw->task_id = $order->task_id; 
 				$_nw->token_id = $order->token_id; 
 				$_nw->task_order_id = $order->id; 
@@ -47,22 +47,78 @@ class VehicleTable extends PluginVehicleTable
 		}
 	}
 	
-	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	public static function processSelection ( $is_assigned=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("vh.*, cat.name as categoryName, tsk.status_id as tskStatus ")
-			->from("Item vh") 
+			->select("vh.*, cat.name as categoryName, tsk.status_id as tskStatus, vh.plate_code as plateCode, vh.plate_number as plateNo ")
+			->from("Vehicle vh") 
 			->innerJoin("vh.Task tsk")
 			->innerJoin("vh.TaskOrder tsko")
 			->innerJoin("vh.Category cat on vh.category_id = cat.id")
-			->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
-			->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
+			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
 			->offset($offset)
 			->limit($limit)
-			->where('vh.task_id = ? AND vh.token_id = ?', array($task_id, $token_id))
-			->execute( ); 
+			->where('vh.clss = ?', PropertyClassCore::$VEHICLE);
+			if(!is_null($is_assigned))
+			$q = $q->addWhere('vh.is_assigned = ?', $is_assigned);
+			
+			$q = $q->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processObject ($_id, $token_id ) 
+	{
+		$q= Doctrine_Query::create()
+			->select("vh.*, vh.plate_code as plateCode, vh.plate_number as plateNo, vh.is_assigned as isAssigned ")
+			->from("Vehicle vh") 
+			->where('vh.id = ? AND vh.token_id = ?', array($_id, $token_id))
+			->fetchOne ( );
+			
+		return ( ! $q ? null : $q ); 
+	}
+	
+	public static function processVehicleAssignment( $order )
+	{
+		if( ! $order )
+			return false;
+			
+		try{
+			
+			$vehicle_id = $order->vehicle_id;
+			$token = $order->vehicleTokenID;
+			$part_id = $order->participant_id;
+			$task_id =  $order->task_id;
+			$token_id =  $order->token_id;
+			$role =  ParticipantCore::$DRIVER;
+			
+			$drivers = DriverTable::processObject ($part_id );
+			if(!$drivers->isAssigned)
+				$drivers->assignDriver();
+			
+			$vehicle = self::processObject ($vehicle_id, $token );
+			if(!$vehicle->isAssigned)
+				$vehicle->assignVehicle();
+				
+			$_nw = new AssignedVehicle ( ); 
+			$_nw->task_id = $order->task_id; 
+			$_nw->token_id = $order->token_id; 
+			$_nw->assignment_order_id = $order->id;  
+			$_nw->effective_date = $order->effective_date; 
+			$_nw->vehicle_id = $order->vehicle_id; 
+			$_nw->participant_id = $order->participant_id;  
+			$_nw->reasigned_status = false; 
+			$_nw->save();
+
+			$flag = AssignmentTaskTable::processCreateTaskParticipant ( $task_id, $token_id, $part_id, $role, null);
+			
+				
+			 
+			return true; 
+		} catch ( Exception $e ) {
+			return false; 
+		}
 	}
 	
 	public static function getInstance()

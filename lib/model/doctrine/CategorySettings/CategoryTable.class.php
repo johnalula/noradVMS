@@ -125,7 +125,7 @@ class CategoryTable extends PluginCategoryTable
 	public static function processSelection ( $offset=0, $limit=100, $keyword=null, $group_id=null, $class_id=null  ) 
 	{
 		$q = Doctrine_Query::create( )
-				->select("cat.*, cat.name as categoryName")
+				->select("cat.*, cat.name as categoryName, cat.category_class_id as classID")
 				->from("Category cat") 
 				->offset($offset)
 				->limit($limit);

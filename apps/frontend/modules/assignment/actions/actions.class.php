@@ -12,68 +12,144 @@ class assignmentActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->assignment_tasks = Doctrine_Core::getTable('AssignmentTask')
-      ->createQuery('a')
-      ->execute();
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		
+		$this->tasks = AssignmentTaskTable::processSelection ($status, $keyword, $offset, $limit);
+		//$this->candidates = AssignmentTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
   }
 
-  public function executeShow(sfWebRequest $request)
+  public function executeCreateTask(sfWebRequest $request)
   {
-    $this->assignment_task = Doctrine_Core::getTable('AssignmentTask')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->assignment_task);
+		//$mode = $request->getParameter('mode');
+		$date = $request->getParameter('date');
+		$ref_no = $request->getParameter('reference_no');
+		$description = $request->getParameter('description');
+		$pID = $this->getUser()->getAttribute('pID');
+		
+		$task = AssignmentTaskTable::processCreate ( $date, $description, $ref_no, $pID );
+		
+		$this->redirect('assignment/view?task_id='.$task->id.'&token_id='.$task->token_id);
+    
   }
-
-  public function executeNew(sfWebRequest $request)
+  public function executeUpdateTask(sfWebRequest $request)
   {
-    $this->form = new AssignmentTaskForm();
+		$_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$date = $request->getParameter('date');
+		$ref_no = $request->getParameter('reference_no');
+		$description = $request->getParameter('description');
+		
+		$flag = AssignmentTaskTable::processUpdate ( $_id, $token_id, $date, $description, $ref_no );
+		
+		return $flag; 
+    
   }
-
-  public function executeCreate(sfWebRequest $request)
+  
+  public function executeDeleteTask(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new AssignmentTaskForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
+		$_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$date = $request->getParameter('date');
+		$ref_no = $request->getParameter('reference_no');
+		$description = $request->getParameter('description');
+		
+		$flag = AssignmentTaskTable::processUpdate ( $_id, $token_id, $date, $description, $ref_no );
+		
+		return $flag; 
   }
-
-  public function executeEdit(sfWebRequest $request)
+  
+  public function executeView(sfWebRequest $request)
   {
-    $this->forward404Unless($assignment_task = Doctrine_Core::getTable('AssignmentTask')->find(array($request->getParameter('id'))), sprintf('Object assignment_task does not exist (%s).', $request->getParameter('id')));
-    $this->form = new AssignmentTaskForm($assignment_task);
+		$_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$limit = 10;
+		$offset = 0;
+		$keyword = null;
+		//$this->getUser()->setFlash('saved.success', 0);
+		
+		$this->taskObj = AssignmentTaskTable::processObject ( $_id, $token_id );
+		$this->attachments = AssignmentTaskTable::processTaskAttachmentSelection ($_id, $token_id, $keyword, $offset, $limit) ;
+		$this->participants = AssignmentTaskTable::processTaskParticipantSelection ($_id, $token_id, $keyword, $offset, $limit) ;
+    
   }
-
-  public function executeUpdate(sfWebRequest $request)
+  
+  public function executeTaskParticipant(sfWebRequest $request)
+  { 
+		$_id = $request->getParameter('taskID');
+		$token_id = $request->getParameter('tokenID');
+		//$part_id = $request->getParameter('participant_id');
+		$part_role = $request->getParameter('participant_role');
+		$description = $request->getParameter('description');
+		
+		$flag = AssignmentTaskTable::processCreateTaskParticipant ($_id, $token_id, 1, $part_role, $description);
+		
+		return $flag;
+	  
+	}
+	
+	public function executeTaskAttachment(sfWebRequest $request)
+	{ 
+		$_id = $request->getParameter('taskID');
+		$token_id = $request->getParameter('tokenID');
+		$certificate_type = $request->getParameter('certificate_type');
+		$ref_no = $request->getParameter('reference_no');
+		$num_pages = $request->getParameter('num_pages');
+		$folder_stored = $request->getParameter('folder_stored');
+		$description = $request->getParameter('description');
+		
+		$flag = AssignmentTaskTable::processCreateTaskAttachment ( $_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description);
+		
+		return $flag;
+	  
+	 }
+	  
+  public function executeOrder(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($assignment_task = Doctrine_Core::getTable('AssignmentTask')->find(array($request->getParameter('id'))), sprintf('Object assignment_task does not exist (%s).', $request->getParameter('id')));
-    $this->form = new AssignmentTaskForm($assignment_task);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		
+		$this->units = UnitTable::processSelection ( $offset, $limit );
+		$this->currencys = CurrencyTable::processSelection ( $offset, $limit );
+		
+		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
+		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ( $is_assigned, $status, $keyword, $offset, $limit);
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
   }
-
-  public function executeDelete(sfWebRequest $request)
+  
+  public function executeCreateTaskOrder(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($assignment_task = Doctrine_Core::getTable('AssignmentTask')->find(array($request->getParameter('id'))), sprintf('Object assignment_task does not exist (%s).', $request->getParameter('id')));
-    $assignment_task->delete();
-
-    $this->redirect('assignment/index');
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$vehicle_id = $request->getParameter('vehicle_id');
+		$driver_id = $request->getParameter('driver_id');
+		$date = date('Y-m-d', time());
+		$description = $request->getParameter('description');
+		
+		$flag = AssignmentTaskTable::processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $driver_id, $description, $date );
+		
+		return $flag;
   }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
+  
+  public function executeDetail(sfWebRequest $request)
   {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $assignment_task = $form->save();
-
-      $this->redirect('assignment/edit?id='.$assignment_task->getId());
-    }
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    //$this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+    $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
   }
+  
+  
 }

@@ -102,8 +102,11 @@ AssignedVehicle:
   package: VehicleSetting
   columns:
     task_id: { type: integer }
-    driver_id: { type: integer }   
-    vehicle_id: { type: integer }   
+    token_id: { type: string(100) }
+    participant_id: { type: integer }   
+    vehicle_id: { type: integer }  
+    assignment_order_id: { type: integer } 
+    effective_date: { type: string(100)}
     assigned_date: { type: datetime }
     maintenance_status: { type: boolean, default: false }
     departure_status: { type: boolean, default: false }
@@ -111,7 +114,8 @@ AssignedVehicle:
     reasigned_status: { type: boolean, default: false }
   relations: 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: vehicleAssignmentTasks }
-    Participant: { onDelete: CASCADE, local: driver_id, foreign: id, foreignAlias: vehicleDrivers } 
+    AssignmentOrder: { onDelete: CASCADE, local: assignment_order_id, foreign: id, foreignAlias: assignedVehicles }
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: vehicleDrivers } 
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: assignedVehicle }
     
 VehicleType:
@@ -358,6 +362,22 @@ AssignmentTask:
   relations:
     Participant: { onDelete: CASCADE, local: driver_id, foreign: id, foreignAlias: vehicleAssignDriverParticipant }  
 
+AssignmentOrder:
+  package: AssignmentManagement
+  actAs:
+    Timestampable: ~
+  columns:
+    task_id: { type: integer , notnull: true }
+    token_id: { type: string(100) , notnull: true }
+    vehicle_id: { type: integer }
+    participant_id: { type: integer }
+    effective_date:  { type: string(100) }
+    status: { type: integer, default: 1 }
+    description: { type: string(255) }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskOrderTasks }
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: assignmentTaskOrderParticipants }
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: assignmentTaskOrderVehicles } 
 
 TransferTask:
   package: TransferManagement   
@@ -552,7 +572,7 @@ UnitConversion:
 Participant:
   package: ParticipantManagement
   columns:
-   token_id: { type: integer, unique: true, notnull: true }
+   token_id: { type: string(100) }
    name:  { type: string(255), notnull: true }
    alias: { type: string(20) } 
    participant_type_id:  { type: integer }
@@ -707,6 +727,7 @@ Driver:
     employee_id: { type: integer }
     license_type: { type: integer }
     work_experience: { type: integer }
+    is_assigned: { type: boolean, default: 0 }
     desctiption: { type: clob }
   relations:
     Participant: { onDelete: CASCADE, local: employee_id, foreign: id, foreignAlias: participantDrivers }

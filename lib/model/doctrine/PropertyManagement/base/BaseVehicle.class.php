@@ -16,6 +16,7 @@
  * @property Doctrine_Collection $serviceVehicleItemAcquiredAttachments
  * @property Doctrine_Collection $serviceVehicleAttachmentVehicles
  * @property Doctrine_Collection $serviceVehicleAccidentVehicles
+ * @property Doctrine_Collection $assignmentTaskOrderVehicles
  * @property Doctrine_Collection $vehicleReplacementVehicle
  * @property Doctrine_Collection $taskAccidentVehicle
  * @property Doctrine_Collection $taskIncidentVehicle
@@ -74,6 +75,10 @@ abstract class BaseVehicle extends Item
              'foreign' => 'vehicle_id'));
 
         $this->hasMany('ServiceVehicleAccident as serviceVehicleAccidentVehicles', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('AssignmentOrder as assignmentTaskOrderVehicles', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

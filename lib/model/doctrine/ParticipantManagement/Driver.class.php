@@ -12,4 +12,12 @@
  */
 class Driver extends PluginDriver
 {
+	
+	public function assignDriver()
+	{
+		$this->is_assigned = true;
+		$this->save();
+			
+	}
+	
 }

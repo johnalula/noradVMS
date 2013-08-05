@@ -16,7 +16,7 @@
 		foreach($candidates as $candidate ): ?>
 		<tr>
 			<td style="">
-				<input type="radio" id="selectCandidate-<?php echo $i ?>" name="selectCandidate" value="<?php echo  $candidate->id. '$'.$candidate->categoryName ?>">
+				<input type="radio" id="selectCandidate-<?php echo $i ?>" name="selectCandidate" value="<?php echo  $candidate->id. '$'.$candidate->categoryName.'$'.$candidate->classID ?>">
 				
 			</td> 
 			<td class="" style="width:220px;min-width:220px;"> 

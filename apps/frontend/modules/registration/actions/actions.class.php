@@ -17,7 +17,7 @@ class registrationActions extends sfActions
 		$status = null;
 		$keyword = null;
 		
-    $this->tasks = RegistrationTaskTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    $this->tasks = RegistrationTaskTable::processSelection ($status, $keyword, $offset, $limit);
     $this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
   }
 
@@ -27,8 +27,9 @@ class registrationActions extends sfActions
 		$date = $request->getParameter('date');
 		$ref_no = $request->getParameter('reference_no');
 		$description = $request->getParameter('description');
+		$pID = $this->getUser()->getAttribute('pID');
 		
-		$task = RegistrationTaskTable::processCreate ( $date, $description, $ref_no );
+		$task = RegistrationTaskTable::processCreate ( $date, $description, $ref_no, $pID );
 		
 		$this->redirect('registration/view?task_id='.$task->id.'&token_id='.$task->token_id);
     
@@ -126,7 +127,7 @@ class registrationActions extends sfActions
 		$task_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 		$cat_id = $request->getParameter('cadidate_id');
-		$class_id = PropertyClassCore::$VEHICLE;
+		$class_id = $request->getParameter('class_id');
 		$unit_id = intval($request->getParameter('unit_id'));
 		$quantity = $request->getParameter('quantity');
 		$unit_price = $request->getParameter('unit_price');

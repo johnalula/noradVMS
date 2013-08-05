@@ -18,7 +18,6 @@ class TaskOrderTable extends PluginTaskOrderTable
 	public static function processCreate ($task_id, $token_id, $cat_id, $class_id, $unit_id, $quantity, $unit_price, $vat, $currency_id, $amount, $date, $status, $description )
 	{
 		try{
-			
 			if(is_null($task_id) && is_null($token_id) )
 				return false;
     
@@ -60,26 +59,17 @@ class TaskOrderTable extends PluginTaskOrderTable
 	
 	public static function processCreateItems ( $order ) 
 	{ 
-	 
-		//if( ! $order )
-			//return false; 
-			
-		//$clss = $order->classID; 
+
+		$clss = $order->classID; 
 		
-		//switch ( $clss ) {
+		switch ( $clss ) {
 			
-			//case PropertyClassCore::$DOCUMENT : return DocumentTable::createItems($order); 
-			//	break; 
-			//case PropertyClassCore::$SPAREPART : return SparepartTable::createItems($order); 
-			//	break;
-		 return  VehicleTable::processCreate ( $order ); 
-			//	break;
-			//case PropertyClassCore::$ITEM : return ItemTable::createItems($order); 
-			//	break;
-			//default:
-				//return false; 
-		//}
-		//return true; 
+			case PropertyClassCore::$VEHICLE : return VehicleTable::processCreate ( $order );
+				break; 
+			case PropertyClassCore::$SPAREPART : return SparepartTable::processCreate ($order); 
+				break;
+			}
+		 
 	}
 	
 	public static function processObject($_id, $token_id ) 

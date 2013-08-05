@@ -1,11 +1,11 @@
 <?php 
 class TaskCore {
 	
-	public static $REGISTRATION= 1; 
-	public static $FLEET= 2; 
-	public static $ASSIGNMENT= 3; 
-	public static $FUELING= 4; 
-	public static $RETURN= 5;
+	public static $REGISTRATION = 1; 
+	public static $FLEET = 2; 
+	public static $ASSIGNMENT = 3; 
+	public static $FUELING = 4; 
+	public static $RETURN = 5;
 	public static $ALL_TASK_TYPES= array ( 1 => "Registration", 2 => "Fleet", 3 => "Assignment", 4 => "Fueling",  5 => "Return");
 
 	public static function processTaskTypeID ( $value ) {

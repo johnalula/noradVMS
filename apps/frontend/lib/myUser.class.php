@@ -8,6 +8,7 @@ class myUser extends sfBasicSecurityUser
 		$this->setAuthenticated(true);
 
 		$this->setAttribute('uid', $user->id);
+		$this->setAttribute('pID', $user->participantID);
 		$this->setAttribute('username', $user->username);
 		$this->setAttribute('logindate', date('Y/m/d H:i:s', time()));
 

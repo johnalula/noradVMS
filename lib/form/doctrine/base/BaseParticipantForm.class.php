@@ -52,7 +52,7 @@ abstract class BaseParticipantForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'token_id'              => new sfValidatorInteger(),
+      'token_id'              => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'name'                  => new sfValidatorString(array('max_length' => 255)),
       'alias'                 => new sfValidatorString(array('max_length' => 20, 'required' => false)),
       'participant_type_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParticipantType'), 'required' => false)),
@@ -85,10 +85,6 @@ abstract class BaseParticipantForm extends BaseFormDoctrine
       'company_owner'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'company_license_type'  => new sfValidatorInteger(array('required' => false)),
     ));
-
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Participant', 'column' => array('token_id')))
-    );
 
     $this->widgetSchema->setNameFormat('participant[%s]');
 

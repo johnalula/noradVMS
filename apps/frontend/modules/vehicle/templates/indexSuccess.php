@@ -16,7 +16,6 @@ $time = date('h:i:s A');
 $module  = 'Administrator';
 $action = SystemLogFileTable::$UPDATE;
 $user_id = 1;
-
 //$flag = UserGroupTable::processDelete(9, 0);
 //$group = UserGroupTable::processCreate($module, 'admin');
 //$group1 = UserGroupTable::processCreate('Finance', 'finance');
@@ -50,7 +49,7 @@ $user_id = 1;
 							<div class="clearFix"></div>
 						</div>
 						<div class="ui-content-lists">
-							<?php include_partial('list', array('log_files' => $log_files )) ?>
+							<?php include_partial('list', array('vehicles' => $vehicles )) ?>
 						</div><!-- end of ui-content-lists -->
 					</div><!-- end of ui-content-list-box -->
 				</div><!-- end of ui-main-content-cont --> 

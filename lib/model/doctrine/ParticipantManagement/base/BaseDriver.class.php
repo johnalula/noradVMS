@@ -9,10 +9,10 @@
  * @property integer $employee_id
  * @property integer $license_type
  * @property integer $work_experience
+ * @property boolean $is_assigned
  * @property clob $desctiption
  * @property Participant $Participant
  * @property Employee $Employee
- * @property Doctrine_Collection $AssignedVehicle
  * @property Doctrine_Collection $AssignmentTask
  * 
  * @package    noradVMS
@@ -39,6 +39,10 @@ abstract class BaseDriver extends sfDoctrineRecord
         $this->hasColumn('work_experience', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('is_assigned', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
         $this->hasColumn('desctiption', 'clob', null, array(
              'type' => 'clob',
              ));
@@ -55,10 +59,6 @@ abstract class BaseDriver extends sfDoctrineRecord
         $this->hasOne('Employee', array(
              'local' => 'employee_id',
              'foreign' => 'id'));
-
-        $this->hasMany('AssignedVehicle', array(
-             'local' => 'id',
-             'foreign' => 'driver_id'));
 
         $this->hasMany('AssignmentTask', array(
              'local' => 'id',

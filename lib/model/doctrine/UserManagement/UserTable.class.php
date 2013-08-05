@@ -109,8 +109,9 @@ class UserTable extends PluginUserTable
 		$pass = md5($password);
 		$user_name = trim($username);
 		$q= Doctrine_Query::create()
-			->select("usr.*")
-			->from("User usr")  
+			->select("usr.*, prt.id as participantID")
+			->from("User usr") 
+			->leftJoin("usr.Participant prt on prt.id = usr.participant_id") 
 			->where('usr.username = ? AND usr.password = ?', array($user_name, $pass))
 			->fetchOne ( );
 		return ( ! $q ? null : $q ); 
@@ -194,7 +195,7 @@ class UserTable extends PluginUserTable
 	$q= Doctrine_Query::create()
 		->select("usr.*, usr.username as userName, usr.permission_mode as userPermissionMode, grp.name as groupName, usr.is_active as isActive, usr.is_blocked as isBlocked, usr.ui_theme_color_setting as userThemeColor, usr.ui_language_setting as userLanguage, ((SELECT COUNT(grpper.id) FROM Permission grpper WHERE grpper.group_id = grp.id) > 0) AS hasPermission")
 		->from("User usr") 
-		->leftJoin("usr.Participant prt on usr.participant_id = prt.id")
+		->innerJoin("usr.Participant prt on usr.participant_id = prt.id")
 		->innerJoin("usr.UserGroup grp on usr.group_id = grp.id")
 		->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
 		->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")

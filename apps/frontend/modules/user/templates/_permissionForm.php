@@ -64,6 +64,16 @@
 
 <script type="text/javascript">
 
+	$(document).ready(function(){
+		
+		$('.check_all_read_permision').click(function(){
+			
+			var data = document.getElementByName('');
+			return false;
+		});
+			
+	});
+	
 	$(function(){
  
     // add multiple select / deselect functionality

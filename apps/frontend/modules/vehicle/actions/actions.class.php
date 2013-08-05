@@ -20,7 +20,10 @@ class vehicleActions extends sfActions
     $offset = 0;
     $limit = 10;
     $keyword = null;
+    $status = null;
+    $is_assigned = null;
     
-    $this->log_files = UserGroupTable::processSelection($keyword, $offset, $limit);
+    $this->vehicles = VehicleTable::processSelection ( $is_assigned, $status, $keyword, $offset, $limit);
+    //$this->log_files = UserGroupTable::processSelection($keyword, $offset, $limit);
   }
 }

@@ -20,6 +20,7 @@ abstract class BaseDriverForm extends BaseFormDoctrine
       'employee_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
       'license_type'    => new sfWidgetFormInputText(),
       'work_experience' => new sfWidgetFormInputText(),
+      'is_assigned'     => new sfWidgetFormInputCheckbox(),
       'desctiption'     => new sfWidgetFormTextarea(),
     ));
 
@@ -29,6 +30,7 @@ abstract class BaseDriverForm extends BaseFormDoctrine
       'employee_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'required' => false)),
       'license_type'    => new sfValidatorInteger(array('required' => false)),
       'work_experience' => new sfValidatorInteger(array('required' => false)),
+      'is_assigned'     => new sfValidatorBoolean(array('required' => false)),
       'desctiption'     => new sfValidatorString(array('required' => false)),
     ));
 

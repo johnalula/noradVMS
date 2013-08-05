@@ -12,8 +12,42 @@ class SparepartTable extends PluginSparepartTable
      *
      * @return object SparepartTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Sparepart');
-    }
+     
+   public static function processCreate ( $order ) 
+   {	
+		if( ! $order )
+			return false;
+			
+		$clss = $order->classID; 
+		if( $clss != PropertyClassCore::$SPAREPART )
+		return false; 
+
+		$count = intval($order->actual_quantity);
+		
+		try{
+			 
+			 
+				$_nw = new Sparepart ( ); 
+				$_nw->task_id = $order->task_id; 
+				$_nw->token_id = $order->token_id; 
+				$_nw->task_order_id = $order->id; 
+				$_nw->status = $order->status; 
+				$_nw->effective_date = $order->effective_date; 
+				$_nw->clss = PropertyClassCore::$SPAREPART; 
+				$_nw->category_id = $order->category_id;  
+				$_nw->quantity = $order->actual_quantity;  
+				$_nw->is_present = true; 
+				$_nw->save();
+				 
+			 
+			return true; 
+		} catch ( Exception $e ) {
+			return false; 
+		}
+	}
+	
+	public static function getInstance()
+	{
+		return Doctrine_Core::getTable('Sparepart');
+	}
 }

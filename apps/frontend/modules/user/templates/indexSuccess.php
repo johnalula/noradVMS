@@ -94,8 +94,8 @@
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
 
-<!-- list container -->
- 
+<!-- list container --> 
+
 <div class="ui-container">
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont" >

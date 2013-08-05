@@ -11,6 +11,7 @@
 				<input type="hidden" style="width:120px;" id="category_id" name="category_id" >		
 				<input type="hidden" style="width:120px;" id="tokenID" name="tokenID" value="<?php echo $sf_request->getParameter('token_id') ?>">		
 				<input type="hidden" style="width:120px;" id="taskID" name="taskID" value="<?php echo $sf_request->getParameter('task_id') ?>">		
+				<input type="hidden" style="width:120px;" id="classID" name="classID" >		
 				<span class="issue_for" style="">
 					<a href='#' class='candidateModal' rel='#candidatePrompts'>
 						<button class="ui-button"> ... </button>

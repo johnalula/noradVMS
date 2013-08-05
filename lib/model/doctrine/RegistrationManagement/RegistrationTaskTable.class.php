@@ -13,7 +13,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
      * @return object RegistrationTaskTable
      */
      
-	public static function processCreate (  $date, $description, $ref ) 
+	public static function processCreate (  $date, $description, $ref, $_pid ) 
 	{      
         $nw;
         try{
@@ -23,6 +23,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 				$nw->token_id = md5($token)  ; 
 				$nw->description = $description  ;  
 				$nw->status_id = TaskCore::$ACTIVE; 
+				$nw->reference_no = $ref; 
 				$nw->start_date = $date ;   
 				$nw->save(); 
 				
@@ -38,7 +39,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 				$prt = new TaskParticipant ();
 				$prt->token_id = $nw->token_id;
 				$prt->task_id = $nw->id;
-				$prt->participant_id = 1;
+				$prt->participant_id = $_pid;
 				$prt->participant_role = ParticipantCore::$DATA_INCODER;
 				$prt->description = trim($description);
 				$prt->save();
@@ -80,7 +81,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 	{
 		$q= Doctrine_Query::create()
 			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
-			->from("Task tsk") 
+			->from("RegistrationTask tsk") 
 			//->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
 			//->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
 			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
@@ -170,8 +171,6 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 			$prt->participant_role = $participant_role;
 			$prt->description = trim($description);
 			$prt->save();
-			
-			 
 			return true;
 		}
 		catch ( Exception $e) 

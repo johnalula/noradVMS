@@ -17,7 +17,7 @@ class DriverTable extends PluginDriverTable
 	  return Doctrine_Core::getTable('Driver');
 	}
 	
-	 public static function addDriver ( $employee_id, $emp_token_id, $license_type, $work_experience, $description )
+	 public static function processCreate ( $employee_id, $emp_token_id, $license_type, $work_experience, $description )
 	{
 		//$token = trim($name).trim($project_no).rand('11111', '99999');
 		$_nw = new Driver (); //
@@ -35,7 +35,7 @@ class DriverTable extends PluginDriverTable
 		return true; 
 	}
 
-	public static function updateDriver($_id, $employee_id, $token_id, $license_type, $work_experience, $description )
+	public static function processUpdate($_id, $employee_id, $token_id, $license_type, $work_experience, $description )
 	{
 		$q = Doctrine_Query::create( )
 			->update('Center prt')
@@ -47,5 +47,42 @@ class DriverTable extends PluginDriverTable
 			->execute();	
 			
 		return ( $q > 0 );   
+	}
+	
+	public static function processSelection( $offset, $limit, $keyword, $type_id, $is_assigned )
+	{
+		$q= Doctrine_Query::create()
+			->select("dr.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName ")
+			->from("Driver dr") 
+			->innerJoin("dr.Participant prt")
+			//->innerJoin("vh.TaskOrder tsko")
+			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
+			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
+			->offset($offset)
+			->limit($limit);
+			if(!is_null($is_assigned))
+			$q = $q->addWhere('dr.is_assigned = ?', $is_assigned);
+			
+			$q = $q->execute( ); 
+			
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processObject( $_id )
+	{
+		$q= Doctrine_Query::create()
+			->select("dr.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.is_assigned as isAssigned ")
+			->from("Driver dr") 
+			->innerJoin("dr.Participant prt")
+			//->innerJoin("vh.TaskOrder tsko")
+			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
+			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id")  
+			->where('dr.id = ? ', $_id)
+			->fetchOne ( );
+			
+		return ( ! $q ? null : $q );    
 	}
 }

@@ -13,7 +13,7 @@ abstract class BaseParticipantFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'token_id'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'token_id'              => new sfWidgetFormFilterInput(),
       'name'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'alias'                 => new sfWidgetFormFilterInput(),
       'participant_type_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ParticipantType'), 'add_empty' => true)),
@@ -48,7 +48,7 @@ abstract class BaseParticipantFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'token_id'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'token_id'              => new sfValidatorPass(array('required' => false)),
       'name'                  => new sfValidatorPass(array('required' => false)),
       'alias'                 => new sfValidatorPass(array('required' => false)),
       'participant_type_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('ParticipantType'), 'column' => 'id')),
@@ -100,7 +100,7 @@ abstract class BaseParticipantFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                    => 'Number',
-      'token_id'              => 'Number',
+      'token_id'              => 'Text',
       'name'                  => 'Text',
       'alias'                 => 'Text',
       'participant_type_id'   => 'ForeignKey',

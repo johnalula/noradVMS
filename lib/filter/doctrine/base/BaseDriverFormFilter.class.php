@@ -17,6 +17,7 @@ abstract class BaseDriverFormFilter extends BaseFormFilterDoctrine
       'employee_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
       'license_type'    => new sfWidgetFormFilterInput(),
       'work_experience' => new sfWidgetFormFilterInput(),
+      'is_assigned'     => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'desctiption'     => new sfWidgetFormFilterInput(),
     ));
 
@@ -25,6 +26,7 @@ abstract class BaseDriverFormFilter extends BaseFormFilterDoctrine
       'employee_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Participant'), 'column' => 'id')),
       'license_type'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'work_experience' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_assigned'     => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'desctiption'     => new sfValidatorPass(array('required' => false)),
     ));
 
@@ -50,6 +52,7 @@ abstract class BaseDriverFormFilter extends BaseFormFilterDoctrine
       'employee_id'     => 'ForeignKey',
       'license_type'    => 'Number',
       'work_experience' => 'Number',
+      'is_assigned'     => 'Boolean',
       'desctiption'     => 'Text',
     );
   }
