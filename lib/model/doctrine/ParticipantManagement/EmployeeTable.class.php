@@ -185,7 +185,27 @@ class EmployeeTable extends PluginEmployeeTable
 	public static function fetchTypeList()
 	{}
 
+	public static function processSelection( $offset, $limit, $keyword, $type_id, $is_assigned )
+	{
+		$q= Doctrine_Query::create()
+			->select("prt.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName ")
+			->from("Participant prt") 
+			//->innerJoin("dr.Participant prt")
+			//->innerJoin("vh.TaskOrder tsko")
+			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
+			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
+			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
+			->offset($offset)
+			->limit($limit);
+			if(!is_null($is_assigned))
+			$q = $q->addWhere('dr.is_assigned = ?', $is_assigned);
+			
+			$q = $q->execute( ); 
+			
 
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
 	public static function getInstance()
 	{
 	return Doctrine_Core::getTable('Employee');

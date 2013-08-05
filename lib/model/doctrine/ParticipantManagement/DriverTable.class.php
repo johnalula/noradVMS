@@ -17,20 +17,23 @@ class DriverTable extends PluginDriverTable
 	  return Doctrine_Core::getTable('Driver');
 	}
 	
-	 public static function processCreate ( $employee_id, $emp_token_id, $license_type, $work_experience, $description )
+	 public static function processCreate ( $employee_id, $license_type, $work_experience, $description )
 	{
-		//$token = trim($name).trim($project_no).rand('11111', '99999');
+		//if(!$employee_id)
+		// return false;
+		 
+		$token = trim($work_experience).trim($license_type).rand('11111', '99999');
 		$_nw = new Driver (); //
-		$_nw->token_id = $emp_token_id; 
+		$_nw->token_id = md5($token); 
 		$_nw->employee_id = $employee_id;
 		$_nw->license_type = trim($license_type); 
 		$_nw->work_experience = trim($work_experience);  
-		$_nw->description = trim($description); 
+		$_nw->desctiption = trim($description); 
 		$_nw->save(); 
 		
-		$_emp = EmployeeTable::getEmployeeObject($employee_id, $emp_token_id );
-		$employment_type = EmployeeTable::$DRIVER;
-		$_emp->changeEmploymentType($employment_type);
+		//$_emp = EmployeeTable::getEmployeeObject($employee_id, $emp_token_id );
+		//$employment_type = EmployeeTable::$DRIVER;
+		//$_emp->changeEmploymentType($employment_type);
 			 
 		return true; 
 	}
@@ -52,7 +55,7 @@ class DriverTable extends PluginDriverTable
 	public static function processSelection( $offset, $limit, $keyword, $type_id, $is_assigned )
 	{
 		$q= Doctrine_Query::create()
-			->select("dr.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName ")
+			->select("dr.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description")
 			->from("Driver dr") 
 			->innerJoin("dr.Participant prt")
 			//->innerJoin("vh.TaskOrder tsko")
