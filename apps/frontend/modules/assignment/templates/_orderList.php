@@ -5,11 +5,8 @@
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
-			<th class=""><?php echo  ('Name') ?></th> 
-			<th class=""><?php echo  ('Quantity') ?></th> 
-			<th class=""><?php echo  ('Unit') ?></th> 
-			<th class=""><?php echo  ('Currency') ?></th> 
-			<th class=""><?php echo  ('Class') ?></th> 
+			<th class=""><?php echo  ('Driver Name') ?></th> 
+			<th class=""><?php echo  ('Vehicle') ?></th>  
 			<th class=""><?php echo  ('Description') ?></th>  
 			<th class="" style="padding:2px 3px;text-align:center;"><?php echo  (' Actions') ?></th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
@@ -20,30 +17,21 @@
 
 		<?php foreach( $task_orders as $order ): ?>
 
-		<tr class="<?php echo fmod($row, 2) ? 'even' : 'odd' ?>  ui-input-body-header"> 
+		<tr class="<?php echo fmod($row, 2) ? 'even' : 'odd' ?> "> 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-right:1px solid #bbb;border-left:1px solid #bbb;border-bottom:1px solid #bbb;"> 
 				 
 			</td>
 			<td  class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $order->id;?>]" class="checkcategory"  />
 			</td>
-			<td class="ui-input-body-box" style="width:140px;min-width:140px;"> 
-				<input type="text" style="width:140px;min-width:140px;" id="" value="<?php echo $order->id ?>">
+			<td class="ui-input-body-box" style="width:240px;min-width:240px;"> 
+				<?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>
 			</td>
-			<td class="ui-input-body-box" style="width:70px;min-width:70px;"> 
-				<input type="text" style="width:70px;min-width:70px;" id="" value="<?php echo $order->id ?>">
-			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" id="" value="<?php echo $order->id ?>">
-			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" id="" value="<?php echo $order->id ?>">
-			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" disabled id="" value="<?php echo $order->id ?>"> 
-			</td>
+			<td class="ui-input-body-box" style="width:150px;min-width:150px;"> 
+				<?php echo $order->plateNo .' ('.$order->plateCode .')'  ?> 
+			</td> 
 			<td class="ui-input-body-box" style="width:97%;min-width:90px;"> 
-				<input type="text" style="width:97%;min-width:90px;" id="" value="<?php echo $order->id  ?> ">
+				<?php echo $order->description  ?> 
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">

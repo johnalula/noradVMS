@@ -15,7 +15,7 @@
 		</select>
 	</li> 
 	<li>
-		<select style="width:100px;margin-left:2px;"    id="category_class_id" name="category_class_id">
+		<select style="width:100px;margin-left:2px;"    id="group_type_id" name="group_type_id">
 			<option>&nbsp;</option>
 			<?php foreach($classs as $key => $clss): ?>								 
 				<option value="<?php echo  $clss->id ?>" >

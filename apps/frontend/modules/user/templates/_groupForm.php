@@ -1,15 +1,4 @@
-
- <!--participant_id: { type: integer }
-    username: { type: string(255), notnull: true }
-    password: { type: string(255), notnull: true }
-    group_id: { type: integer } 
-    is_active: { type: boolean, default: 0 }
-    is_blocked: { type: boolean, default: 0 }
-    is_super_admin: { type: boolean, default: 0 }
-    status: { type: boolean, default: 0 }
-    permission_mode: { type: integer }
-    ui_theme_color_setting: { type: integer }
-    ui_language_setting: { type: integer }-->
+ 
     
 <table class="autoWidth" id="detailTable" >
 	<tbody style="width:30%;"> 

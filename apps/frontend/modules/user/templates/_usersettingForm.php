@@ -12,8 +12,7 @@
 				<input type="checkbox" style="" id="username" name="" >
 					
 				<span style="margin-bottom:3px;margin-left:35px;padding:2px 8px;"><?php echo __('Block') ?>:</span>
-				<input style="vertical-align:bottom;" type="checkbox" style="" id="username" name="" >
-				</span>			
+				<input style="vertical-align:bottom;" type="checkbox"  id="username" name="" >
 				
 			</td>		
 		</tr>	 

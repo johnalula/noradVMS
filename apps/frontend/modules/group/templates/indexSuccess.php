@@ -3,6 +3,7 @@
 		<ul>
 			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
 			<li><a href="<?php echo url_for('general_setting/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">General Setting</a></li>
+			<li><a href="#" id="" onclick="Javascript:createGroup();"><img src="<?php echo image_path('icons/save_small') ?>">Save</a></li>
 			<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 		</ul>
 	</div>
@@ -10,12 +11,21 @@
 
 <?php //$flags = FuelTypeTable::processCreate ( 'eadas', 'asdfasdf' ); 
 
+	$group_id = 2;
+	$data = array(7,8);
+	$length = 2;
+	$per = PermissionTable::fetchDuplicated(62, 2);;
+	//$obj = PermissionTable::processObject($per->id, $per->token_id);
+	//$obj->create_action = true;
+	//$obj->save();
+	echo $per->id;
+				
 	//echo $flags ? 'true' : 'flase' ;
 ?>
 <div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 	<div class="ui-error-box btn-danger">
 		<div class="ui-error-list">
-			<?php echo 'Category already existed!' ?>
+			<?php echo 'Group already existed!' ?>
 			<span class="ui-error-close">X</span>
 		</div>			
 	</div> 
@@ -24,7 +34,7 @@
 <div id="ui-display-success-cont" class="ui-success-data displayNone"> 
 	<div class="ui-success-box btn-danger">
 		<div class="ui-success-list">
-			<?php echo 'Category successfuly saved!' ?>
+			<?php echo 'Group successfuly saved!' ?>
 			<span class="ui-success-close">X</span>
 		</div>			
 	</div> 
@@ -33,7 +43,7 @@
 <div id="ui-display-delete-cont" class="ui-success-data displayNone"> 
 	<div class="ui-success-box btn-danger">
 		<div class="ui-success-list">
-			<?php echo 'Category successfuly deleted!' ?>
+			<?php echo 'Group successfuly deleted!' ?>
 			<span class="ui-success-close">X</span>
 		</div>			
 	</div> 
@@ -246,77 +256,132 @@
 	function deleteSuccess()
 	{
 		$('#ui-display-delete-cont').removeClass('displayNone');
-		location.reload().delay(3000);
+		//location.reload().delay(3000);
 	}
-
 	
-	
-	function createCategory()
+	function arrayFunction(arrList, activity)
 	{
-		var name = document.getElementById('name').value
-		var group_id = document.getElementById('category_group').value
-		var class_id = document.getElementById('category_class').value
-		var desc = document.getElementById('description').value
+		var j = 1;
+		var m = 0;
+		var arrData = [];
+		
+		for( i = 0; i < arrList; i++)
+			{
+				var check = $('#module-'+activity+'-'+j).is(':checked')
+				if(check == true) {					
+					arrData[m] = $('#module-'+activity+'-'+j).attr('rel');
+					m++;
+				}
+				j++;
+			}
+		return arrData;
+	}
+	
+	function createGroup()
+	{
+		var name = document.getElementById('groupname').value
+		var is_active = document.getElementById('isActive').checked ? 1:0;
+		var is_blocked = document.getElementById('isBlocked').checked ? 1:0;
+		var group_type = document.getElementById('group_type_id').value;
+		var language_id = document.getElementById('language_id').value;
+		var theme_id = document.getElementById('theme_id').value;
+		var desc = document.getElementById('description').value;
 		
 		if( name == '')
 		{
-			$('#name_validation').removeClass('displayNone');
-			$('#name').addClass('validation_error_border');
+			$('#groupname_validation').removeClass('displayNone');
+			$('#groupname').addClass('validation_error_border');
 			
 			return false;
 		}
-		 			
+		
+			var readLen = $('.check_all_read_permission').length;
+			var createLen = $('.check_all_create_permission').length;
+			var updateLen = $('.check_all_update_permission').length;
+			var deleteLen = $('.check_all_delete_permission').length;
+			
+			
+			var readArr = arrayFunction(readLen, 'read');
+			var createArr = arrayFunction(createLen, 'create');
+			var updateArr = arrayFunction(updateLen, 'update');
+			var deleteArr = arrayFunction(deleteLen, 'delete');
+			 
+			var read_len = readArr.length;
+			var create_len = createArr.length;
+			var update_len = updateArr.length;
+			var delete_len = deleteArr.length;
+			
 			$.ajax({
 				type: "GET",
-				data: 'name='+name+'&group_id='+group_id+'&class_id='+class_id+'&description='+desc,
-				url: '<?php echo url_for('category/createCategory')?>', 
-				success: function(data) { 
+				data: 'name='+name+'&is_active='+is_active+'&is_blocked='+is_blocked+'&group_type_id='+group_type+'&language_id='+language_id+'&theme_id='+theme_id+'&description='+desc+'&read_arr_data='+readArr+'&read_arr_length='+read_len+'&create_arr_data='+createArr+'&create_arr_length='+create_len+'&update_arr_data='+updateArr+'&update_arr_length='+update_len+'&delete_arr_data='+deleteArr+'&delete_arr_length='+delete_len,
+				url: '<?php echo url_for('group/createGroup')?>', 
+				success: function() { 
 					showSuccess(); 
 				},
-				error: function(msg) {
+				error: function() {
 					showError();
 				},
 			
 				async: false
 				});
 
-		
+			$('#myData').load('group/selection');
+
 		return false;
 		
 	}
 	
-	function deleteCategory(catID)
+	function deleteGroup(groupID, tokenID)
 	{
+		var limit = document.getElementById('pagiantion_pagesize').value;
+		var offset = document.getElementById('pagiantion_pageOffset').value;
+		var keyword = document.getElementById('keyword').value;
+		var ids = groupID.split("$");
+		
+		var group_id = ids[0];
+		var token_id = ids[1];
+		
 		$.ajax({
-			data: 'category_id='+catID,
-			url: '<?php echo url_for('category/deleteCategory')?>', 
-				success: function(data) { 
+			data: 'group_id='+group_id+'&token_id='+token_id,
+			url: '<?php echo url_for('group/deleteGroup')?>', 
+				success: function() { 
 					deleteSuccess(); 
 				},
-				error: function(msg) {
+				error: function() {
 					showError();
 				},
 			
 				async: false
 				});
 	
+			var result = $.ajax({
+				type: "GET",
+				data: 'keyword='+keyword+'&limit='+limit+'&offset='+offset,
+				url: '<?php echo url_for('group/selection')?>',
+				success: function(html) { $('#myData').html(html) }, 
+				async: false
+				}).responseText;
+				
+				//var data = 'group_id='+group_id+'&token_id='+token_id;
+				//alert(data);
+								
 		return false;
 	}
+	
 	 
 //***************
 
-	function categoryPagination(offset)
+	function groupPagination(offset)
 	{
 		var limit = document.getElementById('pagiantion_pagesize').value
 		var keyword = document.getElementById('keyword').value
-		var group_id = document.getElementById('category_group_id').value
-		var class_id = document.getElementById('category_class_id').value
+		var group_type_id = document.getElementById('group_type_id').value
 	
 		var result = $.ajax({
 				type: "GET",
-				data: 'keyword='+keyword+'&group_id='+group_id+'&class_id='+class_id+'&limit='+limit+'&offset='+offset,
-				url: '<?php echo url_for('category/pagination')?>',
-				success: function(html) { $('#categoryList').html(html) }, 
+				data: 'keyword='+keyword+'&group_type_id='+group_type_id+'&limit='+limit+'&offset='+offset,
+				url: '<?php echo url_for('group/pagination')?>',
+				success: function(html) { $('#myData').html(html) }, 
 				async: false
 				}).responseText;
 		
@@ -329,7 +394,7 @@
 		{
 			var offset = document.getElementById('pagiantion_pageOffset').value;
 			if(offset == '')	offset = 0;
-			categoryPagination(offset);
+			groupPagination(offset);
 			
 			return false;
 				
@@ -345,7 +410,7 @@
 			if(offset < 0)	offset = 0;				
 			document.getElementById('pagiantion_pageOffset').value = offset;
 			
-			categoryPagination(offset);
+			groupPagination(offset);
 			
 			return false;
 				
@@ -364,7 +429,7 @@
 			if(offset >= totalData)		offset = lastOffset;
 			
 			document.getElementById('pagiantion_pageOffset').value = offset;	
-			categoryPagination(offset);
+			groupPagination(offset);
 			 
 			return false;				
 		});
@@ -376,7 +441,7 @@
 			offset -= parseInt(limit);			
 			if(offset < 0) offset = 0;		
 			document.getElementById('pagiantion_pageOffset').value = offset;			
-			categoryPagination(offset);
+			groupPagination(offset);
 			
 			return false;				
 		});
@@ -384,31 +449,25 @@
 		$('#pagiantion_firstPage').click(function()
 		{
 			offset = 0;
-			categoryPagination(offset);
+			groupPagination(offset);
 			
 			return false;
 		});
 		
-		$('#category_group_id').change(function()
+		$('#group_type_id').change(function()
 		{
 			var offset = document.getElementById('pagiantion_pageOffset').value;
-			categoryPagination(offset);
+			groupPagination(offset);
 				
 			return false;
 				
 		});
 		
-		$('#category_class_id').change(function()
-		{
-			var offset = document.getElementById('pagiantion_pageOffset').value;
-			categoryPagination(offset);				
-			return false;
-		});
 		
 		$('#keyword').keyup(function(key)
 		{
 			var offset = document.getElementById('pagiantion_pageOffset').value;
-			categoryPagination(offset);	
+			groupPagination(offset);	
 
 			return false;
 		});
@@ -425,7 +484,7 @@
 		});
 		
 		$('.ui-error-close').click(function(){			
-			$('#ui-display-error-cont').addClass('displayNone');			
+			$('#ui-display-success-cont').addClass('displayNone');			
 			return false;
 		});
 		 

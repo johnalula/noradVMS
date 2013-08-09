@@ -16,36 +16,36 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
      
 	public static function processCreate (  $date, $description, $ref, $_pid ) 
 	{      
-        $nw;
+         
         try{
 				
 				$token = trim($date).trim($ref).rand('11111', '99999');
-				$nw= new AssignmentTask(); 
-				$nw->token_id = md5($token)  ; 
-				$nw->description = $description  ;  
-				$nw->status_id = TaskCore::$ACTIVE; 
-				$nw->reference_no = $ref; 
-				$nw->start_date = $date ;   
-				$nw->save(); 
+				$_nw = new AssignmentTask(); 
+				$_nw->token_id = md5($token)  ; 
+				$_nw->description = $description  ;  
+				$_nw->status_id = TaskCore::$ACTIVE; 
+				$_nw->reference_no = $ref; 
+				$_nw->start_date = $date ;   
+				$_nw->save(); 
 				
 				//default task attachment			
 				$att = new TaskAttachment ();
-				$att->token_id = $nw->token_id;
-				$att->task_id = $nw->id;
+				$att->token_id = $_nw->token_id;
+				$att->task_id = $_nw->id;
 				$att->certificate_type = AttachmentCore::$MODEL_22;
 				$att->reference_number = $ref;
 				$att->save();
 				
 				//default task participant
 				$prt = new TaskParticipant ();
-				$prt->token_id = $nw->token_id;
-				$prt->task_id = $nw->id;
+				$prt->token_id = $_nw->token_id;
+				$prt->task_id = $n_nww->id;
 				$prt->participant_id = $_pid;
 				$prt->participant_role = ParticipantCore::$DATA_INCODER;
 				$prt->description = trim($description);
 				$prt->save();
 				
-            return $nw; 
+            return true; 
         } catch ( Exception $e) {
             return false; 
         }

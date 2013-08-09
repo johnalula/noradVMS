@@ -14,11 +14,13 @@ abstract class BaseVehicleTypeFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'        => new sfWidgetFormFilterInput(),
+      'alias'       => new sfWidgetFormFilterInput(),
       'description' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'name'        => new sfValidatorPass(array('required' => false)),
+      'alias'       => new sfValidatorPass(array('required' => false)),
       'description' => new sfValidatorPass(array('required' => false)),
     ));
 
@@ -41,6 +43,7 @@ abstract class BaseVehicleTypeFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'          => 'Number',
       'name'        => 'Text',
+      'alias'       => 'Text',
       'description' => 'Text',
     );
   }

@@ -32,5 +32,25 @@ class userActions extends sfActions
 		$limit = 10;
 		$this->users = UserTable::processSelection($username, $group_id, $status, $keyword, $offset, $limit) ;
 	}
+	
+	public function executeCreatePermission(sfWebRequest $request)
+	{
+		$pers = $request->getParameter('arr_list');
+		$len = $request->getParameter('arr_length');
+		
+		$arr = explode(',', $pers);
+		$user_id = $this->getUser()->getAttribute('uid');
+		for($i = 0; $i < $len; $i++)
+		{
+			$_per = new Permission();
+			$_per->user_id = $user_id;
+			$_per->module_id = $arr[$i];
+			$_per->view_action = true;
+			$_per->save();
+		
+		}
+		return true;
+		 
+	}
 
 }

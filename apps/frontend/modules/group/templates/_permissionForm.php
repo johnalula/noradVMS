@@ -41,16 +41,16 @@
 				<?php echo $module ?>
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-read[<?php echo $module->id ?>" id="module-read-<?php echo $key ?>" class="check_all_read_permision">
+				<input type="checkbox" name="module-read[<?php echo $key ?>]" id="module-read-<?php echo $key ?>" rel="<?php echo $key ?>" class="check_all_read_permission">
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-create[<?php echo $module->id ?>" id="module-create-<?php echo $key ?>" class="check_all_create_permision">
+				<input type="checkbox" name="module-create[<?php echo $key ?>]" id="module-create-<?php echo $key ?>" rel="<?php echo $key ?>" class="check_all_create_permission">
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-update[<?php echo $module->id ?>" id="module-update-<?php echo $key ?>" class="check_all_update_permision">
+				<input type="checkbox" name="module-update[<?php echo $key ?>]" id="module-update-<?php echo $key ?>" rel="<?php echo $key ?>" class="check_all_update_permission">
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-delete[<?php echo $module->id ?>" id="module-delete-<?php echo $key ?>" class="check_all_delete_permision">
+				<input type="checkbox" name="module-delete[<?php echo $key ?>]" id="module-delete-<?php echo $key ?>" rel="<?php echo $key ?>" class="check_all_delete_permission">
 			</td>  
 			 
 			<td class="ui-table-list-border" style="width:8px;text-align:center;padding:4px 8px;background:#dfe2e7;border-left:1px solid #bbb;border-right:1px solid #bbb;border-bottom:1px solid #bbb;"> 
@@ -85,14 +85,14 @@
 
     // add multiple select / deselect functionality
     $("#check_all_read").click(function () {
-          $('.check_all_read_permision').attr('checked', this.checked);
+          $('.check_all_read_permission').attr('checked', this.checked);
     });
  
     // if all checkbox are selected, check the selectall checkbox
     // and viceversa
-    $(".check_all_read_permision").click(function(){
+    $(".check_all_read_permission").click(function(){
  
-        if($(".check_all_read_permision").length == $(".check_all_read_permision:checked").length) {
+        if($(".check_all_read_permission").length == $(".check_all_read_permission:checked").length) {
             $("#check_all_read").attr("checked", "checked");
         } else {
             $("#check_all_read").removeAttr("checked");
@@ -101,14 +101,14 @@
     });
 
     $("#check_all_create").click(function () {
-          $('.check_all_create_permision').attr('checked', this.checked);
+          $('.check_all_create_permission').attr('checked', this.checked);
     });
  
     // if all checkbox are selected, check the selectall checkbox
     // and viceversa
-    $(".check_all_create_permision").click(function(){
+    $(".check_all_create_permission").click(function(){
  
-        if($(".check_all_create_permision").length == $(".check_all_create_permision:checked").length) {
+        if($(".check_all_create_permission").length == $(".check_all_create_permission:checked").length) {
             $("#check_all_create").attr("checked", "checked");
         } else {
             $("#check_all_create").removeAttr("checked");
@@ -116,14 +116,14 @@
     });
 
     $("#check_all_update").click(function () {
-          $('.check_all_update_permision').attr('checked', this.checked);
+          $('.check_all_update_permission').attr('checked', this.checked);
     });
  
     // if all checkbox are selected, check the selectall checkbox
     // and viceversa
-    $(".check_all_update_permision").click(function(){
+    $(".check_all_update_permission").click(function(){
  
-        if($(".check_all_update_permision").length == $(".check_all_update_permision:checked").length) {
+        if($(".check_all_update_permission").length == $(".check_all_update_permission:checked").length) {
             $("#check_all_update").attr("checked", "checked");
         } else {
             $("#check_all_update").removeAttr("checked");
@@ -131,14 +131,14 @@
     });
 
     $("#check_all_delete").click(function () {
-          $('.check_all_delete_permision').attr('checked', this.checked);
+          $('.check_all_delete_permission').attr('checked', this.checked);
     });
  
     // if all checkbox are selected, check the selectall checkbox
     // and viceversa
-    $(".check_all_update_permision").click(function(){
+    $(".check_all_update_permission").click(function(){
  
-        if($(".check_all_delete_permision").length == $(".check_all_delete_permision:checked").length) {
+        if($(".check_all_delete_permission").length == $(".check_all_delete_permission:checked").length) {
             $("#check_all_delete").attr("checked", "checked");
         } else {
             $("#check_all_delete").removeAttr("checked");

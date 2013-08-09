@@ -3,7 +3,7 @@
 		<ul>
 			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
 			<li><a href="<?php echo url_for('general_setting/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">General Setting</a></li>
-			<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
+			<li><a href="" ><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 		</ul>
 	</div>
 </div>
@@ -43,7 +43,7 @@
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont">
 			<div class="ui-list-header">				
-				<h1><img src="<?php echo image_path('new_icons/group') ?>"><?php echo __('Group')  ?></h1>		
+				<h1><img class="clickRefresh" src="<?php echo image_path('new_icons/group') ?>"><?php echo __('Group')  ?></h1>		
 				<div class="ui-form-content-minimize opened" id="ui-form-collaps-list-box" style="margin-top:0px;float:right;">	
 					<span id="ui-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
 					<span id="ui-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
@@ -108,7 +108,7 @@
 				<div class="clearFix"></div>
 			</div><!-- end of ui-list-header -->
 			
-			<div class="ui-main-content-list ui-grid-content-container-box displayNone"> 
+			<div class="ui-main-content-list ui-grid-content-container-box"> 
 				<div class="ui-main-content-cont" >
 					<div class="ui-content-list-box">
 						 
@@ -303,14 +303,56 @@
 		return false;
 	}
 	 
+	 $(document).ready(function(){
+		$('.clickRefresh').click(function(){
+			
+			var arrRead = [];
+			var arrCreate = [];
+			var arrDelete = [];
+			var arrUpdate = [];
+			var len = $('.check_all_read_permision').length;
+			var j = 1;
+			var m = 0;
+
+			for( i = 0; i < len; i++)
+			{
+				var check = $('#module-read-'+j).is(':checked')
+				if(check == true) {					
+					arrRead[m] = $('#module-read-'+j).attr('rel');
+					m++;
+				}
+				j++;
+			}
+			 
+			var arr_len = arrRead.length;
+			
+			$.ajax({
+			data: 'arr_list='+arr+'&arr_length='+arr_len,
+			url: '<?php echo url_for('user/createPermission')?>', 
+				success: function() { 
+					deleteSuccess(); 
+				},
+				error: function() {
+					showError();
+				},
+			
+				async: false
+				});
+				
+				location.reload();
+			
+			return false;
+		});
+		 
+	});
 //***************
 
 	function categoryPagination(offset)
 	{
-		var limit = document.getElementById('pagiantion_pagesize').value
-		var keyword = document.getElementById('keyword').value
-		var group_id = document.getElementById('category_group_id').value
-		var class_id = document.getElementById('category_class_id').value
+		var limit = document.getElementById('pagiantion_pagesize').value;
+		var keyword = document.getElementById('keyword').value;
+		var group_id = document.getElementById('category_group_id').value;
+		var class_id = document.getElementById('category_class_id').value;
 	
 		var result = $.ajax({
 				type: "GET",

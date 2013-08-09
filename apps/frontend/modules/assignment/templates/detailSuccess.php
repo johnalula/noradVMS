@@ -38,13 +38,12 @@
 	</div> 
 </div>
 
-<?php echo count($vehicles) ?>
 
 <div class="ui-container">
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont" >
 			<div class="ui-list-header">				
-				<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Task Orders')  ?></h1>				
+				<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Assigned Vehicles')  ?></h1>				
 				<div class="clearFix"></div>
 			</div><!-- end of ui-list-header -->
 			
@@ -144,10 +143,10 @@
 	<div class="ui-navigation-box">
 		<div class="ui-navigation-list">
 			<ul class="ui-left-button">
-				<li><a href="<?php echo url_for('registration/order?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
+				<li><a href="<?php echo url_for('assignment/order?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
 			</ul>
 			<ul class="ui-right-button">
-				<li><a href="<?php echo url_for('registration/detail?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
+				<li><a href="<?php echo url_for('assignment/detail?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
 			</ul>
 			<div class="clearFix"></div>
 		</div>
@@ -167,7 +166,6 @@
 		</div>
 		<div class="partialFilterBox">
 			<div class="filterBox" style="text-align:left;margin-right:20px;">
-				 <?php include_partial('candidateFilter', array()); ?>	
 			 </div>
 			<table style="border:0px solid #f00;width:140px;float:right;margin-top:-40px;">
 				<tr>
@@ -181,7 +179,6 @@
 			</table>
 		</div>
 		 <div class="partialBox">
-			 <?php include_partial('candidateList', array('candidates' => $candidates)); ?>	
 			 <div class="clearFix"></div>
 		</div>
 		<div class="partialPagination">

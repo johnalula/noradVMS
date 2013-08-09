@@ -1,5 +1,5 @@
 
-<div id="categoryList">
+<div id="myData">
 <table class="" id="ui-data-list" >
 	<thead>
 		<tr class="">
@@ -62,7 +62,8 @@
 							</a>
 						</li> 
 						<li> 
-							<a href="#" class="ui-action-button" onclick="Javascript:deleteCategory(<?php echo $group->id ?>);" rel="<?php echo $group->id ?>">	
+						 
+							<a href="#" class="ui-action-button" onclick="Javascript:deleteGroup('<?php echo $group->id .'$'. $group->token_id ?>');" rel="<?php echo $group->id ?>">	
 								 
 									<img src="<?php echo image_path('icons/delete')  ?>" >
 								 

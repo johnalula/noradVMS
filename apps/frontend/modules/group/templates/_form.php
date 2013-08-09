@@ -13,16 +13,16 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Name') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
-				<input type="text" style="width:190px;" id="username" name="" >			
-				<br><span id="username_validation" class="error_validation displayNone"><?php echo __('Username is required!') ?></span>		
+				<input type="text" style="width:190px;" id="groupname" name="" >			
+				<br><span id="groupname_validation" class="error_validation displayNone"><?php echo __('Group name is required!') ?></span>		
 			</td>		
 		</tr>	 
 		<tr>
 			<td class="rightSide"><?php echo __('Active') ?>:<span class="ui-mandatory"></span></td>
 			<td>
-				<input type="checkbox" style="" id="username" name="" >
+				<input type="checkbox" style="" id="isActive" name="" >
 					
-				<span style="margin-bottom:3px;margin-left:35px;padding:2px 8px;"><?php echo __('Block') ?>:</span><input style="vertical-align:bottom;" type="checkbox" style="" id="username" name="" >
+				<span style="margin-bottom:3px;margin-left:35px;padding:2px 8px;"><?php echo __('Block') ?>:</span><input style="vertical-align:bottom;" type="checkbox" style="" id="isBlocked" name="" >
 				</span>			
 				
 			</td>		

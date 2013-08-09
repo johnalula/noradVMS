@@ -42,11 +42,11 @@ Vehicle:
     vehicle_type_id: { type: integer } 
     vehicle_make: { type: string(50) }
     litter_per_km: { type: float }
-    seatng_capacity: { type: integer } 
+    seating_capacity: { type: integer } 
     engine_number: { type: string(100) }
     chesis_number: { type: string(100) }
     vehicle_model: { type: string(100) }
-    vehicl_color: { type: string(50) }
+    vehicle_color: { type: string(50) }
     vehicle_weight: { type: float }
     service_type_id: { type: integer }
     fuel_type_id: { type: integer }
@@ -93,7 +93,8 @@ VehicleInsuranceSetting:
     insurance_period: { type: integer }
     insurance_expiry_date: { type: string(100) }
     last_insurance_renewal: { type: string(100) }
-    insurance_status: { type: boolean, default: false }
+    insurance_status: { type: boolean, default: 0 }
+    description: { type: clob }
   relations:
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vehicleCheckupSettings }
     
@@ -108,20 +109,21 @@ AssignedVehicle:
     assignment_order_id: { type: integer } 
     effective_date: { type: string(100)}
     assigned_date: { type: datetime }
-    maintenance_status: { type: boolean, default: false }
-    departure_status: { type: boolean, default: false }
-    return_status: { type: boolean, default: false }
-    reasigned_status: { type: boolean, default: false }
+    maintenance_status: { type: boolean, default: 0 }
+    departure_status: { type: boolean, default: 0 }
+    return_status: { type: boolean, default: 0 }
+    reasigned_status: { type: boolean, default: 0 }
   relations: 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: vehicleAssignmentTasks }
     AssignmentOrder: { onDelete: CASCADE, local: assignment_order_id, foreign: id, foreignAlias: assignedVehicles }
-    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: vehicleDrivers } 
+    Driver: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: vehicleDrivers } 
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: assignedVehicle }
     
 VehicleType:
   package: VehicleSetting
   columns:
     name: { type: string(255) }
+    alias: { type: string(50) }
     description: { type: clob }
     
 VehicleChakupPeriod:
@@ -231,31 +233,55 @@ FleetServiceTask:
     keyField: type
     keyValue: 1
   columns: 
-    agreement_participant_id: { type: integer }
-    departure_date: { type: datetime }
-    departure_time: { type: time } 
-    departure_status: { type: integer, default: 1}
-    return_date: { type: datetime }
-    return_time: { type: time }
-    return_status: { type: integer, default: 0 }
-    number_of_passangers: { type: integer }
+    agreement_participant_id: { type: integer }    
     service_agreement_cost: { type: float }
-    service_reason: { type: string(255) }
-    departure_mileage: { type: integer }
-    return_mileage: { type: integer }
-    difference_mileag: { type: integer }
     service_type_id: { type: integer }
-    duel_acquire_id: { type: integer }
     service_reason: { type: string(255) }
     destination: { type: string(255) }
     service_number_of_days: { type: integer }
     service_delay_status: { type: boolean, default: false }
     number_of_delay_days: { type: integer, default: 0 }
+    
+    departure_date: { type: string(100) }
+    departure_time: { type: string(100) } 
+    departure_status: { type: boolean, default: 1}
+    return_date: { type: string(100) }
+    return_time: { type: string(100) }
+    return_status: { type: boolean, default: 0 }
+    number_of_passangers: { type: integer }
+    departure_mileage: { type: float }
+    return_mileage: { type: float }
+    difference_mileag: { type: float }
+    fuel_acquire_id: { type: integer }
     delay_reason: { type: clob }
   relations:
     ServiceType: { onDelete: CASCADE, local: service_type_id, foreign: id, foreignAlias: serviceTypeServices } 
     Participant: { onDelete: CASCADE, local: agreement_participant_id, foreign: id, foreignAlias: acquisitionTaskTargetParticipants }
 
+FleetOrder:
+  package: ServiceManagement
+  columns:
+    vehicle_id: { type: integer }
+    token_id: { type: string(100) }
+    task_id: { type: integer }
+    effective_date: { type: string(100) }
+    departure_date: { type: string(100) }
+    departure_time: { type: string(100) } 
+    departure_status: { type: boolean, default: 1}
+    return_date: { type: string(100) }
+    return_time: { type: string(100) }
+    return_status: { type: boolean, default: 0 }
+    number_of_passangers: { type: integer }
+    departure_mileage: { type: float }
+    return_mileage: { type: float }
+    difference_mileag: { type: float }
+    fuel_acquire_type_id: { type: integer }
+    fuel_amount: { type: float }
+    description: { type: clob }
+  relations:
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: fleetTaskOrderVehicles } 
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: fleetTaskOrderTasks }
+   
 ServiceVehicleCost:
   package: ServiceManagement
   columns:
@@ -376,7 +402,7 @@ AssignmentOrder:
     description: { type: string(255) }
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskOrderTasks }
-    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: assignmentTaskOrderParticipants }
+    Driver: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: assignmentTaskOrderParticipants }
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: assignmentTaskOrderVehicles } 
 
 TransferTask:

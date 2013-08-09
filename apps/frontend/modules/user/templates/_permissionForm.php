@@ -35,22 +35,22 @@
 				 
 			</td>
 			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
-				<input type="checkbox" disabled id="category-check-<?php echo $i;?>" name="category-check[<?php echo $modlule->id;?>]" class="check_all_permision"  />
+				<input type="checkbox" disabled id="category-check-<?php echo $i;?>" name="category-check[<?php echo $key;?>]" class="check_all_permision"  />
 			</td>
 			<td class="" style=""> 
 				<?php echo $module ?>
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-read[<?php echo $module->id ?>" id="module-read-<?php echo $key ?>" class="check_all_read_permision">
+				<input type="checkbox" name="module-read[<?php echo $key ?>]" id="module-read-<?php echo $key ?>" rel="<?php echo $key ?>" class="check_all_read_permision">
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-create[<?php echo $module->id ?>" id="module-create-<?php echo $key ?>" class="check_all_create_permision">
+				<input type="checkbox" name="module-create[<?php echo $key ?>]" id="module-create-<?php echo $key ?>" rel="<?php echo $key ?>" class="check_all_create_permision">
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-update[<?php echo $module->id ?>" id="module-update-<?php echo $key ?>" class="check_all_update_permision">
+				<input type="checkbox" name="module-update[<?php echo $key ?>]" id="module-update-<?php echo $key ?>" class="check_all_update_permision">
 			</td>
 			<td class="" style="width:80px;min-width:80px;text-align:center;"> 
-				<input type="checkbox" name="module-delete[<?php echo $module->id ?>" id="module-delete-<?php echo $key ?>" class="check_all_delete_permision">
+				<input type="checkbox" name="module-delete[<?php echo $key ?>]" id="module-delete-<?php echo $key ?>" class="check_all_delete_permision">
 			</td>  
 			 
 			<td class="ui-table-list-border" style="width:8px;text-align:center;padding:4px 8px;background:#dfe2e7;border-left:1px solid #bbb;border-right:1px solid #bbb;border-bottom:1px solid #bbb;"> 

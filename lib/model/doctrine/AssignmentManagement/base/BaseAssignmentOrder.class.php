@@ -13,8 +13,9 @@
  * @property integer $status
  * @property string $description
  * @property Task $Task
- * @property Participant $Participant
+ * @property Driver $Driver
  * @property Vehicle $Vehicle
+ * @property Participant $Participant
  * @property Doctrine_Collection $assignedVehicles
  * 
  * @package    noradVMS
@@ -39,8 +40,9 @@ abstract class BaseAssignmentOrder extends sfDoctrineRecord
         $this->hasColumn('vehicle_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('participant_id', 'integer', null, array(
+        $this->hasColumn('participant_id', 'integer', 8, array(
              'type' => 'integer',
+             'length' => 8,
              ));
         $this->hasColumn('effective_date', 'string', 100, array(
              'type' => 'string',
@@ -64,7 +66,7 @@ abstract class BaseAssignmentOrder extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Participant', array(
+        $this->hasOne('Driver', array(
              'local' => 'participant_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
@@ -73,6 +75,10 @@ abstract class BaseAssignmentOrder extends sfDoctrineRecord
              'local' => 'vehicle_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Participant', array(
+             'local' => 'participant_id',
+             'foreign' => 'id'));
 
         $this->hasMany('AssignedVehicle as assignedVehicles', array(
              'local' => 'id',

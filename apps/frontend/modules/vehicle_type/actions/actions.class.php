@@ -52,10 +52,25 @@ class vehicle_typeActions extends sfActions
 	  
 	  $name = $request->getParameter('name');
 	  $description = $request->getParameter('description');
+	  //$module = $request->getParameter('module');
+	  
+			$user_id = $this->getUser()->getAttribute('uid');
+			//$this->getUser()->signIn($user);
+			$action = SystemLogFileTable::$CREATE;
+			$date = date('Y/m/d H:i:s', time());
+			$ip =  gethostbyname($_SERVER['HTTP_HOST']) ; 
+			$time = date('h:i:s A');
+			$module  = 'Vehicle_type'; 
+			//$user_id = $user->id;
+	
 	  
 		$flags = VehicleTypeTable::processCreate ( $name, $description );
 		
-		//if($flag)
+		$flag = SystemLogFileTable::processCreate(2, $module, $action, $time, $date, null,  null, null, null, $ip );
+		
+
+			
+			
 		return $flags;
   }
   

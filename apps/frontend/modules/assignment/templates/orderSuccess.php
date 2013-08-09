@@ -7,14 +7,14 @@
 	</div>
 </div>
 
-<?php //$flags = AssignmentOrderTable::processCreate (4, '4f3ff5764dd279ac2316ca9666c3e5a2', 1, 1, 'sdfas fasdf', '12/04/2013'); 
+<?php //$flag = AssignmentTaskTable::processCreateTaskOrder (11, '35568f7bb9d3b5ca25c6168756110c06', 4, 3, 'asdfasd', '12/09/2013' );
  
-		//$driver = DriverTable::processObject (1 );
-			//echo $driver->is_assigned ? 'true':'false';
+		//$driver = AssignmentOrderTable::processObject(6, '35568f7bb9d3b5ca25c6168756110c06' ) ;
+			//echo $driver->participant_id ;
 			//$driver->assignDriver();
-				//echo $driver->is_assigned ? 'true':'false';
-				//$flag = VehicleTable::processVehicleAssignment( $order ); 
-						 
+				//echo $flag ? 'true':'false';
+				//$flag = VehicleTable::processObject (12, '74ab43de7b85a44c2ef67942992fe818' ); 
+						 //echo $flag->firstName ;
  //$obj = AssignmentOrderTable::processObject(2, 'a04486d9046eb8e485c79c8d10cadf5a' ); 
 //echo $obj->vehicle_id.' - ';
 //echo $obj->id;
@@ -200,11 +200,11 @@
 	<div class="ui-navigation-box">
 		<div class="ui-navigation-list">
 			<ul class="ui-left-button">
-				<li><a href="<?php echo url_for('registration/view?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
+				<li><a href="<?php echo url_for('assignment/view?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
 			</ul>
 			</ul>
 			<ul class="ui-right-button">
-				<li><a href="<?php echo url_for('registration/detail?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
+				<li><a href="<?php echo url_for('assignment/detail?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
 			</ul>
 			<div class="clearFix"></div>
 		</div>
@@ -429,9 +429,10 @@
 
 		var input = $("input[name=selectCandidate]:checked", this).val();
 		var listArr = input.split("$");
-
+		var vehicleCode = listArr[2]+'( '+listArr[1]+')';
+		
 		document.getElementById("vehicle_id").value = listArr[0];
-		document.getElementById("vehicle_name").value = listArr[1]; 
+		document.getElementById("vehicle_name").value = vehicleCode; 
 		
 		$('#vehicle_name_validateion').addClass('displayNone');
 		$('#vehicle_name').removeClass('validation_error_border'); 

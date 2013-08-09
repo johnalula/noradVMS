@@ -9,14 +9,7 @@
 	</div>
 </div>
 
-<<<<<<< HEAD
-<?php //$flags = UserGroupTable::processCreate('Finance', 'finance'); 
-=======
-<?php $flags = UserGroupTable::processCreate('Finance', 'finance'); 
->>>>>>> e6576b14f11b26092bf9967a989a59285079af70
-
-	//echo $flags ? 'true' : 'flase' ;
-?>
+ 
 <div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 	<div class="ui-error-box btn-danger">
 		<div class="ui-error-list">

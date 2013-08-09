@@ -17,12 +17,14 @@ abstract class BaseVehicleTypeForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'name'        => new sfWidgetFormInputText(),
+      'alias'       => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'alias'       => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
     ));
 

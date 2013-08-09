@@ -21,6 +21,7 @@ abstract class BaseVehicleInsuranceSettingFormFilter extends BaseFormFilterDoctr
       'insurance_expiry_date'  => new sfWidgetFormFilterInput(),
       'last_insurance_renewal' => new sfWidgetFormFilterInput(),
       'insurance_status'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'description'            => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -32,6 +33,7 @@ abstract class BaseVehicleInsuranceSettingFormFilter extends BaseFormFilterDoctr
       'insurance_expiry_date'  => new sfValidatorPass(array('required' => false)),
       'last_insurance_renewal' => new sfValidatorPass(array('required' => false)),
       'insurance_status'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'description'            => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('vehicle_insurance_setting_filters[%s]');
@@ -60,6 +62,7 @@ abstract class BaseVehicleInsuranceSettingFormFilter extends BaseFormFilterDoctr
       'insurance_expiry_date'  => 'Text',
       'last_insurance_renewal' => 'Text',
       'insurance_status'       => 'Boolean',
+      'description'            => 'Text',
     );
   }
 }

@@ -30,11 +30,11 @@
  * @property integer $vehicle_type_id
  * @property string $vehicle_make
  * @property float $litter_per_km
- * @property integer $seatng_capacity
+ * @property integer $seating_capacity
  * @property string $engine_number
  * @property string $chesis_number
  * @property string $vehicle_model
- * @property string $vehicl_color
+ * @property string $vehicle_color
  * @property float $vehicle_weight
  * @property integer $service_type_id
  * @property integer $fuel_type_id
@@ -158,7 +158,7 @@ abstract class BaseItem extends sfDoctrineRecord
         $this->hasColumn('litter_per_km', 'float', null, array(
              'type' => 'float',
              ));
-        $this->hasColumn('seatng_capacity', 'integer', null, array(
+        $this->hasColumn('seating_capacity', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('engine_number', 'string', 100, array(
@@ -173,7 +173,7 @@ abstract class BaseItem extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('vehicl_color', 'string', 50, array(
+        $this->hasColumn('vehicle_color', 'string', 50, array(
              'type' => 'string',
              'length' => 50,
              ));

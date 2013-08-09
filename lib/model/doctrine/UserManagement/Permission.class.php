@@ -12,4 +12,32 @@
  */
 class Permission extends PluginPermission
 {
+	
+	public function allowReadPermission()
+	{
+		$this->view_action = true;
+		$this->save();	
+		return true;
+	}
+	
+	public function allowCreatePermission()
+	{
+		$this->create_action = true;
+		$this->save();	
+		return true;
+	}
+	
+	public function allowUpdatePermission()
+	{
+		$this->edit_action = true;
+		$this->save();	
+		return true;
+	}
+	
+	public function allowDeletePermission()
+	{
+		$this->delete_action = true;
+		$this->save();	
+		return true;
+	}
 }

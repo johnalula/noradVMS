@@ -1,6 +1,5 @@
 
-<div id="ui-data-list-box">
-<table class="" id="ui-data-list" >
+<table class="" id="locationList" >
 	<thead>
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
@@ -14,36 +13,35 @@
 	<tbody>
 		<?php $row=0 ?>
 
-		<?php foreach( $vehicle_types as $vehicle_type ): ?>
+		<?php foreach( $vehicle_types as $type ): ?>
 
 		<tr class="<?php echo fmod($row, 2) ? 'even' : 'odd' ?>"> 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-right:1px solid #bbb;border-left:1px solid #bbb;border-bottom:1px solid #bbb;"> 
 				 
 			</td>
 			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
-				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $category->id;?>]" class="checkcategory"  />
+				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $type->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="" style="width:220px;min-width:220px;"> 
-				<?php echo $vehicle_type->vehicleTypeName ?>
+				<?php echo $type->vehicleTypeName ?>
 			</td>
 			<td class="" style="width:99%;"> 
-				<?php echo $vehicle_type->description  ?> 
+				<?php echo $type->description  ?> 
 			</td>  
-			<td  class="" style="padding:0px 0px 0px 3px;width:45px;min-width:45px;border-right:0px solid #ddd;"> 
-				<div class="ui-list-action" style="width:45px;min-width:45px;padding:0x 0px;text-align:center;">
+			<td  class="" style="padding:0px 0px 0px 2px;width:40px;min-width:40px;border-right:0px solid #ddd;"> 
+				<div class="ui-list-action" style="width:40px;min-width:40px;padding:0x 0px;text-align:center;">
 					<ul>
 						<li>
-							<a href="#" class="" rel="<?php echo $vehicle_type->id ?>">	
-								<button class="ui-button"  >
-									<img src="<?php echo image_path('icons/icon-16-preview')  ?>" >
-								</button> 
+							<a href="<?php echo url_for('vehicle/view?vehicle_id='.$vehicle->id) ?>" class="ui-action-button" rel="<?php echo $vehicle->id ?>">									 
+									<img src="<?php echo image_path('new_icons/view')  ?>" >								 
 							</a>
 						</li> 
-						<li> 												
-							<button class="ui-button" onClick="Javascript:deleteVehicleType(<?php echo $vehicle_type->id ?>);">
-								<img src="<?php echo image_path('icons/icon-16-delete')  ?>" >
-							</button>
-						</a>
+						<li> 
+							<a href="#" class="ui-action-button" onclick="Javascript:deleteVehicleType(<?php echo $vehicle->id ?>);" rel="<?php echo $vehicle->id ?>">	
+								 
+									<img src="<?php echo image_path('icons/delete')  ?>" >
+								 
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -53,9 +51,9 @@
 		<?php $row++ ?>
 		</tr>
 		<?php endforeach; ?>
+		 
 		</tbody> 
 </table>
-</div>
 
 <script type="text/javascript">
 
@@ -80,5 +78,7 @@
 });
 
 </script>
+
+
 
 

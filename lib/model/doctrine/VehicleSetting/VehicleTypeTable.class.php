@@ -36,6 +36,7 @@ class VehicleTypeTable extends PluginVehicleTypeTable
 				
 			$_nw = new vehicleType();   
 			$_nw->name = trim($name);   
+			$_nw->alias = tirm(strtolower($name));
 			$_nw->description = trim($description); 
 			$_nw->save(); 
 			

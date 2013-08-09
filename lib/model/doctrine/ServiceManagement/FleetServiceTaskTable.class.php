@@ -12,30 +12,200 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
      *
      * @return object FleetServiceTaskTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('FleetServiceTask');
-    }
-    
-    public static $SERVICETYPE= array(1 => "Owner-Self", 2 => "Tenant", 3 => "Other");
-	public static function queryRelationWithOwnerTypeList ( ) {
-		return self::$RELATION_WITH_OWNER_TYPES;
+     
+	public static function getInstance()
+	{
+		return Doctrine_Core::getTable('FleetServiceTask');
 	}
+	
+	public static function processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $agreement_cost, $service_type, $service_reason, $_pid) 
+	{      
+        try{
+				
+				$token = trim($date).trim($ref).rand('11111', '99999');
+				$_nw = new FleetServiceTask(); 
+				$_nw->token_id = md5($token)  ; 
+				$_nw->description = $description  ;  
+				$_nw->status_id = TaskCore::$ACTIVE; 
+				$_nw->reference_no = $ref_no; 
+				$_nw->start_date = $date ;   
+				$_nw->agreement_participant_id = $customer_id ;   
+				$_nw->service_agreement_cost = $agreement_cost ;   
+				$_nw->service_number_of_days = $no_of_days ;   
+				$_nw->destination = $destination ;   
+				$_nw->service_type_id = 1 ;   
+				$_nw->service_reason = $service_reason ;   
+				$_nw->save(); 
+				
+				//default task attachment			
+				$att = new TaskAttachment ();
+				$att->token_id = $_nw->token_id;
+				$att->task_id = $_nw->id;
+				$att->certificate_type = AttachmentCore::$LETTER;
+				$att->reference_number = $ref;
+				$att->save();
+				
+				//default task participant
+				$prt = new TaskParticipant ();
+				$prt->token_id = $_nw->token_id;
+				$prt->task_id = $_nw->id;
+				$prt->participant_id = $_pid;
+				$prt->participant_role = ParticipantCore::$DATA_INCODER;
+				$prt->description = trim($description);
+				$prt->save();
+				
+				$prt = new TaskParticipant ();
+				$prt->token_id = $_nw->token_id;
+				$prt->task_id = $_nw->id;
+				$prt->participant_id = $customer_id;
+				$prt->participant_role = ParticipantCore::$DEPARTEMENT;
+				$prt->description = trim($description);
+				$prt->save();
+				
+            return $_nw; 
+        } catch ( Exception $e) {
+            return false; 
+        }
+	}
+	
+	public static function processUpdate ($_id, $token_id, $date, $description, $ref )
+	{		
+		$q = Doctrine_Query::create( )
+			->update('FleetServiceTask tsk')
+			->set('tsk.start_date', '?', trim($date))  
+			//->set('tsk.status_id', '?', TaskCore::$ACTIVE)  
+			->set('tsk.description', '?', trim($description))  
+			->where('tsk.id = ? AND tsk.token_id = ?', array($_id, $token_id))
+			->execute();	
 
-	public static function getRelationWithOwnerValue($id) {
-		foreach(self::$RELATION_WITH_OWNER_TYPES as $key => $value )
-			if( $key == $id )
-				return $value;
-		return "-";
+		return ( $q > 0 );   
 	}
-	public static $REPRESENTATIVE_STATUS_TYPE= array(1 => "Active", 2 => "Moved", 3 => "Other");
-	public static function queryStatusTypeList ( ) {
-		return self::$REPRESENTATIVE_STATUS_TYPE;
-	}	
-	public static function getStatusValue($id) {
-		foreach(self::$REPRESENTATIVE_STATUS_TYPE as $key => $value )
-			if( $key == $id )
-				return $value;
-		return "-";
+	
+	public static function processObject ( $_id, $token_id ) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate, cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName ")
+			->from("FleetServiceTask tsk") 
+			->leftJoin("tsk.taskParticipantsTasks tprt")
+			->leftJoin("tsk.taskAttachmentTasks att")
+			->leftJoin("tprt.Participant prt on tprt.participant_id = prt.id")
+			->leftJoin("tsk.Participant cus on tsk.agreement_participant_id = cus.id")
+			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
+			->fetchOne ( );
+		return ( ! $q ? null : $q ); 
 	}
+	
+	public static function processSelection($status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
+			->from("FleetServiceTask tsk") 
+			//->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
+			//->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
+			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->offset($offset)
+			->limit($limit)
+			//->where('tsk.type = ?'. TaskCore::$ASSIGNMENT)
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processTaskParticipantSelection($task_id, $token_id, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tskprt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName ")
+			->from("TaskParticipant tskprt") 
+			->innerJoin("tskprt.Participant prt on tskprt.participant_id = prt.id")
+			->offset($offset)
+			->limit($limit)
+			->where('tskprt.task_id = ? AND tskprt.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processTaskAttachmentSelection ($task_id, $token_id, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tskatt.*, tskatt.reference_number as referenceNo, tskatt.certificate_type as certificateTypeID, tskatt.num_pages as noOfPages ")
+			->from("TaskAttachment tskatt") 
+			->offset($offset)
+			->limit($limit)
+			->where('tskatt.task_id = ? AND tskatt.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processCandidateVehicleSelection($departure_status=null, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		return AssignedVehicleTable::processSelection ( true, $status, $keyword, $offset, $limit) ; 
+	}
+	
+	public static function processCandidateCustomerSelection( $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		return ParticipantTable::processCustomerSelection ( $status, $keyword, $offset, $limit) ; 
+	}
+	
+	public static function processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $departure_date, $departure_time, $fuel_acquired_id, $fuel_amount, $description )
+	{
+		return FleetOrderTable::processCreate ($task_id, $token_id, $vehicle_id, $departure_date, $departure_time, $fuel_acquired_id, $fuel_amount, $description );
+	}
+	
+	public static function processTaskOrderSelection ($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		return FleetOrderTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+	}
+	
+	public static function processCreateTaskAttachment ( $task_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description)
+	{
+		try {
+			//$refer_no = trim($ref_no);
+			//if(is_null($refer_no))
+				//return false;
+				
+			$att = new TaskAttachment ();
+			$att->task_id = $task_id;
+			$att->token_id = $token_id;
+			$att->certificate_type = $certificate_type;
+			$att->reference_number = trim($ref_no);
+			$att->num_pages = trim($num_pages);
+			$att->folder_stored = trim($folder_stored);
+			$att->description = trim($description);
+			$att->save();
+			
+			return true;
+		}
+		catch ( Exception $e) 
+		{
+			return false;
+		}
+		
+	}
+	
+	public static function processCreateTaskParticipant ( $task_id, $token_id, $participant_id, $participant_role, $description)
+	{
+		try {
+				
+			$prt = new TaskParticipant ();
+			$prt->task_id = $task_id;
+			$prt->token_id = $token_id;
+			$prt->participant_id = $participant_id;
+			$prt->participant_role = $participant_role;
+			$prt->description = trim($description);
+			$prt->save();
+			
+			 
+			return true;
+		}
+		catch ( Exception $e) 
+		{
+			return false;
+		}
+		
+	}
+    
+	
 }

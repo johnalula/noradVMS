@@ -13,10 +13,46 @@ class groupActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
 	  $offset = 0;
-	  $limit = 10;
+	  $limit = 2;
 	  $keyword = null;
 	  
     $this->groups = UserGroupTable::processSelection($keyword, $offset, $limit) ;
+    $this->totalData = UserGroupTable::processCount() ;
+  }
+  
+  public function executeSelection(sfWebRequest $request)
+  {
+	  $offset = $request->getParameter('offset');
+	  $limit = $request->getParameter('limit');
+	  $keyword = $request->getParameter('keyword');
+	  
+    $groups = UserGroupTable::processSelection($keyword, $offset, $limit) ;
+    
+    return $this->renderPartial('list', array('groups' => $groups));
+    
+  }
+  
+  public function executePagination(sfWebRequest $request)
+  {
+	  $offset = $request->getParameter('offset');
+	  $limit = $request->getParameter('limit');
+	  $keyword = $request->getParameter('keyword');
+	  
+    $groups = UserGroupTable::processSelection($keyword, $offset, $limit) ;
+    
+    return $this->renderPartial('list', array('groups' => $groups));
+    
+  }
+  
+  public function executeDeleteGroup(sfWebRequest $request)
+  {
+		$group_id = $request->getParameter('group_id'); 
+		$token_id = $request->getParameter('token_id'); 
+	  
+		$flag = UserGroupTable::processDelete($group_id, $token_id);
+    
+		return $flag;
+    
   }
   public function executeView(sfWebRequest $request)
   {
@@ -26,64 +62,46 @@ class groupActions extends sfActions
 	  
     $this->groups = UserGroupTable::processSelection($keyword, $offset, $limit) ;
   }
-
-  public function executeShow(sfWebRequest $request)
+  
+  public function executeCreateGroup(sfWebRequest $request)
   {
-    $this->user_group = Doctrine_Core::getTable('UserGroup')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->user_group);
+	  $name = $request->getParameter('name');
+	  $is_active = $request->getParameter('is_active');
+	  $is_blocked = $request->getParameter('is_blocked');
+	  $group_type_id = $request->getParameter('group_type_id');
+	  $language_id = $request->getParameter('language_id');
+	  $theme_id = $request->getParameter('theme_id');
+	  $read_data = explode(',', $request->getParameter('read_arr_data'));
+	  $read_length = $request->getParameter('read_arr_length');
+	  $create_data = explode(',', $request->getParameter('create_arr_data'));
+	  $create_length = $request->getParameter('create_arr_length');
+	  $update_data = explode(',', $request->getParameter('update_arr_data'));
+	  $update_length = $request->getParameter('update_arr_length');
+	  $delete_data = explode(',', $request->getParameter('delete_arr_data'));
+	  $delete_length = $request->getParameter('delete_arr_length');
+	  
+    $flag = UserGroupTable::processCreate($name, $group_type_id,  $is_active, $is_blocked, $description, $language_id, $theme_id, $read_data, $read_length, $create_data, $create_length, $update_data, $update_length, $delete_data, $delete_length) ;
+    
+    return $flag;
   }
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new UserGroupForm();
-  }
-
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new UserGroupForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-  }
-
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($user_group = Doctrine_Core::getTable('UserGroup')->find(array($request->getParameter('id'))), sprintf('Object user_group does not exist (%s).', $request->getParameter('id')));
-    $this->form = new UserGroupForm($user_group);
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($user_group = Doctrine_Core::getTable('UserGroup')->find(array($request->getParameter('id'))), sprintf('Object user_group does not exist (%s).', $request->getParameter('id')));
-    $this->form = new UserGroupForm($user_group);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($user_group = Doctrine_Core::getTable('UserGroup')->find(array($request->getParameter('id'))), sprintf('Object user_group does not exist (%s).', $request->getParameter('id')));
-    $user_group->delete();
-
-    $this->redirect('group/index');
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $user_group = $form->save();
-
-      $this->redirect('group/edit?id='.$user_group->getId());
-    }
-  }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

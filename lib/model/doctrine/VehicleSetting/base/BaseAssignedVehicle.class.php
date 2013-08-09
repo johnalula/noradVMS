@@ -18,8 +18,9 @@
  * @property boolean $reasigned_status
  * @property Task $Task
  * @property AssignmentOrder $AssignmentOrder
- * @property Participant $Participant
+ * @property Driver $Driver
  * @property Vehicle $Vehicle
+ * @property Participant $Participant
  * 
  * @package    noradVMS
  * @subpackage model
@@ -38,8 +39,9 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('participant_id', 'integer', null, array(
+        $this->hasColumn('participant_id', 'integer', 8, array(
              'type' => 'integer',
+             'length' => 8,
              ));
         $this->hasColumn('vehicle_id', 'integer', null, array(
              'type' => 'integer',
@@ -56,19 +58,19 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              ));
         $this->hasColumn('maintenance_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => 0,
              ));
         $this->hasColumn('departure_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => 0,
              ));
         $this->hasColumn('return_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => 0,
              ));
         $this->hasColumn('reasigned_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => 0,
              ));
     }
 
@@ -85,7 +87,7 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Participant', array(
+        $this->hasOne('Driver', array(
              'local' => 'participant_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
@@ -94,5 +96,9 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'local' => 'vehicle_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Participant', array(
+             'local' => 'participant_id',
+             'foreign' => 'id'));
     }
 }

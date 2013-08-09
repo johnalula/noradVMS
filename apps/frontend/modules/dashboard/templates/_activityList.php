@@ -42,7 +42,7 @@
 				<?php echo SystemLogFileTable::findActionValue($activity->accessAction)  ?> 
 			</td>  
 			<td class="" style="width:98%;"> 
-				<?php echo $activity->id  ?> 
+				<?php echo $activity->module_name  ?> 
 			</td>  
 			 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-left:1px solid #bbb;border-right:1px solid #bbb;border-bottom:1px solid #bbb;"> 

@@ -51,7 +51,7 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 			->select("tsko.*, vh.token_id as vehicleTokenID ")
 			->from("AssignmentOrder tsko") 
 			->innerJoin("tsko.Task tsk")
-			->innerJoin("tsko.Participant prt on tsko.participant_id = prt.id")
+			->innerJoin("tsko.Driver dr on tsko.participant_id = dr.id")
 			->innerJoin("tsko.Vehicle vh on tsko.vehicle_id = vh.id")   
 			->where('tsko.id = ? AND tsko.token_id = ?', array($_id, $token_id))
 			->fetchOne ( );
@@ -62,7 +62,7 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.* ")
+			->select("tsko.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, vh.plate_number as plateNo, vh.plate_code as plateCode ")
 			->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
 			->innerJoin("tsko.Participant prt on tsko.participant_id = prt.id")
@@ -72,7 +72,7 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))
 			->execute( ); 
 
-	return ( count ( $q ) <= 0 ? null : $q ); 
+		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
 	
 	public static function getInstance()

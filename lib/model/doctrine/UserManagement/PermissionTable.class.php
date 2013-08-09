@@ -51,11 +51,11 @@ class PermissionTable extends PluginPermissionTable
         }
 	}
    
-   public static function processCreate($group_id, $user_id, $module_id, $create_action, $delete_action, $edit_action, $view_action )
+   public static function processCreate($group_id, $token_id, $user_id, $module_id, $create_action, $delete_action, $edit_action, $view_action )
 	{
-		$token = trim($group_id).trim($user_id).rand('11111', '99999');
+		//$token = trim($group_id).trim($user_id).rand('11111', '99999');
 		$_nw = new Permission ();  
-		$_nw->token_id = MD5($token);
+		$_nw->token_id = $token_id;
 		$_nw->group_id = $group_id;
 		$_nw->user_id = $user_id;
 		$_nw->module_id = $module_id;
@@ -64,6 +64,26 @@ class PermissionTable extends PluginPermissionTable
 		$_nw->delete_action = $delete_action;
 		$_nw->view_action = $view_action;		 
 		$_nw->save(); 
+		
+		return true; 
+	}
+	
+   public static function processCreateSuperAdminPermission($group_id, $token_id )
+	{
+		$modules = PermissionTable::$ALL_MODULES;			
+		$length = count($modules);
+		foreach($modules as $key => $module ):		
+			$_nw = new Permission ();  
+			$_nw->token_id = $token_id;
+			$_nw->group_id = $group_id;
+			$_nw->user_id = null;
+			$_nw->module_id = $key;
+			$_nw->create_action = true;
+			$_nw->edit_action = true;
+			$_nw->delete_action = true;
+			$_nw->view_action = true;		 
+			$_nw->save(); 
+		endforeach;
 		
 		return true; 
 	}
@@ -87,20 +107,125 @@ class PermissionTable extends PluginPermissionTable
 
 	}
 	
+	/*public static function processAllPermissions ($_id, $token_id)
+	{
+		$q = Doctrine_Query::create( )
+				->select("grp.*")
+				->from("UserGroup grp")  
+				->where('grp.group_id = ? ', array($group_id, $token_id, $module_id))
+				->execute ( );
+							
+		return $q ; 
+	
+	}*/
+	
 	public static function processObject($_id, $token_id)
 	{
 		$q= Doctrine_Query::create()
-			->select("per.*, usr.username as userName, grp.name as groupName, ")
-			->from("Permission per") 
-			->innerJoin("per.User usr on usr.id = log.user_id")
-			->innerJoin("per.UserGroup grp on grp.id = usr.group_id")
-			->offset($offset)
-			->limit($limit)
-			->where('per.id = ? AND per.token_id = ? ', array($_id, $token_id))
+			->select("per.*")
+			->from("Permission per")  
+			->where('per.id = ? AND per.token_id = ?', array($_id, $token_id))
 			->fetchOne( ); 
 			
 		return ( count ( $q ) <= 0 ? null : $q );
 	
+	}
+	
+	public static function checkGroupDuplicate($group_id, $module_id)
+	{
+		$q = Doctrine_Query::create()
+			->select("per.* ")
+			->from("Permission per")  
+			->where('per.group_id = ? AND per.module_id = ? ', array($group_id, $module_id))
+			->fetchOne( ); 
+			
+		return ( $q > 0 );
+	
+	}
+	public static function fetchDuplicated($group_id, $module_id)
+	{
+		$q = Doctrine_Query::create()
+			->select("per.* ")
+			->from("Permission per")  
+			->where('per.group_id = ? AND per.module_id = ? ', array($group_id, $module_id))
+			->fetchOne( ); 
+			
+		return $q;
+	
+	}
+	
+	public static function processGroupReadPermission($group_id, $token_id, $datas = array(), $length)
+	{
+	
+			foreach( $datas as $key => $data):
+				$module_id = $data;
+				$perObj = self::checkGroupDuplicate($group_id, $module_id);
+				$obj = self::fetchDuplicated($group_id, $module_id);
+				//$id = $obj->id;
+				if($obj) {
+					$obj->allowReadPermission();
+				}
+				else {
+					$permission = self::processCreate($group_id, $token_id, $user_id, $module_id, $create_action, $delete_action, $edit_action, true );				 
+				}
+			endforeach;
+			
+		return true;
+	}
+	
+	public static function processGroupCreatePermission($group_id, $token_id, $datas = array(), $length)
+	{
+	
+		 foreach( $datas as $key => $data):
+				$module_id = $data;
+				$perObj = self::checkGroupDuplicate($group_id, $module_id);
+				$obj = self::fetchDuplicated($group_id, $module_id);
+				$id = $obj->id;
+				if($perObj) {
+					$obj->allowCreatePermission();
+				}
+				else {
+					$permission = self::processCreate($group_id, $token_id, $user_id, $module_id, true, $delete_action, $edit_action, $view_action );				 
+				}
+			endforeach;
+			
+		return true;
+	}
+	
+	public static function processGroupUpdatePermission($group_id, $token_id, $datas = array(), $length)
+	{
+		foreach( $datas as $key => $data):
+				$module_id = $data;
+				$perObj = self::checkGroupDuplicate($group_id, $module_id);
+				$obj = self::fetchDuplicated($group_id, $module_id);
+				$id = $obj->id;
+				if($perObj) {
+					$obj->allowUpdatePermission();
+				}
+				else {
+					$permission = self::processCreate($group_id, $token_id, $user_id, $module_id, $create_action, $delete_action, true, $view_action );
+			 	}
+			endforeach;
+			
+		return true;
+	}
+	
+	public static function processGroupDeletePermission($group_id, $token_id, $datas = array(), $length)
+	{
+		 foreach( $datas as $key => $data):
+				$module_id = $data;
+				$perObj = self::checkGroupDuplicate($group_id, $module_id);
+				$obj = self::fetchDuplicated($group_id, $module_id);
+				$id = $obj->id;
+				if($perObj) {
+					$obj->allowDeletePermission();
+				}
+				else {
+					$permission = self::processCreate($group_id, $token_id, $user_id, $module_id, $create_action, true, $edit_action, $view_action );		 
+				}
+			endforeach;
+			
+		return true;
 	}
 	
 	

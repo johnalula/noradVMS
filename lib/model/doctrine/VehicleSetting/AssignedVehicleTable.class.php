@@ -12,8 +12,28 @@ class AssignedVehicleTable extends PluginAssignedVehicleTable
      *
      * @return object AssignedVehicleTable
      */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('AssignedVehicle');
-    }
+	public static function getInstance()
+	{
+		return Doctrine_Core::getTable('AssignedVehicle');
+	}
+	
+	public static function processSelection ( $is_departed=true, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("asvh.*, vh.plate_code as plateCode, vh.plate_number as plateNo")
+			->from("AssignedVehicle asvh") 
+			->innerJoin("asvh.Vehicle vh") 
+			->innerJoin("asvh.Driver drv on asvh.participant_id = drv.id") 
+			->innerJoin("drv.Participant prt on prt.id = drv.employee_id") 
+			->offset($offset)
+			->limit($limit)
+			->where('asvh.departure_status = ?', $is_departed); 
+			//if(!is_null($is_departed))
+				//$q = $q->addWhere('asvh.departure_status = ?', $is_departed);
+			
+			$q = $q->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
 }

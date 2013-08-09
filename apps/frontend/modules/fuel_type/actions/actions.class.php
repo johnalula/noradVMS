@@ -55,7 +55,19 @@ class fuel_typeActions extends sfActions
 	  
 		$flags = FuelTypeTable::processCreate ( $name, $description );
 		
-		//if($flag)
+		 $module = $request->getParameter('module');
+	  
+			$user_id = $this->getUser()->getAttribute('uid');
+			//$this->getUser()->signIn($user);
+			$action_id = SystemLogFileTable::$CREATE;
+			$date = date('Y/m/d H:i:s', time());
+			$ip =  gethostbyname($_SERVER['HTTP_HOST']) ; 
+			$time = date('h:i:s A');
+			$action  = 'Vehicle_type'; 
+			//$user_id = $user->id;
+
+		$log = SystemLogFileTable::processCreate($user_id, $module, $action_id, $time, $date, null,  null, null, null, $ip );
+		
 		return $flags;
   }
   

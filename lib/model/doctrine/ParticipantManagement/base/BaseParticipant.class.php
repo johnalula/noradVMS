@@ -40,10 +40,10 @@
  * @property Participant $Participant
  * @property Campus $Campus
  * @property ParticipantType $ParticipantType
- * @property Doctrine_Collection $vehicleDrivers
+ * @property Doctrine_Collection $AssignedVehicle
  * @property Doctrine_Collection $acquisitionTaskTargetParticipants
  * @property Doctrine_Collection $vehicleAssignDriverParticipant
- * @property Doctrine_Collection $assignmentTaskOrderParticipants
+ * @property Doctrine_Collection $AssignmentOrder
  * @property Doctrine_Collection $transferTaskTransferee
  * @property Doctrine_Collection $vehicleReturnParticipants
  * @property Doctrine_Collection $taskParticipants
@@ -243,7 +243,7 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'local' => 'participant_type_id',
              'foreign' => 'id'));
 
-        $this->hasMany('AssignedVehicle as vehicleDrivers', array(
+        $this->hasMany('AssignedVehicle', array(
              'local' => 'id',
              'foreign' => 'participant_id'));
 
@@ -255,7 +255,7 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'driver_id'));
 
-        $this->hasMany('AssignmentOrder as assignmentTaskOrderParticipants', array(
+        $this->hasMany('AssignmentOrder', array(
              'local' => 'id',
              'foreign' => 'participant_id'));
 

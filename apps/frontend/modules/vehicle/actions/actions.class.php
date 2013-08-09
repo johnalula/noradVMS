@@ -26,4 +26,20 @@ class vehicleActions extends sfActions
     $this->vehicles = VehicleTable::processSelection ( $is_assigned, $status, $keyword, $offset, $limit);
     //$this->log_files = UserGroupTable::processSelection($keyword, $offset, $limit);
   }
+  
+  public function executeView(sfWebRequest $request)
+  {
+		$offset = 0;
+		$limit = 100;
+		$_id = $request->getParameter('vehicle_id');
+		$token_id = $request->getParameter('token_id');
+		
+		$this->vehicleobj = VehicleTable::processObject ($_id, $token_id );
+		
+		$this->vehicle = VehicleTable::processObject ($_id, $token_id );
+		$this->types = VehicleTypeTable::processSelection ( $offset, $limit );
+		$this->feul_types = FuelTypeTable::processSelection ( $offset, $limit );
+			
+		 
+  }
 }

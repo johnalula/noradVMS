@@ -14,24 +14,24 @@
  * @property clob $description
  * @property string $type
  * @property integer $agreement_participant_id
- * @property datetime $departure_date
- * @property time $departure_time
- * @property integer $departure_status
- * @property datetime $return_date
- * @property time $return_time
- * @property integer $return_status
- * @property integer $number_of_passangers
  * @property float $service_agreement_cost
- * @property string $service_reason
- * @property integer $departure_mileage
- * @property integer $return_mileage
- * @property integer $difference_mileag
  * @property integer $service_type_id
- * @property integer $duel_acquire_id
+ * @property string $service_reason
  * @property string $destination
  * @property integer $service_number_of_days
  * @property boolean $service_delay_status
  * @property integer $number_of_delay_days
+ * @property string $departure_date
+ * @property string $departure_time
+ * @property boolean $departure_status
+ * @property string $return_date
+ * @property string $return_time
+ * @property boolean $return_status
+ * @property integer $number_of_passangers
+ * @property float $departure_mileage
+ * @property float $return_mileage
+ * @property float $difference_mileag
+ * @property integer $fuel_acquire_id
  * @property clob $delay_reason
  * @property integer $registration_mode
  * @property integer $driver_id
@@ -43,6 +43,7 @@
  * @property Doctrine_Collection $vehicleAssignmentTasks
  * @property Doctrine_Collection $taskCostTransactions
  * @property Doctrine_Collection $taskOrderTasks
+ * @property Doctrine_Collection $fleetTaskOrderTasks
  * @property Doctrine_Collection $serviceVehicleCostTasks
  * @property Doctrine_Collection $serviceVehicleAttachmentTasks
  * @property Doctrine_Collection $serviceVehicleAccidentTasks
@@ -96,50 +97,15 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('agreement_participant_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('departure_date', 'datetime', null, array(
-             'type' => 'datetime',
-             ));
-        $this->hasColumn('departure_time', 'time', null, array(
-             'type' => 'time',
-             ));
-        $this->hasColumn('departure_status', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 1,
-             ));
-        $this->hasColumn('return_date', 'datetime', null, array(
-             'type' => 'datetime',
-             ));
-        $this->hasColumn('return_time', 'time', null, array(
-             'type' => 'time',
-             ));
-        $this->hasColumn('return_status', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
-        $this->hasColumn('number_of_passangers', 'integer', null, array(
-             'type' => 'integer',
-             ));
         $this->hasColumn('service_agreement_cost', 'float', null, array(
              'type' => 'float',
-             ));
-        $this->hasColumn('service_reason', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
-        $this->hasColumn('departure_mileage', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('return_mileage', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('difference_mileag', 'integer', null, array(
-             'type' => 'integer',
              ));
         $this->hasColumn('service_type_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('duel_acquire_id', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('service_reason', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
         $this->hasColumn('destination', 'string', 255, array(
              'type' => 'string',
@@ -155,6 +121,45 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('number_of_delay_days', 'integer', null, array(
              'type' => 'integer',
              'default' => 0,
+             ));
+        $this->hasColumn('departure_date', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('departure_time', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('departure_status', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 1,
+             ));
+        $this->hasColumn('return_date', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('return_time', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('return_status', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('number_of_passangers', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('departure_mileage', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('return_mileage', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('difference_mileag', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('fuel_acquire_id', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('delay_reason', 'clob', null, array(
              'type' => 'clob',
@@ -237,6 +242,10 @@ abstract class BaseTask extends sfDoctrineRecord
              'foreign' => 'task_id'));
 
         $this->hasMany('TaskOrder as taskOrderTasks', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('FleetOrder as fleetTaskOrderTasks', array(
              'local' => 'id',
              'foreign' => 'task_id'));
 

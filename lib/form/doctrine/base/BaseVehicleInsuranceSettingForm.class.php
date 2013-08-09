@@ -24,6 +24,7 @@ abstract class BaseVehicleInsuranceSettingForm extends BaseFormDoctrine
       'insurance_expiry_date'  => new sfWidgetFormInputText(),
       'last_insurance_renewal' => new sfWidgetFormInputText(),
       'insurance_status'       => new sfWidgetFormInputCheckbox(),
+      'description'            => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ abstract class BaseVehicleInsuranceSettingForm extends BaseFormDoctrine
       'insurance_expiry_date'  => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'last_insurance_renewal' => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'insurance_status'       => new sfValidatorBoolean(array('required' => false)),
+      'description'            => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('vehicle_insurance_setting[%s]');

@@ -117,6 +117,8 @@ border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1p
 
 .ui-content-lists table tbody tr td .ui-list-action ul li a button.ui-action-button {margin:0px!important;padding:0px;-webkit-border-radius:0px 0px 0px 0px;-moz-border-radius:0px 0px 0px 0px;border-radius:0px 0px 0px 0px;border:0px solid #aaa;-webkit-box-shadow:0 0px 0px #ddd;-moz-box-shadow:0 0px 0px #ddd;box-shadow:0 0px 0px #ddd;}
 
+.ui-content-lists table tbody tr td .ui-list-action ul li a img { width:15px;height:15px;vertical-align:middle;padding:0px;}
+
 .ui-content-lists table tbody tr td .ui-list-action ul li a button.ui-action-button img {margin:0px!important;width:14px;height:14px;vertical-align:top;}
 
 .ui-main-menu-cont {min-width:815px;margin:1px;margin-bottom:3px;padding:3px 6px;border:1px solid #b9cbdb;background-color: #f6fafc; background: -moz-linear-gradient(100% 100% 90deg, #cbddea, #f6fafc);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6fafc), to(#cbddea));
@@ -207,6 +209,7 @@ background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-grad
 background: -webkit-linear-gradient(#accade, #cbddea);background: -o-linear-gradient(#accade, #cbddea);border:1px solid #b9cbdb;color:#000;margin-right:8px;border-bottom:0px;padding:0px 4px;}
 
 .ui-tab-detail-list-box ul.ui-tab-list li a { font-size:11px!important;}
+.ui-tab-detail-list-box ul.ui-tab-list li a img {vertical-align:bottom;margin-right:4px;width:14px;height:14px;}
 
 .ui-detail-tab-list {padding:0px;border:1px solid #b9cbdb;-webkit-border-radius:0px 3px 3px 3px;-moz-border-radius:0px 3px 3px 3px;border-radius:0px 3px 3px 3px;margin:0px;}
 

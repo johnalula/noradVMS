@@ -13,6 +13,7 @@
  * @property string $insurance_expiry_date
  * @property string $last_insurance_renewal
  * @property boolean $insurance_status
+ * @property clob $description
  * @property Vehicle $Vehicle
  * 
  * @package    noradVMS
@@ -52,7 +53,10 @@ abstract class BaseVehicleInsuranceSetting extends sfDoctrineRecord
              ));
         $this->hasColumn('insurance_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => 0,
+             ));
+        $this->hasColumn('description', 'clob', null, array(
+             'type' => 'clob',
              ));
     }
 

@@ -5,11 +5,11 @@
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
-			<th class=""><?php echo  ('Name') ?></th> 
-			<th class=""><?php echo  ('Group') ?></th> 
-			<th class=""><?php echo  ('Theme Color') ?></th> 
-			<th class=""><?php echo  ('Language') ?></th>   
-			<th class="" style="padding:2px 3px;text-align:center;"><?php echo  (' Actions') ?></th>
+			<th class=""><?php echo  ('Vehicle') ?></th> 
+			<th class=""><?php echo  ('Vehicle Type') ?></th> 
+			<th class=""><?php echo  ('Vehicle Make') ?></th> 
+			<th class=""><?php echo  ('Fuel Type') ?></th>   
+			<th class="" style="padding:2px 2px;text-align:center;"><?php echo  (' Actions') ?></th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
 		</tr>				 
 	</thead>
@@ -26,30 +26,31 @@
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $vehicle->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="" style="width:98%;min-width:220px;"> 
-				<?php echo $vehicle->id ?>
+				<img src="<?php echo image_path('new_icons/car_small') ?>">
+				<?php echo $vehicle->plateNo .' ( '.$vehicle->plateCode.' )'  ?>
 			</td>
 			<td class="" style="width:140px;min-width:140px;"> 
 				<?php echo $vehicle->id ?>
 			</td>
 			<td class="" style="width:100px;min-width:100px;"> 
-				<?php echo $vehicle->id ?>
+				<?php echo $vehicle->assignedVehicle ? 'true' : 'false' ?>
 			</td>
 			<td class="" style="width:80px;min-width:80px;"> 
 				<?php echo $vehicle->categoryName ?> 
 			</td>  
 			 
-			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
+			<td  class="" style="padding:0px 0px 0px 1px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">
 					<ul>
 						<li>
-							<a href="<?php echo url_for('vehicle/view?vehicle_id='.$vehicle->id) ?>" class="ui-action-button" rel="<?php echo $vehicle->id ?>">									 
+							<a href="<?php echo url_for('vehicle/view?vehicle_id='.$vehicle->id.'&token_id='.$vehicle->token_id) ?>" class="" rel="<?php echo $task->id ?>">									 
 									<img src="<?php echo image_path('new_icons/view')  ?>" >								 
 							</a>
 						</li> 
 						<li> 
 							<a href="#" class="ui-action-button" onclick="Javascript:deleteCategory(<?php echo $vehicle->id ?>);" rel="<?php echo $vehicle->id ?>">	
 								 
-									<img src="<?php echo image_path('icons/delete')  ?>" >
+									<img src="<?php echo image_path('new_icons/del')  ?>" >
 								 
 							</a>
 						</li>

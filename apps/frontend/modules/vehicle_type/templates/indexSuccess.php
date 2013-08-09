@@ -3,7 +3,6 @@
 		<ul>
 			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
 			<li><a href="<?php echo url_for('vehicle_setting/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Vehicle Setting</a></li>
-			<li><a href="#" id="" onclick="Javascript:createVehicleType();"><img src="<?php echo image_path('icons/save_small') ?>">Save</a></li>
 			<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 		</ul>
 	</div>
@@ -107,7 +106,7 @@
 										<ul>
 											<li><img src="<?php echo image_path('icons/find_small') ?>"></li>
 											<li><input type="text"></li>
-											<li><select><option>name</option><option>father name</option></select></li> 
+											 
 										</ul>  
 							</div>
 							<div class="clearFix"></div>

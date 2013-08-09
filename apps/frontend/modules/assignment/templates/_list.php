@@ -34,7 +34,7 @@
 						<li>
 							<a href="<?php echo url_for('assignment/view?task_id='.$task->id.'&token_id='.$task->token_id) ?>" class="" rel="<?php echo $task->id ?>">	
 								<button class="ui-button"  >
-									<img style="margin:0px;" src="<?php echo image_path('new_icons/save_small')  ?>" >
+									<img style="margin:0px;" src="<?php echo image_path('new_icons/view')  ?>" >
 								</button> 
 							</a>
 						</li> 

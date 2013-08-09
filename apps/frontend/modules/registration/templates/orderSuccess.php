@@ -206,13 +206,10 @@
  
 
 <div class="modal" id="candidatePrompts">
-	
 	<div class="ui-modal">
 	<form>   
-	
 		<div class="ui-modal-header">
 			<h1>Eployee Date</h1>
-		
 		</div>
 		<div class="partialFilterBox">
 			<div class="filterBox" style="text-align:left;margin-right:20px;">
