@@ -18,10 +18,15 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		return Doctrine_Core::getTable('FleetServiceTask');
 	}
 	
-	public static function processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $agreement_cost, $service_type, $service_reason, $_pid) 
+	public static function processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $_pid, $payment_mode, $departure_date, $departure_time) 
 	{      
-        try{
-				
+       // try{
+				if(!$date)
+					return false;
+					
+				if(!$ref_no)
+					return false;
+					
 				$token = trim($date).trim($ref).rand('11111', '99999');
 				$_nw = new FleetServiceTask(); 
 				$_nw->token_id = md5($token)  ; 
@@ -30,7 +35,9 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$_nw->reference_no = $ref_no; 
 				$_nw->start_date = $date ;   
 				$_nw->agreement_participant_id = $customer_id ;   
-				$_nw->service_agreement_cost = $agreement_cost ;   
+				$_nw->payment_mode_id = $payment_mode ;   
+				$_nw->departure_date = $departure_date ;   
+				$_nw->departure_time = $departure_time ;   
 				$_nw->service_number_of_days = $no_of_days ;   
 				$_nw->destination = $destination ;   
 				$_nw->service_type_id = 1 ;   
@@ -63,9 +70,9 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$prt->save();
 				
             return $_nw; 
-        } catch ( Exception $e) {
-            return false; 
-        }
+       // } catch ( Exception $e) {
+        //    return false; 
+        //}
 	}
 	
 	public static function processUpdate ($_id, $token_id, $date, $description, $ref )
@@ -141,7 +148,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	
 	public static function processCandidateVehicleSelection($departure_status=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
-		return AssignedVehicleTable::processSelection ( true, $status, $keyword, $offset, $limit) ; 
+		return AssignedVehicleTable::processSelection ( false, $status, $keyword, $offset, $limit) ; 
 	}
 	
 	public static function processCandidateCustomerSelection( $status=null, $keyword=null, $offset=0, $limit=10) 
@@ -149,9 +156,9 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		return ParticipantTable::processCustomerSelection ( $status, $keyword, $offset, $limit) ; 
 	}
 	
-	public static function processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $departure_date, $departure_time, $fuel_acquired_id, $fuel_amount, $description )
+	public static function processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $fuel_acquired_id, $fuel_amount, $description, $mileage )
 	{
-		return FleetOrderTable::processCreate ($task_id, $token_id, $vehicle_id, $departure_date, $departure_time, $fuel_acquired_id, $fuel_amount, $description );
+		return FleetOrderTable::processCreate ($task_id, $token_id, $vehicle_id, $fuel_acquired_id, $fuel_amount, $description, $no_of_passengers, $mileage );
 	}
 	
 	public static function processTaskOrderSelection ($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
@@ -204,6 +211,12 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		{
 			return false;
 		}
+		
+	}
+	
+	public static function processComplete($_id, $oken_id)
+	{
+		
 		
 	}
     

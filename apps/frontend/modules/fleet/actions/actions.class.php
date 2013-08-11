@@ -28,13 +28,15 @@ class fleetActions extends sfActions
 		$description = $request->getParameter('description');
 		$destination = $request->getParameter('destination');
 		$no_of_days = $request->getParameter('no_of_days');
-		$agreement_cost = $request->getParameter('agreement_cost');
+		$departure_date = $request->getParameter('departure_date');
+		$departure_time = $request->getParameter('departure_time');
+		$payment_mode = $request->getParameter('payment_mode');
 		$service_type = $request->getParameter('service_type');
 		$service_reason = $request->getParameter('service_reason');
 		$customer_id = $request->getParameter('customer_id');
 		$pID = $this->getUser()->getAttribute('pID');
 		
-		$task = FleetServiceTaskTable::processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $agreement_cost, $service_type, $service_reason, $pID );
+		$task = FleetServiceTaskTable::processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $pID, $payment_mode, $departure_date, $departure_time );
 		
 		$this->redirect('fleet/view?task_id='.$task->id.'&token_id='.$task->token_id);
   }
@@ -121,13 +123,15 @@ class fleetActions extends sfActions
 		$task_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 		$vehicle_id = $request->getParameter('vehicle_id');
+		$mileage = $request->getParameter('departure_mileage');
 		$departure_date = $request->getParameter('departure_date');
 		$departure_time = $request->getParameter('departure_time');
 		$fuel_acquired_id = $request->getParameter('fuel_acquired_id');
 		$fuel_amount = $request->getParameter('fuel_amount'); 
 		$description = $request->getParameter('description'); 
+		$no_of_passengers = $request->getParameter('no_of_passengers'); 
 		
-		$flag = FleetServiceTaskTable::processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $departure_date, $departure_time, $fuel_acquired_id, $fuel_amount, $description );
+		$flag = FleetServiceTaskTable::processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $fuel_acquired_id, $fuel_amount, $description, $no_of_passengers, $mileage );
 		
 		return $flag;
   }
@@ -143,6 +147,20 @@ class fleetActions extends sfActions
 	
 	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
     //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
-    $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+    $this->vehicles = FleetOrderTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+  }
+  
+  public function executeReturn(sfWebRequest $request)
+  {
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+   // $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
   }
 }

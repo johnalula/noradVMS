@@ -62,7 +62,7 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, vh.plate_number as plateNo, vh.plate_code as plateCode ")
+			->select("tsko.*, prt.full_name as fullName,prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo")
 			->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
 			->innerJoin("tsko.Participant prt on tsko.participant_id = prt.id")

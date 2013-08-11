@@ -4,6 +4,13 @@
 			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
 			<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 		</ul>
+		
+		<span class="ui-page-navigator">
+			<ul>
+				<li><a href="<?php echo url_for('vehicle/index') ?>"><img src="<?php echo image_path('new_icons/back') ?>">Back to list</a></li>
+			</ul>
+		</span>
+		<div class="clearFix"></div>
 	</div>
 </div>
 
@@ -50,7 +57,6 @@
 		</div>			
 	</div> 
 </div>
-<?php echo $sf_user->getAttribute('uid') ?>
 <div class="ui-container">
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont">

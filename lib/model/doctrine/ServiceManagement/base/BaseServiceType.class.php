@@ -8,7 +8,7 @@
  * @property string $name
  * @property clob $description
  * @property Doctrine_Collection $Vehicle
- * @property Doctrine_Collection $serviceTypeServices
+ * @property Doctrine_Collection $FleetServiceTask
  * 
  * @package    noradVMS
  * @subpackage model
@@ -36,7 +36,7 @@ abstract class BaseServiceType extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'service_type_id'));
 
-        $this->hasMany('FleetServiceTask as serviceTypeServices', array(
+        $this->hasMany('FleetServiceTask', array(
              'local' => 'id',
              'foreign' => 'service_type_id'));
     }

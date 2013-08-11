@@ -37,6 +37,7 @@ Vehicle:
   columns: 
     plate_number: { type: string(255) }
     plate_code: { type: string(255), default: 'ET' }
+    plate_code_no: { type: integer, default: 4 }
     initial_mileage: { type: integer }
     current_mileage: { type: integer }
     vehicle_type_id: { type: integer } 
@@ -234,28 +235,22 @@ FleetServiceTask:
     keyValue: 1
   columns: 
     agreement_participant_id: { type: integer }    
-    service_agreement_cost: { type: float }
+    service_agreement_cost: { type: float }  
+    payment_mode_id: { type: integer }
     service_type_id: { type: integer }
     service_reason: { type: string(255) }
     destination: { type: string(255) }
     service_number_of_days: { type: integer }
-    service_delay_status: { type: boolean, default: false }
-    number_of_delay_days: { type: integer, default: 0 }
-    
+    service_delay_status: { type: boolean, default: 0 }
+    number_of_delay_days: { type: integer, default: 0 }    
     departure_date: { type: string(100) }
     departure_time: { type: string(100) } 
-    departure_status: { type: boolean, default: 1}
+    departure_status: { type: boolean, default: 0}
     return_date: { type: string(100) }
     return_time: { type: string(100) }
     return_status: { type: boolean, default: 0 }
-    number_of_passangers: { type: integer }
-    departure_mileage: { type: float }
-    return_mileage: { type: float }
-    difference_mileag: { type: float }
-    fuel_acquire_id: { type: integer }
     delay_reason: { type: clob }
-  relations:
-    ServiceType: { onDelete: CASCADE, local: service_type_id, foreign: id, foreignAlias: serviceTypeServices } 
+  relations: 
     Participant: { onDelete: CASCADE, local: agreement_participant_id, foreign: id, foreignAlias: acquisitionTaskTargetParticipants }
 
 FleetOrder:
@@ -264,20 +259,24 @@ FleetOrder:
     vehicle_id: { type: integer }
     token_id: { type: string(100) }
     task_id: { type: integer }
+    order_cost: { type: float }
+    payment_mode_id: { type: integer }
     effective_date: { type: string(100) }
+    number_of_passangers: { type: integer }
+    departure_mileage: { type: integer }
+    return_mileage: { type: float }
+    difference_mileag: { type: float }
+    fuel_acquire_type_id: { type: integer }
+    fuel_amount: { type: float }
+    description: { type: clob }
+    
+      
     departure_date: { type: string(100) }
     departure_time: { type: string(100) } 
     departure_status: { type: boolean, default: 1}
     return_date: { type: string(100) }
     return_time: { type: string(100) }
     return_status: { type: boolean, default: 0 }
-    number_of_passangers: { type: integer }
-    departure_mileage: { type: float }
-    return_mileage: { type: float }
-    difference_mileag: { type: float }
-    fuel_acquire_type_id: { type: integer }
-    fuel_amount: { type: float }
-    description: { type: clob }
   relations:
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: fleetTaskOrderVehicles } 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: fleetTaskOrderTasks }
@@ -835,3 +834,15 @@ SystemLogFile:
   relations:
     User: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: userSystemLogFileActivities }
     
+# payment setting
+
+PaymentSetting:
+  package: PaymentSetting
+  columns:
+    token_id: { type: string(100) }
+    payment_mode_id: { type: integer }
+    cost_amount: { type: float }
+    currency_id: { type: integer }
+    description: { type: clob }
+  relations:
+    Currency: { onDelete: CASCADE, local: currency_id, foreign: id, foreignAlias: paymentSettingCurrencies }

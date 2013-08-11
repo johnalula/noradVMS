@@ -12,6 +12,7 @@
  * @property Doctrine_Collection $taskOrderCurrencies
  * @property Doctrine_Collection $taskExpenseCurrency
  * @property Doctrine_Collection $tocurrencies
+ * @property Doctrine_Collection $paymentSettingCurrencies
  * 
  * @package    noradVMS
  * @subpackage model
@@ -56,5 +57,9 @@ abstract class BaseCurrency extends sfDoctrineRecord
         $this->hasMany('CurrencyExchange as tocurrencies', array(
              'local' => 'id',
              'foreign' => 'to_currency_id'));
+
+        $this->hasMany('PaymentSetting as paymentSettingCurrencies', array(
+             'local' => 'id',
+             'foreign' => 'currency_id'));
     }
 }

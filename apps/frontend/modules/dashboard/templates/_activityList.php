@@ -3,8 +3,7 @@
 <table class="" id="locationList" >
 	<thead>
 		<tr class="">
-			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
-			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
+			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th>  
 			<th class=""><?php echo  ('Name') ?></th> 
 			<th class=""><?php echo  ('Group') ?></th>  
 			<th class=""><?php echo  ('Date') ?></th>  
@@ -22,10 +21,7 @@
 		<tr class="<?php echo fmod($row, 2) ? 'even' : 'odd' ?>"> 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-right:1px solid #bbb;border-left:1px solid #bbb;border-bottom:1px solid #bbb;"> 
 				 
-			</td>
-			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
-				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $activity->id;?>]" class="checkactivity"  />
-			</td>
+			</td> 
 			<td class="" style="width:220px;min-width:220px;"> 
 				<?php echo $activity->userName ?>
 			</td>
@@ -42,7 +38,20 @@
 				<?php echo SystemLogFileTable::findActionValue($activity->accessAction)  ?> 
 			</td>  
 			<td class="" style="width:98%;"> 
-				<?php echo $activity->module_name  ?> 
+				<?php 
+					if($activity->accessAction == SystemLogFileTable::$CREATE) 
+						echo $activity->created_data;
+				else
+					if($activity->accessAction == SystemLogFileTable::$READ) 
+						echo $activity->viewed_data ;
+				else
+					if($activity->accessAction == SystemLogFileTable::$UPDATE) 
+						echo $activity->edited_data ;
+				else
+					if($activity->accessAction == SystemLogFileTable::$DELETE) 
+						echo $activity->deleted_data ;
+				 ?> 
+				 
 			</td>  
 			 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-left:1px solid #bbb;border-right:1px solid #bbb;border-bottom:1px solid #bbb;"> 

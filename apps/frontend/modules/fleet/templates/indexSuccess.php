@@ -10,7 +10,8 @@
 <?php //$flags = UserGroupTable::processCreate('Finance', 'finance'); 
 
 	//echo $flags ? 'true' : 'flase' ;
-	//$flag = FleetServiceTaskTable::processCreate ( '2/5/2013', 'asdf', 45235, 3, 'asdfas', 4, 500, 1, 'asdfasd', 3)
+	//$flag = FleetServiceTaskTable::processCreate ( '2/5/2013', 'asdf', 45235, 3, 'asdfas', 4, 1, 'asdfasd', 3, 1);
+	//$task = FleetServiceTaskTable::processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $pID, 1 );
 ?>
 <div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 	<div class="ui-error-box btn-danger">

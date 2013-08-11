@@ -50,9 +50,10 @@
 			<td class="ui-save-button"> 
 				<button style="margin-left:5px;" class="ui-button"><img src="<?php echo image_path('icons/save_small') ?>"><input style="" class="ui-submit-form" id=""  type="submit"  value="<?php echo __('Save') ?>" /></button></td> 
 		</tr> 
-		
-		 
-		 
+		<tr>
+			<td style="padding:4px;"></td> 
+			<td style="padding:4px;"></td> 
+		</tr> 
 	</tbody>     
 </table> 
  

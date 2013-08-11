@@ -25,10 +25,10 @@
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $order->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="ui-input-body-box" style="width:240px;min-width:240px;"> 
-				<?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>
+				<?php echo $order->fullName ?>
 			</td>
 			<td class="ui-input-body-box" style="width:150px;min-width:150px;"> 
-				<?php echo $order->plateNo .' ('.$order->plateCode .')'  ?> 
+				<?php echo '('.$order->plateCodeNo .') ' .$order->plateCode.'  '. $order->plateNo ?> 
 			</td> 
 			<td class="ui-input-body-box" style="width:97%;min-width:90px;"> 
 				<?php echo $order->description  ?> 

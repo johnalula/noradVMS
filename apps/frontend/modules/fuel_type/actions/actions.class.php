@@ -55,7 +55,7 @@ class fuel_typeActions extends sfActions
 	  
 		$flags = FuelTypeTable::processCreate ( $name, $description );
 		
-		 $module = $request->getParameter('module');
+			$module = $request->getParameter('module');
 	  
 			$user_id = $this->getUser()->getAttribute('uid');
 			//$this->getUser()->signIn($user);

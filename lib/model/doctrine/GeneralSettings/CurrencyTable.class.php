@@ -17,15 +17,7 @@ class CurrencyTable extends PluginCurrencyTable
         return Doctrine_Core::getTable('Currency');
     }
 
-	 public static function processDefault ()
-	 {
-        try{
-            return self::processObject(1); 
-        } catch ( Exception $e ) {
-            return null; 
-        }
-        
-   }
+	  
     
 	public static function processCreate ( $name, $alias, $description) 
 	{
@@ -78,8 +70,6 @@ class CurrencyTable extends PluginCurrencyTable
 		$q = Doctrine_Query::create( )
 							->select("crr.* ")
 							->from("Currency  crr")
-							//->leftJoin("bs.taskOrderCurrencies to")
-							//->groupBy("crr.id")				
 							->where("crr.id=?", $_id)
 							->fetchOne ( );
 		return ( ! $q ? null : $q ); 
@@ -89,13 +79,21 @@ class CurrencyTable extends PluginCurrencyTable
 	{
 		$q = Doctrine_Query::create( )
 							->select("crr.*, crr.name as currencyName, crr.alias as currencyAlias")
-							->from("Currency crr")
-							//->leftJoin("bs.taskOrderCurrencies to")
-							//->groupBy("bs.id")			
+							->from("Currency crr") 	
 							->offset($offset)
 							->limit($limit)
 							->execute ( );
 		return ( count($q) <= 0 ? null : $q ); 
 	}	
+	
+	public static function processDefault ( ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("crr.* ")
+							->from("Currency  crr") 		
+							->where("crr.is_default = ? ", true)
+							->fetchOne ( );
+		return ( ! $q ? null : $q ); 
+   }
     
 }

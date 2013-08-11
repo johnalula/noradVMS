@@ -55,7 +55,7 @@ class DriverTable extends PluginDriverTable
 	public static function processSelection( $offset, $limit, $keyword, $type_id, $is_assigned )
 	{
 		$q= Doctrine_Query::create()
-			->select("dr.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description")
+			->select("dr.*,  prt.name as firstName, prt.full_name as fullName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description")
 			->from("Driver dr") 
 			->innerJoin("dr.Participant prt")
 			//->innerJoin("vh.TaskOrder tsko")

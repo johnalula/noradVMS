@@ -45,7 +45,7 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 				$prt->description = trim($description);
 				$prt->save();
 				
-            return true; 
+            return $_nw; 
         } catch ( Exception $e) {
             return false; 
         }

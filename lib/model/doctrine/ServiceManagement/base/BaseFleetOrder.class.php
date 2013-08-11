@@ -8,20 +8,22 @@
  * @property integer $vehicle_id
  * @property string $token_id
  * @property integer $task_id
+ * @property float $order_cost
+ * @property integer $payment_mode_id
  * @property string $effective_date
+ * @property integer $number_of_passangers
+ * @property integer $departure_mileage
+ * @property float $return_mileage
+ * @property float $difference_mileag
+ * @property integer $fuel_acquire_type_id
+ * @property float $fuel_amount
+ * @property clob $description
  * @property string $departure_date
  * @property string $departure_time
  * @property boolean $departure_status
  * @property string $return_date
  * @property string $return_time
  * @property boolean $return_status
- * @property integer $number_of_passangers
- * @property float $departure_mileage
- * @property float $return_mileage
- * @property float $difference_mileag
- * @property integer $fuel_acquire_type_id
- * @property float $fuel_amount
- * @property clob $description
  * @property Vehicle $Vehicle
  * @property Task $Task
  * 
@@ -45,9 +47,36 @@ abstract class BaseFleetOrder extends sfDoctrineRecord
         $this->hasColumn('task_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('order_cost', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('payment_mode_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('effective_date', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
+             ));
+        $this->hasColumn('number_of_passangers', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('departure_mileage', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('return_mileage', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('difference_mileag', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('fuel_acquire_type_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('fuel_amount', 'float', null, array(
+             'type' => 'float',
+             ));
+        $this->hasColumn('description', 'clob', null, array(
+             'type' => 'clob',
              ));
         $this->hasColumn('departure_date', 'string', 100, array(
              'type' => 'string',
@@ -72,27 +101,6 @@ abstract class BaseFleetOrder extends sfDoctrineRecord
         $this->hasColumn('return_status', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
-             ));
-        $this->hasColumn('number_of_passangers', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('departure_mileage', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('return_mileage', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('difference_mileag', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('fuel_acquire_type_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('fuel_amount', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('description', 'clob', null, array(
-             'type' => 'clob',
              ));
     }
 

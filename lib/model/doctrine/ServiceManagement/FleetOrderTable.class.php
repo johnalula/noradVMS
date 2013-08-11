@@ -17,20 +17,36 @@ class FleetOrderTable extends PluginFleetOrderTable
 		return Doctrine_Core::getTable('FleetOrder');
 	}
 	
-	public static function processCreate ($task_id, $token_id, $vehicle_id, $departure_date, $departure_time, $fuel_acquired_id, $fuel_amount, $description ) 
+	public static function processCreate ($task_id, $token_id, $vehicle_id, $fuel_acquired_id, $fuel_amount, $description, $no_of_passengers, $mileage ) 
 	{      
         try{				
 				$_nw = new FleetOrder(); 
 				$_nw->token_id = $token_id; 
 				$_nw->task_id = $task_id; 
-				$_nw->vehicle_id = $vehicle_id; 
-				$_nw->departure_date = $departure_date; 
-				$_nw->departure_time = $departure_time; 
+				$_nw->vehicle_id = $vehicle_id;  
+				$_nw->departure_mileage = $mileage; 
+				$_nw->number_of_passangers = $no_of_passengers;  
 				$_nw->fuel_acquire_type_id = $fuel_acquired_id; 
 				$_nw->fuel_amount = $fuel_amount; 
 				$_nw->description = $description ;   
 				$_nw->save(); 
-								
+				
+				$prt = new TaskParticipant ();
+				$prt->token_id = $_nw->token_id;
+				$prt->task_id = $_nw->id;
+				$prt->participant_id = $_pid;
+				$prt->participant_role = ParticipantCore::$DATA_INCODER;
+				$prt->description = trim($description);
+				$prt->save();
+				
+				$prt = new TaskParticipant ();
+				$prt->token_id = $_nw->token_id;
+				$prt->task_id = $_nw->id;
+				$prt->participant_id = $customer_id;
+				$prt->participant_role = ParticipantCore::$DEPARTEMENT;
+				$prt->description = trim($description);
+				$prt->save();
+						
             return true; 
         } catch ( Exception $e) {
             return false; 
@@ -55,11 +71,13 @@ class FleetOrderTable extends PluginFleetOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("ftsko.* ")
-			->from("FleetOrder ftsko")  
+			->select("ftsko.*, ftsko.departure_mileage as deprtMileage, tsk.departure_date as deprtDate, tsk.departure_time as deprtTime, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.plate_code as plateCode, vh.vehicle_make as vehicleMake, asor.assignment_order_id as orderID, drv.license_type as licenseType, prt.full_name as fullName, tsk.destination as fleetDestination")
+			->from("FleetOrder ftsko")   
 			->innerJoin("ftsko.Task tsk")
-			//->innerJoin("ftsko.Participant prt on ftsko.participant_id = prt.id")
-			->innerJoin("ftsko.Vehicle vh on ftsko.vehicle_id = vh.id")    
+			->innerJoin("ftsko.Vehicle vh")    
+			->innerJoin("vh.assignedVehicle asor ")    
+			->innerJoin("asor.Driver drv")    
+			->innerJoin("drv.Participant prt")    
 			->offset($offset)
 			->limit($limit)
 			->where('ftsko.task_id = ? AND ftsko.token_id = ?', array($task_id, $token_id))

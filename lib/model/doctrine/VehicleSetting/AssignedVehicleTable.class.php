@@ -26,8 +26,8 @@ class AssignedVehicleTable extends PluginAssignedVehicleTable
 			->innerJoin("asvh.Driver drv on asvh.participant_id = drv.id") 
 			->innerJoin("drv.Participant prt on prt.id = drv.employee_id") 
 			->offset($offset)
-			->limit($limit)
-			->where('asvh.departure_status = ?', $is_departed); 
+			->limit($limit);
+		//	->where('asvh.departure_status = ?', $is_departed); 
 			//if(!is_null($is_departed))
 				//$q = $q->addWhere('asvh.departure_status = ?', $is_departed);
 			

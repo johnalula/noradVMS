@@ -53,6 +53,12 @@ class SystemLogFileTable extends PluginSystemLogFileTable
         }
 	}
 	
+	public static function isDuplicated()
+	{
+		
+		
+	}
+	
    public static function processCreate($user_id, $module_name, $action_id, $action_time, $action_date, $created_data,  $edited_data, $deleted_data, $viewed_data, $pc_ip_address)
 	{
 		$token = trim($action_date).trim($pc_ip_address).rand('11111', '99999');

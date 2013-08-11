@@ -5,11 +5,11 @@
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
-			<th class=""><?php echo  ('Name') ?></th> 
-			<th class=""><?php echo  ('Quantity') ?></th> 
-			<th class=""><?php echo  ('Unit') ?></th> 
-			<th class=""><?php echo  ('Currency') ?></th> 
-			<th class=""><?php echo  ('Class') ?></th> 
+			<th class=""><?php echo  ('Vehicle') ?></th> 
+			<th class=""><?php echo  ('Driver Name') ?></th> 
+			<th class=""><?php echo  ('Destination') ?></th> 
+			<th class=""><?php echo  ('Mileage') ?></th> 
+			<th class=""><?php echo  ('Date') ?></th> 
 			<th class=""><?php echo  ('Description') ?></th>  
 			<th class="" style="padding:2px 3px;text-align:center;"><?php echo  (' Actions') ?></th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
@@ -27,23 +27,23 @@
 			<td  class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $order->id;?>]" class="checkcategory"  />
 			</td>
-			<td class="ui-input-body-box" style="width:140px;min-width:140px;"> 
-				<input type="text" style="width:140px;min-width:140px;" id="" value="<?php echo $order->vehicle_id ?>">
+			<td class="ui-input-body-box" style="width:160px;min-width:160px;"> 
+				<input type="text" style="width:160px;min-width:160px;" id="" value="<?php echo '( '. $order->plateCodeNo.' ) '.$order->plateCode .' - '.$order->plateNo.' ( '.$order->vehicleMake.' ) ' ?>">
 			</td>
-			<td class="ui-input-body-box" style="width:70px;min-width:70px;"> 
-				<input type="text" style="width:70px;min-width:70px;" id="" value="<?php echo $order->departure_date ?>">
-			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" id="" value="<?php echo $order->departure_time ?>">
+			<td class="ui-input-body-box" style="width:150px;min-width:150px;"> 
+				<input type="text" style="width:150px;min-width:150px;" id="" value="<?php echo $order->fullName ?>">
 			</td>
 			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" id="" value="<?php echo $order->fuel_amount ?>">
+				<input type="text" style="width:80px;min-width:80px;" id="" value="<?php echo $order->fleetDestination ?>">
 			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" disabled id="" value="<?php echo $order->id ?>"> 
+			<td class="ui-input-body-box" style="width:100px;min-width:100px;"> 
+				<input type="text" style="width:100px;min-width:100px;" id="" value="<?php echo $order->deprtMileage ?>">
 			</td>
-			<td class="ui-input-body-box" style="width:97%;min-width:90px;"> 
-				<input type="text" style="width:97%;min-width:90px;" id="" value="<?php echo $order->id  ?> ">
+			<td class="ui-input-body-box" style="width:120px;min-width:120px;"> 
+				<input type="text" style="width:120px;min-width:120px;" disabled id="" value="<?php echo date('d/m/Y', strtotime($order->deprtDate)) .'  '. $order->deprtTime?>"> 
+			</td>
+			<td class="ui-input-body-box" style="width:95%;min-width:40px;"> 
+				<input type="text" style="width:95%;min-width:40px;" id="" value="<?php echo $order->description  ?> ">
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">

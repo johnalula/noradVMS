@@ -350,11 +350,13 @@
 	function createTaskOrder( )
 	{
 		var vehicleID = document.getElementById('vehicle_id').value
-		var departure_date = document.getElementById('departure_date').value
-		var departure_time = document.getElementById('departure_time').value
+		//var departure_date = document.getElementById('departure_date').value
+		//var departure_time = document.getElementById('departure_time').value
 		var fuel_acquired = document.getElementById('fuel_acquired_id').value
 		var fuel_amount = document.getElementById('fuel_amount').value
 		var desc = document.getElementById('description').value
+		var passengers = document.getElementById('no_of_passengers').value
+		var mileage = document.getElementById('departure_mileage').value
 		var taskID = document.getElementById('taskID').value
 		var tokenID = document.getElementById('tokenID').value
 		
@@ -390,7 +392,7 @@
 		 			
 			$.ajax({
 				type: "GET",
-				data: 'task_id='+taskID+'&token_id='+tokenID+'&vehicle_id='+vehicleID+'&departure_date='+departure_date+'&departure_time='+departure_time+'&fuel_acquired_id='+fuel_acquired+'&fuel_amount='+fuel_amount+'&description='+desc,
+				data: 'task_id='+taskID+'&token_id='+tokenID+'&vehicle_id='+vehicleID+'&fuel_acquired_id='+fuel_acquired+'&fuel_amount='+fuel_amount+'&departure_mileage='+mileage+'&no_of_passengers='+passengers+'&description='+desc,
 				url: '<?php echo url_for('fleet/createTaskOrder')?>', 
 				success: function() { 
 					showSuccess(); 

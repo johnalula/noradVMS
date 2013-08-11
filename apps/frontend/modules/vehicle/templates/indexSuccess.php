@@ -1,13 +1,14 @@
 <div class="ui-main-menu-cont">
 	<div class="ui-main-menu-actions">
 		<ul>
-			<li><a><img src="<?php echo image_path('icons/save_small') ?>"><span class="ui-gray-font">Save</span></a></li>
-			<li><a><img src="<?php echo image_path('icons/delete_small') ?>"><span class="ui-gray-font">Cancel</span></a></li>
-			<li><a href="#"  onclick="Javascript:refresh();"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
+			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
+			<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 		</ul>
+		
+		 
+		<div class="clearFix"></div>
 	</div>
 </div>
-
 <?php  
 
 $ip =  gethostbyname($_SERVER['HTTP_HOST']) ;

@@ -43,7 +43,7 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Engine No') ?>:<span class="ui-mandatory"></span></td>
 			<td>
-				<input style="width:210px;" id="date" name="date" value="<?php echo $vehicle->engineNo ?>">		
+				<input style="width:210px;" id="date" name="date" value="<?php echo $vehicle->departStatus ?>">		
 				<br><span id="date_validation" class="error_validation displayNone"><?php echo __('Date is required!') ?></span>	
 			</td> 
 		</tr> 

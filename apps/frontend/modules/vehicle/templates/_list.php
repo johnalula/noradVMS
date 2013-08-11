@@ -5,7 +5,8 @@
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
-			<th class=""><?php echo  ('Vehicle') ?></th> 
+			<th class=""><?php echo  ('Vehicle') ?></th>   
+			<th class=""><?php echo  ('Driver Name') ?></th> 
 			<th class=""><?php echo  ('Vehicle Type') ?></th> 
 			<th class=""><?php echo  ('Vehicle Make') ?></th> 
 			<th class=""><?php echo  ('Fuel Type') ?></th>   
@@ -27,7 +28,10 @@
 			</td>
 			<td class="" style="width:98%;min-width:220px;"> 
 				<img src="<?php echo image_path('new_icons/car_small') ?>">
-				<?php echo $vehicle->plateNo .' ( '.$vehicle->plateCode.' )'  ?>
+				<?php echo '( '. $vehicle->plateCodeNo.' ) '.$vehicle->plateCode .' - '.$vehicle->plateNo.' ( '.$vehicle->vehicleMake.' ) ' ?>
+			</td>
+			<td class="" style="width:140px;min-width:140px;"> 
+				<?php echo $vehicle->fullName ?>
 			</td>
 			<td class="" style="width:140px;min-width:140px;"> 
 				<?php echo $vehicle->id ?>

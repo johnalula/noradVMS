@@ -16,7 +16,7 @@
 		foreach($drivers as $candidate ): ?>
 		<tr>
 			<td style="">
-				<input type="radio" id="selectCandidate-<?php echo $i ?>" name="selectCandidate" value="<?php echo  $candidate->id. '$'.$candidate->firstName ?>">
+				<input type="radio" id="selectCandidate-<?php echo $i ?>" name="selectCandidate" value="<?php echo  $candidate->id. '$'.$candidate->fullName ?>">
 				
 			</td> 
 			<td class="" style="width:220px;min-width:220px;"> 

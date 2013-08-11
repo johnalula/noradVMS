@@ -25,6 +25,7 @@
  * @property string $type
  * @property string $plate_number
  * @property string $plate_code
+ * @property integer $plate_code_no
  * @property integer $initial_mileage
  * @property integer $current_mileage
  * @property integer $vehicle_type_id
@@ -141,6 +142,10 @@ abstract class BaseItem extends sfDoctrineRecord
              'type' => 'string',
              'default' => 'ET',
              'length' => 255,
+             ));
+        $this->hasColumn('plate_code_no', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 4,
              ));
         $this->hasColumn('initial_mileage', 'integer', null, array(
              'type' => 'integer',

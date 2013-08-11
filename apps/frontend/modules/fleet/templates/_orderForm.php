@@ -23,15 +23,7 @@
 				<br><span id="vehicle_validation" class="error_validation displayNone"><?php echo __('Vehicle is required!') ?></span>	 
 			
 		</tr> 
-		<tr>
-			<td class="rightSide"><?php echo __('Departure Date') ?>:<span class="ui-mandatory">*</span></td>
-			<td>
-				<input style="width:96px;margin-right:10px;" id="departure_date" name="departure_date" >		
-				<?php echo __('Time') ?>:<span class="ui-mandatory"></span>
-				<input style="width:70px;" id="departure_time" name="departure_time" >		
-				<br><span id="quantity_validation" class="error_validation displayNone"><?php echo __('Quantity is required!') ?></span>	
-			</td> 
-		</tr> 
+		
 		<tr>
 			<td class="rightSide"><?php echo __('Departure Mileage') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
@@ -49,8 +41,15 @@
 					<?php endforeach; ?>
 				</select>
 				<?php echo __('Fuel') ?>:<span class="ui-mandatory"></span>
-				<input type="text" style="width:55px;"  id="fuel_amount" name="fuel_amount" >
+				<input type="text" style="width:55px;text-align:right;"  id="fuel_amount" name="fuel_amount" >
 				<br><span id="quantity_validation" class="error_validation displayNone"><?php echo __('Quantity is required!') ?></span>	
+			</td> 
+		</tr> 
+		<tr>
+			<td class="rightSide"><?php echo __('No of Passengers') ?>:<span class="ui-mandatory">*</span></td>
+			<td>
+				<input type="text" style="width:230px;"  id="no_of_passengers" name="no_of_passengers" >
+				<br><span id="quantity_validation" class="error_validation displayNone"><?php echo __('Mileage is required!') ?></span>	
 			</td> 
 		</tr> 
 		<tr>
@@ -77,7 +76,7 @@
  
 <script>
 	
-	$('#departure_date').datepicker();
+	
 
 
 </script>

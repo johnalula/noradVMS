@@ -235,7 +235,10 @@ border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1p
 
 .ui-navigation-list ul.ui-right-button li button.ui-next-button img {width:14px;height:14px;padding:0px!important;margin:0px!important;vertical-align:bottom;margin-right:5px!important;}
 
- 
+
+span.ui-page-navigator { float:right;margin-top:-16px;}
+span.ui-page-navigator ul { list-style:none;}
+span.ui-page-navigator ul { display:inline-block;}
 
 
 

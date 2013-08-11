@@ -15,6 +15,7 @@
  * @property string $type
  * @property integer $agreement_participant_id
  * @property float $service_agreement_cost
+ * @property integer $payment_mode_id
  * @property integer $service_type_id
  * @property string $service_reason
  * @property string $destination
@@ -27,11 +28,6 @@
  * @property string $return_date
  * @property string $return_time
  * @property boolean $return_status
- * @property integer $number_of_passangers
- * @property float $departure_mileage
- * @property float $return_mileage
- * @property float $difference_mileag
- * @property integer $fuel_acquire_id
  * @property clob $delay_reason
  * @property integer $registration_mode
  * @property integer $driver_id
@@ -100,8 +96,12 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('service_agreement_cost', 'float', null, array(
              'type' => 'float',
              ));
-        $this->hasColumn('service_type_id', 'integer', null, array(
+        $this->hasColumn('payment_mode_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('service_type_id', 'integer', 8, array(
+             'type' => 'integer',
+             'length' => 8,
              ));
         $this->hasColumn('service_reason', 'string', 255, array(
              'type' => 'string',
@@ -145,21 +145,6 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('return_status', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
-             ));
-        $this->hasColumn('number_of_passangers', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('departure_mileage', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('return_mileage', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('difference_mileag', 'float', null, array(
-             'type' => 'float',
-             ));
-        $this->hasColumn('fuel_acquire_id', 'integer', null, array(
-             'type' => 'integer',
              ));
         $this->hasColumn('delay_reason', 'clob', null, array(
              'type' => 'clob',
