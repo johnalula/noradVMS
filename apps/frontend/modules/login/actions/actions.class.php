@@ -73,7 +73,12 @@ class loginActions extends sfActions
 
 			$flag = SystemLogFileTable::processCreate($user_id, $module, $action, $time, $date, null,  null, null, null, $ip );
 			//if ($this->getUser()->hasCredential('Admin'))
-			$this->redirect('dashboard/index');
+			$module = $request->getParameter('module');
+			$action = $request->getParameter('action');
+			if((strcmp($module, 'login') == 0) || (strcmp($module, 'dashboard') == 0))
+				$this->redirect('dashboard/index');
+			else
+				$this->redirect($module.'/'.$action);
 			 
 			//else 
 			//$this->redirect('dashboard/index');

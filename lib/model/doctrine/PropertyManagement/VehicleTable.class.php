@@ -76,8 +76,8 @@ class VehicleTable extends PluginVehicleTable
 				$_nw->clss = PropertyClassCore::$VEHICLE; 
 				$_nw->category_id = $order->category_id;  
 				$_nw->vehicle_status = self::$NOT_ASSIGNED;  
-				//$_nw->vehicle_type_id = 1;  
-				//$_nw->fuel_type_id = 1;  
+				$_nw->vehicle_type_id = 1;  
+				$_nw->fuel_type_id = 1;  
 				$_nw->quantity = 1;  
 				$_nw->is_present = true; 
 				$_nw->save();

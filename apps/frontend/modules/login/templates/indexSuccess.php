@@ -1,4 +1,4 @@
-
+<?php echo $sf_request->getParameter('module') ?>
 <div class="ui-login-box" id="">
 	<table class="ui-login-table">
 		<tr>
