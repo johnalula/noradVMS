@@ -54,7 +54,7 @@ Vehicle:
     purchased_date: { type: date }
     service_year: { type: integer, default: 0 }
     checkup_period_id: { type: integer }
-    vehicle_status: { type: integer, default: 0 }
+    vehicle_status: { type: integer, default: 4 }
     fuel_setting_id: { type: integer }
     is_assigned: { type: boolean, default: 0 } 
     description: { type: clob }

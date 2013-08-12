@@ -101,5 +101,16 @@ class VehicleTypeTable extends PluginVehicleTypeTable
 							->execute ( );
 		return ( count($q) <= 0 ? null : $q ); 
 	}
+	
+	public static function processValue ( $id ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("ft.*, ft.name as vehicleType")
+							->from("vehicleType ft") 
+							->where('ft.id = ?', $id)
+							->fetchOne ();
+							
+		return ( count($q) <= 0 ? null : $q ); 
+	}
 	 
 }

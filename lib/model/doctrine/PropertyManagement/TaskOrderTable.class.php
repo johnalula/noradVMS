@@ -103,7 +103,23 @@ class TaskOrderTable extends PluginTaskOrderTable
 			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))
 			->execute( ); 
 
-	return ( count ( $q ) <= 0 ? null : $q ); 
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processCandidateSelection ( $task_id, $token_id, $offset=0, $limit=20) 
+	{
+		$q= Doctrine_Query::create()
+			->select("itm.*")
+			->from("Item itm") 
+			->innerJoin("itm.TaskOrder tsko")
+			->innerJoin("tsko.Category cat on tsko.category_id = cat.id")
+			->innerJoin("itm.Task tsk")
+			->offset($offset)
+			->limit($limit)
+			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
 	
 	public static function getInstance()

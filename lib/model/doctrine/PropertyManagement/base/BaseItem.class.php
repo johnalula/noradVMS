@@ -204,7 +204,7 @@ abstract class BaseItem extends sfDoctrineRecord
              ));
         $this->hasColumn('vehicle_status', 'integer', null, array(
              'type' => 'integer',
-             'default' => 0,
+             'default' => 4,
              ));
         $this->hasColumn('fuel_setting_id', 'integer', null, array(
              'type' => 'integer',

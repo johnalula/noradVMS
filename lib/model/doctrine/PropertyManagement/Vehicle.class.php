@@ -19,4 +19,22 @@ class Vehicle extends PluginVehicle
 		$this->save();
 			
 	}
+	public function activateVehicle()
+	{
+		$this->vehicle_status = VehicleTable::$ACTIVE;
+		$this->save();
+			
+	}
+	public function fieldVehicle()
+	{
+		$this->vehicle_status = VehicleTable::$ON_FIELD;
+		$this->save();
+			
+	}
+	public function maintainVehicle()
+	{
+		$this->vehicle_status = VehicleTable::$ON_MAINTENANCE;
+		$this->save();
+			
+	}
 }

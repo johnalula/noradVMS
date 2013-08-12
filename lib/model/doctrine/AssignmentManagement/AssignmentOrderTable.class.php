@@ -33,15 +33,11 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 				$order = self::processObject($_nw_id, $token);
 				
 				$flag = VehicleTable::processVehicleAssignment( $order ); 
-				
-				//if( !$flag ) {
-				//	$_nw->delete( ); 
-				//	return false;
-				//}
+			 
 					return true;
 			
 		//} catch ( Exception $e ) {
-          //  return false; 
+        //    return false; 
        // }
 	}
    

@@ -119,7 +119,7 @@ class assignmentActions extends sfActions
 		$this->currencys = CurrencyTable::processSelection ( $offset, $limit );
 		
 		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
-		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ( $is_assigned, $status, $keyword, $offset, $limit);
+		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
 		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
   }
   

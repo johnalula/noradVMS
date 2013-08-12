@@ -94,5 +94,18 @@ class SystemLogFileTable extends PluginSystemLogFileTable
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
+	
+	public static function processAllLogFiles() 
+	{
+		$q= Doctrine_Query::create()
+			->select("log.*")
+			->from("SystemLogFile log") 
+			->innerJoin("log.User usr on usr.id = log.user_id")
+			->innerJoin("usr.UserGroup grp on grp.id = usr.group_id") 
+			->orderBy("log.id DESC")
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
 
 }

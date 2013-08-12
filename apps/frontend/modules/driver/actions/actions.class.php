@@ -21,9 +21,10 @@ class driverActions extends sfActions
 	  $offset = 0;
 	  $keyword = null;
 	  $type_id = null;
+	  $is_assigned = null;
 	  
 	  $this->employees = EmployeeTable::processSelection( $offset, $limit, $keyword, $type_id, null );
-	  $this->drivers = DriverTable::processSelection( $offset, $limit, $keyword, $type_id, false ); 
+	  $this->drivers = DriverTable::processSelection( $offset, $limit, $keyword, $type_id, $is_assigned ); 
   }
   
   public function executeCreateDriver(sfWebRequest $request)

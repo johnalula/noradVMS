@@ -21,10 +21,11 @@ class vehicleActions extends sfActions
     $limit = 10;
     $keyword = null;
     $status = null;
+    $type = null;
     $is_assigned = null;
     
-    $this->vehicles = VehicleTable::processSelection ( $is_assigned, $status, $keyword, $offset, $limit);
-    //$this->log_files = UserGroupTable::processSelection($keyword, $offset, $limit);
+    $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, $offset, $limit);
+    $this->allVehicles = VehicleTable::processAllVehicleSelection ($is_assigned=false, $type=null, $status=null, $keyword=null);
   }
   
   public function executeView(sfWebRequest $request)
@@ -42,4 +43,26 @@ class vehicleActions extends sfActions
 			
 		 
   }
+  
+  public function executePagination(sfWebRequest $request)
+	{
+		$offset = $request->getParameter('offset');
+		$limit = intval($request->getParameter('limit'));
+		$status = intval($request->getParameter('status'));
+		$type = intval($request->getParameter('type'));
+		$keyword = $request->getParameter('keyword');
+		$keyword = '%'.$keyword.'%';
+		
+		if(!$offset) $offset = 0;
+		if(!$limit) $limit = 10;
+		if(!$keyword) $keyword = null;
+		if(!$status) $status = null;
+		if(!$type)  $type = null;
+		if(!$is_assigned)  $is_assigned = null;
+		 
+		 $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, $offset, $limit) ;
+		 $this->allVehicles = VehicleTable::processAllVehicleSelection($is_assigned, $type, $status, $keyword);
+		 
+		return $this->renderPartial('list', array('vehicles' => $this->vehicles, 'allVehicles' => $this->allVehicles ));		
+	}
 }

@@ -102,5 +102,15 @@ class FuelTypeTable extends PluginFuelTypeTable
 							->execute ( );
 		return ( count($q) <= 0 ? null : $q ); 
 	}
+	
+	public static function processValue ( ) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("ft.*, ft.name as fuelType")
+							->from("FuelType ft")  
+							->execute ();
+							
+		return ( count($q) <= 0 ? null : $q ); 
+	}
 	 
 }

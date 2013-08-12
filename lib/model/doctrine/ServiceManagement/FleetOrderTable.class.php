@@ -46,7 +46,9 @@ class FleetOrderTable extends PluginFleetOrderTable
 				$prt->participant_role = ParticipantCore::$DEPARTEMENT;
 				$prt->description = trim($description);
 				$prt->save();
-						
+				
+				//$obj = VehicleTable::findObject($vehicle_id, $);
+				
             return true; 
         } catch ( Exception $e) {
             return false; 

@@ -89,8 +89,7 @@
 
 	function showSuccess()
 	{
-		$('#ui-display-success-cont').removeClass('displayNone');
-		
+		$('#ui-display-success-cont').removeClass('displayNone');		
 		location.reload().delay(3000);
 	}
 	

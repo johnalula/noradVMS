@@ -16,9 +16,7 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
      
 	public static function processCreate (  $date, $description, $ref, $_pid ) 
 	{      
-         
         try{
-				
 				$token = trim($date).trim($ref).rand('11111', '99999');
 				$_nw = new AssignmentTask(); 
 				$_nw->token_id = md5($token)  ; 
@@ -121,9 +119,9 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
 	
-	public static function processCandidateVehicleSelection($is_assigned=false, $status=null, $keyword=null, $offset=0, $limit=10) 
+	public static function processCandidateVehicleSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
-		return VehicleTable::processSelection ( false, $status, $keyword, $offset, $limit) ; 
+		return VehicleTable::processSelection ( 4, $type, $status, $keyword, $offset, $limit); 
 	}
 	
 	public static function processCandidateDriverSelection($offset=0, $limit=10, $keyword=null, $type_id=null) 

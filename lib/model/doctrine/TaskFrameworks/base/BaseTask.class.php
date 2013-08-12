@@ -116,7 +116,7 @@ abstract class BaseTask extends sfDoctrineRecord
              ));
         $this->hasColumn('service_delay_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => 0,
              ));
         $this->hasColumn('number_of_delay_days', 'integer', null, array(
              'type' => 'integer',
@@ -132,7 +132,7 @@ abstract class BaseTask extends sfDoctrineRecord
              ));
         $this->hasColumn('departure_status', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => 1,
+             'default' => 0,
              ));
         $this->hasColumn('return_date', 'string', 100, array(
              'type' => 'string',

@@ -1,6 +1,6 @@
 
 
-<table class="" id="locationList" >
+<table class="" id="dataList" >
 	<thead>
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th>  

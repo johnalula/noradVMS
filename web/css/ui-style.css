@@ -1,5 +1,5 @@
 
-.ui-container {padding:8px 15px!important;min-width:800px;margin:0px!important;}
+.ui-container {padding:8px 15px!important;min-width:800px!important;margin:0px!important;}
 .ui-list-cont {padding:0px!important;}
 .ui-main-list-cont {border:1px solid #b9cbdb;padding:1px!important;-webkit-border-radius:4px 4px 0px 0px;-moz-border-radius:4px 4px 0px 0px;border-radius:4px 4px 0px 0px;-webkit-box-shadow: 0 0px 1px #ddd;-moz-box-shadow: 0 0px 1px #ddd;box-shadow: 0 0px 1px #ddd;}
  
@@ -64,8 +64,8 @@ padding:6px 0px 0px 0px;margin:-3px 4px 0px 5px;}
 .ui-content-box {padding:0px!important;margin:0px!important;border:1px solid #00f;}
 .ui-main-content-cont {padding:0px!important;margin:0px!important;border:0px solid #00f;}
 .ui-content-list-box {padding:0px!important;margin:0px!important;border:0px solid #00f;}
-.ui-content-lists { border:0px solid #b9cbdb;padding:0!important;margin:0px!important;margin-top:1px;}
-.ui-content-lists table {border:0px;margin:0px!important;}
+.ui-content-lists { min-width:800px!important;border:0px solid #b9cbdb;padding:0!important;margin:0px!important;margin-top:1px;}
+.ui-content-lists table {border:0px;margin:0px!important;min-width:780px!important;width:100%;}
 .ui-content-lists table thead {border:0px;}
 .ui-content-lists table thead tr {border:0px;}
 .ui-content-lists table thead tr th {text-align:left;border:0px;padding:4px 10px;background:#dfe2e7;border-top:1px solid #eee;border-bottom:1px solid #bbb;border-right:1px solid #bbb;color:#000;font-size:12px!important;}
@@ -101,7 +101,9 @@ border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1p
 .ui-content-lists table tbody tr.ui-input-body-header td.ui-add-button-action button.ui-add-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;padding:2px 4px;
 border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;}
 
-.ui-content-lists table tbody tr.ui-input-body-header td a button.ui-action-button img {width:16px;height:16px;padding:0px!important;margin:0px!important;}
+.ui-content-lists table tbody tr.ui-input-body-header td a button.ui-action-button img {width:15px;height:15px;padding:0px!important;margin:0px!important;vertical-align:top!important;}
+
+.ui-content-lists table tbody tr td img {width:15px;height:15px;padding:0px!important;margin:0px!important;vertical-align:top!important;}
 
 .ui-content-lists table tbody tr {border:0px;}
 .ui-content-lists table tbody tr td {border:0px;font-size:11px!important;padding:1px 10px;background:#fff;border-bottom:1px solid #ddd;border-right:1px solid #ddd;}

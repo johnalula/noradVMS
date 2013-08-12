@@ -20,5 +20,23 @@ class dashboardActions extends sfActions
 		$offset = 0;
 		$limit = 10;
 		$this->activitys = SystemLogFileTable::processSelection($offset, $limit);
+		$this->totalData = SystemLogFileTable::processAllLogFiles();
   }
+  
+  public function executePagination(sfWebRequest $request)
+  {
+		$offset = $request->getParameter('offset');
+		$limit = $request->getParameter('limit');
+
+		if(!$offset )
+			$offset = 0;
+			
+		if(!$limit )
+			$limit = 10;
+			 
+		$this->activitys = SystemLogFileTable::processSelection($offset, $limit);
+
+		return $this->renderPartial('activityList', array('activitys' => $this->activitys));
+  }
+  
 }

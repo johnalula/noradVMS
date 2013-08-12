@@ -1,14 +1,16 @@
 
-<div id="categoryList">
-<table class="" id="ui-data-list" >
+<div id="dataList">
+	
+<table class="" id="ui-data-list" style="">
 	<thead>
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
 			<th class=""><?php echo  ('Vehicle') ?></th>   
 			<th class=""><?php echo  ('Driver Name') ?></th> 
-			<th class=""><?php echo  ('Vehicle Type') ?></th> 
-			<th class=""><?php echo  ('Vehicle Make') ?></th> 
+			<th class=""><?php echo  ('Type') ?></th> 
+			<th class=""><?php echo  ('Make') ?></th> 
+			<th class=""><?php echo  ('Model') ?></th> 
 			<th class=""><?php echo  ('Fuel Type') ?></th>   
 			<th class="" style="padding:2px 2px;text-align:center;"><?php echo  (' Actions') ?></th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
@@ -16,9 +18,9 @@
 	</thead>
 	<tbody>
 		<?php $row=0 ?>
-
+		<input type="hidden" id="totalData" name="totalData" value="<?php echo count($allVehicles) ?>">
 		<?php foreach( $vehicles as $vehicle ): ?>
-
+		
 		<tr class="<?php echo fmod($row, 2) ? 'even' : 'odd' ?>"> 
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-right:1px solid #bbb;border-left:1px solid #bbb;border-bottom:1px solid #bbb;"> 
 				 
@@ -26,21 +28,29 @@
 			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $vehicle->id;?>]" class="checkcategory"  />
 			</td>
-			<td class="" style="width:98%;min-width:220px;"> 
-				<img src="<?php echo image_path('new_icons/car_small') ?>">
+			<td class="" style="width:98%;min-width:100px;"> 
+				<img style="veritcal-align:bottom;" src="<?php echo image_path('new_icons/car_small') ?>">
 				<?php echo '( '. $vehicle->plateCodeNo.' ) '.$vehicle->plateCode .' - '.$vehicle->plateNo.' ( '.$vehicle->vehicleMake.' ) ' ?>
 			</td>
-			<td class="" style="width:140px;min-width:140px;"> 
-				<?php echo $vehicle->fullName ?>
+			<td class="" style="width:180px;min-width:180px;"> 
+				<?php if($vehicle->isAssigned): ?>
+					<img src="<?php echo image_path('setting/vehicle_driver_small') ?>">
+					<?php echo $vehicle->fullName ?>
+				<?php else: ?>
+				Not assigned yet
+				<?php endif; ?>
 			</td>
-			<td class="" style="width:140px;min-width:140px;"> 
-				<?php echo $vehicle->id ?>
+			<td class="" style="width:70px;min-width:60px;"> 
+				<?php echo $vehicle->vehicleType ?>
 			</td>
-			<td class="" style="width:100px;min-width:100px;"> 
-				<?php echo $vehicle->assignedVehicle ? 'true' : 'false' ?>
+			<td class="" style="width:80px;min-width:60px;"> 
+				<?php echo $vehicle->vehicleMake ?>
 			</td>
-			<td class="" style="width:80px;min-width:80px;"> 
-				<?php echo $vehicle->categoryName ?> 
+			<td class="" style="width:70px;min-width:60px;"> 
+				<?php echo $vehicle->vehicleModel ?>
+			</td>
+			<td class="" style="width:60px;min-width:60px;"> 
+				<?php echo $vehicle->fuelType ?> 
 			</td>  
 			 
 			<td  class="" style="padding:0px 0px 0px 1px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 

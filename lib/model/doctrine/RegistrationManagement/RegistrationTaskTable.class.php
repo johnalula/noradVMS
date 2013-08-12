@@ -133,6 +133,10 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 	{
 		return TaskOrderTable::processSelection($task_id, $token_id, $status, $keyword, $offset, $limit) ;
 	}
+	public static function processTaskOrderCandidateSelection ($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=20) 
+	{
+		return TaskOrderTable::processCandidateSelection ( $task_id, $token_id, $offset, $limit) ;
+	}
 	
 	public static function processCreateTaskAttachment ( $task_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description)
 	{

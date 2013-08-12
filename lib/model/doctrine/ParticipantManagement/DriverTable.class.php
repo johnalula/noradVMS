@@ -52,7 +52,7 @@ class DriverTable extends PluginDriverTable
 		return ( $q > 0 );   
 	}
 	
-	public static function processSelection( $offset, $limit, $keyword, $type_id, $is_assigned )
+	public static function processSelection( $offset=0, $limit=10, $keyword=null, $type_id=null, $is_assigned=null )
 	{
 		$q= Doctrine_Query::create()
 			->select("dr.*,  prt.name as firstName, prt.full_name as fullName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description")

@@ -146,13 +146,13 @@ class registrationActions extends sfActions
   public function executeDetail(sfWebRequest $request)
   {
 		$offset = 0;
-		$limit = 10;
+		$limit = 20;
 		$status = null;
 		$keyword = null;
 		$task_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 	
-	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+		$this->task_orders = RegistrationTaskTable::processTaskOrderCandidateSelection ($task_id, $token_id, $offset, $limit);
     //$this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
     $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
   }
