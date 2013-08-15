@@ -13,9 +13,9 @@
  * @property string $effective_date
  * @property datetime $assigned_date
  * @property boolean $maintenance_status
- * @property boolean $departure_status
- * @property boolean $return_status
- * @property boolean $reasigned_status
+ * @property boolean $is_departed
+ * @property boolean $is_returned
+ * @property boolean $is_reasigned
  * @property Task $Task
  * @property AssignmentOrder $AssignmentOrder
  * @property Driver $Driver
@@ -60,15 +60,15 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'type' => 'boolean',
              'default' => 0,
              ));
-        $this->hasColumn('departure_status', 'boolean', null, array(
+        $this->hasColumn('is_departed', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));
-        $this->hasColumn('return_status', 'boolean', null, array(
+        $this->hasColumn('is_returned', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));
-        $this->hasColumn('reasigned_status', 'boolean', null, array(
+        $this->hasColumn('is_reasigned', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));

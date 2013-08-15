@@ -88,4 +88,9 @@ class DriverTable extends PluginDriverTable
 			
 		return ( ! $q ? null : $q );    
 	}
+	
+	public static function processCandidateEmployeeSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
+	{
+		return EmployeeTable::processSelection ($status, $keyword, $exclusion , $parent, $dept, $type, $offset, $limit ); 
+	}
 }

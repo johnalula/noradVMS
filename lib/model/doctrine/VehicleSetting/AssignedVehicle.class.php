@@ -12,4 +12,15 @@
  */
 class AssignedVehicle extends PluginAssignedVehicle
 {
+	public function processDeparure()
+	{
+		$this->is_departed = true;
+		$this->save();
+	}
+	
+	public function processReturn()
+	{
+		$this->is_departed = false;
+		$this->save();
+	}
 }

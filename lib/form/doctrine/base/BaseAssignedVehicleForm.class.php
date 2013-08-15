@@ -24,9 +24,9 @@ abstract class BaseAssignedVehicleForm extends BaseFormDoctrine
       'effective_date'      => new sfWidgetFormInputText(),
       'assigned_date'       => new sfWidgetFormInputText(),
       'maintenance_status'  => new sfWidgetFormInputCheckbox(),
-      'departure_status'    => new sfWidgetFormInputCheckbox(),
-      'return_status'       => new sfWidgetFormInputCheckbox(),
-      'reasigned_status'    => new sfWidgetFormInputCheckbox(),
+      'is_departed'         => new sfWidgetFormInputCheckbox(),
+      'is_returned'         => new sfWidgetFormInputCheckbox(),
+      'is_reasigned'        => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -39,9 +39,9 @@ abstract class BaseAssignedVehicleForm extends BaseFormDoctrine
       'effective_date'      => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'assigned_date'       => new sfValidatorPass(array('required' => false)),
       'maintenance_status'  => new sfValidatorBoolean(array('required' => false)),
-      'departure_status'    => new sfValidatorBoolean(array('required' => false)),
-      'return_status'       => new sfValidatorBoolean(array('required' => false)),
-      'reasigned_status'    => new sfValidatorBoolean(array('required' => false)),
+      'is_departed'         => new sfValidatorBoolean(array('required' => false)),
+      'is_returned'         => new sfValidatorBoolean(array('required' => false)),
+      'is_reasigned'        => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('assigned_vehicle[%s]');

@@ -20,7 +20,8 @@
 				
 			</td> 
 			<td class="" style="width:220px;min-width:220px;"> 
-				<?php echo $candidate->id ?>
+				<img style="veritcal-align:bottom;" src="<?php echo image_path('new_icons/car_small') ?>">
+				<?php echo '( '. $candidate->plateCodeNo.' ) '.$candidate->plateCode .' - '.$candidate->plateNo.' ( '.$candidate->vehicleMake.' ) ' ?>
 			</td>
 			<td class="" style="width:220px;min-width:220px;"> 
 				<?php echo $candidate->plateCode ?>

@@ -73,10 +73,16 @@ class FleetOrderTable extends PluginFleetOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("ftsko.*, ftsko.departure_mileage as deprtMileage, tsk.departure_date as deprtDate, tsk.departure_time as deprtTime, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.plate_code as plateCode, vh.vehicle_make as vehicleMake, asor.assignment_order_id as orderID, drv.license_type as licenseType, prt.full_name as fullName, tsk.destination as fleetDestination")
+			->select("ftsko.*, ftsko.departure_mileage as deprtMileage, ftsko.fuel_amount as acquiredFuelType,
+			tsk.departure_date as deprtDate, tsk.departure_time as deprtTime, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.plate_code as plateCode, vh.vehicle_make as vehicleMake, asor.assignment_order_id as orderID, drv.license_type as licenseType, prt.full_name as fullName, tsk.destination as fleetDestination,
+			ft.name as fuelType, vt.name as vehicleType, 
+			prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, 
+			")
 			->from("FleetOrder ftsko")   
 			->innerJoin("ftsko.Task tsk")
 			->innerJoin("ftsko.Vehicle vh")    
+			->innerJoin("vh.FuelType ft")    
+			->innerJoin("vh.VehicleType vt")    
 			->innerJoin("vh.assignedVehicle asor ")    
 			->innerJoin("asor.Driver drv")    
 			->innerJoin("drv.Participant prt")    
@@ -87,4 +93,28 @@ class FleetOrderTable extends PluginFleetOrderTable
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
+	
+	public static function processAllOrders ( $task_id, $token_id) 
+	{
+		$q= Doctrine_Query::create()
+			->select("ftsko.*, ftsko.departure_mileage as deprtMileage, ftsko.fuel_amount as acquiredFuelType,
+			tsk.departure_date as deprtDate, tsk.departure_time as deprtTime, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.plate_code as plateCode, vh.vehicle_make as vehicleMake, asor.assignment_order_id as orderID, drv.license_type as licenseType, prt.full_name as fullName, tsk.destination as fleetDestination,
+			ft.name as fuelType, vt.name as vehicleType, 
+			prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, 
+			")
+			->from("FleetOrder ftsko")   
+			->innerJoin("ftsko.Task tsk")
+			->innerJoin("ftsko.Vehicle vh")    
+			->innerJoin("vh.FuelType ft")    
+			->innerJoin("vh.VehicleType vt")    
+			->innerJoin("vh.assignedVehicle asor ")    
+			->innerJoin("asor.Driver drv")    
+			->innerJoin("drv.Participant prt")  
+			->where('ftsko.task_id = ? AND ftsko.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	
 }

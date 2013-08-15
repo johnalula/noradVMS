@@ -38,8 +38,8 @@ Vehicle:
     plate_number: { type: string(255) }
     plate_code: { type: string(255), default: 'ET' }
     plate_code_no: { type: integer, default: 4 }
-    initial_mileage: { type: integer }
-    current_mileage: { type: integer }
+    initial_mileage: { type: string(100) }
+    current_mileage: { type: string(100) }
     vehicle_type_id: { type: integer } 
     vehicle_make: { type: string(50) }
     litter_per_km: { type: float }
@@ -111,9 +111,9 @@ AssignedVehicle:
     effective_date: { type: string(100)}
     assigned_date: { type: datetime }
     maintenance_status: { type: boolean, default: 0 }
-    departure_status: { type: boolean, default: 0 }
-    return_status: { type: boolean, default: 0 }
-    reasigned_status: { type: boolean, default: 0 }
+    is_departed: { type: boolean, default: 0 }
+    is_returned: { type: boolean, default: 0 }
+    is_reasigned: { type: boolean, default: 0 }
   relations: 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: vehicleAssignmentTasks }
     AssignmentOrder: { onDelete: CASCADE, local: assignment_order_id, foreign: id, foreignAlias: assignedVehicles }
@@ -245,10 +245,10 @@ FleetServiceTask:
     number_of_delay_days: { type: integer, default: 0 }    
     departure_date: { type: string(100) }
     departure_time: { type: string(100) } 
-    departure_status: { type: boolean, default: 0}
+    is_departed: { type: boolean, default: 0}
     return_date: { type: string(100) }
     return_time: { type: string(100) }
-    return_status: { type: boolean, default: 0 }
+    is_returned: { type: boolean, default: 0 }
     delay_reason: { type: clob }
   relations: 
     Participant: { onDelete: CASCADE, local: agreement_participant_id, foreign: id, foreignAlias: acquisitionTaskTargetParticipants }
@@ -263,20 +263,12 @@ FleetOrder:
     payment_mode_id: { type: integer }
     effective_date: { type: string(100) }
     number_of_passangers: { type: integer }
-    departure_mileage: { type: integer }
-    return_mileage: { type: float }
-    difference_mileag: { type: float }
+    departure_mileage: { type: string(100) }
+    return_mileage: { type: string(100) }
+    difference_mileag: { type: string(100) }
     fuel_acquire_type_id: { type: integer }
     fuel_amount: { type: float }
     description: { type: clob }
-    
-      
-    departure_date: { type: string(100) }
-    departure_time: { type: string(100) } 
-    departure_status: { type: boolean, default: 1}
-    return_date: { type: string(100) }
-    return_time: { type: string(100) }
-    return_status: { type: boolean, default: 0 }
   relations:
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: fleetTaskOrderVehicles } 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: fleetTaskOrderTasks }
@@ -600,7 +592,7 @@ Participant:
    token_id: { type: string(100) }
    name:  { type: string(255), notnull: true }
    alias: { type: string(20) } 
-   participant_type_id:  { type: integer }
+   participant_type:  { type: integer }
    status_id: { type: integer , default: 1 } 
    parent_id: { type: integer } 
    leader_participant_id: { type: integer }

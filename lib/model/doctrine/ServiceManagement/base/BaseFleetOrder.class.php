@@ -12,18 +12,12 @@
  * @property integer $payment_mode_id
  * @property string $effective_date
  * @property integer $number_of_passangers
- * @property integer $departure_mileage
- * @property float $return_mileage
- * @property float $difference_mileag
+ * @property string $departure_mileage
+ * @property string $return_mileage
+ * @property string $difference_mileag
  * @property integer $fuel_acquire_type_id
  * @property float $fuel_amount
  * @property clob $description
- * @property string $departure_date
- * @property string $departure_time
- * @property boolean $departure_status
- * @property string $return_date
- * @property string $return_time
- * @property boolean $return_status
  * @property Vehicle $Vehicle
  * @property Task $Task
  * 
@@ -60,14 +54,17 @@ abstract class BaseFleetOrder extends sfDoctrineRecord
         $this->hasColumn('number_of_passangers', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('departure_mileage', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('departure_mileage', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
-        $this->hasColumn('return_mileage', 'float', null, array(
-             'type' => 'float',
+        $this->hasColumn('return_mileage', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
-        $this->hasColumn('difference_mileag', 'float', null, array(
-             'type' => 'float',
+        $this->hasColumn('difference_mileag', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('fuel_acquire_type_id', 'integer', null, array(
              'type' => 'integer',
@@ -77,30 +74,6 @@ abstract class BaseFleetOrder extends sfDoctrineRecord
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
-             ));
-        $this->hasColumn('departure_date', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
-             ));
-        $this->hasColumn('departure_time', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
-             ));
-        $this->hasColumn('departure_status', 'boolean', null, array(
-             'type' => 'boolean',
-             'default' => 1,
-             ));
-        $this->hasColumn('return_date', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
-             ));
-        $this->hasColumn('return_time', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
-             ));
-        $this->hasColumn('return_status', 'boolean', null, array(
-             'type' => 'boolean',
-             'default' => 0,
              ));
     }
 

@@ -29,12 +29,6 @@ abstract class BaseFleetOrderForm extends BaseFormDoctrine
       'fuel_acquire_type_id' => new sfWidgetFormInputText(),
       'fuel_amount'          => new sfWidgetFormInputText(),
       'description'          => new sfWidgetFormTextarea(),
-      'departure_date'       => new sfWidgetFormInputText(),
-      'departure_time'       => new sfWidgetFormInputText(),
-      'departure_status'     => new sfWidgetFormInputCheckbox(),
-      'return_date'          => new sfWidgetFormInputText(),
-      'return_time'          => new sfWidgetFormInputText(),
-      'return_status'        => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -46,18 +40,12 @@ abstract class BaseFleetOrderForm extends BaseFormDoctrine
       'payment_mode_id'      => new sfValidatorInteger(array('required' => false)),
       'effective_date'       => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'number_of_passangers' => new sfValidatorInteger(array('required' => false)),
-      'departure_mileage'    => new sfValidatorInteger(array('required' => false)),
-      'return_mileage'       => new sfValidatorNumber(array('required' => false)),
-      'difference_mileag'    => new sfValidatorNumber(array('required' => false)),
+      'departure_mileage'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'return_mileage'       => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'difference_mileag'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'fuel_acquire_type_id' => new sfValidatorInteger(array('required' => false)),
       'fuel_amount'          => new sfValidatorNumber(array('required' => false)),
       'description'          => new sfValidatorString(array('required' => false)),
-      'departure_date'       => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'departure_time'       => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'departure_status'     => new sfValidatorBoolean(array('required' => false)),
-      'return_date'          => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'return_time'          => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'return_status'        => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('fleet_order[%s]');

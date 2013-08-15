@@ -24,10 +24,10 @@
  * @property integer $number_of_delay_days
  * @property string $departure_date
  * @property string $departure_time
- * @property boolean $departure_status
+ * @property boolean $is_departed
  * @property string $return_date
  * @property string $return_time
- * @property boolean $return_status
+ * @property boolean $is_returned
  * @property clob $delay_reason
  * @property integer $registration_mode
  * @property integer $driver_id
@@ -130,7 +130,7 @@ abstract class BaseTask extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('departure_status', 'boolean', null, array(
+        $this->hasColumn('is_departed', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));
@@ -142,7 +142,7 @@ abstract class BaseTask extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('return_status', 'boolean', null, array(
+        $this->hasColumn('is_returned', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));

@@ -48,7 +48,7 @@ class ServiceTypeTable extends PluginServiceTypeTable
 		return ( $q	> 0  );  	
 	}
 	
-	public static function getServiceTypeObject ( $_id ) 
+	public static function processObject ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("st.*, st.name as serviceTypeName")

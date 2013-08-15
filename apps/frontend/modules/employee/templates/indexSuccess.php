@@ -1,18 +1,56 @@
 <div class="ui-main-menu-cont">
 	<div class="ui-main-menu-actions">
 		<ul>
-			<li><a href="#" onclick="Javascript:createEmployee();"><img src="<?php echo image_path('icons/save_small') ?>">Save</a></li>
-			<li><a href="#"  onclick="Javascript:createEmployee();"><img src="<?php echo image_path('icons/delete_small') ?>">Cancel</a></li>
-			<li><a href="#"  onclick="Javascript:refresh();"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
+			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
+			<li><a href="<?php echo url_for('general_setting/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">General Setting</a></li>
+			<li><a href="" ><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 		</ul>
 	</div>
+</div>
+
+<?php //$flags = EmployeeTable::processCreate(1, 9, 1, 'asfasdf', $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $status, $vat_number, $project_no, $description, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website); 
+
+//$flags = EmployeeTable::processParentSelection(); 
+//echo count($flags);
+//$flag
+	//echo $flags ? 'true' : 'flase' ;
+?>
+<div id="ui-display-error-cont" class="ui-error-data displayNone"> 
+	<div class="ui-error-box btn-danger">
+		<div class="ui-error-list">
+			<?php echo 'Emplyee already existed!' ?>
+			<span class="ui-error-close">X</span>
+		</div>			
+	</div> 
+</div>
+
+<div id="ui-display-success-cont" class="ui-success-data displayNone"> 
+	<div class="ui-success-box btn-danger">
+		<div class="ui-success-list">
+			<?php echo 'Emplyee successfuly saved!' ?>
+			<span class="ui-success-close">X</span>
+		</div>			
+	</div> 
+</div>
+
+<div id="ui-display-delete-cont" class="ui-success-data displayNone"> 
+	<div class="ui-success-box btn-danger">
+		<div class="ui-success-list">
+			<?php echo 'Emplyee successfuly deleted!' ?>
+			<span class="ui-success-close">X</span>
+		</div>			
+	</div> 
 </div>
 
 <div class="ui-container">
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont">
 			<div class="ui-list-header">				
-				<h1><img src="<?php echo image_path('icons/details') ?>"><?php echo __('Category')  ?></h1>				
+				<h1><img class="clickRefresh" src="<?php echo image_path('setting/staff_medium') ?>"><?php echo __('Employee')  ?></h1>		
+				<div class="ui-form-content-minimize opened" id="ui-form-collaps-list-box" style="margin-top:0px;float:right;">	
+					<span id="ui-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
+					<span id="ui-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
+				</div>	
 				<div class="clearFix"></div>
 			</div><!-- end of ui-list-header -->
 			
@@ -25,7 +63,7 @@
 				<div class="ui-main-content-cont" >	
 					<div class="ui-main-content">
 						<fieldset class="ui-content-fieldset">
-							<legend><img src="<?php echo image_path('icons/add_small') ?>" ><?php echo ('New Employee')  ?></legend>
+							<legend><img style="width:16px;height:16px;" src="<?php echo image_path('setting/staff_medium') ?>" ><?php echo ('New Employee')  ?></legend>
 						</fieldset><!-- end of ui-content-fieldset -->
 						
 						<div class="ui-main-form-content ui-collapsible-list-box">
@@ -60,6 +98,7 @@
 									 
 								</tr>
 							</table>
+							  
 						</div><!-- end of ui-main-form-content -->
 					</div><!-- end of ui-main-content -->
 				</div><!-- end of ui-main-content-cont -->
@@ -68,37 +107,39 @@
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
 
-<!-- list container -->
- 
+<!-- list container --> 
+
 <div class="ui-container">
 	<div class="ui-list-cont">		
 		<div class="ui-main-list-cont" >
 			<div class="ui-list-header">				
-				<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Categories')  ?></h1>				
+				<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Employee Lists')  ?></h1>	
+				<div class="ui-form-content-minimize opened" id="ui-list-collaps-list-box" style="margin-top:0px;float:right;">	
+					<span id="ui-list-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
+					<span id="ui-list-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
+				</div>	
 				<div class="clearFix"></div>
 			</div><!-- end of ui-list-header -->
 			
-			<div class="ui-main-content-list"> 
+			<div class="ui-content-container-box">
+			<div class="ui-main-content-list "> 
 				<div class="ui-main-content-cont" >
 					<div class="ui-content-list-box">
 						<div class="ui-list-filter-cont">
 							<div class="ui-list-batch-actions"> 
-										<ul>
-											<li><a href=""><img src="<?php echo image_path('icons/delete_small') ?>">Delete</a></li>
-											<li></li> 
-										</ul>  
+									<input type="hidden" id="totalData" value=" <?php echo $totalData ?>" >
+									<ul>
+										<li><a href=""><img src="<?php echo image_path('icons/delete_small') ?>">Delete</a></li>
+										<li></li> 
+									</ul>  
 							</div>
 							<div class="ui-filter-list"> 
-										<ul>
-											<li><img src="<?php echo image_path('icons/find_small') ?>"></li>
-											<li><input type="text"></li>
-											<li><select><option>name</option><option>father name</option></select></li> 
-										</ul>  
+								<?php include_partial('filter', array('groups' => $groups,'classs' => $classs )) ?>
 							</div>
 							<div class="clearFix"></div>
 						</div>
 						<div class="ui-content-lists">
-							<?php include_partial('list', array('categorys' => $categorys )) ?>
+							<?php include_partial('list', array('employees' => $employees )) ?>
 						</div><!-- end of ui-content-lists -->
 					</div><!-- end of ui-content-list-box -->
 				</div><!-- end of ui-main-content-cont --> 
@@ -109,21 +150,311 @@
 			</div><!-- end of ui-list-header -->
 			
 			<div class="ui-list-pagination-cont">
-				&nbsp;
+				<table>	 
+					<tr>
+						<td> 
+							<div class="ui-pagination-list-size"> 
+								<ul class="display">
+									<input type="hidden" id="pagiantion_pageOffset" name="pagiantion_pageOffset" >
+									<li class="display_list" id="pagiantion_display">Display: #  
+										<select onclick="" name="pagiantion_pagesize" class="selspan" id="pagiantion_pagesize"> 
+											<option value="2"  >10</option>
+											<option value="20"  >20</option>
+											<option value="30"  >30</option> 
+											<option value="50"  >50</option>
+											<option value="100" >100</option>
+										</select>
+									</li>
+									<li></li>
+								</ul>
+							</div>
+							<div class="clearFix"></div>
+						</td>
+						<td>
+							<div class="ui-pagination-list-content">									 
+								<ul>	 									
+									<li class="prev_page"><span id="pagiantion_firstPage" class="imag">
+										<a href=""><img src="<?php echo image_path('pagination/first') ?>">First</a></span>  
+										<span id="" class="imag displayNone">
+										<img src="<?php echo image_path('page-prev-disabled') ?>">First</span>
+									</li>
+									<li class="prev_page"><span id="pagiantion_prevPage" class="imag">
+										<a href=""><img src="<?php echo image_path('pagination/prev') ?>">Prev</a></span>  
+										<span id="pagiantion_disabledPrevPage" class="imag displayNone">
+										<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
+									</li>
+									
+									<li class="next_page">
+										<span id="pagiantion_nextPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/next') ?>">Next</a>
+										</span> 
+										<span id="pagiantion_disabledNextPage" class="imag displayNone">
+											<img src="<?php echo image_path('page-next-disabled') ?>">Next
+											</span>
+									</li>
+									<li class="next_page">
+										<span id="pagiantion_lastPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/last') ?>">Last</a>
+										</span> 
+										<span id="" class="imag displayNone">
+											<img src="<?php echo image_path('page-next-disabled') ?>">Last
+											</span>
+									</li>
+										<input type="hidden" id="pagiantion_nextpageOffset" name="pagiantion_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
+										<input type="hidden" id="pagiantion_prevpageOffset" name="pagiantion_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
+								</ul> 									 
+							</div>							
+							<div class="clearFix"></div>
+						</td>
+					</tr> 
+				</table>
+			</div>
 			</div>
 		</div> <!-- end of ui-main-list-cont -->
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
 
+
+<div class="modal" id="departmentPrompts">
+	<div class="ui-partial-container" style="border:1px solid #f00;">
+		<div class="ui-container">
+			<div class="ui-list-cont">		
+				<div class="ui-main-list-cont" >
+					<div class="ui-list-header">				
+						<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Employee Lists')  ?></h1>	
+						<div class="ui-form-content-minimize opened" id="ui-list-collaps-list-box" style="margin-top:0px;float:right;">	
+							<span id="ui-list-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
+							<span id="ui-list-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
+						</div>	
+						<div class="clearFix"></div>
+					</div><!-- end of ui-list-header -->
+					
+					<div class="ui-content-container-box">
+					<div class="ui-main-content-list "> 
+						<div class="ui-main-content-cont" >
+							<div class="ui-content-list-box">
+								<div class="ui-list-filter-cont">
+									<div class="ui-list-batch-actions"> 
+											<input type="hidden" id="totalData" value=" <?php echo $totalData ?>" >
+											<ul>
+												<li><a href=""><img src="<?php echo image_path('icons/delete_small') ?>">Delete</a></li>
+												<li></li> 
+											</ul>  
+									</div>
+									<div class="ui-filter-list"> 
+										<?php include_partial('filter', array('types' => $types,'statuss' => $statuss )) ?>
+									</div>
+									<div class="clearFix"></div>
+								</div>
+								
+								<div class="ui-content-lists">
+									<?php include_partial('list', array('departments' => $departments )) ?>
+								</div><!-- end of ui-content-lists -->
+							</div><!-- end of ui-content-list-box -->
+						</div><!-- end of ui-main-content-cont --> 
+					</div><!-- end of ui-main-content-list --> 
+					
+					<div class="ui-list-footer">				
+						  &nbsp; 
+					</div><!-- end of ui-list-header -->
+					
+					<div class="ui-list-pagination-cont">
+						<table>	 
+							<tr>
+								<td> 
+									<div class="ui-pagination-list-size"> 
+										<ul class="display">
+											<input type="hidden" id="pagiantion_pageOffset" name="pagiantion_pageOffset" >
+											<li class="display_list" id="pagiantion_display">Display: #  
+												<select onclick="" name="pagiantion_pagesize" class="selspan" id="pagiantion_pagesize"> 
+													<option value="2"  >10</option>
+													<option value="20"  >20</option>
+													<option value="30"  >30</option> 
+													<option value="50"  >50</option>
+													<option value="100" >100</option>
+												</select>
+											</li>
+											<li></li>
+										</ul>
+									</div>
+									<div class="clearFix"></div>
+								</td>
+								<td>
+									<div class="ui-pagination-list-content">									 
+										<ul>	 									
+											<li class="prev_page"><span id="pagiantion_firstPage" class="imag">
+												<a href=""><img src="<?php echo image_path('pagination/first') ?>">First</a></span>  
+												<span id="" class="imag displayNone">
+												<img src="<?php echo image_path('page-prev-disabled') ?>">First</span>
+											</li>
+											<li class="prev_page"><span id="pagiantion_prevPage" class="imag">
+												<a href=""><img src="<?php echo image_path('pagination/prev') ?>">Prev</a></span>  
+												<span id="pagiantion_disabledPrevPage" class="imag displayNone">
+												<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
+											</li>
+											
+											<li class="next_page">
+												<span id="pagiantion_nextPage" class="imag">
+													<a href=""><img src="<?php echo image_path('pagination/next') ?>">Next</a>
+												</span> 
+												<span id="pagiantion_disabledNextPage" class="imag displayNone">
+													<img src="<?php echo image_path('page-next-disabled') ?>">Next
+													</span>
+											</li>
+											<li class="next_page">
+												<span id="pagiantion_lastPage" class="imag">
+													<a href=""><img src="<?php echo image_path('pagination/last') ?>">Last</a>
+												</span> 
+												<span id="" class="imag displayNone">
+													<img src="<?php echo image_path('page-next-disabled') ?>">Last
+													</span>
+											</li>
+												<input type="hidden" id="pagiantion_nextpageOffset" name="pagiantion_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
+												<input type="hidden" id="pagiantion_prevpageOffset" name="pagiantion_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
+										</ul> 									 
+									</div>							
+									<div class="clearFix"></div>
+								</td>
+							</tr> 
+						</table>
+					</div>
+					</div>
+				</div> <!-- end of ui-main-list-cont -->
+			</div>  <!-- end of ui-list-cont -->
+		</div> <!-- end of ui-container -->
+	</div>
+</div>
+
 <script>
+	
+	 var triggerDepartment = $(".departmentModal").overlay({ 
+		mask: {
+		color: '#ebecff',
+		loadSpeed: 200,
+		opacity: 0.9
+		},
+		closeOnClick: false
+	});
+ 
+	$("#departmentPrompts form").submit(function(e) {
 
+		if($("input[name=selectEmployee]:checked", this).length == 0)
+			$("input[id=selectEmployee-1]").attr("checked", "checked");
 
-	function createEmployee()
+		triggerDepartment.eq(0).overlay().close();
+
+		var input = $("input[name=selectEmployee]:checked", this).val();
+		var listArr = input.split("$");
+
+		document.getElementById("employee_id").value = listArr[0];
+		document.getElementById("employee_name").value = listArr[1]; 
+		
+		$('#name_validateion').addClass('displayNone');
+		$('#employee_name').removeClass('validation_error_border'); 
+
+		return e.preventDefault();
+	});
+	
+	 
+	
+	function showSuccess()
 	{
-		alert('Hello');
+		$('#ui-display-success-cont').removeClass('displayNone');
 		
-		return false;
-		
+		location.reload().delay(3000);
+	}
+	
+	function showError()
+	{
+		$('#ui-display-error-cont').removeClass('displayNone');
+	}
+	
+	function deleteSuccess()
+	{
+		$('#ui-display-delete-cont').removeClass('displayNone');
+		location.reload().delay(3000);
 	}
 
+	
+	
+	function createEmployee()
+	{
+		var deptID = document.getElementById('departmentID').value;
+		var title = document.getElementById('title').value;
+		var name = document.getElementById('name').value;
+		var father_name = document.getElementById('father_name').value;
+		var g_father_name = document.getElementById('grand_father_name').value;
+		var birth_date = document.getElementById('birth_date').value;
+		var gender = document.getElementById('gender').value;
+		var id_no = document.getElementById('id_no').value;
+		var project_no = document.getElementById('project_no').value;
+		var vat_no = document.getElementById('vat_no').value;
+		var status = document.getElementById('status').value;
+		var job_title = document.getElementById('job_title').value;
+		var emp_type = document.getElementById('employment_type').value;
+		var phone_no = document.getElementById('phone_no').value;
+		var mobile_no = document.getElementById('mobile_no').value;
+		var pobox = document.getElementById('pobox').value;
+		var fax_no = document.getElementById('fax_no').value;
+		var email = document.getElementById('email').value;
+		var website = document.getElementById('website').value;		
+		var desc = document.getElementById('description').value;
+		
+		if( name == '' && deptID == '')
+		{
+			$('#name_validation').removeClass('displayNone');
+			$('#name').addClass('validation_error_border');
+			
+			$('#department_validation').removeClass('displayNone');
+			$('#department_name').addClass('validation_error_border');
+			
+			return false;
+		}
+		
+		if( name == '')
+		{
+			$('#name_validation').removeClass('displayNone');
+			$('#name').addClass('validation_error_border');
+			$('#department_validation').addClass('displayNone');
+			$('#department_name').removeClass('validation_error_border');
+			
+			return false;
+		}
+		
+		if( deptID == '')
+		{
+			$('#name_validation').addClass('displayNone');
+			$('#name').removeClass('validation_error_border');
+			$('#department_validation').removeClass('displayNone');
+			$('#department_name').addClass('validation_error_border');
+			
+			return false;
+		}
+		 			
+			$.ajax({
+				type: "GET",
+				data: 'name='+name+'&father_name='+father_name+'&g_father_name='+g_father_name+'&birth_date='+birth_date+'&gender='+gender+'&department_id='+deptID+'&title='+title+'&id_no='+id_no+'&project_no='+project_no+'&vat_no='+vat_no+'&status='+status+'&job_title='+job_title+'&employment_type='+emp_type+'&phone_no='+phone_no+'&mobile_no='+mobile_no+'&pobox='+pobox+'&fax_no='+fax_no+'&email='+email+'&website='+website+'&description='+desc,
+				url: '<?php echo url_for('employee/createEmployee')?>', 
+				success: function(data) { 
+					showSuccess(); 
+				},
+				error: function(msg) {
+					showError();
+				},
+			
+				async: false
+				});
+
+		//var data = 'name='+name+'&father_name='+father_name+'&g_father_name='+g_father_name+'&birth_date='+birth_date+'&gender='+gender+'&department_id='+deptID+'&title='+title+'&id_no='+id_no+'&project_no='+project_no+'&vat_no='+vat_no+'&status='+status+'&job_title='+job_title+'&employment_type='+emp_type+'&phone_no='+phone_no+'&mobile_no='+mobile_no+'&pobox='+pobox+'&fax_no='+fax_no+'&email='+email+'&website='+website;
+		//alert(data);
+		
+		return false;		
+	}
+	
+	 
 </script>
+
+
+
+
+

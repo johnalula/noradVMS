@@ -26,8 +26,8 @@
  * @property string $plate_number
  * @property string $plate_code
  * @property integer $plate_code_no
- * @property integer $initial_mileage
- * @property integer $current_mileage
+ * @property string $initial_mileage
+ * @property string $current_mileage
  * @property integer $vehicle_type_id
  * @property string $vehicle_make
  * @property float $litter_per_km
@@ -147,11 +147,13 @@ abstract class BaseItem extends sfDoctrineRecord
              'type' => 'integer',
              'default' => 4,
              ));
-        $this->hasColumn('initial_mileage', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('initial_mileage', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
-        $this->hasColumn('current_mileage', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('current_mileage', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('vehicle_type_id', 'integer', null, array(
              'type' => 'integer',

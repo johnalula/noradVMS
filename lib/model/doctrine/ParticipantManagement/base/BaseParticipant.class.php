@@ -8,7 +8,7 @@
  * @property string $token_id
  * @property string $name
  * @property string $alias
- * @property integer $participant_type_id
+ * @property integer $participant_type
  * @property integer $status_id
  * @property integer $parent_id
  * @property integer $leader_participant_id
@@ -39,7 +39,6 @@
  * @property integer $company_license_type
  * @property Participant $Participant
  * @property Campus $Campus
- * @property ParticipantType $ParticipantType
  * @property Doctrine_Collection $AssignedVehicle
  * @property Doctrine_Collection $acquisitionTaskTargetParticipants
  * @property Doctrine_Collection $vehicleAssignDriverParticipant
@@ -75,9 +74,8 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'type' => 'string',
              'length' => 20,
              ));
-        $this->hasColumn('participant_type_id', 'integer', 8, array(
+        $this->hasColumn('participant_type', 'integer', null, array(
              'type' => 'integer',
-             'length' => 8,
              ));
         $this->hasColumn('status_id', 'integer', null, array(
              'type' => 'integer',
@@ -238,10 +236,6 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'local' => 'campus_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
-
-        $this->hasOne('ParticipantType', array(
-             'local' => 'participant_type_id',
-             'foreign' => 'id'));
 
         $this->hasMany('AssignedVehicle', array(
              'local' => 'id',

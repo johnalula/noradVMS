@@ -227,7 +227,11 @@
 				<li><a href="<?php echo url_for('fleet/index') ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
 			</ul>
 			<ul class="ui-right-button">
+				<?php if($taskObj->canReturn): ?>
+				<li><a href="<?php echo url_for('fleet/return?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
+				<?php else: ?>
 				<li><a href="<?php echo url_for('fleet/order?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
+				<?php endif; ?>
 			</ul>
 			<div class="clearFix"></div>
 		</div>

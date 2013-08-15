@@ -25,7 +25,7 @@
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $order->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="ui-input-body-box" style="width:240px;min-width:240px;"> 
-				<?php echo $order->fullName ?>
+				<?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>
 			</td>
 			<td class="ui-input-body-box" style="width:150px;min-width:150px;"> 
 				<?php echo '('.$order->plateCodeNo .') ' .$order->plateCode.'  '. $order->plateNo ?> 

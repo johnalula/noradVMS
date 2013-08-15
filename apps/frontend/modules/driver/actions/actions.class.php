@@ -23,7 +23,7 @@ class driverActions extends sfActions
 	  $type_id = null;
 	  $is_assigned = null;
 	  
-	  $this->employees = EmployeeTable::processSelection( $offset, $limit, $keyword, $type_id, null );
+	  $this->employees = DriverTable::processCandidateEmployeeSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10);
 	  $this->drivers = DriverTable::processSelection( $offset, $limit, $keyword, $type_id, $is_assigned ); 
   }
   

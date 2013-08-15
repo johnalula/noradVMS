@@ -26,7 +26,7 @@
 				<?php echo $driver->firstName.' '.$driver->fatherName.' '.$driver->grandFatherName ?>
 			</td>
 			<td class="" style="width:99%;"> 
-				<?php echo $driver->description  ?> 
+				<?php echo $driver->employee_id  ?> 
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 0px;width:50px;min-width:50px;border-left:1px solid #ddd;background:#dfe2e7;"> 
 				<div class="ui-list-action" style="width:50px;min-width:50px;padding:0x 0px;text-align:center;">

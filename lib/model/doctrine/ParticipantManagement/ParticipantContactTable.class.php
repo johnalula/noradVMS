@@ -26,7 +26,7 @@ class ParticipantContactTable extends PluginParticipantContactTable
 		$_add->pobox = trim($pobox);
 		$_add->mobile_number = trim($mobile_no);
 		$_add->phone_number = trim($phone_no);
-		$_add->fax_number = trim($fax_no);
+		$_add->fax = trim($fax_no);
 		$_add->email = trim($email);
 		$_add->website = trim($website); 
 		$_add->save(); 

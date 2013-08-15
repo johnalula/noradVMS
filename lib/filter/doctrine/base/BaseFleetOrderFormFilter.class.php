@@ -26,12 +26,6 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
       'fuel_acquire_type_id' => new sfWidgetFormFilterInput(),
       'fuel_amount'          => new sfWidgetFormFilterInput(),
       'description'          => new sfWidgetFormFilterInput(),
-      'departure_date'       => new sfWidgetFormFilterInput(),
-      'departure_time'       => new sfWidgetFormFilterInput(),
-      'departure_status'     => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'return_date'          => new sfWidgetFormFilterInput(),
-      'return_time'          => new sfWidgetFormFilterInput(),
-      'return_status'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -42,18 +36,12 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
       'payment_mode_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'effective_date'       => new sfValidatorPass(array('required' => false)),
       'number_of_passangers' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'departure_mileage'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'return_mileage'       => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'difference_mileag'    => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'departure_mileage'    => new sfValidatorPass(array('required' => false)),
+      'return_mileage'       => new sfValidatorPass(array('required' => false)),
+      'difference_mileag'    => new sfValidatorPass(array('required' => false)),
       'fuel_acquire_type_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'fuel_amount'          => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'description'          => new sfValidatorPass(array('required' => false)),
-      'departure_date'       => new sfValidatorPass(array('required' => false)),
-      'departure_time'       => new sfValidatorPass(array('required' => false)),
-      'departure_status'     => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'return_date'          => new sfValidatorPass(array('required' => false)),
-      'return_time'          => new sfValidatorPass(array('required' => false)),
-      'return_status'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('fleet_order_filters[%s]');
@@ -81,18 +69,12 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
       'payment_mode_id'      => 'Number',
       'effective_date'       => 'Text',
       'number_of_passangers' => 'Number',
-      'departure_mileage'    => 'Number',
-      'return_mileage'       => 'Number',
-      'difference_mileag'    => 'Number',
+      'departure_mileage'    => 'Text',
+      'return_mileage'       => 'Text',
+      'difference_mileag'    => 'Text',
       'fuel_acquire_type_id' => 'Number',
       'fuel_amount'          => 'Number',
       'description'          => 'Text',
-      'departure_date'       => 'Text',
-      'departure_time'       => 'Text',
-      'departure_status'     => 'Boolean',
-      'return_date'          => 'Text',
-      'return_time'          => 'Text',
-      'return_status'        => 'Boolean',
     );
   }
 }

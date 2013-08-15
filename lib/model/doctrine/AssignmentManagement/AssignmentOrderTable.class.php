@@ -18,7 +18,7 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 		//try{
 			//if(is_null($task_id) && is_null($token_id) )
 				//return false;
-    
+				//$driver = DriverTable
 				$_nw = new AssignmentOrder ();  
 				$_nw->task_id = $task_id;
 				$_nw->token_id = $token_id;   
@@ -58,11 +58,12 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*, prt.full_name as fullName,prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo")
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.employee_id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo")
 			->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
-			->innerJoin("tsko.Participant prt on tsko.participant_id = prt.id")
-			->innerJoin("tsko.Vehicle vh on tsko.vehicle_id = vh.id")    
+			->innerJoin("tsko.Driver dr")
+			->innerJoin("dr.Participant prt")
+			->innerJoin("tsko.Vehicle vh")    
 			->offset($offset)
 			->limit($limit)
 			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))

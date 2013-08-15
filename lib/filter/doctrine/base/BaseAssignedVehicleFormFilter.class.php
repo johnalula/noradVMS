@@ -21,9 +21,9 @@ abstract class BaseAssignedVehicleFormFilter extends BaseFormFilterDoctrine
       'effective_date'      => new sfWidgetFormFilterInput(),
       'assigned_date'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'maintenance_status'  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'departure_status'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'return_status'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'reasigned_status'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'is_departed'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'is_returned'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'is_reasigned'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -35,9 +35,9 @@ abstract class BaseAssignedVehicleFormFilter extends BaseFormFilterDoctrine
       'effective_date'      => new sfValidatorPass(array('required' => false)),
       'assigned_date'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'maintenance_status'  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'departure_status'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'return_status'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'reasigned_status'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'is_departed'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'is_returned'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'is_reasigned'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('assigned_vehicle_filters[%s]');
@@ -66,9 +66,9 @@ abstract class BaseAssignedVehicleFormFilter extends BaseFormFilterDoctrine
       'effective_date'      => 'Text',
       'assigned_date'       => 'Date',
       'maintenance_status'  => 'Boolean',
-      'departure_status'    => 'Boolean',
-      'return_status'       => 'Boolean',
-      'reasigned_status'    => 'Boolean',
+      'is_departed'         => 'Boolean',
+      'is_returned'         => 'Boolean',
+      'is_reasigned'        => 'Boolean',
     );
   }
 }

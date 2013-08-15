@@ -4,7 +4,8 @@
 		<tr class="">
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" id="allcategorycheck" name="all-category-check" value="true" /></th> 
-			<th class=""><?php echo  ('Name') ?></th> 
+			<th class=""><?php echo  ('Reference No') ?></th> 
+			<th class=""><?php echo  ('Status') ?></th> 
 			<th class=""><?php echo  ('Description') ?></th>  
 			<th class="" style="padding:2px 2px;text-align:center;"><?php echo  (' Actions') ?></th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
@@ -24,6 +25,13 @@
 			</td>
 			<td class="" style="width:220px;min-width:220px;"> 
 				<?php echo $task->referenceNo ?>
+			</td>
+			<td class="" style="width:220px;min-width:220px;"> 
+				<?php if($task->canReturn):  ?>
+					<img src="<?php echo image_path('setting/on_field')  ?>" >	
+				<?php else: ?>
+					<img src="<?php echo image_path('setting/active')  ?>" >	
+				<?php endif; ?>
 			</td>
 			<td class="" style="width:99%;"> 
 				<?php echo $task->description  ?> 

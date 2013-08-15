@@ -91,12 +91,14 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	public static function processObject ( $_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate, cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName ")
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate, cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName, cus.name as customerName, cus.project_no as projectNo, tsk.is_departed as isDeparted, tsk.is_returned as isReturned, tsk.status_id as taskStatus, (tsk.is_departed=true) as canReturn ")
 			->from("FleetServiceTask tsk") 
-			->leftJoin("tsk.taskParticipantsTasks tprt")
-			->leftJoin("tsk.taskAttachmentTasks att")
-			->leftJoin("tprt.Participant prt on tprt.participant_id = prt.id")
-			->leftJoin("tsk.Participant cus on tsk.agreement_participant_id = cus.id")
+			->innerJoin("tsk.taskParticipantsTasks tprt")
+			->innerJoin("tsk.fleetTaskOrderTasks tor")
+			->innerJoin("tor.Vehicle vh")
+			->innerJoin("tsk.taskAttachmentTasks att")
+			->innerJoin("tprt.Participant prt on tprt.participant_id = prt.id")
+			->innerJoin("tsk.Participant cus on tsk.agreement_participant_id = cus.id")
 			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
 			->fetchOne ( );
@@ -106,7 +108,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	public static function processSelection($status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate, (tsk.is_departed=true) as canReturn ")
 			->from("FleetServiceTask tsk") 
 			//->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
 			//->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
@@ -216,8 +218,28 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	
 	public static function processComplete($_id, $oken_id)
 	{
+		$task = self::processObject($_id, $oken_id);
 		
+		$current_date = $date = date('Y/m/d H:i:s', time());
+		$time = date('h:i:s A');
+		if(!$task)
+			return false;
+			
+		if(!$task->isDeparted)
+		{
+			
+			$task->processDeparture(); 
+			
+			//$orders = FleetOrderTable::processAllOrders($_id, $oken_id);
+			
+			//foreach( $orders as $orders)
+			//{
+				//$order->processDeparure();				
+			//}
+			
+		}
 		
+		return true;	
 	}
     
 	

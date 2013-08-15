@@ -115,8 +115,6 @@ class assignmentActions extends sfActions
 		$task_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 		
-		$this->units = UnitTable::processSelection ( $offset, $limit );
-		$this->currencys = CurrencyTable::processSelection ( $offset, $limit );
 		
 		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
 		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);

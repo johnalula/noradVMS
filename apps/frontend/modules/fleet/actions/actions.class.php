@@ -21,7 +21,7 @@ class fleetActions extends sfActions
 		 $this->customers = FleetServiceTaskTable::processCandidateCustomerSelection ($status, $keyword, $offset, $limit); 
   }
 
-    public function executeCreateTask(sfWebRequest $request)
+   public function executeCreateTask(sfWebRequest $request)
   {
 		$date = $request->getParameter('date');
 		$ref_no = $request->getParameter('reference_no');
@@ -148,6 +148,7 @@ class fleetActions extends sfActions
 	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
     //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
     $this->vehicles = FleetOrderTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+    $this->task = FleetServiceTaskTable::processObject ( $task_id, $token_id) ;
   }
   
   public function executeReturn(sfWebRequest $request)
@@ -163,4 +164,28 @@ class fleetActions extends sfActions
     //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
    // $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
   }
+  
+  public function executeComplete(sfWebRequest $request)
+  {
+		
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+		$flag = FleetServiceTaskTable::processComplete ($task_id, $token_id);
+    //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+   // $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+		$this->redirect('fleet/fleetForm?task_id='.$task_id.'&token_id='.$token_id);
+  }
+  
+  public function executeFleetForm(sfWebRequest $request)
+  {
+		
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+	 $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
+    //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+   // $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+  }
+  
 }
