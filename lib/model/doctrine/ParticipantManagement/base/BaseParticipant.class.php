@@ -40,7 +40,7 @@
  * @property Participant $Participant
  * @property Campus $Campus
  * @property Doctrine_Collection $AssignedVehicle
- * @property Doctrine_Collection $acquisitionTaskTargetParticipants
+ * @property Doctrine_Collection $fleetTaskParticipants
  * @property Doctrine_Collection $vehicleAssignDriverParticipant
  * @property Doctrine_Collection $AssignmentOrder
  * @property Doctrine_Collection $transferTaskTransferee
@@ -241,9 +241,9 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'participant_id'));
 
-        $this->hasMany('FleetServiceTask as acquisitionTaskTargetParticipants', array(
+        $this->hasMany('FleetServiceTask as fleetTaskParticipants', array(
              'local' => 'id',
-             'foreign' => 'agreement_participant_id'));
+             'foreign' => 'customer_id'));
 
         $this->hasMany('AssignmentTask as vehicleAssignDriverParticipant', array(
              'local' => 'id',

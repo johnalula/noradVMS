@@ -21,6 +21,7 @@
  * @property Driver $Driver
  * @property Vehicle $Vehicle
  * @property Participant $Participant
+ * @property Doctrine_Collection $fleetTaskOrderVehicles
  * 
  * @package    noradVMS
  * @subpackage model
@@ -100,5 +101,9 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
         $this->hasOne('Participant', array(
              'local' => 'participant_id',
              'foreign' => 'id'));
+
+        $this->hasMany('FleetOrder as fleetTaskOrderVehicles', array(
+             'local' => 'id',
+             'foreign' => 'assigned_id'));
     }
 }

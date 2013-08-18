@@ -204,5 +204,18 @@ class PaymentSettingTable extends PluginPaymentSettingTable
 			
 		return ( ! $q ? null : $q );    
 	}
+	
+	public static function processValue( $payment_mode_id )
+	{
+		$q = Doctrine_Query::create()
+			->select("pmt.*,  pmt.payment_mode_id as paymentModeID, pmt.cost_amount as costValue")
+			->from("PaymentSetting pmt") 
+			->where('pmt.payment_mode_id = ?', $payment_mode_id)
+			->fetchOne ( );
+		
+		$cost = $q->cost_amount;
+		
+		return ( ! $q ? null : $cost );    
+	}
 	 
 }

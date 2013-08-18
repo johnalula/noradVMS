@@ -13,9 +13,10 @@
  * @property integer $reference_no
  * @property clob $description
  * @property string $type
- * @property integer $agreement_participant_id
+ * @property integer $customer_id
  * @property float $service_agreement_cost
  * @property integer $payment_mode_id
+ * @property float $total_cost
  * @property integer $service_type_id
  * @property string $service_reason
  * @property string $destination
@@ -28,6 +29,7 @@
  * @property string $return_date
  * @property string $return_time
  * @property boolean $is_returned
+ * @property boolean $is_delayed
  * @property clob $delay_reason
  * @property integer $registration_mode
  * @property integer $driver_id
@@ -90,7 +92,7 @@ abstract class BaseTask extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('agreement_participant_id', 'integer', null, array(
+        $this->hasColumn('customer_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('service_agreement_cost', 'float', null, array(
@@ -98,6 +100,9 @@ abstract class BaseTask extends sfDoctrineRecord
              ));
         $this->hasColumn('payment_mode_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('total_cost', 'float', null, array(
+             'type' => 'float',
              ));
         $this->hasColumn('service_type_id', 'integer', 8, array(
              'type' => 'integer',
@@ -143,6 +148,10 @@ abstract class BaseTask extends sfDoctrineRecord
              'length' => 100,
              ));
         $this->hasColumn('is_returned', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('is_delayed', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));

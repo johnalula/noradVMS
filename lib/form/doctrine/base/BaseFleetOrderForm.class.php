@@ -16,7 +16,7 @@ abstract class BaseFleetOrderForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
-      'vehicle_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
+      'assigned_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AssignedVehicle'), 'add_empty' => true)),
       'token_id'             => new sfWidgetFormInputText(),
       'task_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'order_cost'           => new sfWidgetFormInputText(),
@@ -25,15 +25,17 @@ abstract class BaseFleetOrderForm extends BaseFormDoctrine
       'number_of_passangers' => new sfWidgetFormInputText(),
       'departure_mileage'    => new sfWidgetFormInputText(),
       'return_mileage'       => new sfWidgetFormInputText(),
-      'difference_mileag'    => new sfWidgetFormInputText(),
+      'difference_mileage'   => new sfWidgetFormInputText(),
       'fuel_acquire_type_id' => new sfWidgetFormInputText(),
+      'is_departed'          => new sfWidgetFormInputCheckbox(),
+      'is_returned'          => new sfWidgetFormInputCheckbox(),
       'fuel_amount'          => new sfWidgetFormInputText(),
       'description'          => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
       'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'vehicle_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'required' => false)),
+      'assigned_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AssignedVehicle'), 'required' => false)),
       'token_id'             => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'task_id'              => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'required' => false)),
       'order_cost'           => new sfValidatorNumber(array('required' => false)),
@@ -42,8 +44,10 @@ abstract class BaseFleetOrderForm extends BaseFormDoctrine
       'number_of_passangers' => new sfValidatorInteger(array('required' => false)),
       'departure_mileage'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'return_mileage'       => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'difference_mileag'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'difference_mileage'   => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'fuel_acquire_type_id' => new sfValidatorInteger(array('required' => false)),
+      'is_departed'          => new sfValidatorBoolean(array('required' => false)),
+      'is_returned'          => new sfValidatorBoolean(array('required' => false)),
       'fuel_amount'          => new sfValidatorNumber(array('required' => false)),
       'description'          => new sfValidatorString(array('required' => false)),
     ));

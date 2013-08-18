@@ -44,14 +44,15 @@ class vehicleActions extends sfActions
 		 
   }
   
-  public function executePagination(sfWebRequest $request)
+	public function executePagination(sfWebRequest $request)
 	{
+		
 		$offset = $request->getParameter('offset');
-		$limit = intval($request->getParameter('limit'));
+		$limit = $request->getParameter('limit');
 		$status = intval($request->getParameter('status'));
 		$type = intval($request->getParameter('type'));
 		$keyword = $request->getParameter('keyword');
-		$keyword = '%'.$keyword.'%';
+		//$keyword = '%'.$keyword;
 		
 		if(!$offset) $offset = 0;
 		if(!$limit) $limit = 10;
@@ -59,8 +60,32 @@ class vehicleActions extends sfActions
 		if(!$status) $status = null;
 		if(!$type)  $type = null;
 		if(!$is_assigned)  $is_assigned = null;
+		//$is_assigned =true;
+		
+		 $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, $offset, $limit );
+		 $this->allVehicles = VehicleTable::processAllVehicleSelection($is_assigned, $type, $status, $keyword);
 		 
-		 $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, $offset, $limit) ;
+		return $this->renderPartial('list', array('vehicles' => $this->vehicles, 'allVehicles' => $this->allVehicles ));		
+	}
+	
+	public function executeSelection(sfWebRequest $request)
+	{
+		//$offset = $request->getParameter('offset');
+		//$limit = intval($request->getParameter('limit'));
+		//$status = intval($request->getParameter('status'));
+		//$type = intval($request->getParameter('type'));
+		//$keyword = $request->getParameter('keyword');
+		//$keyword = '%'.$keyword.'%';
+		
+		//if(!$offset) $offset = 0;
+		///if(!$limit) $limit = 15;
+		//if(!$keyword) $keyword = null;
+		//if(!$status) $status = null;
+		//if(!$type)  $type = null;
+		//if(!$is_assigned)  $is_assigned = null;
+		//$is_assigned =true;
+		
+		 $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, 0, 15);
 		 $this->allVehicles = VehicleTable::processAllVehicleSelection($is_assigned, $type, $status, $keyword);
 		 
 		return $this->renderPartial('list', array('vehicles' => $this->vehicles, 'allVehicles' => $this->allVehicles ));		

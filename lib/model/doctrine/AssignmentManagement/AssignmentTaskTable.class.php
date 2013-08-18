@@ -67,9 +67,9 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 		$q= Doctrine_Query::create()
 			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
 			->from("Task tsk") 
-			->innerJoin("tsk.taskParticipantsTasks tprt on tprt.task_id = tsk.id")
-			->innerJoin("tsk.taskAttachmentTasks att on att.task_id = tsk.id")
-			->innerJoin("tprt.Participant prt on tprt.participant_id = prt.id")
+			->leftJoin("tsk.taskParticipantsTasks tprt ")
+			->leftJoin("tsk.taskAttachmentTasks")
+			->leftJoin("tprt.Participant")
 			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
 			->fetchOne ( );
@@ -187,6 +187,21 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 		
 	}
 	
+	public static function processComplete ( $task_id, $token_id)
+	{
+		try {
+			$current_date = $date = date('Y/m/d', time());
+			$task = 	self::processObject($task_id, $token_id);
+			$task->effective_date = $current_date;
+			$task->end_date = $current_date;
+			$task->status_id = TaskCore::$COMPLETED;
+			$task->save();
+			return true;
+		}
+		catch ( Exception $e) {
+			return false;
+		}
+	}
 	public static function getInstance()
 	{
 		return Doctrine_Core::getTable('AssignmentTask');

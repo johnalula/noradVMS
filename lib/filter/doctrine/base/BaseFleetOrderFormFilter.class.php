@@ -13,7 +13,7 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'vehicle_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
+      'assigned_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AssignedVehicle'), 'add_empty' => true)),
       'token_id'             => new sfWidgetFormFilterInput(),
       'task_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'order_cost'           => new sfWidgetFormFilterInput(),
@@ -22,14 +22,16 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
       'number_of_passangers' => new sfWidgetFormFilterInput(),
       'departure_mileage'    => new sfWidgetFormFilterInput(),
       'return_mileage'       => new sfWidgetFormFilterInput(),
-      'difference_mileag'    => new sfWidgetFormFilterInput(),
+      'difference_mileage'   => new sfWidgetFormFilterInput(),
       'fuel_acquire_type_id' => new sfWidgetFormFilterInput(),
+      'is_departed'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'is_returned'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fuel_amount'          => new sfWidgetFormFilterInput(),
       'description'          => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'vehicle_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicle'), 'column' => 'id')),
+      'assigned_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AssignedVehicle'), 'column' => 'id')),
       'token_id'             => new sfValidatorPass(array('required' => false)),
       'task_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
       'order_cost'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -38,8 +40,10 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
       'number_of_passangers' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'departure_mileage'    => new sfValidatorPass(array('required' => false)),
       'return_mileage'       => new sfValidatorPass(array('required' => false)),
-      'difference_mileag'    => new sfValidatorPass(array('required' => false)),
+      'difference_mileage'   => new sfValidatorPass(array('required' => false)),
       'fuel_acquire_type_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_departed'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'is_returned'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fuel_amount'          => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'description'          => new sfValidatorPass(array('required' => false)),
     ));
@@ -62,7 +66,7 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                   => 'Number',
-      'vehicle_id'           => 'ForeignKey',
+      'assigned_id'          => 'ForeignKey',
       'token_id'             => 'Text',
       'task_id'              => 'ForeignKey',
       'order_cost'           => 'Number',
@@ -71,8 +75,10 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
       'number_of_passangers' => 'Number',
       'departure_mileage'    => 'Text',
       'return_mileage'       => 'Text',
-      'difference_mileag'    => 'Text',
+      'difference_mileage'   => 'Text',
       'fuel_acquire_type_id' => 'Number',
+      'is_departed'          => 'Boolean',
+      'is_returned'          => 'Boolean',
       'fuel_amount'          => 'Number',
       'description'          => 'Text',
     );

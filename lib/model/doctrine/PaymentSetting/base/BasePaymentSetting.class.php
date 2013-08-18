@@ -11,6 +11,7 @@
  * @property integer $currency_id
  * @property clob $description
  * @property Currency $Currency
+ * @property Doctrine_Collection $fleetPaymentModes
  * 
  * @package    noradVMS
  * @subpackage model
@@ -47,5 +48,9 @@ abstract class BasePaymentSetting extends sfDoctrineRecord
              'local' => 'currency_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasMany('FleetServiceTask as fleetPaymentModes', array(
+             'local' => 'id',
+             'foreign' => 'payment_mode_id'));
     }
 }

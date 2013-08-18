@@ -27,7 +27,7 @@ class registrationActions extends sfActions
 		$date = $request->getParameter('date');
 		$ref_no = $request->getParameter('reference_no');
 		$description = $request->getParameter('description');
-		$pID = $this->getUser()->getAttribute('pID');
+		$pID = $this->getUser()->getAttribute('PID');
 		
 		$task = RegistrationTaskTable::processCreate ( $date, $description, $ref_no, $pID );
 		
@@ -60,6 +60,28 @@ class registrationActions extends sfActions
 		
 		return $flag; 
   }
+  
+  public function executeUpdateRegistrationVehicle(sfWebRequest $request)
+  {	  
+		$vehicle_id = $request->getParameter('vehicle_id');
+		$token_id = $request->getParameter('token_id');
+		$plate_code = $request->getParameter('plate_code');
+		$plate_no = $request->getParameter('plate_no');
+		$plate_code_no = $request->getParameter('plate_code_no');
+		$vehicle_type = intval($request->getParameter('vehicle_type'));
+		$vehicle_make = $request->getParameter('vehicle_make');
+		$vehicle_model = $request->getParameter('vehicle_model');
+		$vehicle_color = $request->getParameter('vehicle_color');
+		$vehicle_weight = $request->getParameter('vehicle_weight');
+		$fuel_type = intval($request->getParameter('fuel_type'));
+		$description = $request->getParameter('description');
+		
+		$flag = RegistrationTaskTable::processUpdateRegistrationVehicle ( $vehicle_id, $token_id, $plate_code, $plate_no, $plate_code_no, $vehicle_type, $vehicle_make, $vehicle_model, $vehicle_color, $vehicle_weight, $fuel_type, $description ) ;
+		
+		return $flag; 
+    
+  }
+  
   
   public function executeView(sfWebRequest $request)
   {
@@ -155,6 +177,23 @@ class registrationActions extends sfActions
 		$this->task_orders = RegistrationTaskTable::processTaskOrderCandidateSelection ($task_id, $token_id, $offset, $limit);
     //$this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
     $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+  }
+  
+  public function executeComplete(sfWebRequest $request)
+  {
+		 
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+		$flag = RegistrationTaskTable::processComplete ($task_id, $token_id);
+		$task = RegistrationTaskTable::processObject ($task_id, $token_id);
+    
+		$this->redirect('registration/model?task_id='.$task->id.'&token_id='.$task->token_id);
+  }
+  
+  public function executeModel(sfWebRequest $request)
+  {
+		$task = RegistrationTaskTable::processObject ($task_id, $token_id);
   }
   
   

@@ -21,15 +21,19 @@ class DriverTable extends PluginDriverTable
 	{
 		//if(!$employee_id)
 		// return false;
-		 
-		$token = trim($work_experience).trim($license_type).rand('11111', '99999');
-		$_nw = new Driver (); //
-		$_nw->token_id = md5($token); 
-		$_nw->employee_id = $employee_id;
-		$_nw->license_type = trim($license_type); 
-		$_nw->work_experience = trim($work_experience);  
-		$_nw->desctiption = trim($description); 
-		$_nw->save(); 
+		$is_duplicated = self::isDuplicated ($employee_id); 
+		
+		if($is_duplicated)
+			return false;
+			
+			$token = trim($work_experience).trim($license_type).rand('11111', '99999');
+			$_nw = new Driver (); //
+			$_nw->token_id = md5($token); 
+			$_nw->employee_id = $employee_id;
+			$_nw->license_type = trim($license_type); 
+			$_nw->work_experience = trim($work_experience);  
+			$_nw->desctiption = trim($description); 
+			$_nw->save(); 
 		
 		//$_emp = EmployeeTable::getEmployeeObject($employee_id, $emp_token_id );
 		//$employment_type = EmployeeTable::$DRIVER;
@@ -92,5 +96,16 @@ class DriverTable extends PluginDriverTable
 	public static function processCandidateEmployeeSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		return EmployeeTable::processSelection ($status, $keyword, $exclusion , $parent, $dept, $type, $offset, $limit ); 
+	}
+	
+	public static function isDuplicated ($_id) 
+	{
+		$q = Doctrine_Query::create( )
+							->select("dr.*")
+							->from("Driver dr") 
+							->where("dr.id = ?", $_id)
+							->fetchOne ( );
+							
+		return ( count($q) <= 0 ? null : $q); 
 	}
 }

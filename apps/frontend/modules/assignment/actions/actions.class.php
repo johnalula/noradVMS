@@ -144,10 +144,26 @@ class assignmentActions extends sfActions
 		$task_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 	
-	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
-    //$this->candidates = RegistrationTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
-   //$this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
+		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
   }
   
+  public function executeComplete(sfWebRequest $request)
+  {
+		 
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+		$flag = AssignmentTaskTable::processComplete ($task_id, $token_id);
+		$task = AssignmentTaskTable::processObject ($task_id, $token_id);
+    
+		$this->redirect('assignment/model?task_id='.$task->id.'&token_id='.$task->token_id);
+  }
+  
+  public function executeModel(sfWebRequest $request)
+  {
+		$task = AssignmentTaskTable::processObject ($task_id, $token_id);
+  }
   
 }

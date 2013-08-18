@@ -14,20 +14,32 @@ class FleetServiceTask extends PluginFleetServiceTask
 {
 	public function processDeparture()
 	{
-		$current_date = $date = date('Y/m/d H:i:s', time());
+		$current_date = $date = date('Y/m/d', time());
 		$time = date('h:i:s A');
-	 
-		$this->departure_date = $current_date;
-		$this->departure_time = $time;
+		
 		$this->is_departed = true;
 		$this->effective_date = $current_date;
+		$this->status_id = TaskCore::$ONFIELD;
 		$this->save();
 		 
 	}
 	
 	public function processReturn()
 	{
-		$this->is_departed = false;
+		$this->is_returned = true;
 		$this->save();
 	}
+	
+	public function processComplete()
+	{
+		$current_date = $date = date('Y/m/d', time());
+		
+		$this->is_departed = true;
+		$this->is_returned = true;
+		$this->end_date = $current_date;
+		$this->status_id = TaskCore::$COMPLETED;
+		$this->save();
+	}
+	
+	 
 }

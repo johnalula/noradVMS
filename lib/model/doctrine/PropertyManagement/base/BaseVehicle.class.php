@@ -12,7 +12,6 @@
  * @property Doctrine_Collection $vehicleCheckupSettings
  * @property Doctrine_Collection $assignedVehicle
  * @property Doctrine_Collection $vehicleCheckupPeriod
- * @property Doctrine_Collection $fleetTaskOrderVehicles
  * @property Doctrine_Collection $serviceVehicleCosts
  * @property Doctrine_Collection $serviceVehicleItemAcquiredAttachments
  * @property Doctrine_Collection $serviceVehicleAttachmentVehicles
@@ -60,10 +59,6 @@ abstract class BaseVehicle extends Item
              'foreign' => 'vehicle_id'));
 
         $this->hasMany('VehicleChakupPeriod as vehicleCheckupPeriod', array(
-             'local' => 'id',
-             'foreign' => 'vehicle_id'));
-
-        $this->hasMany('FleetOrder as fleetTaskOrderVehicles', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

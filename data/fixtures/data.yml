@@ -21,17 +21,18 @@ Currency:
 Task: {  }
 RegistrationTask:
   RegistrationTask_1:
-    token_id: fa09c05e3530d50419391f1a97700414
-    start_date: 08/28/2013
-    end_date: null
-    effective_date: null
-    status_id: '1'
-    reference_no: '252452'
-    description: asdfasdfas
+    token_id: 2fab777a4738193d307a5baaaa8f085f
+    start_date: 08/08/2013
+    end_date: 2013/08/17
+    effective_date: 2013/08/17
+    status_id: '5'
+    reference_no: '5767786'
+    description: 'fasdf asdfasd'
     type: '3'
-    agreement_participant_id: null
+    customer_id: null
     service_agreement_cost: null
     payment_mode_id: null
+    total_cost: null
     service_type_id: null
     service_reason: null
     destination: null
@@ -44,6 +45,7 @@ RegistrationTask:
     return_date: null
     return_time: null
     is_returned: false
+    is_delayed: false
     delay_reason: null
     registration_mode: null
     driver_id: null
@@ -53,17 +55,18 @@ RegistrationTask:
     returnee_id: null
 AssignmentTask:
   AssignmentTask_2:
-    token_id: 9a17bbefcc29caa7faff6208488881a5
-    start_date: '2345'
+    token_id: 5637bde286779167fabeba881fb601c4
+    start_date: 08/01/2013
     end_date: null
     effective_date: null
     status_id: '1'
-    reference_no: '52352'
-    description: 'asfasd asdfasd'
+    reference_no: '523452345'
+    description: 'dsf sdf sdf'
     type: '6'
-    agreement_participant_id: null
+    customer_id: null
     service_agreement_cost: null
     payment_mode_id: null
+    total_cost: null
     service_type_id: null
     service_reason: null
     destination: null
@@ -76,40 +79,9 @@ AssignmentTask:
     return_date: null
     return_time: null
     is_returned: false
+    is_delayed: false
     delay_reason: null
     registration_mode: null
-    transferer_id: null
-    transferee_id: null
-    new_vehicle_id: null
-    returnee_id: null
-FleetServiceTask:
-  FleetServiceTask_3:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    start_date: 08/29/2013
-    end_date: null
-    effective_date: null
-    status_id: '1'
-    reference_no: '234523'
-    description: asdfasdf
-    type: '1'
-    Participant: Participant_1
-    service_agreement_cost: null
-    payment_mode_id: '1'
-    ServiceType: ServiceType_1
-    service_reason: 'asdf asdfasdf'
-    destination: Adigrat
-    service_number_of_days: '4'
-    service_delay_status: false
-    number_of_delay_days: '0'
-    departure_date: 08/27/2013
-    departure_time: '10:20 PM'
-    is_departed: false
-    return_date: null
-    return_time: null
-    is_returned: false
-    delay_reason: null
-    registration_mode: null
-    driver_id: null
     transferer_id: null
     transferee_id: null
     new_vehicle_id: null
@@ -396,7 +368,7 @@ Employee:
 Item: {  }
 Vehicle:
   Vehicle_1:
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Task: RegistrationTask_1
     TaskOrder: TaskOrder_1
     Category: Category_1
@@ -412,32 +384,32 @@ Vehicle:
     is_present: true
     effective_date: '2013'
     status: '1'
-    description: null
+    description: ''
     type: '1'
-    plate_number: '5177'
+    plate_number: '1234'
     plate_code: ET
     plate_code_no: '4'
     initial_mileage: null
     current_mileage: null
     VehicleType: VehicleType_1
-    vehicle_make: Toyota
+    vehicle_make: Ford
     litter_per_km: null
     seating_capacity: null
     engine_number: null
     chesis_number: null
-    vehicle_model: null
-    vehicle_color: null
-    vehicle_weight: null
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
     FuelType: FuelType_1
     purchased_date: null
     service_year: '0'
     checkup_period_id: null
-    vehicle_status: '4'
+    vehicle_status: '1'
     fuel_setting_id: null
-    is_assigned: false
+    is_assigned: true
     spare_Identification: null
   Vehicle_2:
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Task: RegistrationTask_1
     TaskOrder: TaskOrder_1
     Category: Category_1
@@ -453,9 +425,9 @@ Vehicle:
     is_present: true
     effective_date: '2013'
     status: '1'
-    description: null
+    description: ''
     type: '1'
-    plate_number: '9811'
+    plate_number: '2345'
     plate_code: ET
     plate_code_no: '4'
     initial_mileage: null
@@ -466,19 +438,19 @@ Vehicle:
     seating_capacity: null
     engine_number: null
     chesis_number: null
-    vehicle_model: null
-    vehicle_color: null
-    vehicle_weight: null
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
     FuelType: FuelType_1
     purchased_date: null
     service_year: '0'
     checkup_period_id: null
-    vehicle_status: '4'
+    vehicle_status: '1'
     fuel_setting_id: null
-    is_assigned: false
+    is_assigned: true
     spare_Identification: null
   Vehicle_3:
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Task: RegistrationTask_1
     TaskOrder: TaskOrder_1
     Category: Category_1
@@ -494,9 +466,9 @@ Vehicle:
     is_present: true
     effective_date: '2013'
     status: '1'
-    description: null
+    description: ''
     type: '1'
-    plate_number: '1809'
+    plate_number: '4567'
     plate_code: ET
     plate_code_no: '4'
     initial_mileage: null
@@ -507,9 +479,9 @@ Vehicle:
     seating_capacity: null
     engine_number: null
     chesis_number: null
-    vehicle_model: null
-    vehicle_color: null
-    vehicle_weight: null
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
     FuelType: FuelType_1
     purchased_date: null
     service_year: '0'
@@ -519,7 +491,7 @@ Vehicle:
     is_assigned: true
     spare_Identification: null
   Vehicle_4:
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Task: RegistrationTask_1
     TaskOrder: TaskOrder_1
     Category: Category_1
@@ -535,22 +507,22 @@ Vehicle:
     is_present: true
     effective_date: '2013'
     status: '1'
-    description: null
+    description: ''
     type: '1'
-    plate_number: '1240'
+    plate_number: '6754'
     plate_code: ET
     plate_code_no: '4'
     initial_mileage: null
     current_mileage: null
     VehicleType: VehicleType_1
-    vehicle_make: Toyota
+    vehicle_make: Lifan
     litter_per_km: null
     seating_capacity: null
     engine_number: null
     chesis_number: null
-    vehicle_model: null
-    vehicle_color: null
-    vehicle_weight: null
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
     FuelType: FuelType_1
     purchased_date: null
     service_year: '0'
@@ -560,26 +532,46 @@ Vehicle:
     is_assigned: true
     spare_Identification: null
 AssignmentOrder:
+  AssignmentOrder_1:
+    Task: AssignmentTask_2
+    token_id: 5637bde286779167fabeba881fb601c4
+    Vehicle: Vehicle_1
+    Driver: Driver_1
+    effective_date: '2013-08-17'
+    status: '1'
+    description: 'asdca sd'
+    created_at: '2013-08-17 17:24:15'
+    updated_at: '2013-08-17 17:24:15'
+  AssignmentOrder_2:
+    Task: AssignmentTask_2
+    token_id: 5637bde286779167fabeba881fb601c4
+    Vehicle: Vehicle_2
+    Driver: Driver_2
+    effective_date: '2013-08-17'
+    status: '1'
+    description: s
+    created_at: '2013-08-17 17:24:32'
+    updated_at: '2013-08-17 17:24:32'
   AssignmentOrder_3:
     Task: AssignmentTask_2
-    token_id: 9a17bbefcc29caa7faff6208488881a5
-    Vehicle: Vehicle_4
-    Driver: Driver_1
-    effective_date: '2013-08-14'
+    token_id: 5637bde286779167fabeba881fb601c4
+    Vehicle: Vehicle_3
+    Driver: Driver_3
+    effective_date: '2013-08-17'
     status: '1'
     description: ''
-    created_at: '2013-08-14 21:18:35'
-    updated_at: '2013-08-14 21:18:35'
+    created_at: '2013-08-17 17:24:45'
+    updated_at: '2013-08-17 17:24:45'
   AssignmentOrder_4:
     Task: AssignmentTask_2
-    token_id: 9a17bbefcc29caa7faff6208488881a5
-    Vehicle: Vehicle_3
-    Driver: Driver_2
-    effective_date: '2013-08-14'
+    token_id: 5637bde286779167fabeba881fb601c4
+    Vehicle: Vehicle_4
+    Driver: Driver_4
+    effective_date: '2013-08-17'
     status: '1'
-    description: fasdfas
-    created_at: '2013-08-14 21:18:53'
-    updated_at: '2013-08-14 21:18:53'
+    description: ''
+    created_at: '2013-08-17 17:24:54'
+    updated_at: '2013-08-17 17:24:54'
 ParticipantContact:
   ParticipantContact_1:
     Participant: Employee_5
@@ -636,6 +628,20 @@ Driver:
     work_experience: '5'
     is_assigned: true
     desctiption: asdfasd
+  Driver_3:
+    token_id: a0637e79c5b79afe6dd9bcabdb94040e
+    Participant: Employee_8
+    license_type: '0'
+    work_experience: '0'
+    is_assigned: true
+    desctiption: ''
+  Driver_4:
+    token_id: 1322df5fefe9d16cff399438c09c3fb4
+    Participant: Employee_7
+    license_type: '0'
+    work_experience: '0'
+    is_assigned: true
+    desctiption: ''
 Category:
   Category_1:
     name: Vehicle
@@ -870,61 +876,32 @@ ServiceType:
   ServiceType_2:
     name: Local
     description: null
-FleetOrder:
-  FleetOrder_1:
-    Vehicle: Vehicle_3
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: FleetServiceTask_3
-    order_cost: null
-    payment_mode_id: null
-    effective_date: null
-    number_of_passangers: null
-    departure_mileage: '2'
-    return_mileage: null
-    difference_mileag: null
-    fuel_acquire_type_id: '2'
-    fuel_amount: '50.00'
-    description: adfadsfa
-  FleetOrder_2:
-    Vehicle: Vehicle_4
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: FleetServiceTask_3
-    order_cost: null
-    payment_mode_id: null
-    effective_date: null
-    number_of_passangers: null
-    departure_mileage: '3'
-    return_mileage: null
-    difference_mileag: null
-    fuel_acquire_type_id: '2'
-    fuel_amount: '60.00'
-    description: 'dasd  asdas'
 TaskOrder:
   TaskOrder_1:
     Task: RegistrationTask_1
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Category: Category_1
     clss: '4'
     Unit: Unit_1
     actual_quantity: '4.00'
     remaining: '0.00'
-    unit_price: '47456.00'
+    unit_price: '500000.00'
     vat: true
     Currency: Currency_1
-    amount: '189824.00'
-    effective_date: '2013-08-14'
+    amount: '2000000.00'
+    effective_date: '2013-08-17'
     status: '1'
     description: 'task order'
-    created_at: '2013-08-14 21:12:21'
-    updated_at: '2013-08-14 21:12:21'
+    created_at: '2013-08-17 17:19:23'
+    updated_at: '2013-08-17 17:19:23'
 AssignedVehicle:
   AssignedVehicle_1:
     Task: AssignmentTask_2
-    token_id: 9a17bbefcc29caa7faff6208488881a5
+    token_id: 5637bde286779167fabeba881fb601c4
     Driver: Driver_1
-    Vehicle: Vehicle_4
-    AssignmentOrder: AssignmentOrder_3
-    effective_date: '2013-08-14'
+    Vehicle: Vehicle_1
+    AssignmentOrder: AssignmentOrder_1
+    effective_date: '2013-08-17'
     assigned_date: null
     maintenance_status: false
     is_departed: false
@@ -932,11 +909,35 @@ AssignedVehicle:
     is_reasigned: false
   AssignedVehicle_2:
     Task: AssignmentTask_2
-    token_id: 9a17bbefcc29caa7faff6208488881a5
+    token_id: 5637bde286779167fabeba881fb601c4
     Driver: Driver_2
+    Vehicle: Vehicle_2
+    AssignmentOrder: AssignmentOrder_2
+    effective_date: '2013-08-17'
+    assigned_date: null
+    maintenance_status: false
+    is_departed: false
+    is_returned: false
+    is_reasigned: false
+  AssignedVehicle_3:
+    Task: AssignmentTask_2
+    token_id: 5637bde286779167fabeba881fb601c4
+    Driver: Driver_3
     Vehicle: Vehicle_3
+    AssignmentOrder: AssignmentOrder_3
+    effective_date: '2013-08-17'
+    assigned_date: null
+    maintenance_status: false
+    is_departed: false
+    is_returned: false
+    is_reasigned: false
+  AssignedVehicle_4:
+    Task: AssignmentTask_2
+    token_id: 5637bde286779167fabeba881fb601c4
+    Driver: Driver_4
+    Vehicle: Vehicle_4
     AssignmentOrder: AssignmentOrder_4
-    effective_date: '2013-08-14'
+    effective_date: '2013-08-17'
     assigned_date: null
     maintenance_status: false
     is_departed: false
@@ -960,82 +961,73 @@ FuelType:
     description: null
 TaskAttachment:
   TaskAttachment_1:
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Task: RegistrationTask_1
-    certificate_type: '11'
-    reference_number: '252452'
+    certificate_type: '13'
+    reference_number: '5767786'
     num_pages: '1'
     folder_stored: null
     description: null
   TaskAttachment_2:
-    token_id: 9a17bbefcc29caa7faff6208488881a5
+    token_id: 5637bde286779167fabeba881fb601c4
     Task: AssignmentTask_2
     certificate_type: '2'
-    reference_number: '52352'
-    num_pages: '1'
-    folder_stored: null
-    description: null
-  TaskAttachment_3:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: FleetServiceTask_3
-    certificate_type: '2'
-    reference_number: null
+    reference_number: '523452345'
     num_pages: '1'
     folder_stored: null
     description: null
 TaskParticipant:
   TaskParticipant_1:
-    token_id: fa09c05e3530d50419391f1a97700414
+    token_id: 2fab777a4738193d307a5baaaa8f085f
     Task: RegistrationTask_1
     participant_role: '17'
     Participant: Participant_2
-    description: asdfasdfas
+    description: 'fasdf asdfasd'
   TaskParticipant_2:
-    token_id: 9a17bbefcc29caa7faff6208488881a5
+    token_id: 5637bde286779167fabeba881fb601c4
     participant_role: '17'
-    Participant: Participant_2
-    description: 'asfasd asdfasd'
+    description: 'dsf sdf sdf'
   TaskParticipant_3:
-    token_id: 9a17bbefcc29caa7faff6208488881a5
+    token_id: 5637bde286779167fabeba881fb601c4
     Task: AssignmentTask_2
     participant_role: '9'
     Participant: Participant_1
     description: ''
   TaskParticipant_4:
-    token_id: 9a17bbefcc29caa7faff6208488881a5
+    token_id: 5637bde286779167fabeba881fb601c4
     Task: AssignmentTask_2
     participant_role: '9'
     Participant: Participant_2
     description: ''
   TaskParticipant_5:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: FleetServiceTask_3
-    participant_role: '17'
-    Participant: Participant_2
-    description: asdfasdf
+    token_id: 5637bde286779167fabeba881fb601c4
+    Task: AssignmentTask_2
+    participant_role: '9'
+    Participant: Participant_3
+    description: ''
   TaskParticipant_6:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: FleetServiceTask_3
-    participant_role: '5'
-    Participant: Participant_1
-    description: asdfasdf
-  TaskParticipant_7:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: RegistrationTask_1
-    participant_role: '17'
-    description: adfadsfa
-  TaskParticipant_8:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
-    Task: RegistrationTask_1
-    participant_role: '5'
-    description: adfadsfa
+    token_id: 5637bde286779167fabeba881fb601c4
+    Task: AssignmentTask_2
+    participant_role: '9'
+    Participant: Employee_5
+    description: ''
   TaskParticipant_9:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
+    token_id: c3c4460696c45d6883f819fdaa36edad
+    Task: RegistrationTask_1
+    participant_role: '17'
+    description: 'fasdf asdf'
+  TaskParticipant_10:
+    token_id: c3c4460696c45d6883f819fdaa36edad
+    Task: RegistrationTask_1
+    participant_role: '5'
+    description: 'fasdf asdf'
+  TaskParticipant_11:
+    token_id: c3c4460696c45d6883f819fdaa36edad
     Task: AssignmentTask_2
     participant_role: '17'
-    description: 'dasd  asdas'
-  TaskParticipant_10:
-    token_id: 99cae6f9b1eff46da1b998eb2ffc78e8
+    description: 'fa fadfasdf asdf'
+  TaskParticipant_12:
+    token_id: c3c4460696c45d6883f819fdaa36edad
     Task: AssignmentTask_2
     participant_role: '5'
-    description: 'dasd  asdas'
+    description: 'fa fadfasdf asdf'

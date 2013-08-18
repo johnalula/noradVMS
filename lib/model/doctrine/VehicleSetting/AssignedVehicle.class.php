@@ -12,7 +12,7 @@
  */
 class AssignedVehicle extends PluginAssignedVehicle
 {
-	public function processDeparure()
+	public function processDeparture()
 	{
 		$this->is_departed = true;
 		$this->save();
@@ -20,6 +20,7 @@ class AssignedVehicle extends PluginAssignedVehicle
 	
 	public function processReturn()
 	{
+		$this->is_returned = false;
 		$this->is_departed = false;
 		$this->save();
 	}

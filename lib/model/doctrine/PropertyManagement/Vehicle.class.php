@@ -25,7 +25,7 @@ class Vehicle extends PluginVehicle
 		$this->save();
 			
 	}
-	public function fieldVehicle()
+	public function processDeparture()
 	{
 		$this->vehicle_status = VehicleTable::$ON_FIELD;
 		$this->save();

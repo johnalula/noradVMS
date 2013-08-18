@@ -50,35 +50,11 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Service Reason') ?>:</td>
 			<td>
-				<textarea style="width:200px;" rows=2 id="service_reason" name="service_reason" ></textarea>		
+				<textarea style="width:200px;" rows=1 id="service_reason" name="service_reason" ></textarea>		
 			</td>
 		</tr>
 		 
-		<tr>
-			<td style="padding:4px;"></td> 
-			<td style="padding:4px;"></td> 
-		</tr> 
-		<tr>
-			<td style="padding:4px;"></td> 
-			<td style="padding:4px;"></td> 
-		</tr> 
-		<tr>
-			<td style="padding:4px;"></td> 
-			<td style="padding:4px;"></td> 
-		</tr> 
-		<tr>
-			<td style="padding:4px;"></td> 
-			<td style="padding:4px;"></td> 
-		</tr> 
-		<tr>
-			<td style="padding:4px;"></td> 
-			<td style="padding:4px;"></td> 
-		</tr> 
-		<tr>
-			<td style="padding:4px;"></td> 
-			<td style="padding:4px;"></td> 
-		</tr> 
-		 
+ 
 	</tbody>     
 </table> 
  

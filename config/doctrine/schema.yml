@@ -1,5 +1,11 @@
 detect_relations: true
 
+Organization:
+  package: OrganizationManagement
+  columns:
+    name: { type: string(255)}
+    token_id: { type: string(100) }
+    
 Item:
   package: PropertyManagement
   columns: 
@@ -234,9 +240,10 @@ FleetServiceTask:
     keyField: type
     keyValue: 1
   columns: 
-    agreement_participant_id: { type: integer }    
+    customer_id: { type: integer }    
     service_agreement_cost: { type: float }  
     payment_mode_id: { type: integer }
+    total_cost: { type: float }
     service_type_id: { type: integer }
     service_reason: { type: string(255) }
     destination: { type: string(255) }
@@ -249,14 +256,16 @@ FleetServiceTask:
     return_date: { type: string(100) }
     return_time: { type: string(100) }
     is_returned: { type: boolean, default: 0 }
+    is_delayed: { type: boolean, default: 0 }
     delay_reason: { type: clob }
   relations: 
-    Participant: { onDelete: CASCADE, local: agreement_participant_id, foreign: id, foreignAlias: acquisitionTaskTargetParticipants }
+    Participant: { onDelete: CASCADE, local: customer_id, foreign: id, foreignAlias: fleetTaskParticipants }
+    PaymentSetting: { onDelete: CASCADE, local: payment_mode_id, foreign: id, foreignAlias: fleetPaymentModes }
 
 FleetOrder:
   package: ServiceManagement
   columns:
-    vehicle_id: { type: integer }
+    assigned_id: { type: integer }
     token_id: { type: string(100) }
     task_id: { type: integer }
     order_cost: { type: float }
@@ -265,12 +274,14 @@ FleetOrder:
     number_of_passangers: { type: integer }
     departure_mileage: { type: string(100) }
     return_mileage: { type: string(100) }
-    difference_mileag: { type: string(100) }
+    difference_mileage: { type: string(100) }
     fuel_acquire_type_id: { type: integer }
+    is_departed: { type: boolean, default: 0}
+    is_returned: { type: boolean, default: 0 }
     fuel_amount: { type: float }
     description: { type: clob }
   relations:
-    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: fleetTaskOrderVehicles } 
+    AssignedVehicle: { onDelete: CASCADE, local: assigned_id, foreign: id, foreignAlias: fleetTaskOrderVehicles } 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: fleetTaskOrderTasks }
    
 ServiceVehicleCost:
@@ -440,38 +451,38 @@ TaskParticipant:
   package: TaskFrameworks
   columns:
     token_id: { type: string(100) }
-    task_id: { type: integer } 
+    task_id: { type: integer }  
     participant_role: { type: integer }
     participant_id: { type: integer }
     description: { type: clob }
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskParticipantsTasks }   
-    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: taskParticipants } 
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: taskParticipants }  
     
 TaskAttachment:
   package: TaskFrameworks
   columns:
     token_id: { type: string(100) }
-    task_id: { type: integer, notnull: true } 
+    task_id: { type: integer, notnull: true }  
     certificate_type: { type: integer, notnull: false }
     reference_number: { type: string (100) }
     num_pages: { type: integer, default: 1 }
     folder_stored: { type: string(255) }
     description: { type: string(255) }    
   relations:
-    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTasks }   
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTasks }    
   
 ItemAcquiredAttachment:
   package: TaskFrameworks
   columns:
    task_id: { type: integer }
-   item_id: { type: integer }
+   item_id: { type: integer } 
    item_name: { type: string(255) }
    attachment_purpose: { type: string(255) }
    description: { type: clob } 
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskAttachmentTasks }   
-    Item: { onDelete: CASCADE, local: item_id, foreign: id, foreignAlias: taskAttachmentItems }  
+    Item: { onDelete: CASCADE, local: item_id, foreign: id, foreignAlias: taskAttachmentItems }   
   
 TaskExpenseRequired:
   package: TransactionManagement

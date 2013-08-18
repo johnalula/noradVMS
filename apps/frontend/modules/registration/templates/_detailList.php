@@ -38,17 +38,18 @@
 			</td>
 			 
 			<td class="ui-input-body-box" style="width:30px;min-width:30px;">
-				<input type="text" style="width:30px;min-width:30px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->plate_code ?>">  
+				<input type="text" style="width:30px;min-width:30px;" id="plate_code-<?php echo $vehicle->id ?>" name="" value="<?php echo $vehicle->plate_code ?>">
+				<input type="hidden" style="width:120;min-width:30px;" id="token_id-<?php echo $vehicle->id ?>" name="" value="<?php echo $vehicle->token_id ?>">  
 			</td> 
 			<td class="ui-input-body-box" style="width:30px;min-width:30px;">
-				<input type="text" style="width:30px;min-width:30px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->plate_code_no ?>">  
+				<input type="text" style="width:30px;min-width:30px;" id="plate_code_no-<?php echo $vehicle->id ?>" name="reference_no" value="<?php echo $vehicle->plate_code_no ?>">  
 			</td> 
-			<td class="ui-input-body-box" style="width:60px;min-width:60px;">
-				<input type="text" style="width:60px;min-width:60px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->plate_number ?>">  
+			<td class="ui-input-body-box" style="width:60px;min-width:50px;">
+				<input type="text" style="width:60px;min-width:50px;" id="plate_no-<?php echo $vehicle->id ?>" name="reference_no" value="<?php echo $vehicle->plate_number ?>">  
 			</td> 
 			 
-			<td class="ui-input-body-box" style="width:100px;min-width:100px;">
-				<select id="certificate_type" style="width:100px;min-width:100px;" >
+			<td class="ui-input-body-box" style="width:100px;min-width:90px;">
+				<select id="vehicle_type-<?php echo $vehicle->id ?>" style="width:100px;min-width:90px;" >
 					<option></option>
 					<?php foreach($types as $key => $type): ?>
 					<option value="<?php echo $type->id ?>" <?php echo $vehicle->vehicle_type_id == $type->id ? 'selected':'' ?>>
@@ -56,21 +57,21 @@
 				<?php endforeach; ?>
 				</select>
 			</td>   
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;">
-				<input type="text" style="width:80px;min-width:80px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->vehicle_make?>">  
+			<td class="ui-input-body-box" style="width:80px;min-width:70px;">
+				<input type="text" style="width:80px;min-width:70px;" id="vehicle_make-<?php echo $vehicle->id ?>" name="" value="<?php echo $vehicle->vehicle_make?>">  
 			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;">
-				<input type="text" style="width:80px;min-width:80px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->vehicle_model?>">  
+			<td class="ui-input-body-box" style="width:80px;min-width:70px;">
+				<input type="text" style="width:80px;min-width:70px;" id="vehicle_model-<?php echo $vehicle->id ?>" name="" value="<?php echo $vehicle->vehicle_model?>">  
 			</td>
-			<td class="ui-input-body-box" style="width:80px;min-width:80px;">
-				<input type="text" style="width:80px;min-width:80px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->vehicle_color?>">  
+			<td class="ui-input-body-box" style="width:80px;min-width:70px;">
+				<input type="text" style="width:80px;min-width:70px;" id="vehicle_color-<?php echo $vehicle->id ?>" name="" value="<?php echo $vehicle->vehicle_color?>">  
 			</td>
-			<td class="ui-input-body-box" style="width:60px;min-width:60px;">
-				<input type="text" style="width:60px;min-width:60px;" id="reference_no" name="reference_no" value="<?php echo $vehicle->vehicle_weight?>">  
+			<td class="ui-input-body-box" style="width:60px;min-width:50px;">
+				<input type="text" style="width:60px;min-width:50px;" id="vehicle_weight-<?php echo $vehicle->id ?>" name="" value="<?php echo $vehicle->vehicle_weight?>">  
 			</td>
 			
-			<td class="ui-input-body-box" style="width:100px;min-width:100px;">
-				<select id="certificate_type" style="width:100px;min-width:100px;" >
+			<td class="ui-input-body-box" style="width:100px;min-width:90px;">
+				<select id="fuel_type-<?php echo $vehicle->id ?>" style="width:100px;min-width:90px;" >
 					<option></option>
 					<?php foreach($f_types as $key => $f_type): ?>
 					<option value="<?php echo $f_type->id ?>"><?php echo $f_type->fuelTypeName ?></option>
@@ -78,7 +79,7 @@
 				</select>
 			</td>   
 			<td class="ui-input-body-box" style="width:95%;min-width:30px;">
-				<input type="text" style="width:95%;min-width:30px;" id="description" name="description" value="<?php echo $vehicle->description ?>">
+				<input type="text" style="width:95%;min-width:30px;" id="description-<?php echo $vehicle->id ?>" name="description" value="<?php echo $vehicle->description ?>">
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 1px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">
@@ -89,7 +90,7 @@
 							</a>
 						</li> 
 						<li> 
-							<a href="#" class="ui-action-button" onclick="Javascript:deleteCategory(<?php echo $vehicle->id ?>);" rel="<?php echo $vehicle->id ?>">	
+							<a href="#" class="ui-action-button" onclick="Javascript:updateVehicle(<?php echo $vehicle->id ?>);" rel="<?php echo $vehicle->id ?>">	
 								 
 									<img src="<?php echo image_path('new_icons/save_small')  ?>" >
 								 

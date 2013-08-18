@@ -32,10 +32,10 @@
 				<?php echo '( '. $vehicle->plateCodeNo.' ) '.$vehicle->plateCode .' - '.$vehicle->plateNo.' ( '.$vehicle->vehicleMake.' ) ' ?>
 			</td>
 			<td class="" style="width:140px;min-width:140px;"> 
-				<img style="vertical-align:bottom;margin-right:5px;" src="<?php echo image_path('setting/vehicle_driver_small') ?>"><?php echo $vehicle->firstName.' '.$vehicle->fatherName.' '.$vehicle->grandFatherName ?>
+				<img style="vertical-align:bottom;margin-right:5px;" src="<?php echo image_path('setting/vehicle_driver_small') ?>"><?php echo $vehicle->fullName ?>
 			</td>
 			<td class="" style="width:120px;min-width:120px;"> 
-				<?php echo $vehicle->deprtMileage ?>
+				<?php echo $vehicle->departMileage ?>
 			</td>
 			<td class="" style="width:90px;min-width:90px;"> 
 				<?php echo $vehicle->vehicleType ?>

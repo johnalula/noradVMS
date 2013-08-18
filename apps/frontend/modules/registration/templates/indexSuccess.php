@@ -7,8 +7,9 @@
 	</div>
 </div>
 
-<?php //$flags = UserGroupTable::processCreate('Finance', 'finance'); 
-
+<?php //$flags = RegistrationTaskTable::processCreate (  '12/04/2013', 'asdfasd', 234542435, 2 ); 
+	//echo $flags->id;
+	//echo $sf_user->getAttribute('PID');
 	//echo $flags ? 'true' : 'flase' ;
 ?>
 <div id="ui-display-error-cont" class="ui-error-data displayNone"> 

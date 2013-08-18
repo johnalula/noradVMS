@@ -25,16 +25,16 @@
 			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $category->id;?>]" class="checkcategory"  />
 			</td>
-			<td class="" style="width:220px;min-width:220px;"> 
+			<td class="" style="width:160px;min-width:100px;"> 
 				<?php echo $category->categoryName ?>
 			</td>
-			<td class="" style="width:220px;min-width:220px;"> 
+			<td class="" style="width:140px;min-width:100px;"> 
 				<?php echo CategoryCharacterization::fetchValue($category->category_group_id) ?>
 			</td>
-			<td class="" style="width:220px;min-width:220px;"> 
+			<td class="" style="width:140px;min-width:100px;"> 
 				<?php echo PropertyClassCore::fetchItemTypeValue($category->category_class_id) ?>
 			</td>
-			<td class="" style="width:99%;"> 
+			<td class="" style="width:95%;"> 
 				<?php echo $category->description  ?> 
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 

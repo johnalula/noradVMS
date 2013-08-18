@@ -12,20 +12,22 @@
  */
 class FleetOrder extends PluginFleetOrder
 {
-	public function processDeparure()
+	public function processDeparture()
 	{
-		$current_date = $date = date('Y/m/d H:i:s', time());
-		$time = date('h:i:s A');
 		$this->is_departed = true;
-		$this->departure_date = $current_date;
-		$this->departure_time = $time;
 		$this->save();
 	}
 	
 	public function processReturn()
 	{
-		
-		$this->is_departed = false;
+		$this->is_returned = true;
+		$this->save();
+	}
+	
+	public function processComplete()
+	{
+		$this->is_returned = true;
+		$this->is_departed = true;
 		$this->save();
 	}
 }

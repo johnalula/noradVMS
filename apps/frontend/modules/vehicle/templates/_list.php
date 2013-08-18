@@ -29,13 +29,19 @@
 				<input type="checkbox" id="category-check-<?php echo $i;?>" name="category-check[<?php echo $vehicle->id;?>]" class="checkcategory"  />
 			</td>
 			<td class="" style="width:98%;min-width:100px;"> 
+				<?php if($vehicle->activeVehicle): ?>
+					<img class="ui-image-style"  src="<?php echo image_path('setting/active_small') ?>">
+				<?php else: ?>				
+				<img class="ui-image-style" src="<?php echo image_path('setting/on_field_small') ?>">
+				<?php endif; ?>
 				<img style="veritcal-align:bottom;" src="<?php echo image_path('new_icons/car_small') ?>">
 				<?php echo '( '. $vehicle->plateCodeNo.' ) '.$vehicle->plateCode .' - '.$vehicle->plateNo.' ( '.$vehicle->vehicleMake.' ) ' ?>
 			</td>
 			<td class="" style="width:180px;min-width:180px;"> 
+				
 				<?php if($vehicle->isAssigned): ?>
 					<img src="<?php echo image_path('setting/vehicle_driver_small') ?>">
-					<?php echo $vehicle->fullName ?>
+					<?php echo $vehicle->id ?>
 				<?php else: ?>
 				Not assigned yet
 				<?php endif; ?>
@@ -43,7 +49,7 @@
 			<td class="" style="width:70px;min-width:60px;"> 
 				<?php echo $vehicle->vehicleType ?>
 			</td>
-			<td class="" style="width:80px;min-width:60px;"> 
+			<td class="" style="width:90px;min-width:80px;"> 
 				<?php echo $vehicle->vehicleMake ?>
 			</td>
 			<td class="" style="width:70px;min-width:60px;"> 

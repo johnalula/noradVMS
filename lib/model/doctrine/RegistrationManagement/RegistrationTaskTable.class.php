@@ -16,7 +16,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 	public static function processCreate (  $date, $description, $ref, $_pid ) 
 	{      
         $nw;
-        try{
+        //try{
 				
 				$token = trim($date).trim($ref).rand('11111', '99999');
 				$nw= new RegistrationTask(); 
@@ -32,7 +32,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 				$att = new TaskAttachment ();
 				$att->token_id = $nw->token_id;
 				$att->task_id = $nw->id;
-				$att->certificate_type = AttachmentCore::$MODEL_22;
+				$att->certificate_type = AttachmentCore::$MODEL_19;
 				$att->reference_number = $ref;
 				$att->save();
 				
@@ -45,9 +45,9 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 				$prt->save();
 				
             return $nw; 
-        } catch ( Exception $e) {
-            return false; 
-        }
+        //} catch ( Exception $e) {
+           // return false; 
+       // }
 	}
 	
 	public static function processUpdate ($_id, $token_id, $date, $description, $ref )
@@ -62,15 +62,19 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 
 		return ( $q > 0 );   
 	}
+	public static function processUpdateRegistrationVehicle ( $vehicle_id, $token_id, $plate_code, $plate_no, $plate_code_no, $vehicle_type, $vehicle_make, $vehicle_model, $vehicle_color, $vehicle_weight, $fuel_type, $description )
+	{		
+		return VehicleTable::processUpdate ( $vehicle_id, $token_id, $plate_code, $plate_no, $plate_code_no, $vehicle_type, $vehicle_make, $vehicle_model, $vehicle_color, $vehicle_weight, $fuel_type, $description );   
+	}
 	
 	public static function processObject ( $_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
 			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
 			->from("Task tsk") 
-			->innerJoin("tsk.taskParticipantsTasks tprt on tprt.task_id = tsk.id")
-			->innerJoin("tsk.taskAttachmentTasks att on att.task_id = tsk.id")
-			->innerJoin("tprt.Participant prt on tprt.participant_id = prt.id")
+			//->innerJoin("tsk.taskParticipantsTasks tprt on tprt.task_id = tsk.id")
+			//->innerJoin("tsk.taskAttachmentTasks att on att.task_id = tsk.id")
+			//->innerJoin("tprt.Participant prt on tprt.participant_id = prt.id")
 			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
 			->fetchOne ( );
@@ -175,6 +179,25 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 			$prt->participant_role = $participant_role;
 			$prt->description = trim($description);
 			$prt->save();
+			return true;
+		}
+		catch ( Exception $e) 
+		{
+			return false;
+		}
+		
+	}
+	public static function processComplete ( $task_id, $token_id)
+	{
+		try {
+			
+			
+			$current_date = $date = date('Y/m/d', time());
+			$task = 	self::processObject($task_id, $token_id);
+			$task->effective_date = $current_date;
+			$task->end_date = $current_date;
+			$task->status_id = TaskCore::$COMPLETED;
+			$task->save();
 			return true;
 		}
 		catch ( Exception $e) 
