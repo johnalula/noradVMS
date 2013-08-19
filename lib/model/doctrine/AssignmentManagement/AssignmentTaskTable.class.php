@@ -121,7 +121,10 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 	
 	public static function processCandidateVehicleSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
+ 
 		return VehicleTable::processSelection ( false, $type, 4, $keyword, $offset, $limit) ; 
+ 
+		//return VehicleTable::processCandidateSelection ( 4, $type, $status, $keyword, $offset, $limit); 
 	}
 	
 	public static function processCandidateDriverSelection($offset=0, $limit=10, $keyword=null, $type_id=null) 

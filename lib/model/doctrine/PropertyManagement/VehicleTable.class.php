@@ -78,8 +78,6 @@ class VehicleTable extends PluginVehicleTable
 				$_nw->vehicle_status = self::$NOT_ASSIGNED;  
 				$_nw->vehicle_type_id = 1;  
 				$_nw->fuel_type_id = 1;  
-				//$_nw->vehicle_make = 'Toyota';  
-				//$_nw->plate_number = rand('1111','9999');  
 				$_nw->quantity = 1;  
 				$_nw->is_present = true; 
 				$_nw->save();
