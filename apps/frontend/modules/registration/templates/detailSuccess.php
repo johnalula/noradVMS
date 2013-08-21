@@ -37,7 +37,7 @@
 	<div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 		<div class="ui-error-box btn-danger">
 			<div class="ui-error-list">
-				<?php echo 'Fule type already existed!' ?>
+				<?php echo 'Plate number already existed!' ?>
 				<span class="ui-error-close">X</span>
 			</div>			
 		</div> 

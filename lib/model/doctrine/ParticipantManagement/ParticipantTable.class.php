@@ -20,6 +20,37 @@ class ParticipantTable extends PluginParticipantTable
 		return Doctrine_Core::getTable('Participant');
 	}
 	
+	public static function processObject($_id, $token_id)
+	{
+		$q= Doctrine_Query::create()
+			->select("prt.* ")
+			->from("Participant prt") // 
+			->where("prt.id = ? AND prt.token_id = ?",array($_id, $token_id) )
+			->fetchOne(); 
+		return (! $q ? null : $q ); 	
+		
+	}
+	
+	public static function processSelection($status=null, $keyword=null, $exclusion=null , $parent=null, $dept=null, $type=null, $offset=0, $limit=10 ) 
+	{
+		$q= Doctrine_Query::create()
+			->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName")
+			->from("Participant prt") 
+			//->leftJoin("prt.Participant dept on dept.id = prt.dept_id")
+			->offset($offset)
+			->limit($limit)
+			->where("prt.parent_id IS NOT NULL AND prt.participant_type = ?", ParticipantCore::$EMPLOYEE ); 
+		$q= self::addStatusQuery($q, $status );
+		$q= self::addKeywordQuery($q, $keyword );
+		$q= self::addExclusionQuery($q, $exclusion );
+		//$q= self::addUmbrellaQuery($q, $parent );
+		if(! is_null($dept))
+			$q=$q->andWhere("dept.id=?", $dept);
+		$q= $q->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
 	public static function processCustomerSelection( $status=null, $keyword=null, $offset=0, $limit=10)
 	{
 		$q = Doctrine_Query::create()

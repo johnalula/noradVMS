@@ -26,6 +26,8 @@ class EmployeeTable extends PluginEmployeeTable
    
    public static $ALL_EMPLOYMENT_TYPES = array ( 1 => "President", 2 => "Vice President" , 3 => "Director" , 4 => "Dean",  5 => "Head", 6 => "Driver", 7 => "Mechanic" , 8 => "Academic ", 9 => "Administrative",10 => "Team Leader", 11 => "Other" );
    
+   public static $EMP_PARTICIPANTS = array ( 1 => "Office", 2 => "College" , 3 => "Institution" , 4 => "Center",  5 => "Department", 7 => "Project");
+   
    public static function fetchEmployeementTypeID ( $value ) 
 	{
 		try {
@@ -50,42 +52,6 @@ class EmployeeTable extends PluginEmployeeTable
 	  } catch ( Exception $e ) {
 			 return false; 
 	  }
-	}
-		
-	public static function processObject($_id, $token_id)
-	{
-		$q= Doctrine_Query::create()
-			->select("prt.* ")
-			->from("Participant prt") // 
-			->where("prt.id = ? AND prt.token_id = ?",array($_id, $token_id) )
-			->fetchOne(); 
-		return (! $q ? null : $q ); 	
-		
-	}
-
-	public static function processSelection($status=null, $keyword=null, $exclusion=null , $parent=null, $dept=null, $type=null, $offset=0, $limit=10 ) 
-	{
-		$q= Doctrine_Query::create()
-			->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName")
-			->from("Participant prt") 
-			//->leftJoin("prt.Participant dept on dept.id = prt.dept_id")
-			->offset($offset)
-			->limit($limit)
-			->where("prt.parent_id IS NOT NULL AND prt.participant_type = ?", ParticipantCore::$EMPLOYEE ); 
-		$q= self::addStatusQuery($q, $status );
-		$q= self::addKeywordQuery($q, $keyword );
-		$q= self::addExclusionQuery($q, $exclusion );
-		//$q= self::addUmbrellaQuery($q, $parent );
-		if(! is_null($dept))
-			$q=$q->andWhere("dept.id=?", $dept);
-		$q= $q->execute( ); 
-
-		return ( count ( $q ) <= 0 ? null : $q ); 
-	}
-
-	public static function getCandidateParents()
-	{
-		
 	}
 
 	public static function processCreate($parent_id, $employment_type, $title, $name, $father_name, $grand_father_name, $id_no, $job_title, $birth_date, $status, $vat_number, $project_no, $description, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
@@ -138,7 +104,7 @@ class EmployeeTable extends PluginEmployeeTable
 			if(!$name)
 				return false;
 				
-			$full_name= trim($name)." ".trim($father_name)." ".trim($grand_father_name);
+			$full_name= $name.'-'.$father_name.'-'.$grand_father_name;
 			$q = Doctrine_Query::create( )
 				->update('Employee prt')
 				->set('prt.participant_type', '?', ParticipantTable::$EMPLOYEE)
@@ -187,123 +153,98 @@ class EmployeeTable extends PluginEmployeeTable
 		//calculate relation => deletability 
 	}
     
-	public static function addKeywordQuery($q, $keyword)
-	{
-		if( is_null($keyword))
-			return $q; 
-		$q= $q->andWhere("prt.name LIKE ?", $keyword); 
-		return $q; 
-	}
-
-	public static function addStatusQuery($q, $status)
-	{
-		if( is_null($status))
-			return $q; 
-		$q= $q->andWhere("prt.status_id=?",  $status); 
-		return $q; 
-	}
-
-	public static function addExclusionQuery($q, $exclusion)
-	{
-		if(! is_array($exclusion) )
-			return $q; 
-		if( count($exclusion) <= 0 )
-			return $q; 
-		$q= $q->andWhereNotIn("prt.id",  $exclusion); 
-		return $q; 
-	}
-
-	public static function addParentQuery($q, $parent_id)
-	{
-		if( is_null($parent_id))
-			return $q; 
-		$q = $q->andWhere("prt.parent_id=?",  $parent_id); 
-		return $q; 
-	}
-
-	public static function fetchStatusList()
+	public static function processObject($_id, $token_id)
 	{
 		$q = Doctrine_Query::create()
-			->select("DISTINCT(to.type_id) AS statuses")
-			->from("Participant to")
-			->where("to.id IS NOT NULL"); 
-			
-		$q = $q->andWhereIn("to.participant_type_id", ParticipantCore::$EMPLOYEE)
-		  	->execute( ); 
-		$st = array(); 
-		$count= count($q);
-		if ($count <= 0 )
-			return $st; 
-		foreach($q as $prt )
-			$st[] = $prt->statuses; 
-		return $st; 
+			->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->from("Employee prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->where("prt.id = ? AND prt.token_id = ? AND prt.participant_type = ?", array($_id, $token_id, ParticipantCore::$DEPARTEMENT) )
+			->fetchOne(); 
+		return (! $q ? null : $q ); 	
+		
 	}
 	
-	public static function processParentSelection()
+	public static function processSelection($status=null, $keyword=null, $exclusion=null, $emp_type=null, $type=null, $offset=0, $limit=10 ) 
 	{
 		$q = Doctrine_Query::create()
-			->select("DISTINCT(emp.parent_id) AS parentID")
-			->from("Participant emp")
-			//->leftJoin("emp.Participant prt")
-			->where("emp.participant_type = ?", ParticipantCore::$EMPLOYEE)
-			
-		//$q = $q->andWhereIn("emp.participant_type", ParticipantCore::$EMPLOYEE)
-		  	->execute( ); 
-		  	
-	/*	$emp = array(); 
-		$count= count($q);
-		if ($count <= 0 )
-			return $st; 
-		foreach($q as $prt )
-			$emp[] = $prt->parent_id; */
-			
-		return $q; 
-	}
-	
-	public static function processTypeSelection()
-	{
-		$q = Doctrine_Query::create()
-			->select("DISTINCT(emp.parent_id) AS parentID")
-			->from("Employee emp")
-			//->leftJoin("emp.Participant prt")
-			->where("emp.participant_type = ?", ParticipantCore::$EMPLOYEE)
-			
-		//$q = $q->andWhereIn("emp.participant_type", ParticipantCore::$EMPLOYEE)
-		  	->execute( ); 
-		  	
-	/*	$emp = array(); 
-		$count= count($q);
-		if ($count <= 0 )
-			return $st; 
-		foreach($q as $prt )
-			$emp[] = $prt->parent_id; */
-			
-		return $q; 
-	}
-
-	public static function fetchTypeList()
-	{}
-
-	public static function processSelect( $offset, $limit, $keyword, $type_id, $is_assigned )
-	{
-		$q= Doctrine_Query::create()
-			->select("prt.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName ")
-			->from("Participant prt") 
-			//->innerJoin("dr.Participant prt")
-			//->innerJoin("vh.TaskOrder tsko")
-			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
-			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
-			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
-			->offset($offset)
-			->limit($limit);
-			if(!is_null($is_assigned))
-			$q = $q->addWhere('dr.is_assigned = ?', $is_assigned);
-			
-			$q = $q->execute( ); 
-			
+				->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.employment_type_id as employmentType, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->from("Employee prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->offset($offset)
+				->limit($limit)
+				->where("prt.participant_type = ?", ParticipantCore::$EMPLOYEE);
+				if(! is_null($status))
+					$q = $q->andWhere("prt.status_id=?", $status);
+				if(! is_null($type))
+					$q = $q->andWhere("prt.participant_type=?", $type);
+				if(! is_null($emp_type))
+					$q = $q->andWhere("prt.employment_type_id=?", $emp_type);
+				if(!is_null($keyword) )
+					$q = $q->andWhere("prt.name LIKE ? AND prt.father_name LIKE ? AND prt.grand_father_name LIKE ? AND prt.project_no LIKE ? AND prt.id_no LIKE ?", array( $keyword, $keyword, $keyword, $keyword, $keyword));
+					
+				$q = $q->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
+    
+	public static function processUmbrellaSelection($status=null, $keyword=null, $exclusion=null, $type=null, $offset=0, $limit=10 )
+	{
+		$q = Doctrine_Query::create()
+				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName, pt.alias as parentAlias")
+				->from("Participant prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->offset($offset)
+				->limit($limit)
+				->where("prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? ", array(ParticipantCore::$EMPLOYEE, ParticipantCore::$SECTION, ParticipantCore::$COMPANY, ParticipantCore::$OTHER));
+				if(! is_null($status))
+					$q = $q->andWhere("prt.status_id=?", $status);
+				if(! is_null($type))
+					$q = $q->andWhere("prt.participant_type=?", $type);
+				if(!is_null($keyword) )
+					$q = $q->andWhere("prt.name LIKE ? AND prt.project_no LIKE ? AND prt.alias LIKE ?", array( $keyword, $keyword, $keyword));
+					
+				$q = $q->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+    
+	public static function processStatusSelection ()
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(prt.status_id) AS partyStatus")
+			->from("Employee prt") 
+			->where("prt.status_id IS NOT NULL")		
+			->execute();
+		
+		$status = array();
+		foreach( $q as $w)
+			$status[] = $w->partyStatus;
+	 
+		return ( count ( $status ) <= 0 ? null : $status );
+	}
+
+	public static function processTypeSelection()
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(prt.participant_type) AS partyType")
+			->from("Employee prt") 
+			->where("prt.participant_type IS NOT NULL")		
+			->execute();
+		
+		$types = array();
+		foreach( $q as $w)
+			$types[] = $w->partyType;
+	 
+		return ( count ( $types ) <= 0 ? null : $types );
+	}
+
 	
 	public static function getInstance()
 	{

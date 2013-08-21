@@ -12,7 +12,6 @@
 	//echo md5('admin11');
 	//e020590f0e18cd6053d7ae0e0a507609
 	//echo count($activitys); 
-	  echo $sf_request->getParameter('module')  ;
 ?>
 <div class="ui-container">
 	<div class="ui-list-cont">		

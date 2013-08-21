@@ -6,7 +6,7 @@
 			<td class="rightSide"><?php echo __('Department') ?>:<span class="ui-mandatory">*</span></td>
 			<td >				
 				<input type="text" disabled id="department_name" style="width:160px;" >
-				<input type="hidden" disabled id="departmentID" style="width:160px;" value="2">
+				<input type="hidden" disabled id="departmentID" style="width:160px;" >
 				<span class="issue_for" style="">
 						<a href='#' class='departmentModal' rel='#departmentPrompts'>
 				<button class="ui-button"> ... </button></a> </span> 	

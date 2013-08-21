@@ -214,115 +214,120 @@
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
 
-
 <div class="modal" id="departmentPrompts">
-	<div class="ui-partial-container" style="border:1px solid #f00;">
-		<div class="ui-container">
-			<div class="ui-list-cont">		
-				<div class="ui-main-list-cont" >
-					<div class="ui-list-header">				
-						<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Employee Lists')  ?></h1>	
-						<div class="ui-form-content-minimize opened" id="ui-list-collaps-list-box" style="margin-top:0px;float:right;">	
-							<span id="ui-list-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
-							<span id="ui-list-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
-						</div>	
-						<div class="clearFix"></div>
-					</div><!-- end of ui-list-header -->
-					
-					<div class="ui-content-container-box">
-					<div class="ui-main-content-list "> 
-						<div class="ui-main-content-cont" >
-							<div class="ui-content-list-box">
-								<div class="ui-list-filter-cont">
-									<div class="ui-list-batch-actions"> 
-											<input type="hidden" id="totalData" value=" <?php echo $totalData ?>" >
-											<ul>
-												<li><a href=""><img src="<?php echo image_path('icons/delete_small') ?>">Delete</a></li>
-												<li></li> 
-											</ul>  
-									</div>
-									<div class="ui-filter-list"> 
-										<?php include_partial('filter', array('types' => $types,'statuss' => $statuss )) ?>
-									</div>
-									<div class="clearFix"></div>
+	<form>
+	<div class="ui-partial-container" style="border:0px solid #f00;">
+		 <div class="ui-partial-container">
+			<div class="ui-partial-main-list-cont" >
+				<div class="ui-partial-list-header">				
+					<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Employee Lists')  ?></h1>	
+					<div class="ui-form-content-minimize opened" id="ui-list-collaps-list-box" style="margin-top:0px;float:right;">	
+						<span id="ui-list-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
+						<span id="ui-list-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
+					</div>	
+					<div class="clearFix"></div>
+				</div><!-- end of ui-list-header -->		
+				
+				<div class="ui-content-container-box">
+			<div class="ui-main-content-list "> 
+				<div class="ui-main-content-cont" >
+					<div class="ui-content-list-box">
+						<div class="ui-list-filter-cont">
+							 
+							<div class="ui-filter-list"> 
+								<?php include_partial('departmentFilter', array()) ?>
+							</div>
+							<div class="clearFix"></div>
+						</div>
+						<div class="ui-content-lists">
+							<?php include_partial('departmentList', array('parents' => $parents )) ?>
+						</div><!-- end of ui-content-lists -->
+					</div><!-- end of ui-content-list-box -->
+				</div><!-- end of ui-main-content-cont --> 
+			</div><!-- end of ui-main-content-list --> 
+			
+			<div class="ui-list-footer">				
+				  &nbsp; 
+			</div><!-- end of ui-list-header -->
+			
+			<div class="ui-list-pagination-cont ui-pagination-color" style="">
+					<table>	 
+						<tr>
+							<td> 
+								<div class="ui-pagination-list-size"> 
+									<ul class="display">
+										<input type="hidden" id="parent_total" name="" value="<?php echo count($totalData) ?>">
+										<input type="hidden" id="parent_pagination_pageOffset" name="parent_pagination_pageOffset" >
+										<li class="display_list" id="parent_pagination_display">Display: #  
+											<select onclick="" name="parent_pagination_pagesize" class="selspan" id="parent_pagination_pagesize"> 
+												<option value="2"  >10</option>
+												<option value="20"  >20</option>
+												<option value="30"  >30</option> 
+												<option value="50"  >50</option>
+												<option value="100" >100</option>
+											</select>
+										</li>
+										<li></li>
+									</ul>
 								</div>
-								
-								<div class="ui-content-lists">
-									<?php include_partial('list', array('departments' => $departments )) ?>
-								</div><!-- end of ui-content-lists -->
-							</div><!-- end of ui-content-list-box -->
-						</div><!-- end of ui-main-content-cont --> 
-					</div><!-- end of ui-main-content-list --> 
-					
-					<div class="ui-list-footer">				
-						  &nbsp; 
-					</div><!-- end of ui-list-header -->
-					
-					<div class="ui-list-pagination-cont">
-						<table>	 
-							<tr>
-								<td> 
-									<div class="ui-pagination-list-size"> 
-										<ul class="display">
-											<input type="hidden" id="pagiantion_pageOffset" name="pagiantion_pageOffset" >
-											<li class="display_list" id="pagiantion_display">Display: #  
-												<select onclick="" name="pagiantion_pagesize" class="selspan" id="pagiantion_pagesize"> 
-													<option value="2"  >10</option>
-													<option value="20"  >20</option>
-													<option value="30"  >30</option> 
-													<option value="50"  >50</option>
-													<option value="100" >100</option>
-												</select>
-											</li>
-											<li></li>
-										</ul>
-									</div>
-									<div class="clearFix"></div>
-								</td>
-								<td>
-									<div class="ui-pagination-list-content">									 
-										<ul>	 									
-											<li class="prev_page"><span id="pagiantion_firstPage" class="imag">
-												<a href=""><img src="<?php echo image_path('pagination/first') ?>">First</a></span>  
-												<span id="" class="imag displayNone">
-												<img src="<?php echo image_path('page-prev-disabled') ?>">First</span>
-											</li>
-											<li class="prev_page"><span id="pagiantion_prevPage" class="imag">
-												<a href=""><img src="<?php echo image_path('pagination/prev') ?>">Prev</a></span>  
-												<span id="pagiantion_disabledPrevPage" class="imag displayNone">
-												<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
-											</li>
-											
-											<li class="next_page">
-												<span id="pagiantion_nextPage" class="imag">
-													<a href=""><img src="<?php echo image_path('pagination/next') ?>">Next</a>
-												</span> 
-												<span id="pagiantion_disabledNextPage" class="imag displayNone">
-													<img src="<?php echo image_path('page-next-disabled') ?>">Next
-													</span>
-											</li>
-											<li class="next_page">
-												<span id="pagiantion_lastPage" class="imag">
-													<a href=""><img src="<?php echo image_path('pagination/last') ?>">Last</a>
-												</span> 
-												<span id="" class="imag displayNone">
-													<img src="<?php echo image_path('page-next-disabled') ?>">Last
-													</span>
-											</li>
-												<input type="hidden" id="pagiantion_nextpageOffset" name="pagiantion_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
-												<input type="hidden" id="pagiantion_prevpageOffset" name="pagiantion_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
-										</ul> 									 
-									</div>							
-									<div class="clearFix"></div>
-								</td>
-							</tr> 
-						</table>
-					</div>
-					</div>
-				</div> <!-- end of ui-main-list-cont -->
-			</div>  <!-- end of ui-list-cont -->
-		</div> <!-- end of ui-container -->
+								<div class="clearFix"></div>
+							</td>
+							<td>
+								<div class="ui-pagination-list-content">									 
+									<ul>	 									
+										<li class="prev_page"><span id="parent_pagination_firstPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/first') ?>">First</a></span>  
+											<span id="" class="imag displayNone">
+											<img src="<?php echo image_path('page-prev-disabled') ?>">First</span>
+										</li>
+										<li class="prev_page"><span id="parent_pagination_prevPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/prev') ?>">Prev</a></span>  
+											<span id="parent_pagination_disabledPrevPage" class="imag displayNone">
+											<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
+										</li>
+										
+										<li class="next_page">
+											<span id="parent_pagination_nextPage" class="imag">
+												<a href=""><img src="<?php echo image_path('pagination/next') ?>">Next</a>
+											</span> 
+											<span id="parent_pagination_disabledNextPage" class="imag displayNone">
+												<img src="<?php echo image_path('page-next-disabled') ?>">Next
+												</span>
+										</li>
+										<li class="next_page">
+											<span id="parent_pagination_lastPage" class="imag">
+												<a href=""><img src="<?php echo image_path('pagination/last') ?>">Last</a>
+											</span> 
+											<span id="" class="imag displayNone">
+												<img src="<?php echo image_path('page-next-disabled') ?>">Last
+												</span>
+										</li>
+											<input type="hidden" id="parent_pagination_nextpageOffset" name="parent_pagination_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
+											<input type="hidden" id="parent_pagination_prevpageOffset" name="parent_pagination_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
+									</ul> 									 
+								</div>							
+								<div class="clearFix"></div>
+							</td>
+						</tr> 
+					</table>
+				</div>
+			</div>
+			</div>
+		 </div>
 	</div>
+	<div class="ui-partial-footer">
+		<ul>
+			<li> 
+				<button type="submit" class=""  style=""> <?php echo __('Insert') ?> </button>   
+			</li> 
+			<li>
+				<button type="button" class="close"  style=""> <?php echo __('Cancel') ?> </button> 
+			</li>
+			
+			</ul>
+			<div class="clearFix"></div>
+		</div>
+</form>
 </div>
 
 <script>
@@ -338,16 +343,16 @@
  
 	$("#departmentPrompts form").submit(function(e) {
 
-		if($("input[name=selectEmployee]:checked", this).length == 0)
-			$("input[id=selectEmployee-1]").attr("checked", "checked");
+		if($("input[name=selectDepartment]:checked", this).length == 0)
+			$("input[id=selectDepartment-1]").attr("checked", "checked");
 
 		triggerDepartment.eq(0).overlay().close();
 
-		var input = $("input[name=selectEmployee]:checked", this).val();
+		var input = $("input[name=selectDepartment]:checked", this).val();
 		var listArr = input.split("$");
 
-		document.getElementById("employee_id").value = listArr[0];
-		document.getElementById("employee_name").value = listArr[1]; 
+		document.getElementById("departmentID").value = listArr[0];
+		document.getElementById("department_name").value = listArr[1]; 
 		
 		$('#name_validateion').addClass('displayNone');
 		$('#employee_name').removeClass('validation_error_border'); 
@@ -451,6 +456,232 @@
 		return false;		
 	}
 	
+//********** Pagination ************
+
+	function employeePagination(offset)
+	{
+		var limit = document.getElementById('pagiantion_pagesize').value
+		var keyword = document.getElementById('keyword').value
+		var group_id = document.getElementById('category_group_id').value
+		var class_id = document.getElementById('category_class_id').value
+	
+		var result = $.ajax({
+				type: "GET",
+				data: 'keyword='+keyword+'&group_id='+group_id+'&class_id='+class_id+'&limit='+limit+'&offset='+offset,
+				url: '<?php echo url_for('employee/pagination')?>',
+				success: function(html) { $('#dataList').html(html) }, 
+				async: false
+				}).responseText;
+		
+		return false;	
+	}
+	
+	$(document).ready(function()
+	{			
+		$('#pagiantion_pagesize').change(function()
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			if(offset == '')	offset = 0;
+			employeePagination(offset);
+			
+			return false;
+				
+		});
+		
+		$('#pagiantion_lastPage').click(function()
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			var limit = document.getElementById('pagiantion_pagesize').value;
+			var totalData = document.getElementById('totalData').value;
+			
+			offset = parseInt(totalData)-parseInt(limit);
+			if(offset < 0)	offset = 0;				
+			document.getElementById('pagiantion_pageOffset').value = offset;
+			
+			employeePagination(offset);
+			
+			return false;
+				
+		});
+		
+		$('#pagiantion_nextPage').click(function()
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			var limit = document.getElementById('pagiantion_pagesize').value;
+			var totalData = document.getElementById('totalData').value;
+			if(offset == '')	offset = 0;
+				
+			offset = parseInt(offset) + parseInt(limit);
+			lastOffset = parseInt(totalData)-parseInt(limit);
+			
+			if(offset >= totalData)		offset = lastOffset;
+			
+			document.getElementById('pagiantion_pageOffset').value = offset;	
+			employeePagination(offset);
+			 
+			return false;				
+		});
+		
+		$('#pagiantion_prevPage').click(function()
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			var limit = document.getElementById('pagiantion_pagesize').value;			
+			offset -= parseInt(limit);			
+			if(offset < 0) offset = 0;		
+			document.getElementById('pagiantion_pageOffset').value = offset;			
+			employeePagination(offset);
+			
+			return false;				
+		});
+		
+		$('#pagiantion_firstPage').click(function()
+		{
+			offset = 0;
+			categoryPagination(offset);
+			
+			return false;
+		});
+		
+		$('#category_group_id').change(function()
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			employeePagination(offset);
+				
+			return false;
+				
+		});
+		
+		$('#category_class_id').change(function()
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			employeePagination(offset);				
+			return false;
+		});
+		
+		$('#keyword').keyup(function(key)
+		{
+			var offset = document.getElementById('pagiantion_pageOffset').value;
+			employeePagination(offset);	
+
+			return false;
+		});
+		
+	});
+	
+	//*********** Parent Pagination *************//
+	
+	function parentPagination(offset)
+	{
+		var limit = document.getElementById('parent_pagination_pagesize').value;
+		var keyword = document.getElementById('parent_keyword').value;
+		var status = document.getElementById('parent_status').value;
+		var type = document.getElementById('parent_type').value;
+		if(type =='') type=null;
+		
+		var result = $.ajax({
+				type: "GET",
+				data: 'keyword='+keyword+'&type_id='+type+'&status_id='+status+'&limit='+limit+'&offset='+offset,
+				url: '<?php echo url_for('employee/parentPagination')?>',
+				success: function(html) { $('#myDataList').html(html) }, 
+				async: false
+				}).responseText;
+		
+		//var data= 'keyword='+keyword+'&type='+type+'&status='+status+'&limit='+limit+'&offset='+offset;
+		//alert(data);
+		return false;	
+	}
+	
+	$(document).ready(function()
+	{			
+		$('#parent_pagination_pagesize').change(function()
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			if(offset == '')	offset = 0;
+			parentPagination(offset);
+			
+			return false;
+				
+		});
+		
+		$('#parent_pagination_lastPage').click(function()
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			var limit = document.getElementById('parent_pagination_pagesize').value;
+			var totalData = document.getElementById('parent_total').value;
+			
+			offset = parseInt(totalData)-parseInt(limit);
+			if(offset < 0)	offset = 0;				
+			document.getElementById('parent_pagination_pageOffset').value = offset;
+			
+			parentPagination(offset);
+			
+			return false;
+				
+		});
+		
+		$('#parent_pagination_nextPage').click(function()
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			var limit = document.getElementById('parent_pagination_pagesize').value;
+			var totalData = document.getElementById('parent_total').value;
+			if(offset == '')	offset = 0;
+				
+			offset = parseInt(offset) + parseInt(limit);
+			lastOffset = parseInt(totalData)-parseInt(limit);
+			
+			if(offset >= totalData)		offset = lastOffset;
+			
+			document.getElementById('parent_pagination_pageOffset').value = offset;	
+			parentPagination(offset);
+			 
+			return false;				
+		});
+		
+		$('#parent_pagination_prevPage').click(function()
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			var limit = document.getElementById('parent_pagination_pagesize').value;			
+			offset -= parseInt(limit);			
+			if(offset < 0) offset = 0;		
+			document.getElementById('parent_pagination_pageOffset').value = offset;			
+			parentPagination(offset);
+			
+			return false;				
+		});
+		
+		$('#parent_pagination_firstPage').click(function()
+		{
+			offset = 0;
+			parentPagination(offset);
+			
+			return false;
+		});
+		
+		$('#parent_type').change(function()
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			parentPagination(offset);
+				
+			return false;
+				
+		});
+		
+		$('#parent_status').change(function()
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			parentPagination(offset);				
+			return false;
+		});
+		
+		$('#parent_keyword').keyup(function(key)
+		{
+			var offset = document.getElementById('parent_pagination_pageOffset').value;
+			parentPagination(offset);	
+//alert('d');
+			return false;
+		});
+		
+	});
 	 
 </script>
 

@@ -602,19 +602,18 @@ a img { border: none; }
     overflow:auto;
     z-index:3001;
     width:700px;
-    height:390px;
-    margin-top:7%;
+    height:440px;
+    margin-top:5%;
     margin-left:8%;
     padding:0px;
     text-align:left;
-    border:1px solid #999	;
+    border:1px solid #eee	;
     top: 150;
     opacity:2;
-    -moz-border-radius:2px;
-    -webkit-border-radius:2px;
+   -webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;
     -moz-box-shadow: 0 0 10px #aaa;
     -webkit-box-shadow: 0 0 10px #aaa;
-    background:#e7eff2;
+    background:#fff;
   }
   }
 /* div.contentWrap {

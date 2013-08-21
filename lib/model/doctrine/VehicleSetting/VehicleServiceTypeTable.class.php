@@ -17,7 +17,7 @@ class VehicleServiceTypeTable extends PluginVehicleServiceTypeTable
 	  return Doctrine_Core::getTable('VehicleServiceType');
 	}
     
-	public static function addVehicleServiceType ($name, $description )
+	public static function processCreate ($name, $description )
 	{
 		$_nw = new VehicleServiceType ();   
 		$_nw->name = trim($name);   
@@ -27,7 +27,7 @@ class VehicleServiceTypeTable extends PluginVehicleServiceTypeTable
 		return true; 
 	}
 
-	public static function updateVehicleServiceType($_id, $name, $description )
+	public static function processUpdate($_id, $name, $description )
 	{
 		$q = Doctrine_Query::create( )
 			->update('VehicleServiceType vst')
@@ -39,7 +39,7 @@ class VehicleServiceTypeTable extends PluginVehicleServiceTypeTable
 		return ( $q > 0 );   
 	}
 	
-	public static function deleteVehicleServiceType ( $_id ) 
+	public static function processDelete ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 			->delete ('VehicleServiceType vst')
@@ -48,7 +48,7 @@ class VehicleServiceTypeTable extends PluginVehicleServiceTypeTable
 		return ( $q	> 0  );  	
 	}
 	
-	public static function getVehicleServiceTypeObject ( $_id ) 
+	public static function processObject ( $_id ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("vst.*, vst.name as vehicleServiceTypeName")
@@ -58,7 +58,7 @@ class VehicleServiceTypeTable extends PluginVehicleServiceTypeTable
 		return ( ! $q ? null : $q ); 
 	}
     
-	public static function getAllVehicleServiceTypes ( $offset=0, $limit=100 ) 
+	public static function processSelection ( $offset=0, $limit=100 ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("vst.*, vst.name as vehicleServiceTypeName")

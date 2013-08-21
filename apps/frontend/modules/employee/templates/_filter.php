@@ -1,7 +1,7 @@
 <?php 
 
 	//$groups = CategoryTable::processGroupSelection();
-	$parents = EmployeeTable::processParentSelection(); 
+	//$parents = EmployeeTable::processParentSelection(); 
 ?> 
 <ul>
 	<li><img src="<?php echo image_path('icons/find_small') ?>"></li>

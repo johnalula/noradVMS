@@ -61,7 +61,7 @@ class DriverTable extends PluginDriverTable
 		$q= Doctrine_Query::create()
 			->select("dr.*,  prt.name as firstName, prt.full_name as fullName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description")
 			->from("Driver dr") 
-			->innerJoin("dr.Participant prt")
+			->leftJoin("dr.Participant prt")
 			//->innerJoin("vh.TaskOrder tsko")
 			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
 			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
@@ -77,7 +77,7 @@ class DriverTable extends PluginDriverTable
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
 	
-	public static function processObject( $_id )
+	public static function processObject( $_id, $token_id )
 	{
 		$q= Doctrine_Query::create()
 			->select("dr.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.is_assigned as isAssigned ")
@@ -87,7 +87,7 @@ class DriverTable extends PluginDriverTable
 			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
 			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
 			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id")  
-			->where('dr.id = ? ', $_id)
+			->where('dr.id = ?  AND dr.token_id = ?', array($_id, $token_id))
 			->fetchOne ( );
 			
 		return ( ! $q ? null : $q );    
@@ -95,7 +95,7 @@ class DriverTable extends PluginDriverTable
 	
 	public static function processCandidateEmployeeSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
-		return EmployeeTable::processSelection ($status, $keyword, $exclusion , $parent, $dept, $type, $offset, $limit ); 
+		return EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit ) ; 
 	}
 	
 	public static function isDuplicated ($_id) 

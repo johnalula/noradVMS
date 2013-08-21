@@ -11,7 +11,7 @@
  * @property integer $participant_type
  * @property integer $status_id
  * @property integer $parent_id
- * @property integer $leader_participant_id
+ * @property integer $participant_leader_id
  * @property string $vat_number
  * @property integer $project_no
  * @property integer $campus_id
@@ -27,22 +27,18 @@
  * @property string $id_no
  * @property string $job_title
  * @property integer $employment_type_id
- * @property string $dean_name
- * @property string $director_name
- * @property string $head_name
  * @property integer $section_no
- * @property string $section_leader_name
  * @property integer $project_code
- * @property string $project_director
  * @property date $established_date
  * @property string $company_owner
  * @property integer $company_license_type
  * @property Participant $Participant
  * @property Campus $Campus
- * @property Doctrine_Collection $AssignedVehicle
+ * @property Employee $Employee
+ * @property Doctrine_Collection $vehicleDriverParticipants
  * @property Doctrine_Collection $fleetTaskParticipants
  * @property Doctrine_Collection $vehicleAssignDriverParticipant
- * @property Doctrine_Collection $AssignmentOrder
+ * @property Doctrine_Collection $assignmentTaskOrderParticipants
  * @property Doctrine_Collection $transferTaskTransferee
  * @property Doctrine_Collection $vehicleReturnParticipants
  * @property Doctrine_Collection $taskParticipants
@@ -84,7 +80,7 @@ abstract class BaseParticipant extends sfDoctrineRecord
         $this->hasColumn('parent_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('leader_participant_id', 'integer', null, array(
+        $this->hasColumn('participant_leader_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('vat_number', 'string', 255, array(
@@ -143,31 +139,11 @@ abstract class BaseParticipant extends sfDoctrineRecord
         $this->hasColumn('employment_type_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('dean_name', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
-        $this->hasColumn('director_name', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
-        $this->hasColumn('head_name', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
-             ));
         $this->hasColumn('section_no', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('section_leader_name', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
-             ));
         $this->hasColumn('project_code', 'integer', null, array(
              'type' => 'integer',
-             ));
-        $this->hasColumn('project_director', 'string', 255, array(
-             'type' => 'string',
-             'length' => 255,
              ));
         $this->hasColumn('established_date', 'date', null, array(
              'type' => 'date',
@@ -228,7 +204,7 @@ abstract class BaseParticipant extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasOne('Participant', array(
-             'local' => 'leader_participant_id',
+             'local' => 'parent_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
@@ -237,7 +213,12 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('AssignedVehicle', array(
+        $this->hasOne('Employee', array(
+             'local' => 'participant_leader_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasMany('AssignedVehicle as vehicleDriverParticipants', array(
              'local' => 'id',
              'foreign' => 'participant_id'));
 
@@ -249,7 +230,7 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'driver_id'));
 
-        $this->hasMany('AssignmentOrder', array(
+        $this->hasMany('AssignmentOrder as assignmentTaskOrderParticipants', array(
              'local' => 'id',
              'foreign' => 'participant_id'));
 
@@ -267,7 +248,7 @@ abstract class BaseParticipant extends sfDoctrineRecord
 
         $this->hasMany('Participant as participantParentParticipants', array(
              'local' => 'id',
-             'foreign' => 'leader_participant_id'));
+             'foreign' => 'parent_id'));
 
         $this->hasMany('ParticipantContact as participantContacts', array(
              'local' => 'id',

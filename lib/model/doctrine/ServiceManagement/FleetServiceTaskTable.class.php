@@ -65,7 +65,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$prt->token_id = $_nw->token_id;
 				$prt->task_id = $_nw->id;
 				$prt->participant_id = $customer_id;
-				$prt->participant_role = ParticipantCore::$DEPARTEMENT;
+				$prt->participant_role = ParticipantCore::$DEPARTMENT;
 				$prt->description = trim($description);
 				$prt->save();
 				
@@ -127,13 +127,13 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 			vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
 			
 			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.number_of_passangers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ps.payment_mode_id as paymentMode, ps.cost_amount as costAmount, tsk.total_cost as totalCost,
-			cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName, cus.full_name as customerName, cus.project_no as projectNo
+			cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName, cus.name as customerName, cus.project_no as projectNo
 			")
 			->from("FleetServiceTask tsk")   
 			->innerJoin("tsk.fleetTaskOrderTasks ftsko")
 			->innerJoin("ftsko.AssignedVehicle avh")    
 			->innerJoin("avh.Vehicle vh")     
-			->innerJoin("avh.Driver drv")    
+			->innerJoin("avh.Participant drv")    
 			->innerJoin("avh.Participant prt")  
 			->innerJoin("vh.FuelType ft")    
 			->innerJoin("vh.VehicleType vt")  
@@ -161,7 +161,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 			->leftJoin("tsk.fleetTaskOrderTasks ftsko")
 			->leftJoin("ftsko.AssignedVehicle avh")    
 			->leftJoin("avh.Vehicle vh")     
-			->leftJoin("avh.Driver drv")    
+			->leftJoin("avh.Participant drv")    
 			->leftJoin("avh.Participant prt")  
 			->leftJoin("vh.FuelType ft")    
 			->leftJoin("vh.VehicleType vt")   

@@ -39,8 +39,10 @@
  * @property float $vehicle_weight
  * @property integer $service_type_id
  * @property integer $fuel_type_id
- * @property date $purchased_date
+ * @property string $purchased_date
+ * @property integer $purchased_type
  * @property integer $service_year
+ * @property integer $no_of_doors
  * @property integer $checkup_period_id
  * @property integer $vehicle_status
  * @property integer $fuel_setting_id
@@ -194,12 +196,19 @@ abstract class BaseItem extends sfDoctrineRecord
         $this->hasColumn('fuel_type_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('purchased_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('purchased_date', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('purchased_type', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('service_year', 'integer', null, array(
              'type' => 'integer',
              'default' => 0,
+             ));
+        $this->hasColumn('no_of_doors', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('checkup_period_id', 'integer', null, array(
              'type' => 'integer',

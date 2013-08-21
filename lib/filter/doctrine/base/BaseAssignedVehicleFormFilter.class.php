@@ -15,7 +15,7 @@ abstract class BaseAssignedVehicleFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'task_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'token_id'            => new sfWidgetFormFilterInput(),
-      'participant_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Driver'), 'add_empty' => true)),
+      'participant_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Participant'), 'add_empty' => true)),
       'vehicle_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'assignment_order_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AssignmentOrder'), 'add_empty' => true)),
       'effective_date'      => new sfWidgetFormFilterInput(),
@@ -29,7 +29,7 @@ abstract class BaseAssignedVehicleFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'task_id'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
       'token_id'            => new sfValidatorPass(array('required' => false)),
-      'participant_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Driver'), 'column' => 'id')),
+      'participant_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Participant'), 'column' => 'id')),
       'vehicle_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicle'), 'column' => 'id')),
       'assignment_order_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AssignmentOrder'), 'column' => 'id')),
       'effective_date'      => new sfValidatorPass(array('required' => false)),

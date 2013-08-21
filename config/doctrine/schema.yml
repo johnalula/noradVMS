@@ -57,8 +57,10 @@ Vehicle:
     vehicle_weight: { type: float }
     service_type_id: { type: integer }
     fuel_type_id: { type: integer }
-    purchased_date: { type: date }
+    purchased_date: { type: string(100) }
+    purchased_type: { type: integer }
     service_year: { type: integer, default: 0 }
+    no_of_doors: { type: integer }
     checkup_period_id: { type: integer }
     vehicle_status: { type: integer, default: 4 }
     fuel_setting_id: { type: integer }
@@ -123,7 +125,7 @@ AssignedVehicle:
   relations: 
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: vehicleAssignmentTasks }
     AssignmentOrder: { onDelete: CASCADE, local: assignment_order_id, foreign: id, foreignAlias: assignedVehicles }
-    Driver: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: vehicleDrivers } 
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: vehicleDriverParticipants } 
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: assignedVehicle }
     
 VehicleType:
@@ -404,7 +406,7 @@ AssignmentOrder:
     description: { type: string(255) }
   relations:
     Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: taskOrderTasks }
-    Driver: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: assignmentTaskOrderParticipants }
+    Participant: { onDelete: CASCADE, local: participant_id, foreign: id, foreignAlias: assignmentTaskOrderParticipants }
     Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: assignmentTaskOrderVehicles } 
 
 TransferTask:
@@ -606,15 +608,15 @@ Participant:
    participant_type:  { type: integer }
    status_id: { type: integer , default: 1 } 
    parent_id: { type: integer } 
-   leader_participant_id: { type: integer }
+   participant_leader_id: { type: integer } 
    vat_number:  { type: string(255) }
    project_no: { type: integer }
    campus_id: { type: integer }
    description:  { type: string(255) }  
   relations:
-    Participant: { onDelete: CASCADE, local: parent_id, foreign: id, foreignAlias: participantParentParticipants } 
-    Participant: { onDelete: CASCADE, local: leader_participant_id, foreign: id, foreignAlias: participantParentParticipants }  
+    Participant: { onDelete: CASCADE, local: parent_id, foreign: id, foreignAlias: participantParentParticipants }  
     Campus: { onDelete: CASCADE, local: campus_id, foreign: id, foreignAlias: participantCampusParticipants }  
+    Employee: { onDelete: CASCADE, local: participant_leader_id, foreign: id, foreignAlias: leaderParticipants }
    
 ParticipantType:
   package: ParticipantManagement
@@ -662,9 +664,7 @@ College:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 2
-  columns:
-   dean_name: { type: string(255) } 
+    keyValue: 2 
     
 Center:
   package: ParticipantManagement
@@ -672,9 +672,7 @@ Center:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 3
-  columns:
-   director_name: { type: string(255) }
+    keyValue: 3 
   
 Institution:
   package: ParticipantManagement
@@ -682,9 +680,7 @@ Institution:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 4
-  columns:
-   director_name: { type: string(255) }
+    keyValue: 4 
   
 Department:
   package: ParticipantManagement
@@ -692,9 +688,7 @@ Department:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 5
-  columns:
-   head_name: { type: string(100) }
+    keyValue: 5 
   
 Section:
   package: ParticipantManagement
@@ -704,8 +698,7 @@ Section:
     keyField: type
     keyValue: 6 
   columns:
-    section_no: { type: integer }
-    section_leader_name: { type: string(255) }
+    section_no: { type: integer } 
   
 Office:
   package: ParticipantManagement
@@ -713,9 +706,7 @@ Office:
     extends: Participant
     type: concrete
     keyField: type
-    keyValue: 7
-  columns: 
-    director_name: { type: string(255) }
+    keyValue: 7 
   
 Project:
   package: ParticipantManagement
@@ -725,8 +716,7 @@ Project:
     keyField: type
     keyValue: 8
   columns:
-   project_code: { type: integer }
-   project_director: { type: string(255) }  
+   project_code: { type: integer } 
   
 Other:
   package: ParticipantManagement

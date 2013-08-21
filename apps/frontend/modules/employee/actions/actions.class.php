@@ -12,7 +12,13 @@ class employeeActions extends sfActions
 {
 	public function executeIndex(sfWebRequest $request)
 	{
-		$this->employees = EmployeeTable::processSelection($status=null, $keyword=null, $exclusion=null , $parent=null, $dept=null, $type=null, $offset=0, $limit=10 );
+		$offset = 0;
+		$limit = 10;
+		
+		$this->employees = EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit );
+		$this->parents = EmployeeTable::processUmbrellaSelection($status, $keyword, $exclusion, $type, $offset, $limit );
+		$this->totalData = EmployeeTable::processUmbrellaSelection($status, $keyword, $exclusion, $type, $offset, 1000 );
+		//$this->parents = CollegeTable::processSelection($status, $keyword, $exclusion, $type, $offset, $limit ) ;
 			 
 	}
 	
@@ -42,6 +48,49 @@ class employeeActions extends sfActions
 		
 		return $flag;
 			 
+	}
+	
+	public function executePagination(sfWebRequest $request)
+	{ 
+		$offset = $request->getParameter('offset');
+		$limit = intval($request->getParameter('limit'));
+		//$status = $request->getParameter('status_id');
+		$type = intval($request->getParameter('type_id'));
+		$keyword = $request->getParameter('keyword');
+		//$keyword = '%'.$keyword.'%';
+		
+		if(!$offset || $offset=='')	$offset = 0;			
+		if(!$limit || $limit=='' ) $limit = 10;			
+		if(!$type || $type=='' ) $type = null;			
+		if(!$status || $status=='' )	$status = null;			
+		if(!$keyword || $keyword=='' )	$keyword = null;
+		if(!$exclusion || $exclusion=='' )	$exclusion = null;
+		if(!$emp_type || $emp_type=='' )	$emp_type = null;
+		
+		$this->employees = EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit );
+
+		return $this->renderPartial('list', array('employees' => $this->employees));	 
+	}
+
+	public function executeParentPagination(sfWebRequest $request)
+	{ 
+		$offset = $request->getParameter('offset');
+		$limit = intval($request->getParameter('limit'));
+		//$status = $request->getParameter('status_id');
+		$type = intval($request->getParameter('type_id'));
+		$keyword = $request->getParameter('keyword');
+		//$keyword = '%'.$keyword.'%';
+		
+		if(!$offset || $offset=='')	$offset = 0;			
+		if(!$limit || $limit=='' ) $limit = 10;			
+		if(!$type || $type=='' ) $type = null;			
+		if(!$status || $status=='' )	$status = null;			
+		if(!$keyword || $keyword=='' )	$keyword = null;
+		if(!$exclusion || $exclusion=='' )	$exclusion = null;
+		
+		$this->parents = EmployeeTable::processUmbrellaSelection($status, $keyword, $exclusion, $type, $offset, $limit );
+
+		return $this->renderPartial('departmentList', array('parents' => $this->parents));	 
 	}
 
   

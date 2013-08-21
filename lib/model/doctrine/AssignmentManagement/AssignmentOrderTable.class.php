@@ -44,11 +44,13 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
    public static function processObject($_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*, vh.token_id as vehicleTokenID ")
-			->from("AssignmentOrder tsko") 
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID")
+			->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
-			->innerJoin("tsko.Driver dr on tsko.participant_id = dr.id")
-			->innerJoin("tsko.Vehicle vh on tsko.vehicle_id = vh.id")   
+			//->innerJoin("tsko.Driver dr")
+			->innerJoin("tsko.Participant prt")
+			->innerJoin("prt.participantDrivers dr")
+			->innerJoin("tsko.Vehicle vh")    
 			->where('tsko.id = ? AND tsko.token_id = ?', array($_id, $token_id))
 			->fetchOne ( );
 			
@@ -58,11 +60,12 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.employee_id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo")
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.full_name as fullName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, dr.id as driverID, dr.token_id as driverTokenID")
 			->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
-			->innerJoin("tsko.Driver dr")
-			->innerJoin("dr.Participant prt")
+			//->innerJoin("tsko.Driver dr")
+			->innerJoin("tsko.Participant prt")
+			->innerJoin("prt.participantDrivers dr")
 			->innerJoin("tsko.Vehicle vh")    
 			->offset($offset)
 			->limit($limit)

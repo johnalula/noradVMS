@@ -4,7 +4,7 @@ class ParticipantCore {
 		public static $COLLEGE = 2; 
 		public static $INSTITUTION = 3; 
 		public static $CENTER	= 4; 
-		public static $DEPARTEMENT = 5; 
+		public static $DEPARTMENT = 5; 
 		public static $SECTION = 6; 
 		public static $PROJECT = 7; 
 		public static $EMPLOYEE =  8; 

@@ -8,8 +8,13 @@
 		</div>
 	</div>
 
-	<?php //$flag = AssignmentTaskTable::processCreateTaskOrder (11, '35568f7bb9d3b5ca25c6168756110c06', 4, 3, 'asdfasd', '12/09/2013' );
-	 
+	<?php //$flag = AssignmentTaskTable::processCreateTaskOrder (3, '7fa823ccc893042a18d4bc46e872dcd5', 2, 2, 'asdfasd', '12/09/2013' );
+
+				//$ord = AssignmentOrderTable::processObject(3, '7fa823ccc893042a18d4bc46e872dcd5' );
+				//$ord = VehicleTable::processVehicleAssignment( $order );
+				//echo $ord->driverTokenID;
+				//$driver = DriverTable::processObject ($ord->driverID, $ord->driverTokenID );
+				//echo $driver->employee_id;
 			//$driver = AssignmentOrderTable::processObject(6, '35568f7bb9d3b5ca25c6168756110c06' ) ;
 				//echo $driver->participant_id ;
 				//$driver->assignDriver();

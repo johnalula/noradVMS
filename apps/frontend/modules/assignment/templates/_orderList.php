@@ -31,7 +31,7 @@
 				<?php echo '('.$order->plateCodeNo .') ' .$order->plateCode.'  '. $order->plateNo ?> 
 			</td> 
 			<td class="ui-input-body-box" style="width:97%;min-width:90px;"> 
-				<?php echo $order->description  ?> 
+				<?php echo str_replace('-', ' ',$order->fullName ) ?> 
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">

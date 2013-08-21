@@ -14,7 +14,12 @@
 	</div>
 </div>
 
-<?php //$flags = AssignmentOrderTable::processCreate (4, '4f3ff5764dd279ac2316ca9666c3e5a2', 1, 1, 'sdfas fasdf', '12/04/2013'); 
+<?php 
+
+	//$flag = VehicleTable::processUpdate ( 1,'985fb0ad8cb4c43abd7b251dfe20cfa0',$plate_code,$plate_no,$plate_code_no,$vehicle_type,$vehicle_make,$vehicle_model,$vehicle_color,$vehicle_weight,$vehicle_year) ;
+
+
+//$flags = AssignmentOrderTable::processCreate (4, '4f3ff5764dd279ac2316ca9666c3e5a2', 1, 1, 'sdfas fasdf', '12/04/2013'); 
  
 		//$driver = DriverTable::processObject (1 );
 			//echo $driver->is_assigned ? 'true':'false';
@@ -322,3 +327,76 @@
 		</div> <!-- end of ui-main-list-cont -->
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
+
+<script>
+	
+	function showSuccess()
+	{
+		$('#ui-display-success-cont').removeClass('displayNone');
+		
+		location.reload().delay(3000);
+	}
+	
+	function showError()
+	{
+		$('#ui-display-error-cont').removeClass('displayNone');
+	}
+	
+	function deleteSuccess()
+	{
+		$('#ui-display-delete-cont').removeClass('displayNone');
+		location.reload().delay(3000);
+	}
+	
+	function updateVehicle ( vehicleID )
+	{
+		var tokenID = document.getElementById('token_id').value;
+		var plate_code = document.getElementById('plate_code').value;
+		var plate_no = document.getElementById('plate_no').value;
+		var plate_code_no = document.getElementById('plate_code_no').value;
+		var vehicle_type = document.getElementById('vehicle_type').value;
+		var vehicle_make = document.getElementById('vehicle_make').value;
+		var vehicle_model = document.getElementById('vehicle_model').value;
+		var vehicle_color = document.getElementById('vehicle_color').value;
+		var vehicle_weight = document.getElementById('vehicle_weight').value;
+		var vehicle_year = document.getElementById('vehicle_year').value;
+		var fuel_type = document.getElementById('fuel_type').value;
+		var service_type = document.getElementById('service_type').value;
+		var purchased_date = document.getElementById('purchased_date').value;
+		var purchased_type = document.getElementById('purchased_type').value;
+		var serial_no = document.getElementById('serial_no').value;
+		var pin_no = document.getElementById('pin_num').value;
+		var purchased_mileage = document.getElementById('purchased_mileage').value;
+		var current_mileage = document.getElementById('current_mileage').value;
+		var seat_capacity = document.getElementById('seat_capacity').value;
+		var doors = document.getElementById('no_of_doors').value;
+		var liter = document.getElementById('liter_per_km').value;
+		var engine_no = document.getElementById('vehicle_engine_no').value;
+		var chesis_no = document.getElementById('vehicle_chesis_no').value;
+		var desc = document.getElementById('description').value;
+		
+	
+			$.ajax({
+				type: "GET",
+				data: 'vehicle_id='+vehicleID+'&token_id='+tokenID+'&plate_code='+plate_code+'&plate_no='+plate_no+'&plate_code_no='+plate_code_no+'&vehicle_type='+vehicle_type+'&vehicle_make='+vehicle_make+'&vehicle_model='+vehicle_model+'&vehicle_color='+vehicle_color+'&vehicle_weight='+vehicle_weight+'&vehicle_year='+vehicle_year+'&service_type='+service_type+'&purchased_date='+purchased_date+'&purchased_type='+purchased_type+'&serial_no='+serial_no+'&pin_no='+pin_no+'&purchased_mileage='+purchased_mileage+'&current_mileage='+current_mileage+'&seat_capacity='+seat_capacity+'&doors='+doors+'&liter='+liter+'&engine_no='+engine_no+'&chesis_no='+chesis_no+'&fuel_type='+fuel_type+'&description='+desc,
+				url: '<?php echo url_for('vehicle/updateVehicle')?>', 
+				success: function() { 
+					showSuccess(); 
+				},
+				error: function() {
+					showError();
+				},
+				async: false
+				});
+			
+				/*var data = 'vehicle_id='+vehicleID+'&token_id='+tokenID+'&plate_code='+plate_code+'&plate_no='+plate_no+'&plate_code_no='+plate_code_no+'&vehicle_type='+vehicle_type+'&vehicle_make='+vehicle_make+'&vehicle_model='+vehicle_model+'&vehicle_color='+vehicle_color+'&vehicle_weight='+vehicle_weight+'&vehicle_year='+vehicle_year+'&service_type='+service_type+'&purchased_date='+purchased_date+'&purchased_type='+purchased_type+'&serial_no='+serial_no+'&pin_no='+pin_no+'&purchased_mileage='+purchased_mileage+'&current_mileage='+current_mileage+'&seat_capacity='+seat_capacity+'&doors='+doors+'&liter='+liter+'&engine_no='+engine_no+'&chesis_no='+chesis_no+'&fuel_type='+fuel_type+'&description='+desc;
+			alert(data);*/
+			
+			//alert(vehicleID);
+			
+		return false;
+		
+	}
+	
+
+</script>

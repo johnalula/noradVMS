@@ -41,7 +41,7 @@
 				
 				<?php if($vehicle->isAssigned): ?>
 					<img src="<?php echo image_path('setting/vehicle_driver_small') ?>">
-					<?php echo $vehicle->id ?>
+					<?php echo $vehicle->firstName.' '.$vehicle->fatherName.' '.$vehicle->grandFatherName ?>
 				<?php else: ?>
 				Not assigned yet
 				<?php endif; ?>

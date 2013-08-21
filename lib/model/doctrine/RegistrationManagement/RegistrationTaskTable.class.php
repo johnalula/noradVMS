@@ -62,9 +62,9 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 
 		return ( $q > 0 );   
 	}
-	public static function processUpdateRegistrationVehicle ( $vehicle_id, $token_id, $plate_code, $plate_no, $plate_code_no, $vehicle_type, $vehicle_make, $vehicle_model, $vehicle_color, $vehicle_weight, $fuel_type, $description )
+	public static function processUpdateRegistrationVehicle ( $vehicle_id,$token_id,$plate_code,$plate_no,$plate_code_no,$vehicle_type,$vehicle_make,$vehicle_model,$vehicle_color,$vehicle_weight,$vehicle_year, $service_type,$fuel_type,$purchased_date, $purchased_type, $serial_no, $pin_no, $purchased_mileage,$current_mileage,$seat_capacity,$doors,$liter,$engine_no,$chesis_no, $description )
 	{		
-		return VehicleTable::processUpdate ( $vehicle_id, $token_id, $plate_code, $plate_no, $plate_code_no, $vehicle_type, $vehicle_make, $vehicle_model, $vehicle_color, $vehicle_weight, $fuel_type, $description );   
+		return VehicleTable::processUpdate ( $vehicle_id,$token_id,$plate_code,$plate_no,$plate_code_no,$vehicle_type,$vehicle_make,$vehicle_model,$vehicle_color,$vehicle_weight,$vehicle_year, $service_type,$fuel_type,$purchased_date, $purchased_type, $serial_no, $pin_no, $purchased_mileage,$current_mileage,$seat_capacity,$doors,$liter,$engine_no,$chesis_no, $description );   
 	}
 	
 	public static function processObject ( $_id, $token_id ) 
@@ -139,7 +139,7 @@ class RegistrationTaskTable extends PluginRegistrationTaskTable
 	}
 	public static function processTaskOrderCandidateSelection ($task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=20) 
 	{
-		return TaskOrderTable::processCandidateSelection ( $task_id, $token_id, $offset, $limit) ;
+		return TaskOrderTable::processCandidateSelection ( $task_id, $token_id, 1, $offset, $limit) ;
 	}
 	
 	public static function processCreateTaskAttachment ( $task_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description)

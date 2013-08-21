@@ -18,9 +18,8 @@
  * @property boolean $is_reasigned
  * @property Task $Task
  * @property AssignmentOrder $AssignmentOrder
- * @property Driver $Driver
- * @property Vehicle $Vehicle
  * @property Participant $Participant
+ * @property Vehicle $Vehicle
  * @property Doctrine_Collection $fleetTaskOrderVehicles
  * 
  * @package    noradVMS
@@ -40,9 +39,8 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('participant_id', 'integer', 8, array(
+        $this->hasColumn('participant_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 8,
              ));
         $this->hasColumn('vehicle_id', 'integer', null, array(
              'type' => 'integer',
@@ -88,7 +86,7 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Driver', array(
+        $this->hasOne('Participant', array(
              'local' => 'participant_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
@@ -97,10 +95,6 @@ abstract class BaseAssignedVehicle extends sfDoctrineRecord
              'local' => 'vehicle_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
-
-        $this->hasOne('Participant', array(
-             'local' => 'participant_id',
-             'foreign' => 'id'));
 
         $this->hasMany('FleetOrder as fleetTaskOrderVehicles', array(
              'local' => 'id',

@@ -23,8 +23,8 @@ class AssignedVehicleTable extends PluginAssignedVehicleTable
 			->select("asvh.*, vh.plate_code as plateCode, vh.plate_number as plateNo ")
 			->from("AssignedVehicle asvh") 
 			->innerJoin("asvh.Vehicle vh") 
-			->innerJoin("asvh.Driver drv on asvh.participant_id = drv.id") 
-			->innerJoin("drv.Participant prt on prt.id = drv.employee_id") 
+			->innerJoin("asvh.Participant drv") 
+			->innerJoin("drv.Participant prt") 
 			->offset($offset)
 			->limit($limit)
 			->where('asvh.id IS NOT NULL'); 
@@ -44,8 +44,8 @@ class AssignedVehicleTable extends PluginAssignedVehicleTable
 			->select("asvh.*, vh.plate_code as plateCode, vh.plate_number as plateNo, vh.token_id as vehicleTokenID")
 			->from("AssignedVehicle asvh") 
 			->innerJoin("asvh.Vehicle vh") 
-			->innerJoin("asvh.Driver drv on asvh.participant_id = drv.id") 
-			->innerJoin("drv.Participant prt on prt.id = drv.employee_id") 
+			->innerJoin("asvh.Participant drv ") 
+			->innerJoin("drv.Participant prt") 
 			->where("asvh.id=? AND asvh.token_id=?", array($_id, $token_id))
 			->fetchOne ( );
 		return ( ! $q ? null : $q ); 

@@ -12,11 +12,6 @@ class CollegeTable extends PluginCollegeTable
      *
      * @return object CollegeTable
      */
-	public static function processObject ()
-	{}
-
-	public static function processSelection ()
-	{}
 
 	public static function getCandidateParents()
 	{}
@@ -67,23 +62,96 @@ class CollegeTable extends PluginCollegeTable
 	public static function processDelete ()
 	{}
 
-	public static function addKeywordQuery()
-	{}
+	 public static function processObject($_id, $token_id)
+	{
+		$q = Doctrine_Query::create()
+			->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->from("College prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->where("prt.id = ? AND prt.token_id = ? AND prt.participant_type = ?", array($_id, $token_id, ParticipantCore::$COLLEGE) )
+			->fetchOne(); 
+		return (! $q ? null : $q ); 	
+		
+	}
+	
+	public static function processSelection($status=null, $keyword=null, $exclusion=null, $type=null, $offset=0, $limit=10 ) 
+	{
+		$q = Doctrine_Query::create()
+				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->from("College prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->offset($offset)
+				->limit($limit)
+				->where("prt.participant_type = ?", ParticipantCore::$COLLEGE);
+				if(! is_null($status))
+					$q = $q->andWhere("prt.status_id=?", $status);
+				if(! is_null($type))
+					$q = $q->andWhere("prt.participant_type=?", $type);
+				if(!is_null($keyword) )
+					$q = $q->andWhere("prt.name LIKE ? AND prt.project_no LIKE ?", array( $keyword, $keyword));
+					
+				$q = $q->execute( ); 
 
-	public static function addStatusQuery()
-	{}
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+    
+	public static function processUmbrellaSelection($status=null, $keyword=null, $exclusion=null, $type=null, $offset=0, $limit=10 )
+	{
+		$q = Doctrine_Query::create()
+				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->from("Participant prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->offset($offset)
+				->limit($limit)
+				->where("prt.participant_type = ? ", ParticipantCore::$OFFICE);
+				if(! is_null($status))
+					$q = $q->andWhere("prt.status_id=?", $status);
+				if(! is_null($type))
+					$q = $q->andWhere("prt.participant_type=?", $type);
+				if(!is_null($keyword) )
+					$q = $q->andWhere("prt.name LIKE ? AND prt.project_no LIKE ?", array( $keyword, $keyword));
+					
+				$q = $q->execute( ); 
 
-	public static function addExclusionQuery()
-	{}
-
-	public static function addUmbrellaQuery()
-	{}
-
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+    
 	public static function processStatusSelection ()
-	{}
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(prt.status_id) AS partyStatus")
+			->from("College prt") 
+			->where("prt.status_id IS NOT NULL")		
+			->execute();
+		
+		$status = array();
+		foreach( $q as $w)
+			$status[] = $w->partyStatus;
+	 
+		return ( count ( $status ) <= 0 ? null : $status );
+	}
 
-	public static function processTypeSelection ()
-	{}
+	public static function processTypeSelection()
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(prt.participant_type) AS partyType")
+			->from("College prt") 
+			->where("prt.participant_type IS NOT NULL")		
+			->execute();
+		
+		$types = array();
+		foreach( $q as $w)
+			$types[] = $w->partyType;
+	 
+		return ( count ( $types ) <= 0 ? null : $types );
+	}
+	
 	public static function getInstance()
 	{
 	return Doctrine_Core::getTable('College');
