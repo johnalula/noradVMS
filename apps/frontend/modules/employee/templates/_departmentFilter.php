@@ -1,16 +1,18 @@
 <?php 
 
 	//$groups = CategoryTable::processGroupSelection();
-	$parents = EmployeeTable::$EMP_PARTICIPANTS; 
+	$types = EmployeeTable::processTypeSelection(); 
+	$statuss = EmployeeTable::processStatusSelection(); 
+	 
 ?> 
 <ul>
 	<li><img src="<?php echo image_path('icons/find_small') ?>"></li>
 	<li>
 		<select style="width:100px;margin-left:2px;"    id="parent_type" name="parent_type">
 			<option>&nbsp;</option>
-			<?php foreach($parents as $key => $parent): ?>								 
-				<option value="<?php echo  $key ?>" >
-					<?php echo $parent ?>
+			<?php foreach($types as $key => $type): ?>								 
+				<option value="<?php echo  $type ?>" >
+					<?php echo ParticipantCore::fetchParticipantValue($type) ?>
 				</option>								 
 			<?php endforeach; ?>
 		</select>
@@ -18,9 +20,9 @@
 	<li>
 		<select style="width:100px;margin-left:2px;"    id="parent_status" name="parent_status">
 			<option>&nbsp;</option>
-			<?php foreach($classs as $key => $clss): ?>								 
-				<option value="<?php echo  $clss->classID ?>" >
-					<?php echo PropertyClassCore::fetchItemTypeValue($clss->classID) ?>
+			<?php foreach($statuss as $key => $status): ?>								 
+				<option value="<?php echo  $status ?>" >
+					<?php echo ParticipantCore::fetchParticipantStatusValue($status) ?>
 				</option>								 
 			<?php endforeach; ?>
 		</select>
@@ -34,4 +36,5 @@
 
 	
 </script>
+
 

@@ -25,9 +25,9 @@
 		<tr>
 			<td class="rightSide"><?php echo __('No of Days') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
-				<input style="width:40px;text-align:right;margin-right:9px;" id="no_of_days" name="no_of_days" >		
+				<input style="width:30px;text-align:right;margin-right:9px;" id="no_of_days" name="no_of_days" >		
 				<?php echo __('Payment') ?>:<span class="ui-mandatory"></span>
-					<select style="width:83px;margin-right:8px;" id="payment_mode" name="payment_mode" >
+					<select style="width:93px;margin-right:8px;" id="payment_mode" name="payment_mode" >
 						<?php foreach($modes as $key => $mode): ?>
 						<option value="<?php echo $key ?>"><?php echo $mode ?></option>		
 						<?php endforeach; ?>
@@ -37,9 +37,11 @@
 			</td> 
 		</tr> 
 		<tr>
-			<td class="rightSide"><?php echo __('Service Type') ?>:</td>
+			<td class="rightSide"><?php echo __('Delay Payable') ?>:</td>
 			<td>
-				<select style="width:208px;margin-right:8px;" id="service_type" name="service_type" >
+				<input type="checkbox" style="width:40px;text-align:right;margin-right:9px;" id="delay_payable" name="delay_payable" >
+				<?php echo __('Service Type') ?>:<span class="ui-mandatory"></span>
+				<select style="width:93px;margin-right:8px;" id="service_type" name="service_type" >
 					<?php foreach($services as $key => $service): ?>
 					<option value="<?php echo $key ?>"><?php echo $service ?></option>		
 					<?php endforeach; ?>

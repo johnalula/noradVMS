@@ -32,7 +32,7 @@
 				<?php echo '( '. $vehicle->plateCodeNo.' ) '.$vehicle->plateCode .' - '.$vehicle->plateNo.' ( '.$vehicle->vehicleMake.' ) ' ?>
 			</td>
 			<td class="" style="width:140px;min-width:140px;"> 
-				<img style="vertical-align:bottom;margin-right:5px;" src="<?php echo image_path('setting/vehicle_driver_small') ?>"><?php echo $vehicle->fullName ?>
+				<img style="vertical-align:bottom;margin-right:5px;" src="<?php echo image_path('setting/vehicle_driver_small') ?>"><?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>
 			</td>
 			<td class="" style="width:120px;min-width:120px;"> 
 				<?php echo $vehicle->departMileage ?>
@@ -47,15 +47,20 @@
 				<?php echo $vehicle->acquiredFuelType.' litter' ?>
 			</td> 
 			 
-			<td  class="" style="padding:0px 0px 0px 1px;width:22px;min-width:22px;border-right:0px solid #ddd;"> 
+			<td  class="" style="padding:0px 0px 0px 2px;width:22px;min-width:22px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:22px;min-width:22px;padding:0x 0px;text-align:center;">
 					<ul>
 						<li>
-							<a href="#" class="" rel="<?php echo $task->id ?>">									 
-									<img src="<?php echo image_path('new_icons/view')  ?>" >								 
-							</a>
+							<span class="changeVehicle"rel="<?php echo $order->id ?>" >
+								<div class="candidateVehicleModal" rel="#candidateVehiclePrompts">
+									<span class="rowItem" rel="<?php echo $order->id ?>" >
+									<a href="#" class="ui-action-button" rel="<?php echo $order->id ?>">									 
+											<img src="<?php echo image_path('new_icons/revert_car_small')  ?>" >								 
+									</a>
+									</span>
+								</div>
+							</span>
 						</li> 
-						 
 					</ul>
 				</div>
 			</td>

@@ -69,7 +69,7 @@ class DriverTable extends PluginDriverTable
 			->offset($offset)
 			->limit($limit);
 			if(!is_null($is_assigned))
-			$q = $q->addWhere('dr.is_assigned = ?', $is_assigned);
+				$q = $q->addWhere('dr.is_assigned = ?', $is_assigned);
 			
 			$q = $q->execute( ); 
 			
@@ -95,6 +95,13 @@ class DriverTable extends PluginDriverTable
 	
 	public static function processCandidateEmployeeSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
+		$exclusion = array(); 
+		$excls =  EmployeeTable::processSelection($status, $keyword, $exclusion, ParticipantCore::$DRIVER, $type, $offset, $limit ) ; 
+		foreach ($excls as $excl)
+		{
+			$exclusion[] = $excl->id;
+		}
+		
 		return EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit ) ; 
 	}
 	

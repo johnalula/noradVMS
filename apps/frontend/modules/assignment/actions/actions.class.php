@@ -103,7 +103,6 @@ class assignmentActions extends sfActions
 		$flag = AssignmentTaskTable::processCreateTaskAttachment ( $_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description);
 		
 		return $flag;
-	  
 	 }
 	  
   public function executeOrder(sfWebRequest $request)
@@ -147,6 +146,67 @@ class assignmentActions extends sfActions
 		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
 		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
 		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
+  }
+  
+   public function executeSelection(sfWebRequest $request)
+	{
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+	
+		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
+		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
+		
+		return $this->renderPartial('assignmentList', array('task_orders' => $this->task_orders));
+  }
+  
+  public function executeChangeVehicle(sfWebRequest $request)
+  {
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		 
+		
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$vehicle_id = $request->getParameter('vehicle_id');
+		$order_id = $request->getParameter('order_id');
+		
+		
+		 
+		$order = AssignmentOrderTable::processRevertVehicle($task_id, $token_id, $order_id, $vehicle_id);
+	
+		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
+		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
+		
+		return $this->renderPartial('assignmentList', array('task_orders' => $this->task_orders));
+  }
+  public function executeChangeDriver(sfWebRequest $request)
+  {
+		$offset = 0;
+		$limit = 10;
+		$status = null;
+		$keyword = null;
+		 
+		
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$driver = $request->getParameter('driver_id');
+		$order_id = $request->getParameter('order_id');
+		 
+		$order = AssignmentOrderTable::processRevertDriver($task_id, $token_id, $order_id, $driver);
+	
+		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
+		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
+		
+		return $this->renderPartial('assignmentList', array('task_orders' => $this->task_orders));
   }
   
   public function executeComplete(sfWebRequest $request)

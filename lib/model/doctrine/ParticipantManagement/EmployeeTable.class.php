@@ -156,10 +156,13 @@ class EmployeeTable extends PluginEmployeeTable
 	public static function processObject($_id, $token_id)
 	{
 		$q = Doctrine_Query::create()
-			->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+			->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName,
+			dr.id as driverID, dr.token_id as driverTokenID
+			")
 				->from("Employee prt") 
 				->leftJoin("prt.Participant pt") 
 				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.participantDrivers dr")
 				->leftJoin("prt.Campus cmps")
 				->where("prt.id = ? AND prt.token_id = ? AND prt.participant_type = ?", array($_id, $token_id, ParticipantCore::$DEPARTEMENT) )
 			->fetchOne(); 
@@ -170,10 +173,14 @@ class EmployeeTable extends PluginEmployeeTable
 	public static function processSelection($status=null, $keyword=null, $exclusion=null, $emp_type=null, $type=null, $offset=0, $limit=10 ) 
 	{
 		$q = Doctrine_Query::create()
-				->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.employment_type_id as employmentType, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.employment_type_id as employmentType, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName,
+				dr.id as driverID, dr.token_id as driverTokenID
+				
+				")
 				->from("Employee prt") 
 				->leftJoin("prt.Participant pt") 
 				->leftJoin("prt.participantContacts prtcnt")
+					->leftJoin("prt.participantDrivers dr")
 				->leftJoin("prt.Campus cmps")
 				->offset($offset)
 				->limit($limit)
@@ -184,6 +191,8 @@ class EmployeeTable extends PluginEmployeeTable
 					$q = $q->andWhere("prt.participant_type=?", $type);
 				if(! is_null($emp_type))
 					$q = $q->andWhere("prt.employment_type_id=?", $emp_type);
+				if(! is_null($exclusion))
+					$q = $q->andWhereNotIn("prt.id", $exclusion ); 
 				if(!is_null($keyword) )
 					$q = $q->andWhere("prt.name LIKE ? AND prt.father_name LIKE ? AND prt.grand_father_name LIKE ? AND prt.project_no LIKE ? AND prt.id_no LIKE ?", array( $keyword, $keyword, $keyword, $keyword, $keyword));
 					
@@ -202,7 +211,7 @@ class EmployeeTable extends PluginEmployeeTable
 				->leftJoin("prt.Campus cmps")
 				->offset($offset)
 				->limit($limit)
-				->where("prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? ", array(ParticipantCore::$EMPLOYEE, ParticipantCore::$SECTION, ParticipantCore::$COMPANY, ParticipantCore::$OTHER));
+				->where("prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? ", array(ParticipantCore::$EMPLOYEE, ParticipantCore::$SECTION, ParticipantCore::$COMPANY,ParticipantCore::$DRIVER, ParticipantCore::$OTHER));
 				if(! is_null($status))
 					$q = $q->andWhere("prt.status_id=?", $status);
 				if(! is_null($type))
@@ -214,7 +223,7 @@ class EmployeeTable extends PluginEmployeeTable
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
-    
+   
 	public static function processStatusSelection ()
 	{
 		$q = Doctrine_Query::create()
@@ -229,14 +238,16 @@ class EmployeeTable extends PluginEmployeeTable
 	 
 		return ( count ( $status ) <= 0 ? null : $status );
 	}
-
+	
 	public static function processTypeSelection()
 	{
 		$q = Doctrine_Query::create()
-			->select("DISTINCT(prt.participant_type) AS partyType")
-			->from("Employee prt") 
-			->where("prt.participant_type IS NOT NULL")		
-			->execute();
+				->select("DISTINCT(prt.participant_type) as partyType")
+				->from("Participant prt") 
+				->where("prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? ", array(ParticipantCore::$EMPLOYEE, ParticipantCore::$SECTION, ParticipantCore::$COMPANY,ParticipantCore::$DRIVER, ParticipantCore::$OTHER));
+				
+					
+				$q = $q->execute( ); 
 		
 		$types = array();
 		foreach( $q as $w)

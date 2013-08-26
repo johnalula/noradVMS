@@ -141,6 +141,10 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 	{
 		return AssignmentOrderTable::processSelection($task_id, $token_id, $status, $keyword, $offset, $limit) ;
 	}
+	public static function processRevertDriver($task_id, $token_id, $order_id, $vehicle_id)
+	{
+		return AssignmentOrderTable::processRevertDriver($task_id, $token_id, $order_id, $vehicle_id);
+	}
 	
 	public static function processCreateTaskAttachment ( $task_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description)
 	{

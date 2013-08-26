@@ -39,7 +39,7 @@ class ParticipantTable extends PluginParticipantTable
 			//->leftJoin("prt.Participant dept on dept.id = prt.dept_id")
 			->offset($offset)
 			->limit($limit)
-			->where("prt.parent_id IS NOT NULL AND prt.participant_type = ?", ParticipantCore::$EMPLOYEE ); 
+			->where("prt.employment_type_id <> ?", ParticipantCore::$DRIVER ); 
 		$q= self::addStatusQuery($q, $status );
 		$q= self::addKeywordQuery($q, $keyword );
 		$q= self::addExclusionQuery($q, $exclusion );
@@ -56,15 +56,47 @@ class ParticipantTable extends PluginParticipantTable
 		$q = Doctrine_Query::create()
 				->select("prt.*, prt.full_name as fullName")
 				->from("Participant prt") 
-				//->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
+				->leftJoin("prt.Employee emp")
 				//->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
 				//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
 				->offset($offset)
 				->limit($limit)
+				//->where("prt.employment_type_id <> ?", ParticipantCore::$DRIVER )
 				//->where('prt.id  != ?', $customer_id)
 				->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
+		
+	}
+	public static function processParticipantTypeSelection()
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(prt.participant_type) AS participantType")
+			->from("Participant prt") 
+			->where("prt.participant_type IS NOT NULL")		
+			->execute();
+		
+		$types = array();
+		foreach( $q as $w )
+			$types[] = $w->participantType;
+	 
+		return ( count ( $types ) <= 0 ? null : $types );
+		
+	}
+	
+	public static function processParticipantStatusSelection()
+	{
+		$q = Doctrine_Query::create()
+			->select("DISTINCT(prt.status_id) AS partyStatus")
+			->from("Participant prt") 
+			->where("prt.status_id IS NOT NULL")		
+			->execute();
+		
+		$types = array();
+		foreach( $q as $w )
+			$types[] = $w->partyStatus;
+	 
+		return ( count ( $types ) <= 0 ? null : $types );
 		
 	}
 }

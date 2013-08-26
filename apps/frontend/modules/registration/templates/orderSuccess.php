@@ -9,6 +9,8 @@
 
 <?php //$flags = FuelTypeTable::processCreate ( 'eadas', 'asdfasdf' ); 
 
+	
+	
 	//echo $flags ? 'true' : 'flase' ;
 	//$flag = TaskOrderTable::processObject(19, 'a56b04e3aa2e37374de9aa6a84774baa' ) ;
 	//echo intval($flag->actual_quantity);
@@ -203,87 +205,125 @@
 	
 	</div>
 </div>
- 
+
 
 <div class="modal" id="candidatePrompts">
-	<div class="ui-modal">
-	<form>   
-		<div class="ui-modal-header">
-			<h1>Eployee Date</h1>
-		</div>
-		<div class="partialFilterBox">
-			<div class="filterBox" style="text-align:left;margin-right:20px;">
-				 <?php include_partial('candidateFilter', array()); ?>	
-			 </div>
-			<table style="border:0px solid #f00;width:140px;float:right;margin-top:-40px;">
-				<tr>
-					<td style="border:1px solid #eee;">
-						<div style="float:right;">			
-							<button type="submit" style="color:white;background:maroon;width:60px;"><?php echo __('OK') ?> </button>
-							<button type="button" class="close"  style="color:red;width:60px;"> <?php echo __('Cancel') ?> </button>  
-						</div>			
-					</td>
-				</tr>
-			</table>
-		</div>
-		 <div class="partialBox">
-			 <?php include_partial('candidateList', array('candidates' => $candidates)); ?>	
-			 <div class="clearFix"></div>
-		</div>
-		<div class="partialPagination">
-		 <table>		
-			<tfoot>
-					<tr>
-						<td colspan=11> 
-							<div class="paginationCont">
-								<form class="form-horizontal" action="" method="get">
-									<div class="paginateValue">
-										<ul class="display">
-											<input type="hidden" id="location_pageOffset" name="location_pageOffset" >
-											<li class="display_list" id="location_display">Display: #  
-												<select onclick="" name="location_pagesize" class="selspan" id="location_pagesize"> 
-													<option value="10"  >10</option>
-													<option value="30"  >30</option> 
-													<option value="50"  >50</option>
-													<option value="100"  >100</option>
-												</select>
-											</li>
-											<li></li>
-										</ul>
-									</div>
-								</form> 
-								<div class="paginationLayer">
-									<div class="paginatNav">
-										<ul>	 
-											
-											<li class="prev_page"><span id="location_prevPage" class="imag">
-												<a href=""><img src="<?php echo image_path('page-prev') ?>">Prev</a></span>  
-												<span id="location_disabledPrevPage" class="imag displayNone">
-												<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
-											</li>
-											
-											<li class="next_page">
-												<span id="location_nextPage" class="imag">
-													<a href=""><img src="<?php echo image_path('page-next') ?>">Next</a>
-												</span> 
-												<span id="location_disabledNextPage" class="imag displayNone">
-													<img src="<?php echo image_path('page-next-disabled') ?>">Next
-													</span>
-											</li>
-												<input type="hidden" id="location_nextpageOffset" name="location_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
-												<input type="hidden" id="location_prevpageOffset" name="location_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
-										</ul> 
-									</div> 
-								</div> 
+	<form>
+	<div class="ui-partial-container" style="border:0px solid #f00;">
+		 <div class="ui-partial-container">
+			<div class="ui-partial-main-list-cont" >
+				<div class="ui-partial-list-header">				
+					<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Employee Lists')  ?></h1>	
+					<div class="ui-form-content-minimize opened" id="ui-list-collaps-list-box" style="margin-top:0px;float:right;">	
+						<span id="ui-list-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
+						<span id="ui-list-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
+					</div>	
+					<div class="clearFix"></div>
+				</div><!-- end of ui-list-header -->		
+				
+				<div class="ui-content-container-box">
+			<div class="ui-main-content-list "> 
+				<div class="ui-main-content-cont" >
+					<div class="ui-content-list-box">
+						<div class="ui-list-filter-cont">
+							 
+							<div class="ui-filter-list"> 
+								 <?php include_partial('candidateFilter', array()); ?>	
 							</div>
-						</td>
-					</tr>
-				</tfoot>
-			</table>
+							<div class="clearFix"></div>
+						</div>
+						<div class="ui-content-lists">
+							<?php include_partial('candidateList', array('candidates' => $candidates)); ?>	
+						</div><!-- end of ui-content-lists -->
+					</div><!-- end of ui-content-list-box -->
+				</div><!-- end of ui-main-content-cont --> 
+			</div><!-- end of ui-main-content-list --> 
+			
+			<div class="ui-list-footer">				
+				  &nbsp; 
+			</div><!-- end of ui-list-header -->
+			
+			<div class="ui-list-pagination-cont ui-pagination-color" style="">
+					<table>	 
+						<tr>
+							<td> 
+								<div class="ui-pagination-list-size"> 
+									<ul class="display">
+										<input type="hidden" id="parent_total" name="" value="<?php echo count($totalData) ?>">
+										<input type="hidden" id="parent_pagination_pageOffset" name="parent_pagination_pageOffset" >
+										<li class="display_list" id="parent_pagination_display">Display: #  
+											<select onclick="" name="parent_pagination_pagesize" class="selspan" id="parent_pagination_pagesize"> 
+												<option value="2"  >10</option>
+												<option value="20"  >20</option>
+												<option value="30"  >30</option> 
+												<option value="50"  >50</option>
+												<option value="100" >100</option>
+											</select>
+										</li>
+										<li></li>
+									</ul>
+								</div>
+								<div class="clearFix"></div>
+							</td>
+							<td>
+								<div class="ui-pagination-list-content">									 
+									<ul>	 									
+										<li class="prev_page"><span id="parent_pagination_firstPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/first') ?>">First</a></span>  
+											<span id="" class="imag displayNone">
+											<img src="<?php echo image_path('page-prev-disabled') ?>">First</span>
+										</li>
+										<li class="prev_page"><span id="parent_pagination_prevPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/prev') ?>">Prev</a></span>  
+											<span id="parent_pagination_disabledPrevPage" class="imag displayNone">
+											<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
+										</li>
+										
+										<li class="next_page">
+											<span id="parent_pagination_nextPage" class="imag">
+												<a href=""><img src="<?php echo image_path('pagination/next') ?>">Next</a>
+											</span> 
+											<span id="parent_pagination_disabledNextPage" class="imag displayNone">
+												<img src="<?php echo image_path('page-next-disabled') ?>">Next
+												</span>
+										</li>
+										<li class="next_page">
+											<span id="parent_pagination_lastPage" class="imag">
+												<a href=""><img src="<?php echo image_path('pagination/last') ?>">Last</a>
+											</span> 
+											<span id="" class="imag displayNone">
+												<img src="<?php echo image_path('page-next-disabled') ?>">Last
+												</span>
+										</li>
+											<input type="hidden" id="parent_pagination_nextpageOffset" name="parent_pagination_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
+											<input type="hidden" id="parent_pagination_prevpageOffset" name="parent_pagination_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
+									</ul> 									 
+								</div>							
+								<div class="clearFix"></div>
+							</td>
+						</tr> 
+					</table>
+				</div>
+			</div>
+			</div>
+		 </div>
+	</div>
+	<div class="ui-partial-footer">
+		<ul>
+			<li> 
+				<button type="submit" class=""  style=""> <?php echo __('Insert') ?> </button>   
+			</li> 
+			<li>
+				<button type="button" class="close"  style=""> <?php echo __('Cancel') ?> </button> 
+			</li>
+			
+			</ul>
+			<div class="clearFix"></div>
 		</div>
-	</form>
+</form>
 </div>
-</div>
+
+ 
 
 
 <script>

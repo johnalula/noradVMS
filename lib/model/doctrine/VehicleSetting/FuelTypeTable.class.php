@@ -92,14 +92,19 @@ class FuelTypeTable extends PluginFuelTypeTable
 		return ( count($q) <= 0 ? null : $q); 
 	}
     
-	public static function processSelection ( $offset=0, $limit=100 ) 
+	public static function processSelection ( $keyword=null, $offset=0, $limit=100 ) 
 	{
 		$q = Doctrine_Query::create( )
 							->select("ft.*, ft.name as fuelTypeName")
 							->from("FuelType ft") 
 							->offset($offset)
 							->limit($limit)
-							->execute ( );
+							->where("ft.id IS NOT NULL");
+							if(!is_null($keyword))
+								$q = $q->andWhere("ft.name LIKE ?", trim($keyword));
+							
+							$q  = $q->execute ( );
+							
 		return ( count($q) <= 0 ? null : $q ); 
 	}
 	

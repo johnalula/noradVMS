@@ -103,7 +103,7 @@
 							<div class="ui-filter-list"> 
 										<ul>
 											<li><img src="<?php echo image_path('icons/find_small') ?>"></li>
-											<li><input type="text"></li>
+											<li><input type="text" id="keyword"></li>
 											<li><select><option>name</option><option>father name</option></select></li> 
 										</ul>  
 							</div>
@@ -121,7 +121,64 @@
 			</div><!-- end of ui-list-header -->
 			
 			<div class="ui-list-pagination-cont">
-				&nbsp;
+				<table>	 
+					<tr>
+						<td> 
+							<div class="ui-pagination-list-size"> 
+								<ul class="display">
+									<input type="hidden" id="pagination_pageOffset" name="pagination_pageOffset" >
+									<li class="display_list" id="pagination_display">Display: #  
+										<select onclick="" name="pagination_pagesize" class="selspan" id="pagination_pagesize"> 
+											<option value="3"  >3</option>
+											<option value="20"  >20</option>
+											<option value="30"  >30</option> 
+											<option value="50"  >50</option>
+											<option value="100" >100</option>
+										</select>
+									</li>
+									<li></li>
+								</ul>
+							</div>
+							<div class="clearFix"></div>
+						</td>
+						<td>
+							<div class="ui-pagination-list-content">									 
+								<ul>	 									
+									<li class="prev_page"><span id="pagination_firstPage" class="imag">
+										<a href=""><img src="<?php echo image_path('pagination/first') ?>">First</a></span>  
+										<span id="" class="imag displayNone">
+										<img src="<?php echo image_path('page-prev-disabled') ?>">First</span>
+									</li>
+									<li class="prev_page"><span id="pagination_prevPage" class="imag">
+										<a href=""><img src="<?php echo image_path('pagination/prev') ?>">Prev</a></span>  
+										<span id="pagination_disabledPrevPage" class="imag displayNone">
+										<img src="<?php echo image_path('page-prev-disabled') ?>">Prev</span>
+									</li>
+									
+									<li class="next_page">
+										<span id="pagination_nextPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/next') ?>">Next</a>
+										</span> 
+										<span id="pagination_disabledNextPage" class="imag displayNone">
+											<img src="<?php echo image_path('page-next-disabled') ?>">Next
+											</span>
+									</li>
+									<li class="next_page">
+										<span id="pagination_lastPage" class="imag">
+											<a href=""><img src="<?php echo image_path('pagination/last') ?>">Last</a>
+										</span> 
+										<span id="" class="imag displayNone">
+											<img src="<?php echo image_path('page-next-disabled') ?>">Last
+											</span>
+									</li>
+										<input type="hidden" id="pagination_nextpageOffset" name="pagination_nextpageOffset" value="<?php echo $offSet ? $offSet : '0' ?>">
+										<input type="hidden" id="pagination_prevpageOffset" name="pagination_prevpageOffset"  value="<?php echo $offSet ? $offSet : '0' ?>">
+								</ul> 									 
+							</div>							
+							<div class="clearFix"></div>
+						</td>
+					</tr> 
+				</table>
 			</div>
 		</div> <!-- end of ui-main-list-cont -->
 	</div>  <!-- end of ui-list-cont -->
@@ -231,6 +288,103 @@
 		
 	});
 
+//********** Pagination ************
+
+	function fuelTypePagination(offset)
+	{
+		var limit = document.getElementById('pagination_pagesize').value
+		var keyword = document.getElementById('keyword').value
+	
+		var result = $.ajax({
+				type: "GET",
+				data: 'limit='+limit+'&offset='+offset+'&keyword='+keyword,
+				url: '<?php echo url_for('fuel_type/pagination')?>',
+				success: function(html) { 
+					$('#dataList').html(html) 
+				}, 
+				async: false
+				}).responseText;
+		
+		return false;	
+	}
+	
+	$(document).ready(function()
+	{			
+		$('#pagination_pagesize').change(function()
+		{
+			var offset = document.getElementById('pagination_pageOffset').value;
+			if(offset == '')	offset = 0;
+			fuelTypePagination(offset);
+			//alert('dd');
+			return false;
+				
+		});
+		
+		/*$('#pagination_lastPage').click(function()
+		{
+			var offset = document.getElementById('pagination_pageOffset').value;
+			var limit = document.getElementById('pagination_pagesize').value;
+			var totalData = document.getElementById('totalData').value;
+			
+			offset = parseInt(totalData)-parseInt(limit);
+			if(offset < 0)	offset = 0;				
+			document.getElementById('pagination_pageOffset').value = offset;
+			
+			//fuelTypePagination(offset);
+			alert('asd')
+			return false;
+				
+		});*/
+		
+		$('#pagination_nextPage').click(function()
+		{
+			var offset = document.getElementById('pagination_pageOffset').value;
+			var limit = document.getElementById('pagination_pagesize').value;
+			//var totalData = document.getElementById('totalData').value;
+			if(offset == '')	offset = 0;
+				
+			offset = parseInt(offset) + parseInt(limit);
+			//lastOffset = parseInt(totalData)-parseInt(limit);
+			
+		//	if(offset >= totalData)		offset = lastOffset;
+			
+			document.getElementById('pagination_pageOffset').value = offset;	
+			fuelTypePagination(offset);
+			// alert('as');
+			return false;				
+		});
+		
+		$('#pagination_prevPage').click(function()
+		{
+			var offset = document.getElementById('pagination_pageOffset').value;
+			var limit = document.getElementById('pagination_pagesize').value;			
+			offset -= parseInt(limit);			
+			if(offset < 0) offset = 0;		
+			document.getElementById('pagination_pageOffset').value = offset;			
+			fuelTypePagination(offset);
+			
+			return false;				
+		});
+		
+		/*$('#pagination_firstPage').click(function()
+		{
+			offset = 0;
+			fuelTypePagination(offset);
+			
+			return false;
+		});*/
+	
+		$('#keyword').keyup(function(key)
+		{
+			var offset = document.getElementById('pagination_pageOffset').value;
+			fuelTypePagination(offset);	
+
+			return false;
+		});
+		
+	});
+	
+	
 </script>
 
 

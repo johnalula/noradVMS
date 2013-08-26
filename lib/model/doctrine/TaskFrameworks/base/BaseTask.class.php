@@ -23,6 +23,7 @@
  * @property integer $service_number_of_days
  * @property boolean $service_delay_status
  * @property integer $number_of_delay_days
+ * @property boolean $is_delay_payable
  * @property string $departure_date
  * @property string $departure_time
  * @property boolean $is_departed
@@ -126,6 +127,10 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('number_of_delay_days', 'integer', null, array(
              'type' => 'integer',
              'default' => 0,
+             ));
+        $this->hasColumn('is_delay_payable', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 1,
              ));
         $this->hasColumn('departure_date', 'string', 100, array(
              'type' => 'string',
@@ -247,7 +252,7 @@ abstract class BaseTask extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'task_id'));
 
-        $this->hasMany('ServiceVehicleItemAcquired as serviceVehicleAttachmentTasks', array(
+        $this->hasMany('ServiceVehicleItemAcqAssignmentOrderuired as serviceVehicleAttachmentTasks', array(
              'local' => 'id',
              'foreign' => 'task_id'));
 

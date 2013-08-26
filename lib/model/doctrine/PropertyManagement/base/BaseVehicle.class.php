@@ -9,8 +9,8 @@
  * @property VehicleServiceType $VehicleServiceType
  * @property FuelType $FuelType
  * @property ServiceType $ServiceType
- * @property Doctrine_Collection $vehicleCheckupSettings
  * @property Doctrine_Collection $assignedVehicle
+ * @property Doctrine_Collection $vehicleCheckupSettings
  * @property Doctrine_Collection $vehicleCheckupPeriod
  * @property Doctrine_Collection $serviceVehicleCosts
  * @property Doctrine_Collection $serviceVehicleItemAcquiredAttachments
@@ -50,11 +50,11 @@ abstract class BaseVehicle extends Item
              'local' => 'service_type_id',
              'foreign' => 'id'));
 
-        $this->hasMany('VehicleCheckupSetting as vehicleCheckupSettings', array(
+        $this->hasMany('AssignedVehicle as assignedVehicle', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
-        $this->hasMany('AssignedVehicle as assignedVehicle', array(
+        $this->hasMany('VehicleCheckupSetting as vehicleCheckupSettings', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
@@ -66,7 +66,7 @@ abstract class BaseVehicle extends Item
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
-        $this->hasMany('ServiceVehicleItemAcquired as serviceVehicleItemAcquiredAttachments', array(
+        $this->hasMany('ServiceVehicleItemAcqAssignmentOrderuired as serviceVehicleItemAcquiredAttachments', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

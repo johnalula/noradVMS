@@ -18,7 +18,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		return Doctrine_Core::getTable('FleetServiceTask');
 	}
 	
-	public static function processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $_pid, $payment_mode, $departure_date, $departure_time) 
+	public static function processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $_pid, $payment_mode, $departure_date, $departure_time, $depay_payable) 
 	{      
        // try{
 				if(!$date)
@@ -40,7 +40,8 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$_nw->departure_time = $departure_time ;   
 				$_nw->service_number_of_days = $no_of_days ;   
 				$_nw->destination = $destination ;   
-				$_nw->service_type_id = 1 ;   
+				$_nw->is_delay_payable = $depay_payable ;   
+				$_nw->service_type_id = $service_type ;   
 				$_nw->service_reason = $service_reason ;   
 				$_nw->save(); 
 				
@@ -49,7 +50,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$att->token_id = $_nw->token_id;
 				$att->task_id = $_nw->id;
 				$att->certificate_type = AttachmentCore::$LETTER;
-				$att->reference_number = $ref;
+				$att->reference_number = $ref_no;
 				$att->save();
 				
 				//default task participant
@@ -328,11 +329,13 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 			{
 				$_id = $order->assignedID;
 				$token_id = $order->assignedTokenID;
-				$assigned = AssignedVehicleTable::processObject($_id, $token_id);				
-				$assigned = VehicleTable::processObject($assigned->vehicle_id, $assigned->vehicleTokenID);				
+				$assigned = AssignedVehicleTable::processObject($_id, $token_id);	
+				$v_id = $assigned->vehicleID;
+				$t_id = $assigned->vehicleTokenID;
+				$vehicle = VehicleTable::processObject($v_id, $t_id );				
 				$assigned->processDeparture();	
-				$assigned->processDeparture();
-			}; 
+				$vehicle->processDeparture();	
+			}
 			
 			$task->processDeparture(); 	
 						

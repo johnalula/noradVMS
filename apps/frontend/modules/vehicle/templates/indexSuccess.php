@@ -31,6 +31,12 @@ $user_id = 1;
 //$flag = SystemLogFileTable::processCreate(2, $module, $action, $time, $current_date, $ip)
 //$flag = SystemLogFileTable::processCreate(2, $module, $action, $time, $current_date, $ip)
 
+ /*$vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, 0, 10);
+ foreach($vehicles as $vehicle)
+ {
+	$vehicle->vehicle_status = VehicleTable::$NOT_ASSIGNED;
+	$vehicle->save(); 
+	}*/
 ?>
 <!-- list container -->
  

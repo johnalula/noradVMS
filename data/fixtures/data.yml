@@ -18,74 +18,6 @@ Currency:
     alias: USD
     description: null
     is_default: false
-Task: {  }
-RegistrationTask:
-  RegistrationTask_1:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    start_date: 08/01/2013
-    end_date: 2013/08/20
-    effective_date: 2013/08/20
-    status_id: '5'
-    reference_no: '52345234'
-    description: 'adfa fasdf'
-    type: '3'
-    customer_id: null
-    service_agreement_cost: null
-    payment_mode_id: null
-    total_cost: null
-    service_type_id: null
-    service_reason: null
-    destination: null
-    service_number_of_days: null
-    service_delay_status: false
-    number_of_delay_days: '0'
-    departure_date: null
-    departure_time: null
-    is_departed: false
-    return_date: null
-    return_time: null
-    is_returned: false
-    is_delayed: false
-    delay_reason: null
-    registration_mode: null
-    driver_id: null
-    transferer_id: null
-    transferee_id: null
-    new_vehicle_id: null
-    returnee_id: null
-AssignmentTask:
-  AssignmentTask_2:
-    token_id: 96ce97e7518e3cd5697a4c956ef5c80c
-    start_date: 08/01/2013
-    end_date: null
-    effective_date: null
-    status_id: '1'
-    reference_no: '52345'
-    description: 'asdf asdf'
-    type: '6'
-    customer_id: null
-    service_agreement_cost: null
-    payment_mode_id: null
-    total_cost: null
-    service_type_id: null
-    service_reason: null
-    destination: null
-    service_number_of_days: null
-    service_delay_status: false
-    number_of_delay_days: '0'
-    departure_date: null
-    departure_time: null
-    is_departed: false
-    return_date: null
-    return_time: null
-    is_returned: false
-    is_delayed: false
-    delay_reason: null
-    registration_mode: null
-    transferer_id: null
-    transferee_id: null
-    new_vehicle_id: null
-    returnee_id: null
 PaymentSetting:
   PaymentSetting_1:
     token_id: d22f1097d7f1a2c8fcffde43fb0fd386
@@ -192,7 +124,7 @@ Employee:
     established_date: null
     company_owner: null
     company_license_type: null
-  Employee_8:
+  Employee_6:
     token_id: 514bdffae425205187a0c3df5f33685b
     name: Shewit
     alias: null
@@ -218,7 +150,7 @@ Employee:
     established_date: null
     company_owner: null
     company_license_type: null
-  Employee_9:
+  Employee_7:
     token_id: 0381289482b9217119a3c1e075c8bbdb
     name: Robel
     alias: null
@@ -299,7 +231,7 @@ Department:
     company_owner: null
     company_license_type: null
 Office:
-  Office_6:
+  Office_8:
     token_id: f9fe332dd7a93d2c3aee97962a194d67
     name: 'President Office'
     alias: PO
@@ -324,7 +256,7 @@ Office:
     established_date: null
     company_owner: null
     company_license_type: null
-  Office_7:
+  Office_9:
     token_id: e962dff3c5f7be3a913b417c9deb4dc4
     name: 'Academic Vice President Office'
     alias: AVPO
@@ -349,298 +281,9 @@ Office:
     established_date: null
     company_owner: null
     company_license_type: null
-Item: {  }
-Vehicle:
-  Vehicle_1:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '1234'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Toyota
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '0.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
-  Vehicle_2:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '3245'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Lifan
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '0.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
-  Vehicle_3:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '45678'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Toyota
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '3750.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
-  Vehicle_4:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '3212'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Lifan
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '0.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
-  Vehicle_5:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '45674'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Toyota
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '0.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
-  Vehicle_6:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '7564'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Toyota
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '0.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
-  Vehicle_7:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    TaskOrder: TaskOrder_1
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    quantity: '1.00'
-    used_quantity: '0.00'
-    current_quantity: '0.00'
-    serial_no: null
-    old_pin: NA
-    new_pin: NA
-    pin_num: null
-    is_present: true
-    effective_date: '2013'
-    status: '1'
-    description: ''
-    type: '1'
-    plate_number: '7654'
-    plate_code: ET
-    plate_code_no: '4'
-    initial_mileage: null
-    current_mileage: null
-    VehicleType: VehicleType_1
-    vehicle_make: Toyota
-    litter_per_km: null
-    seating_capacity: null
-    engine_number: null
-    chesis_number: null
-    vehicle_model: ''
-    vehicle_color: ''
-    vehicle_weight: '0.00'
-    FuelType: FuelType_1
-    purchased_date: null
-    service_year: '0'
-    checkup_period_id: null
-    vehicle_status: '4'
-    fuel_setting_id: null
-    is_assigned: false
-    spare_Identification: null
 ParticipantContact:
   ParticipantContact_1:
-    Participant: Employee_8
+    Participant: Employee_6
     street_number: ''
     house_number: ''
     pobox: ''
@@ -650,7 +293,7 @@ ParticipantContact:
     email: ''
     website: ''
   ParticipantContact_2:
-    Participant: Employee_9
+    Participant: Employee_7
     street_number: ''
     house_number: ''
     pobox: ''
@@ -662,7 +305,7 @@ ParticipantContact:
 Driver:
   Driver_1:
     token_id: 8b1cccf5369d9db9bc92a9f1a6ec825b
-    Participant: Employee_9
+    Participant: Employee_7
     license_type: '0'
     work_experience: '0'
     is_assigned: false
@@ -676,7 +319,7 @@ Driver:
     desctiption: ''
   Driver_3:
     token_id: 3442f9112caadb24c9eb9020a986eeb8
-    Participant: Employee_8
+    Participant: Employee_6
     license_type: '0'
     work_experience: '0'
     is_assigned: false
@@ -763,24 +406,6 @@ ServiceType:
   ServiceType_2:
     name: Local
     description: null
-TaskOrder:
-  TaskOrder_1:
-    Task: RegistrationTask_1
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Category: Category_1
-    clss: '4'
-    Unit: Unit_1
-    actual_quantity: '7.00'
-    remaining: '0.00'
-    unit_price: '5000000.00'
-    vat: true
-    Currency: Currency_1
-    amount: '35000000.00'
-    effective_date: '2013-08-20'
-    status: '1'
-    description: 'task order'
-    created_at: '2013-08-20 18:15:51'
-    updated_at: '2013-08-20 18:15:51'
 VehicleType:
   VehicleType_1:
     name: Automobile
@@ -790,6 +415,19 @@ VehicleType:
     name: Truck
     alias: null
     description: null
+VehicleServiceType:
+  VehicleServiceType_1:
+    name: Field
+    description: null
+  VehicleServiceType_2:
+    name: 'Staff Service'
+    description: null
+  VehicleServiceType_3:
+    name: Construction
+    description: null
+  VehicleServiceType_4:
+    name: Local
+    description: null
 FuelType:
   FuelType_1:
     name: Petrol
@@ -797,31 +435,3 @@ FuelType:
   FuelType_2:
     name: Diesel
     description: null
-TaskAttachment:
-  TaskAttachment_1:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    certificate_type: '13'
-    reference_number: '52345234'
-    num_pages: '1'
-    folder_stored: null
-    description: null
-  TaskAttachment_2:
-    token_id: 96ce97e7518e3cd5697a4c956ef5c80c
-    Task: AssignmentTask_2
-    certificate_type: '2'
-    reference_number: '52345'
-    num_pages: '1'
-    folder_stored: null
-    description: null
-TaskParticipant:
-  TaskParticipant_1:
-    token_id: 985fb0ad8cb4c43abd7b251dfe20cfa0
-    Task: RegistrationTask_1
-    participant_role: '17'
-    Participant: Employee_1
-    description: 'adfa fasdf'
-  TaskParticipant_2:
-    token_id: 96ce97e7518e3cd5697a4c956ef5c80c
-    participant_role: '17'
-    description: 'asdf asdf'

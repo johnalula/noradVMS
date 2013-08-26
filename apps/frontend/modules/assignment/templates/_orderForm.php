@@ -8,7 +8,7 @@
 			<td class="rightSide"><?php echo __('Driver Name') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
 				<input type="text" style="width:200px;" disabled id="driver_name" name="driver_name" >		
-				<input type="text" style="width:120px;" id="driver_id" name="driver_id" >		
+				<input type="hidden" style="width:120px;" id="driver_id" name="driver_id" >		
 				<input type="hidden" style="width:120px;" id="tokenID" name="tokenID" value="<?php echo $sf_request->getParameter('token_id') ?>">		
 				<input type="hidden" style="width:120px;" id="taskID" name="taskID" value="<?php echo $sf_request->getParameter('task_id') ?>">		
 				<input type="hidden" style="width:120px;" id="classID" name="classID" >		

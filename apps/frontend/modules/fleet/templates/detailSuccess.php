@@ -146,7 +146,7 @@
 		<div class="ui-list-cont">		
 			<div class="ui-main-list-cont" >
 				<div class="ui-list-header">				
-					<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Existing Groups')  ?></h1>	
+					<h1><img src="<?php echo image_path('icons/list_small') ?>"><?php echo __('Fleet Setting')  ?></h1>	
 					<div class="ui-form-content-minimize opened" id="ui-list-collaps-list-box" style="margin-top:0px;float:right;">	
 						<span id="ui-list-up-arrow" class="ui-minimize-arrow "><img src="<?php echo image_path('new_icons/arrow_up') ?>"></span>		
 						<span id="ui-list-down-arrow" class="ui-minimize-arrow displayNone"><img src="<?php echo image_path('new_icons/arrow_down') ?>"></span>	
@@ -360,7 +360,7 @@
 				</ul>
 				</ul>
 				<ul class="ui-right-button">
-					<li><a href="<?php echo url_for('fleet/departureComplete?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Complete</button></a></li>
+					<li><a href="<?php echo url_for('fleet/departure_completed?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Complete</button></a></li>
 				</ul>
 				<div class="clearFix"></div>
 			</div>

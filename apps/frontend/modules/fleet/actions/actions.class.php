@@ -34,23 +34,26 @@ class fleetActions extends sfActions
 		$service_type = $request->getParameter('service_type');
 		$service_reason = $request->getParameter('service_reason');
 		$customer_id = $request->getParameter('customer_id');
-		$pID = $this->getUser()->getAttribute('pID');
+		$delay_payable = $request->getParameter('delay_payable');
+		$pID = $this->getUser()->getAttribute('PID');
 		
-		$task = FleetServiceTaskTable::processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $pID, $payment_mode, $departure_date, $departure_time );
+		$task = FleetServiceTaskTable::processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $pID, $payment_mode, $departure_date, $departure_time, $delay_payable );
 		
 		$this->redirect('fleet/view?task_id='.$task->id.'&token_id='.$task->token_id);
   }
   
   public function executeView(sfWebRequest $request)
   {
-		$_id = $request->getParameter('task_id');
-		$token_id = $request->getParameter('token_id');
+		 
 		$limit = 10;
 		$offset = 0;
 		$keyword = null;
 		//$this->getUser()->setFlash('saved.success', 0);
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
 		
-		$this->taskObj = FleetServiceTaskTable::processObject ( $_id, $token_id );
+		$this->task = FleetServiceTaskTable::processObject ($task_id, $token_id );
+		
 		$this->attachments = FleetServiceTaskTable::processTaskAttachmentSelection ($_id, $token_id, $keyword, $offset, $limit) ;
 		$this->participants = FleetServiceTaskTable::processTaskParticipantSelection ($_id, $token_id, $keyword, $offset, $limit) ;
 		$this->customers = FleetServiceTaskTable::processCandidateCustomerSelection ($status, $keyword, $offset, $limit);

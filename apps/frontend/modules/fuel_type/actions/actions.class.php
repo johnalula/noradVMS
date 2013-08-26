@@ -18,9 +18,9 @@ class fuel_typeActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
 	  $offset = 0;
-	  $limit = 10;
+	  $limit = 3;
 	  
-	  $this->fuel_types = FuelTypeTable::processSelection ( $offset, $limit );
+	  $this->fuel_types = FuelTypeTable::processSelection (  $keyword, $offset, $limit );
   }
   
  /* public function executeSelection(sfWebRequest $request)
@@ -34,16 +34,21 @@ class fuel_typeActions extends sfActions
 		return $this->renderPartial('list', array('fuel_types' => $this->fuel_types));
   }*/
   
- /* public function executePagination(sfWebRequest $request)
+  public function executePagination(sfWebRequest $request)
   {
-	  $offset = 0;
-	  $limit = 10;
+	  $offset = $request->getParameter('offset');
+	  $limit = $request->getParameter('limit');
+	  $keyword = $request->getParameter('keyword');
+	  $keyword = '%'.$keyword.'%';
 	  
-	  $this->fuel_types = FuelTypeTable::processSelection ( $offset, $limit );
-	  $this->fuel_types = FuelTypeTable::processSelection ( $offset, $limit );
+	  if(!$offset) $offset = 0;
+	  if(!$limit) $limit = 10;
+	  if(!$keyword) $keyword = null;
+	  
+	  $this->fuel_types = FuelTypeTable::processSelection ( $keyword, $offset, $limit );
 		
 		return $this->renderPartial('list', array('fuel_types' => $this->fuel_types));
-  }*/
+  }
   
   public function executeCreateFuelType(sfWebRequest $request)
   {

@@ -285,7 +285,8 @@ background: -webkit-linear-gradient(#cbddea, #f6fafc);background: -o-linear-grad
 
 .ui-partial-footer button.ui-save-button {padding:4px 5px;margin:0px!important;-webkit-border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px;font-size:12px!important;z-index:3000;position:relative;margin-left:4px;}
 
-.ui-partial-footer button.ui-save-button img {vertical-align:bottom;margin-right:4px!important;}
+.ui-partial-footer button.ui-save-button img {vertical-align:bottom;margin-right:4px!important;} 
+.ui-partial-footer button img {vertical-align:top!important;margin-right:4px!important;border:0px solid #f00;width:14px!important;height:14px!important;} 
 
 
 

@@ -18,6 +18,8 @@
 	<?php //$flag = RegistrationTaskTable::processCreateTaskParticipant ( 8, '04af0a0a982b3eebed63de6fa33f0320', 1, 8, 'adf asfas adfasdfa'); 
 
 		//echo $flags ? 'true' : 'flase' ;
+		//$task = FleetServiceTaskTable::processObject (3, '7cce503e52b19443173741966b71c2c4' );
+		//echo count($task);
 	?>
 	<div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 		<div class="ui-error-box btn-danger">
@@ -81,7 +83,7 @@
 											<fieldset  style="">
 												<legend class="ui-form-legend"><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
 												<div class="ui-main-form" >		
-													 <?php include_partial('viewForm', array('taskObj' => $taskObj)) ?>													
+													 <?php include_partial('viewForm', array('task' => $task)) ?>													
 												</div><!-- end of ui-content-form -->
 											</fieldset>
 										</td>																				 
@@ -89,7 +91,7 @@
 											<fieldset  style="">
 												<legend class="ui-form-legend"><img src="<?php echo image_path('icons/details') ?>" ><?php echo ('Detail') ?></legend>
 												<div class="ui-main-form" >		
-													 <?php include_partial('viewServiceForm', array('taskObj' => $taskObj)) ?>													
+													 <?php include_partial('viewServiceForm', array('task' => $task)) ?>													
 												</div><!-- end of ui-content-form -->
 											</fieldset>
 										</td>																				 

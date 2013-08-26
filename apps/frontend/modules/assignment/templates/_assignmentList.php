@@ -31,21 +31,33 @@
 				<?php echo '('.$order->plateCodeNo .') ' .$order->plateCode.'  '. $order->plateNo ?> 
 			</td> 
 			<td class="ui-input-body-box" style="width:97%;min-width:90px;"> 
-				<?php echo $order->description  ?> 
+				<?php echo $order->id  ?> 
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">
 					<ul>
 						<li>
-							<a href="<?php echo url_for('category/view?category_id='.$order->id) ?>" class="ui-action-button" rel="<?php echo $order->id ?>">									 
-									<img src="<?php echo image_path('new_icons/revert_car_small')  ?>" >								 
-							</a>
+							<span class="changeVehicle"rel="<?php echo $order->id ?>" >
+								<div class="candidateVehicleModal" rel="#candidateVehiclePrompts">
+									<span class="rowItem" rel="<?php echo $order->id ?>" >
+									<a href="#" class="ui-action-button" rel="<?php echo $order->id ?>">									 
+											<img src="<?php echo image_path('new_icons/revert_car_small')  ?>" >								 
+									</a>
+									</span>
+								</div>
+							</span>
 						</li> 
-						<li> 
-							<a href="#" class="ui-action-button" onclick="Javascript:deleteCategory(<?php echo $order->id ?>);" rel="<?php echo $order->id ?>">	
-								<img src="<?php echo image_path('setting/revert_driver_small')  ?>" >
-							</a>
-						</li>
+						<li>
+							<span class="changeDriver"rel="<?php echo $order->id ?>" >
+								<div class="candidateDriverModal" rel="#candidateDriverPrompts">
+									<span class="rowParty" rel="<?php echo $order->id ?>" >
+									<a href="#" class="ui-action-button" rel="<?php echo $order->id ?>">									 
+											<img src="<?php echo image_path('setting/revert_driver_small')  ?>" >							 
+									</a>
+									</span>
+								</div>
+							</span>
+						</li> 
 					</ul>
 				</div>
 			</td>

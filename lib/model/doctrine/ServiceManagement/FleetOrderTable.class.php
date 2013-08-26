@@ -33,27 +33,17 @@ class FleetOrderTable extends PluginFleetOrderTable
 				$_nw->save(); 
 				$_id = $_nw->id;
 				
-				/*$order = self::processObject($_id, $token_id);
-				$order->isVDeparted = true;
-				$order->save();*/
+				$order = self::processObject($_id, $token_id);
+				//.$order->isVDeparted = true;
+				//$order->save();*/
 				
 				$prt = new TaskParticipant ();
 				$prt->token_id = $_nw->token_id;
 				$prt->task_id = $_nw->id;
-				$prt->participant_id = $_pid;
-				$prt->participant_role = ParticipantCore::$DATA_INCODER;
+				$prt->participant_id = $order->partyID;
+				$prt->participant_role = ParticipantCore::$DRIVER;
 				$prt->description = trim($description);
 				$prt->save();
-				
-				$prt = new TaskParticipant ();
-				$prt->token_id = $_nw->token_id;
-				$prt->task_id = $_nw->id;
-				$prt->participant_id = $customer_id;
-				$prt->participant_role = ParticipantCore::$DEPARTEMENT;
-				$prt->description = trim($description);
-				$prt->save();
-				
-				//$obj = VehicleTable::findObject($vehicle_id, $);
 				
             return true; 
         } catch ( Exception $e) {
@@ -70,7 +60,9 @@ class FleetOrderTable extends PluginFleetOrderTable
 			tsk.destination as fleetDestination, tsk.departure_date as departDate, tsk.departure_time as departTime,
 			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.difference_mileage as diffMileage, ftsko.number_of_passangers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ftsko.fuel_acquire_type_id as acquiredFuelType, 
 			vt.id as vehicleTypeID, vt.name as vehicleType, ft.id as fuelTypeID, ft.name as fuelType,
-			avh.id as assignedID, avh.token_id as assignedTokenID
+			avh.id as assignedID, avh.token_id as assignedTokenID, avh.participant_id as partyID,
+			
+			
 			")
 			->from("FleetOrder ftsko")   
 			->innerJoin("ftsko.Task tsk")
@@ -93,7 +85,7 @@ class FleetOrderTable extends PluginFleetOrderTable
 			vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
 			tsk.destination as fleetDestination, tsk.departure_date as departDate, tsk.departure_time as departTime,
 			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.difference_mileage as diffMileage, tsk.departure_time as departTime, tsk.departure_date as departDate, tsk.return_time as returnTime,tsk.return_date as returnDate, ftsko.number_of_passangers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ftsko.fuel_acquire_type_id as acquiredFuelType, 
-			vt.id as vehicleTypeID, vt.name as vehicleType, ft.id as fuelTypeID, ft.name as fuelType,
+			vt.id as vehicleTypeID, vt.name as vehicleType, vt.id as vehicleID, ft.id as fuelTypeID, ft.name as fuelType,
 			avh.id as assignedID, avh.token_id as assignedTokenID
 			")
 			->from("FleetOrder ftsko")   

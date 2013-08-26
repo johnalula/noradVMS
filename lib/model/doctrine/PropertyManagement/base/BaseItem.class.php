@@ -52,7 +52,7 @@
  * @property Task $Task
  * @property TaskOrder $TaskOrder
  * @property Unit $Unit
- * @property Doctrine_Collection $ServiceVehicleItemAcquired
+ * @property Doctrine_Collection $ServiceVehicleItemAcqAssignmentOrderuired
  * @property Doctrine_Collection $taskAttachmentItems
  * 
  * @package    noradVMS
@@ -264,7 +264,7 @@ abstract class BaseItem extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('ServiceVehicleItemAcquired', array(
+        $this->hasMany('ServiceVehicleItemAcqAssignmentOrderuired', array(
              'local' => 'id',
              'foreign' => 'item_id'));
 

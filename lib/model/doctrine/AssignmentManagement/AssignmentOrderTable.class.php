@@ -41,16 +41,97 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
        // }
 	}
    
+   public static function processRevertVehicle($task_id, $token_id, $order_id, $vehicle) 
+   {
+			$order = AssignmentOrderTable::processObject($order_id, $token_id);
+			$assigned_id = $order->assignedID;
+			$assigned_token = $order->assignedTokenID;
+			$vehicle_id = $order->vehicleID;
+			$vehicle_token = $order->vehicleTokenID;		
+			
+			$ex_vehicle = VehicleTable::processObject($vehicle_id, $vehicle_token);
+			$ex_vehicle->is_assigned = false;
+			$ex_vehicle->vehicle_status = VehicleTable::$NOT_ASSIGNED;
+			$ex_vehicle->save();
+		
+			$assigned = AssignedVehicleTable::processObject($assigned_id, $assigned_token);
+			if($assigned) {
+				$assigned->vehicle_id = $vehicle;
+				$assigned->save();	
+			}
+			
+			$order->vehicle_id = $vehicle;
+			$order->save();
+			
+			$nw_order = AssignmentOrderTable::processObject($order_id, $token_id);
+			$nw_vehicle_id = $nw_order->vehicleID;
+			$nw_vehicle_token_id = $nw_order->vehicleTokenID;
+			 
+			
+			$nw_vehicle = VehicleTable::processObject($nw_vehicle_id, $nw_vehicle_token_id);
+			$nw_vehicle->is_assigned = true;
+			$nw_vehicle->vehicle_status = VehicleTable::$ACTIVE;
+			$nw_vehicle->save();
+			
+		return true;
+		
+	}
+   public static function processRevertDriver($task_id, $token_id, $order_id, $driver) 
+   {
+			$order = AssignmentOrderTable::processObject($order_id, $token_id);
+			$assigned_id = $order->assignedID;
+			$assigned_token = $order->assignedTokenID;
+			$driver_id = $order->driverID;
+			$driver_token = $order->driverTokenID;		
+			
+			$ex_driver = DriverTable::processObject($driver_id, $driver_token);
+			if($ex_driver) {
+				$ex_driver->is_assigned = false; 
+				$ex_driver->save();
+			}
+		
+			$assigned = AssignedVehicleTable::processObject($assigned_id, $assigned_token);
+			if($assigned) {
+				$assigned->participant_id = $driver;
+				$assigned->save();	
+			}
+			
+			if($order) {
+				$order->participant_id = $driver;
+				$order->save();
+			}
+			
+			$nw_order = AssignmentOrderTable::processObject($order_id, $token_id);
+			if($nw_order) {
+				$nw_driver_id = $nw_order->driverID;
+				$nw_driver_token_id = $nw_order->driverTokenID;
+			}
+			
+			$nw_driver = DriverTable::processObject($nw_driver_id, $nw_driver_token_id);
+			if($nw_driver) {
+				$nw_driver->is_assigned = true;
+				$nw_driver->save();
+			}
+			
+		return true;
+		
+	}
+   
    public static function processObject($_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID")
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID, asvh.id as assignedID, asvh.token_id assignedTokenID, asvh.is_departed as isDeparted, asvh.is_returned as isReturned,
+			 prt.full_name as fullName,
+			vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID
+			
+			")
 			->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
 			//->innerJoin("tsko.Driver dr")
-			->innerJoin("tsko.Participant prt")
-			->innerJoin("prt.participantDrivers dr")
-			->innerJoin("tsko.Vehicle vh")    
+			->leftJoin("tsko.Participant prt")
+			->leftJoin("prt.participantDrivers dr")
+			->leftJoin("tsko.Vehicle vh")    
+			->leftJoin("tsko.assignedVehicles asvh")    
 			->where('tsko.id = ? AND tsko.token_id = ?', array($_id, $token_id))
 			->fetchOne ( );
 			
@@ -60,13 +141,17 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.full_name as fullName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, dr.id as driverID, dr.token_id as driverTokenID")
-			->from("AssignmentOrder tsko")  
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID, asvh.id as assignedID, asvh.token_id assignedTokenID, asvh.is_departed as isDeparted, asvh.is_returned as isReturned, prt.full_name as fullName,
+			vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID
+			
+			")
+				->from("AssignmentOrder tsko")  
 			->innerJoin("tsko.Task tsk")
 			//->innerJoin("tsko.Driver dr")
-			->innerJoin("tsko.Participant prt")
-			->innerJoin("prt.participantDrivers dr")
-			->innerJoin("tsko.Vehicle vh")    
+			->leftJoin("tsko.Participant prt")
+			->leftJoin("prt.participantDrivers dr")
+			->leftJoin("tsko.Vehicle vh")    
+			->leftJoin("tsko.assignedVehicles asvh")    
 			->offset($offset)
 			->limit($limit)
 			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))

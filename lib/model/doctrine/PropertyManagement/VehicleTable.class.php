@@ -67,9 +67,11 @@ class VehicleTable extends PluginVehicleTable
 			$i = 1;
 			for( $i = 1; $i <= $count; $i ++ ) 
 			{
+				$token = $order->token_id.$order->task_id.rand('11111', '99999');
+				$token_id = sha1($token);
 				$_nw = new Vehicle ( ); 
 				$_nw->task_id = $order->task_id; 
-				$_nw->token_id = $order->token_id; 
+				$_nw->token_id = md5($token_id); 
 				$_nw->task_order_id = $order->id; 
 				$_nw->status = $order->status; 
 				$_nw->effective_date = $order->effective_date; 
@@ -81,6 +83,7 @@ class VehicleTable extends PluginVehicleTable
 				$_nw->quantity = 1;  
 				$_nw->is_present = true; 
 				$_nw->save();
+				 
 				}
 			 
 			return true; 
