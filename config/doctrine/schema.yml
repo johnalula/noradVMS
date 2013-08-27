@@ -44,11 +44,12 @@ Vehicle:
     plate_number: { type: string(255) }
     plate_code: { type: string(255), default: 'ET' }
     plate_code_no: { type: integer, default: 4 }
-    initial_mileage: { type: string(100) }
-    current_mileage: { type: string(100) }
+    initial_mileage: { type: integer, default: 0 }
+    current_mileage: { type: integer, default: 0 }
+    traveled_km: { type: float, default: 0 }
     vehicle_type_id: { type: integer } 
     vehicle_make: { type: string(50) }
-    litter_per_km: { type: float }
+    litter_per_km: { type: float, default: 0 }
     seating_capacity: { type: integer } 
     engine_number: { type: string(100) }
     chesis_number: { type: string(100) }
@@ -60,6 +61,7 @@ Vehicle:
     purchased_date: { type: string(100) }
     purchased_type: { type: integer }
     service_year: { type: integer, default: 0 }
+    vehicle_year: { type: integer, default: 0 }
     no_of_doors: { type: integer }
     checkup_period_id: { type: integer }
     vehicle_status: { type: integer, default: 4 }
@@ -101,16 +103,13 @@ Sparepart:
   columns:
     spare_Identification: {type : string(100) } 
 
-VehicleCheckupSetting:
-  package: VehicleSetting
-  columns:
-    vehicle_id: { type: integer }
+CheckUpSetting:
+  package: CheckUpManagement
+  columns: 
     check_up_name: { type: string(100) }
     pass_value: { type: boolean, default: true }
     fail_value: { type: boolean, default: false }
-    na_value: { type: boolean, default: false }
-  relations:
-    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vehicleCheckupSettings }
+    na_value: { type: boolean, default: false } 
 
 VehicleInsuranceSetting:
   package: VehicleSetting
@@ -210,7 +209,6 @@ Task:
     reference_no: { type: integer }
     description: { type: clob }
 
-
 TaskOrder:
   package: PropertyManagement
   actAs:
@@ -277,9 +275,9 @@ FleetOrder:
     payment_mode_id: { type: integer }
     effective_date: { type: string(100) }
     number_of_passangers: { type: integer }
-    departure_mileage: { type: string(100) }
-    return_mileage: { type: string(100) }
-    difference_mileage: { type: string(100) }
+    departure_mileage: { type: integer }
+    return_mileage: { type: integer }
+    difference_mileage: { type: integer }
     fuel_acquire_type_id: { type: integer }
     is_departed: { type: boolean, default: 0}
     is_returned: { type: boolean, default: 0 }
@@ -450,7 +448,31 @@ ReturnTask:
     returnee_id: { type: integer }
   relations:
     Participant: { onDelete: CASCADE, local: returnee_id, foreign: id, foreignAlias: vehicleReturnParticipants }
+    
+CheckUpTask:
+  package: CheckUpManagement  
+  inheritance:
+    extends: Task
+    type: concrete
+    keyField: type
+    keyValue: 10   
 
+CheckUpOrder:
+  package: CheckUpManagement
+  actAs:
+    Timestampable: ~
+  columns:
+    task_id: { type: integer , notnull: true }
+    token_id: { type: string(100) , notnull: true }
+    vehicle_id: { type: integer }
+    checkup_setting_id: { type: integer }
+    effective_date:  { type: string(100) }
+    status: { type: integer, default: 1 }
+    description: { type: string(255) }
+  relations:
+    Task: { onDelete: CASCADE, local: task_id, foreign: id, foreignAlias: checkupTaskOrderTasks }
+    CheckUpSetting: { onDelete: CASCADE, local: checkup_setting_id, foreign: id, foreignAlias: checkupSettingTaskOrders }
+    Vehicle: { onDelete: CASCADE, local: vehicle_id, foreign: id, foreignAlias: vhicleCheckupSettingTaskOrders } 
 
 TaskParticipant:
   package: TaskFrameworks

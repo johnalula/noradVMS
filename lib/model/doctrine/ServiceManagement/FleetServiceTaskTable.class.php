@@ -334,7 +334,17 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$t_id = $assigned->vehicleTokenID;
 				$vehicle = VehicleTable::processObject($v_id, $t_id );				
 				$assigned->processDeparture();	
+				$curr_mileage = $vehicle->currentMileage; 
+				$depart_mileage = $order->departMileage;
+				$diff_mileage = $depart_mileage-$curr_mileage;
+				$curr_traveled_km = $vehicle->traveled_km; 
+				$traveled_km = $curr_traveled_km + $diff_mileage; 
+				
+				$vehicle->setCurrentMileage($order->departMileage);
+				$vehicle->setTraveledKm($traveled_km);
+				$vehicle->save();
 				$vehicle->processDeparture();	
+				
 			}
 			
 			$task->processDeparture(); 	
@@ -363,6 +373,20 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$token_id = $order->assignedTokenID;
 				$assigned = AssignedVehicleTable::processObject($_id, $token_id);				
 				$assigned->processReturn();
+				
+				$v_id = $assigned->vehicleID;
+				$t_id = $assigned->vehicleTokenID;
+				$vehicle = VehicleTable::processObject($v_id, $t_id );	 
+				$diff_mileage = $order->difference_mileage;				
+				$return_mileage = $order->returnMileage;				
+				$curr_traveled_km = $vehicle->traveled_km; 				
+				$traveled_km = ($curr_traveled_km + $order->difference_mileage); 
+				
+				$vehicle->setCurrentMileage($return_mileage);
+				$vehicle->setTraveledKm($traveled_km);
+				$vehicle->save();
+				$vehicle->processReturn();	
+				
 				switch($mode) {
 				case PaymentSettingTable::$PER_KM:
 					$cost_sum =  $cost * $order->difference_mileage;
@@ -379,13 +403,16 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				case PaymentSettingTable::$OTHER:
 					$cost_sum =  $cost; 
 				break;
-			}
+				}
 				$order->order_cost = $cost_sum;
 				$order->save();
 				$sum +=$cost_sum;
+				
+				
 			}
 			$task->total_cost = $sum;
 			$task->save();
+			
 			$task->processComplete(); 			
 		
 		return true;	

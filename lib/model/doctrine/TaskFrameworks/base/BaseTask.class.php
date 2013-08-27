@@ -47,6 +47,7 @@
  * @property Doctrine_Collection $serviceVehicleAttachmentTasks
  * @property Doctrine_Collection $serviceVehicleAccidentTasks
  * @property Doctrine_Collection $ServiceAccident
+ * @property Doctrine_Collection $checkupTaskOrderTasks
  * @property Doctrine_Collection $taskParticipantsTasks
  * @property Doctrine_Collection $taskAttachmentTasks
  * @property Doctrine_Collection $taskAttachmentTask
@@ -222,6 +223,10 @@ abstract class BaseTask extends sfDoctrineRecord
              array(
               'type' => 9,
              ),
+             'CheckUpTask' => 
+             array(
+              'type' => 10,
+             ),
              ));
     }
 
@@ -261,6 +266,10 @@ abstract class BaseTask extends sfDoctrineRecord
              'foreign' => 'task_id'));
 
         $this->hasMany('ServiceAccident', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('CheckUpOrder as checkupTaskOrderTasks', array(
              'local' => 'id',
              'foreign' => 'task_id'));
 

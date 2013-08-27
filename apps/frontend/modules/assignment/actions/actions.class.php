@@ -187,6 +187,7 @@ class assignmentActions extends sfActions
 		
 		return $this->renderPartial('assignmentList', array('task_orders' => $this->task_orders));
   }
+  
   public function executeChangeDriver(sfWebRequest $request)
   {
 		$offset = 0;
@@ -207,6 +208,7 @@ class assignmentActions extends sfActions
 		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
 		
 		return $this->renderPartial('assignmentList', array('task_orders' => $this->task_orders));
+		//return true;
   }
   
   public function executeComplete(sfWebRequest $request)

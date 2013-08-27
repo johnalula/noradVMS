@@ -1,7 +1,7 @@
 
 <?php 
 	$types = VehicleTypeTable::processSelection ( $offset=0, $limit=100 );;
-	$f_types = FuelTypeTable::processSelection ( $offset=0, $limit=100 );
+	$f_types = FuelTypeTable::processSelection ( $keyword, $offset=0, $limit=100 );
 	$statuss = VehicleTable::$ALL_STATUSES;
 ?>
 

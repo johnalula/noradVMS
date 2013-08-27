@@ -12,9 +12,9 @@
  * @property integer $payment_mode_id
  * @property string $effective_date
  * @property integer $number_of_passangers
- * @property string $departure_mileage
- * @property string $return_mileage
- * @property string $difference_mileage
+ * @property integer $departure_mileage
+ * @property integer $return_mileage
+ * @property integer $difference_mileage
  * @property integer $fuel_acquire_type_id
  * @property boolean $is_departed
  * @property boolean $is_returned
@@ -56,17 +56,14 @@ abstract class BaseFleetOrder extends sfDoctrineRecord
         $this->hasColumn('number_of_passangers', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('departure_mileage', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
+        $this->hasColumn('departure_mileage', 'integer', null, array(
+             'type' => 'integer',
              ));
-        $this->hasColumn('return_mileage', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
+        $this->hasColumn('return_mileage', 'integer', null, array(
+             'type' => 'integer',
              ));
-        $this->hasColumn('difference_mileage', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
+        $this->hasColumn('difference_mileage', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('fuel_acquire_type_id', 'integer', null, array(
              'type' => 'integer',

@@ -46,7 +46,7 @@ class Vehicle extends PluginVehicle
 	
 	public function processReturn()
 	{
-		$this->is_departed = false;
+		$this->vehicle_status = VehicleTable::$ACTIVE;
 		$this->save();
 	}
 }

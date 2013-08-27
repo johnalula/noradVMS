@@ -18,6 +18,9 @@
 	$module  = 'Administrator';
 	$action = SystemLogFileTable::$UPDATE;
 	$user_id = 1;
+	
+	//$flag = VehicleTable::processUpdate ( 1,'9e673a2c813c7e6a46aa3b8176ff3d81','ET',1234,4,1,$vehicle_make,$vehicle_model,$vehicle_color,$vehicle_weight,$vehicle_year, 1,1,$purchased_date, $purchased_type, $serial_no, $pin_no, $purchased_mileage,$current_mileage,$seat_capacity,$doors,$liter,$engine_no,$chesis_no, $description );
+	
 	//$flag = RegistrationTaskTable::processUpdateRegistrationVehicle ( 2, '9c670fb5140f2ccfe2f0745948d1e309', 'ET', '1378', 4, 1, 'BMW', $vehicle_model, 'Red', $vehicle_weight, 1, $description ); 
 	//$flag = UserGroupTable::processDelete(9, 0);
 	//$group = UserGroupTable::processCreate($module, 'admin');

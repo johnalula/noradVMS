@@ -89,7 +89,7 @@ class registrationActions extends sfActions
 		$chesis_no = $request->getParameter('chesis_no'); 
 		$description = $request->getParameter('description');
 		
-		$flag = RegistrationTaskTable::processUpdateRegistrationVehicle ( $vehicle_id,$token_id,$plate_code,$plate_no,$plate_code_no,1,$vehicle_make,$vehicle_model,$vehicle_color,$vehicle_weight,$vehicle_year, 1,$fuel_type,$purchased_date, $purchased_type, $serial_no, $pin_no, $purchased_mileage,$current_mileage,$seat_capacity,$doors,$liter,$engine_no,$chesis_no, $description) ;
+		$flag = RegistrationTaskTable::processUpdateRegistrationVehicle ( $vehicle_id,$token_id,$plate_code,$plate_no,$plate_code_no,1,$vehicle_make,$vehicle_model,$vehicle_color,$vehicle_weight,$vehicle_year, 1,1,$purchased_date, $purchased_type, $serial_no, $pin_no, $purchased_mileage,$current_mileage,$seat_capacity,$doors,$liter,$engine_no,$chesis_no, $description) ;
 		
 		return $flag; 
     

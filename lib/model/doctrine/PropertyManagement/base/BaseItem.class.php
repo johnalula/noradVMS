@@ -26,8 +26,9 @@
  * @property string $plate_number
  * @property string $plate_code
  * @property integer $plate_code_no
- * @property string $initial_mileage
- * @property string $current_mileage
+ * @property integer $initial_mileage
+ * @property integer $current_mileage
+ * @property float $traveled_km
  * @property integer $vehicle_type_id
  * @property string $vehicle_make
  * @property float $litter_per_km
@@ -42,6 +43,7 @@
  * @property string $purchased_date
  * @property integer $purchased_type
  * @property integer $service_year
+ * @property integer $vehicle_year
  * @property integer $no_of_doors
  * @property integer $checkup_period_id
  * @property integer $vehicle_status
@@ -149,13 +151,17 @@ abstract class BaseItem extends sfDoctrineRecord
              'type' => 'integer',
              'default' => 4,
              ));
-        $this->hasColumn('initial_mileage', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
+        $this->hasColumn('initial_mileage', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
              ));
-        $this->hasColumn('current_mileage', 'string', 100, array(
-             'type' => 'string',
-             'length' => 100,
+        $this->hasColumn('current_mileage', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
+             ));
+        $this->hasColumn('traveled_km', 'float', null, array(
+             'type' => 'float',
+             'default' => 0,
              ));
         $this->hasColumn('vehicle_type_id', 'integer', null, array(
              'type' => 'integer',
@@ -166,6 +172,7 @@ abstract class BaseItem extends sfDoctrineRecord
              ));
         $this->hasColumn('litter_per_km', 'float', null, array(
              'type' => 'float',
+             'default' => 0,
              ));
         $this->hasColumn('seating_capacity', 'integer', null, array(
              'type' => 'integer',
@@ -204,6 +211,10 @@ abstract class BaseItem extends sfDoctrineRecord
              'type' => 'integer',
              ));
         $this->hasColumn('service_year', 'integer', null, array(
+             'type' => 'integer',
+             'default' => 0,
+             ));
+        $this->hasColumn('vehicle_year', 'integer', null, array(
              'type' => 'integer',
              'default' => 0,
              ));

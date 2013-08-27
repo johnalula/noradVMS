@@ -39,7 +39,7 @@ class FleetOrderTable extends PluginFleetOrderTable
 				
 				$prt = new TaskParticipant ();
 				$prt->token_id = $_nw->token_id;
-				$prt->task_id = $_nw->id;
+				$prt->task_id = $_nw->task_id;
 				$prt->participant_id = $order->partyID;
 				$prt->participant_role = ParticipantCore::$DRIVER;
 				$prt->description = trim($description);
@@ -56,7 +56,7 @@ class FleetOrderTable extends PluginFleetOrderTable
 	{
 		$q= Doctrine_Query::create()
 			->select("ftsko.*, avh.is_departed as isDeparted,prt.full_name as fullName, 
-			vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
+			vh.id as vehicleID, vh.token_id as vehicleTokenID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
 			tsk.destination as fleetDestination, tsk.departure_date as departDate, tsk.departure_time as departTime,
 			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.difference_mileage as diffMileage, ftsko.number_of_passangers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ftsko.fuel_acquire_type_id as acquiredFuelType, 
 			vt.id as vehicleTypeID, vt.name as vehicleType, ft.id as fuelTypeID, ft.name as fuelType,

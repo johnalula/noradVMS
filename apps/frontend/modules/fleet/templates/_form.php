@@ -6,7 +6,7 @@
 <table class="autoWidth" style="margin-left:10px;margin-top:5px;" id="detailTable" >
 	<tbody style="width:40%;"> 
 		<tr>
-			<td class="rightSide"><?php echo __('Customer') ?>:<span class="ui-mandatory">*</span></td>
+			<td class="rightSide"><?php echo __('Requested By') ?>:<span class="ui-mandatory">*</span></td>
 			<td>
 				<input type="text" style="width:200px;" id="customer_name" name="customer_name" >	
 				<input type="hidden" style="width:140px;" id="customer_id" name="customer_id" >	

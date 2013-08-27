@@ -81,6 +81,7 @@ class VehicleTable extends PluginVehicleTable
 				$_nw->vehicle_type_id = 1;  
 				$_nw->fuel_type_id = 1;  
 				$_nw->quantity = 1;  
+				$_nw->quantity = 1;  
 				$_nw->is_present = true; 
 				$_nw->save();
 				 
@@ -230,10 +231,10 @@ class VehicleTable extends PluginVehicleTable
 				 
 				")
 				->from("Vehicle vh") 
-				->innerJoin("vh.assignmentTaskOrderVehicles asso")
-				->innerJoin("vh.Category cat")
-				->innerJoin("vh.FuelType ft")
-				->innerJoin("vh.VehicleType vt")
+				->leftJoin("vh.assignmentTaskOrderVehicles asso")
+				->leftJoin("vh.Category cat")
+				->leftJoin("vh.FuelType ft")
+				->leftJoin("vh.VehicleType vt")
 				->leftJoin("vh.assignedVehicle asvh") 
 				->leftJoin("asvh.Participant prt")
 				->leftJoin("prt.participantDrivers dr")

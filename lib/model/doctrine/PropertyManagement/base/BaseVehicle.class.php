@@ -18,6 +18,7 @@
  * @property Doctrine_Collection $serviceVehicleAccidentVehicles
  * @property Doctrine_Collection $assignmentTaskOrderVehicles
  * @property Doctrine_Collection $vehicleReplacementVehicle
+ * @property Doctrine_Collection $vhicleCheckupSettingTaskOrders
  * @property Doctrine_Collection $taskAccidentVehicle
  * @property Doctrine_Collection $taskIncidentVehicle
  * 
@@ -54,7 +55,7 @@ abstract class BaseVehicle extends Item
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
-        $this->hasMany('VehicleCheckupSetting as vehicleCheckupSettings', array(
+        $this->hasMany('VehicleInsuranceSetting as vehicleCheckupSettings', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
@@ -85,6 +86,10 @@ abstract class BaseVehicle extends Item
         $this->hasMany('ReplacementTask as vehicleReplacementVehicle', array(
              'local' => 'id',
              'foreign' => 'new_vehicle_id'));
+
+        $this->hasMany('CheckUpOrder as vhicleCheckupSettingTaskOrders', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
 
         $this->hasMany('TaskAccident as taskAccidentVehicle', array(
              'local' => 'id',

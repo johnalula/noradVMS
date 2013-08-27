@@ -8,7 +8,7 @@
 			<th class=""><?php echo  ('Name') ?></th> 
 			<th class=""><?php echo  ('Department') ?></th> 
 			<th class=""><?php echo  ('Alias') ?></th> 
-			<th class=""><?php echo  ('Description') ?></th>  
+			<th class=""><?php echo  ('Project No') ?></th>  
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
 		</tr>				 
 	</thead>
@@ -24,13 +24,13 @@
 			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
 				<input type="radio" id="selectCandidate-<?php echo $i ?>" name="selectCandidate" value="<?php echo  $candidate->id. '$'.$candidate->name ?>">
 			</td>
-			<td class="" style="width:260px;min-width:260px;"> 
+			<td class="" style="width:270px;min-width:270px;"> 
 				<?php echo $candidate->fullName ? $candidate->fullName : $candidate->name?>
 			</td>
 			<td class="" style="width:100px;min-width:100px;"> 
 				<?php echo $candidate->id ?>
 			</td>
-			<td class="" style="width:80px;min-width:80px;"> 
+			<td class="" style="width:60px;min-width:60px;text-align:center;"> 
 				<?php echo $candidate->alias ?>
 			</td>
 			<td class="" style=""> 

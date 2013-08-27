@@ -6,7 +6,7 @@
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border"  style="width:15px;padding:2px 8px;"><input type="checkbox" disabled id="allcategorycheck" name="all-category-check" value="true" /></th> 
 			<th class=""><?php echo  ('Name') ?></th> 
-			<th class=""><?php echo  ('Alias') ?></th> 
+			<th class=""><?php echo  ('Driver') ?></th> 
 			<th class=""><?php echo  ('Parent') ?></th> 
 			<th class=""><?php echo  ('Description') ?></th>  
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
@@ -28,14 +28,14 @@
 				<img style="veritcal-align:bottom;" src="<?php echo image_path('new_icons/car_small') ?>">
 				<?php echo '( '. $candidate->plateCodeNo.' ) '.$candidate->plateCode .' - '.$candidate->plateNo.' ( '.$candidate->vehicleMake.' ) ' ?>
 			</td>
-			<td class="" style="width:60px;min-width:60px;"> 
-				<?php echo $candidate->id ?>
+			<td class="" style="width:140px;min-width:140px;"> 
+				<?php echo $candidate->fullName ? $candidate->fullName : $candidate->firstName.' '.$candidate->fatherName.' '.$candidate->grandFatherName ?>
 			</td>
 			<td class="" style="width:120px;min-width:120px;"> 
-				<?php echo $candidate->id ?>
+				<?php echo $candidate->currentMileage ?>
 			</td>
 			<td class="" style="width:95%;"> 
-				<?php echo $candidate->description ?>
+				<?php echo $candidate->id ?>
 			</td>  
 			
 			<td class="ui-table-list-border" style="text-align:center;padding:4px 8px;background:#dfe2e7;border-left:1px solid #bbb;border-right:1px solid #bbb;border-bottom:1px solid #bbb;"> 

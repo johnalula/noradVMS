@@ -566,14 +566,47 @@
 			var task = document.getElementById("taskID").value;
 			var token = document.getElementById("tokenID").value;
 			
-			var result = $.ajax({
+			$.ajax({
 				type: "GET",
+				dataType: "html",
 				data: 'task_id='+task+'&token_id='+token+'&order_id='+order+'&driver_id='+driver,
 				url: '<?php echo url_for('assignment/changeDriver')?>',
-				success: function(html) { $('#dataList').html(decodeURIComponent(html)) }, 
+				success: function(html) { 
+						//var result = decodeURIComponent(html);
+						//alert(html);
+						$("#dataList").html(html);
+						//e.preventDefault();
+						//return false;
+						},
 				async: false
-				}).responseText;
+				});
 				
+				
+
+				//var url = '<?php echo url_for('assignment/selection')?>';
+				//$('#ui-data-list').html(decodeURIComponent(result));
+				//var callback = $('#dataList').html(decodeURIComponent(res));
+				//var data = 'task_id='+task+'&token_id='+token;
+				//alert(res);
+				//$('#dataList').html(decodeURIComponent(res)).prependTo('#dataList');
+					//$('#dataList').loadIfModified(url);
+				
+				//var limit = document.getElementById('pagiantion_pagesize').value
+				//var keyword = document.getElementById('keyword').value
+				//var group_id = document.getElementById('category_group_id').value
+				//var class_id = document.getElementById('category_class_id').value
+			
+			/*	var result = $.ajax({
+						type: "GET",
+						data: 'limit='+limit+'&offset='+offset,
+						url: '<?php echo url_for('assignment/selection')?>',
+						success: function(html) { }, 
+						async: false
+						}).responseText;*/
+				
+				//if(res)
+					//document.getElementById("dataList").innerHTML = decodeURIComponent(res);
+				 
 				//var data = 'task_id='+task+'&token_id='+token+'&order_id='+order+'&driver_id='+driver;
 				//alert(data);
 			//location.reload();

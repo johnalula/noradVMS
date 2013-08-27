@@ -17,25 +17,32 @@
 
 	<?php 
 	
-	/*$orders = FleetOrderTable::processSelection ( 3, 'c3c4460696c45d6883f819fdaa36edad', true, false, $status, $keyword, 0, 10);
+		/*$orders = FleetOrderTable::processSelection ( 3, 'e63ffd8fc9c7aacfa33617e42e7a47b5', true, false, $status, $keyword, 0, 10);
 			
 			foreach($orders as $order)
 			{
 				$_id = $order->assignedID;
 				$token_id = $order->assignedTokenID;
-				$assigned = AssignedVehicleTable::processObject($_id, $token_id);				
-				$assigned->processDeparture();
-				//echo $assigned->id.'<br>';
-			}; */
-							 
-	 //$obj = AssignmentOrderTable::processObject(2, 'a04486d9046eb8e485c79c8d10cadf5a' ); 
-	//echo $obj->vehicle_id.' - ';
-	//echo $obj->id;
-		//echo $flags ? 'true' : 'flase' ;
-		//$flag = TaskOrderTable::processObject(19, 'a56b04e3aa2e37374de9aa6a84774baa' ) ;
-		//echo intval($flag->actual_quantity);
-		//$flags = VehicleTable::processCreate ( $flag );
-		//echo $flags ? 'true':'false';
+				$assigned = AssignedVehicleTable::processObject($_id, $token_id);	
+				$v_id = $assigned->vehicleID;
+				$t_id = $assigned->vehicleTokenID;
+				$vehicle = VehicleTable::processObject($v_id, $t_id );				
+				$assigned->processDeparture();	
+				//$curr_mileage = $vehicle->currentMileage; 
+				//$depart_mileage = $order->departMileage;
+				//$diff_mileage = $depart_mileage-$curr_mileage;
+				//$curr_traveled_km = $vehicle->traveled_km; 
+				//$traveled_km = ($curr_traveled_km+$diff_mileage); 
+				$m = $order->departMileage;
+				$v = $vehicle->currentMileage;
+				$d = $m+$v;
+				echo $d;
+				$vehicle->setCurrentMileage(2);
+				$vehicle->traveled_km=2;
+				$vehicle->save();
+				//$vehicle->processDeparture();	
+				
+			}*/
 	?>
 	<div id="ui-display-error-cont" class="ui-error-data displayNone"> 
 		<div class="ui-error-box btn-danger">
