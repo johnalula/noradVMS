@@ -18,6 +18,75 @@ Currency:
     alias: USD
     description: null
     is_default: false
+Task: {  }
+RegistrationTask:
+  RegistrationTask_1:
+    token_id: 0882058da748863b83080a8c88095152
+    start_date: 08/15/2013
+    end_date: 2013/08/31
+    effective_date: 2013/08/31
+    status_id: '5'
+    reference_no: '45234'
+    description: 'asdf asfds'
+    type: '3'
+    registration_mode: null
+    customer_id: null
+    service_agreement_cost: null
+    payment_mode_id: null
+    total_cost: null
+    service_type_id: null
+    service_reason: null
+    destination: null
+    service_number_of_days: null
+    service_delay_status: false
+    number_of_delay_days: '0'
+    is_delay_payable: true
+    departure_date: null
+    departure_time: null
+    is_departed: false
+    return_date: null
+    return_time: null
+    is_returned: false
+    is_delayed: false
+    delay_reason: null
+    transferer_id: null
+    transferee_id: null
+    new_vehicle_id: null
+    returnee_id: null
+AssignmentTask:
+  AssignmentTask_2:
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    start_date: 08/29/2013
+    end_date: 2013/08/31
+    effective_date: 2013/08/31
+    status_id: '5'
+    reference_no: '245452'
+    description: 'asdf asdfs'
+    type: '6'
+    registration_mode: null
+    customer_id: null
+    service_agreement_cost: null
+    payment_mode_id: null
+    total_cost: null
+    service_type_id: null
+    service_reason: null
+    destination: null
+    service_number_of_days: null
+    service_delay_status: false
+    number_of_delay_days: '0'
+    is_delay_payable: true
+    departure_date: null
+    departure_time: null
+    is_departed: false
+    return_date: null
+    return_time: null
+    is_returned: false
+    is_delayed: false
+    delay_reason: null
+    transferer_id: null
+    transferee_id: null
+    new_vehicle_id: null
+    returnee_id: null
 PaymentSetting:
   PaymentSetting_1:
     token_id: d22f1097d7f1a2c8fcffde43fb0fd386
@@ -281,6 +350,403 @@ Office:
     established_date: null
     company_owner: null
     company_license_type: null
+Item: {  }
+Vehicle:
+  Vehicle_1:
+    token_id: 9ff5543ad8951c8e8c5f9d546e03915e
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '1234'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_1
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '1'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: true
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+  Vehicle_2:
+    token_id: d69e29ffd13ab70a519a587166fa7222
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '4567'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_2
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '1'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: true
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+  Vehicle_3:
+    token_id: 3369decd4c6986f25162926237bafa87
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '8533'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_1
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '1'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: true
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+  Vehicle_4:
+    token_id: 37b8847eac81ecf6041fefca5feab825
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '5678'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_1
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '4'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: false
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+  Vehicle_5:
+    token_id: a6c101390a8164d4ba9f7a3df804720e
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '6542'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_1
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '4'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: false
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+  Vehicle_6:
+    token_id: 8a1837ee91f73c793d1a3341a7e6f6a2
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '5789'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_1
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '4'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: false
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+  Vehicle_7:
+    token_id: 7991ce21129ef24f943234609277da3f
+    Task: RegistrationTask_1
+    TaskOrder: TaskOrder_1
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    quantity: '1.00'
+    used_quantity: '0.00'
+    current_quantity: '0.00'
+    serial_no: ''
+    old_pin: NA
+    new_pin: NA
+    pin_num: '0'
+    is_present: true
+    effective_date: '2013'
+    status: '1'
+    description: null
+    type: '1'
+    assigned_date: null
+    plate_number: '7889'
+    plate_code: ET
+    plate_code_no: '4'
+    initial_mileage: '0'
+    current_mileage: '0'
+    traveled_km: '0.00'
+    VehicleType: VehicleType_1
+    vehicle_make: Toyota
+    litter_per_km: '0.00'
+    seating_capacity: '0'
+    engine_number: ''
+    chesis_number: ''
+    vehicle_model: ''
+    vehicle_color: ''
+    vehicle_weight: '0.00'
+    VehicleServiceType: VehicleServiceType_1
+    FuelType: FuelType_1
+    purchased_date: ''
+    purchased_type: '0'
+    service_year: '0'
+    vehicle_year: '0'
+    no_of_doors: '0'
+    checkup_period_id: null
+    vehicle_status: '4'
+    fuel_setting_id: null
+    is_temporary_assigned: false
+    is_assigned: false
+    is_departed: false
+    is_returned: false
+    is_maintened: false
+    is_reasigned: false
+    spare_Identification: null
+AssignmentOrder:
+  AssignmentOrder_1:
+    Task: AssignmentTask_2
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Vehicle: Vehicle_1
+    Participant: Employee_7
+    effective_date: '2013-08-31'
+    status: '1'
+    description: asfsdf
+    created_at: '2013-08-31 17:53:18'
+    updated_at: '2013-08-31 17:53:18'
+  AssignmentOrder_2:
+    Task: AssignmentTask_2
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Vehicle: Vehicle_2
+    Participant: Employee_2
+    effective_date: '2013-08-31'
+    status: '1'
+    description: 'adfasd asdfasdf'
+    created_at: '2013-08-31 17:54:09'
+    updated_at: '2013-08-31 17:54:09'
+  AssignmentOrder_3:
+    Task: AssignmentTask_2
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Vehicle: Vehicle_3
+    Participant: Employee_6
+    effective_date: '2013-08-31'
+    status: '1'
+    description: 'asd asdfsdf'
+    created_at: '2013-08-31 17:54:21'
+    updated_at: '2013-08-31 17:54:21'
 ParticipantContact:
   ParticipantContact_1:
     Participant: Employee_6
@@ -308,21 +774,21 @@ Driver:
     Participant: Employee_7
     license_type: '0'
     work_experience: '0'
-    is_assigned: false
+    is_assigned: true
     desctiption: ''
   Driver_2:
     token_id: 20337d9ceb6b6438f1195b399ed0a0e2
     Participant: Employee_2
     license_type: '0'
     work_experience: '0'
-    is_assigned: false
+    is_assigned: true
     desctiption: ''
   Driver_3:
     token_id: 3442f9112caadb24c9eb9020a986eeb8
     Participant: Employee_6
     license_type: '0'
     work_experience: '0'
-    is_assigned: false
+    is_assigned: true
     desctiption: ''
 Category:
   Category_1:
@@ -406,6 +872,24 @@ ServiceType:
   ServiceType_2:
     name: Local
     description: null
+TaskOrder:
+  TaskOrder_1:
+    Task: RegistrationTask_1
+    token_id: 0882058da748863b83080a8c88095152
+    Category: Category_1
+    clss: '4'
+    Unit: Unit_1
+    actual_quantity: '7.00'
+    remaining: '0.00'
+    unit_price: '60000.00'
+    vat: true
+    Currency: Currency_1
+    amount: '420000.00'
+    effective_date: '2013-08-31'
+    status: '1'
+    description: 'task order'
+    created_at: '2013-08-31 17:48:45'
+    updated_at: '2013-08-31 17:48:45'
 VehicleType:
   VehicleType_1:
     name: Automobile
@@ -435,3 +919,50 @@ FuelType:
   FuelType_2:
     name: Diesel
     description: null
+TaskAttachment:
+  TaskAttachment_1:
+    token_id: 0882058da748863b83080a8c88095152
+    Task: RegistrationTask_1
+    certificate_type: '13'
+    reference_number: '45234'
+    num_pages: '1'
+    folder_stored: null
+    description: null
+  TaskAttachment_2:
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Task: AssignmentTask_2
+    certificate_type: '2'
+    reference_number: '245452'
+    num_pages: '1'
+    folder_stored: null
+    description: null
+TaskParticipant:
+  TaskParticipant_1:
+    token_id: 0882058da748863b83080a8c88095152
+    Task: RegistrationTask_1
+    participant_role: '17'
+    Participant: Employee_1
+    description: 'asdf asfds'
+  TaskParticipant_2:
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Task: AssignmentTask_2
+    participant_role: '17'
+    description: 'asdf asdfs'
+  TaskParticipant_3:
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Task: AssignmentTask_2
+    participant_role: '9'
+    Participant: Employee_7
+    description: ''
+  TaskParticipant_4:
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Task: AssignmentTask_2
+    participant_role: '9'
+    Participant: Employee_2
+    description: ''
+  TaskParticipant_5:
+    token_id: 57b2228fdcc68517aa82d36bdaf87fa6
+    Task: AssignmentTask_2
+    participant_role: '9'
+    Participant: Employee_6
+    description: ''

@@ -1,19 +1,20 @@
-<div class="ui-main-menu-cont">
-	<div class="ui-main-menu-actions">
-		<ul>
-			<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
-			<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
-		</ul>
-		
-		<span class="ui-page-navigator">
+<div class="ui-container-box">
+	<div class="ui-main-menu-cont">
+		<div class="ui-main-menu-actions">
 			<ul>
-				<li><a href="<?php echo url_for('fleet/index') ?>"><img src="<?php echo image_path('new_icons/back') ?>">Back to list</a></li>
+				<li><a href="<?php echo url_for('dashboard/index') ?>"><img src="<?php echo image_path('new_icons/control_panel_medium') ?>">Dashboard</a></li>
+				<li><a href="#"><img src="<?php echo image_path('icons/refresh_small') ?>">Refresh</a></li>
 			</ul>
-		</span>
-		<div class="clearFix"></div>
+			
+			<span class="ui-page-navigator">
+				<ul>
+					<li><a href="<?php echo url_for('fleet/index') ?>"><img src="<?php echo image_path('new_icons/back') ?>">Back to list</a></li>
+				</ul>
+			</span>
+			<div class="clearFix"></div>
+		</div>
 	</div>
-</div>
- 
+
  <?php
 		
  ?>
@@ -23,6 +24,9 @@
 	<div class="ui-list-cont ui-background">	
 		<div>
 			<div class="ui-form-container">
+				<div class="noprint" style="float:right">
+					[<a href="javascript:window.print()">Print</a>]
+				</div>
 				<table style="">
 					<tr>
 						<td class="ui-text-align-center">MEKELLE UNIVERSITY</td>
@@ -81,3 +85,4 @@
 			</div>
 	</div>  <!-- end of ui-list-cont -->
 </div> <!-- end of ui-container -->
+</div>

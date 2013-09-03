@@ -5,6 +5,10 @@
 			<th class="ui-table-border" style="width:8px;border-left:1px solid #bbb;padding:4px 8px;"></th> 
 			<th class="ui-table-border" style="width:15px;padding:2px 8px;"><input type="checkbox" disabled id="allcategorycheck" name="all-category-check" value="true" /></th> 
 			<th class=""><?php echo  ('Reference No') ?></th> 
+			<th class=""><?php echo  ('Customer') ?></th> 
+			<th class=""><?php echo  ('Destination') ?></th> 
+			<th class=""><?php echo  ('Departure') ?></th> 
+			<th class=""><?php echo  ('Return') ?></th> 
 			<th class=""><?php echo  ('Delay') ?></th> 
 			<th class=""><?php echo  ('No Delay') ?></th> 
 			<th class=""><?php echo  ('Description') ?></th>  
@@ -35,10 +39,24 @@
 					<img class="ui-image-style"src="<?php echo image_path('setting/process_small')  ?>" >	
 				<?php endif; ?>
 			</td>
-			<td class="" style="width:220px;min-width:220px;"> 
+			<td class="" style="width:90px;min-width:90px;"> 
 				<?php echo $task->referenceNo ?>
 			</td>
-			<td class="" style="width:50px;min-width:50px;"> 
+			<td class="" style="width:160px;min-width:160px;"> 
+				<span rel="<?php echo $task->id ?>" title="<?php echo $task->customerName ?>">
+					<?php echo $task->customerAlias ? $task->customerAlias :$task->customerName ?>
+				</span>
+			</td>
+			<td class="" style="width:110px;min-width:110px;"> 
+				<?php echo $task->destination ?>
+			</td>
+			<td class="" style="width:70px;min-width:70px;"> 
+				<?php echo $task->departDate ?>
+			</td>
+			<td class="" style="width:70px;min-width:70px;"> 
+				<?php echo $task->returnDate ?>
+			</td>
+			<td class="" style="width:40px;min-width:40px;"> 
 				<?php if($task->isDelayed):  ?>
 					<img class="ui-image-style" src="<?php echo image_path('setting/completed_small')  ?>" >	
 				<?php endif; ?>
@@ -46,8 +64,8 @@
 			<td class="" style="width:60px;min-width:60px;"> 
 				 <?php echo $task->noOfDelayed ?>
 			</td>
-			<td class="" style="width:99%;"> 
-				<?php echo $task->description  .' = ' .$task->costAmount ?> 
+			<td class="" style="width:95%;"> 
+				<?php echo $task->description  ?> 
 			</td>  
 			<td  class="" style="padding:0px 0px 0px 1px;width:40px;min-width:40px;border-right:0px solid #ddd;"> 
 				<div class="ui-list-action" style="width:40px;min-width:40px;padding:0x 0px;text-align:center;">
@@ -73,7 +91,13 @@
 								 
 							</a>
 						</li>
-						<?php endif; ?>
+						<?php else: ?>
+						<li>
+							<a href="<?php echo url_for('fleet/cost_summary?task_id='.$task->id.'&token_id='.$task->token_id) ?>" class="" rel="<?php echo $task->id ?>">									 
+									<img src="<?php echo image_path('new_icons/icon-stats')  ?>" >								 
+							</a>
+						</li> 
+						<?php endif; ?> 
 					</ul>
 				</div>
 			</td>
@@ -87,26 +111,7 @@
 </table>
 
 <script type="text/javascript">
-
-	$(function(){
- 
-    // add multiple select / deselect functionality
-    $("#allcategorycheck").click(function () {
-          $('.checkcategory').attr('checked', this.checked);
-    });
- 
-    // if all checkbox are selected, check the selectall checkbox
-    // and viceversa
-    $(".checkcategory").click(function(){
- 
-        if($(".checkcategory").length == $(".checkcategory:checked").length) {
-            $("#allcategorycheck").attr("checked", "checked");
-        } else {
-            $("#allcategorycheck").removeAttr("checked");
-        }
- 
-    });
-});
+ 
 
 </script>
 

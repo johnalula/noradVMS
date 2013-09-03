@@ -13,7 +13,6 @@
  * @property clob $desctiption
  * @property Participant $Participant
  * @property Employee $Employee
- * @property Doctrine_Collection $AssignmentTask
  * 
  * @package    noradVMS
  * @subpackage model
@@ -59,9 +58,5 @@ abstract class BaseDriver extends sfDoctrineRecord
         $this->hasOne('Employee', array(
              'local' => 'employee_id',
              'foreign' => 'id'));
-
-        $this->hasMany('AssignmentTask', array(
-             'local' => 'id',
-             'foreign' => 'driver_id'));
     }
 }

@@ -39,7 +39,7 @@
 		<tr>
 			<td class="rightSide"><?php echo __('Delay Payable') ?>:</td>
 			<td>
-				<input type="checkbox" style="text-align:right;margin-right:9px;" id="delay_payable" name="delay_payable" >
+				<input type="checkbox" style="text-align:right;margin-right:9px;" id="delay_payable" name="delay_payable" <?php echo $task->is_delay_payable ? 'checked':'' ?>>
 				<?php echo __('Service Type') ?>:<span class="ui-mandatory"></span>
 				<select style="width:93px;margin-right:8px;" id="service_type" name="service_type" >
 					<?php foreach($services as $key => $service): ?>

@@ -60,13 +60,14 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 				$prt->participant_id = $_pid;
 				$prt->participant_role = ParticipantCore::$DATA_INCODER;
 				$prt->description = trim($description);
+				$prt->is_default = true;
 				$prt->save();
 				
 				$prt = new TaskParticipant ();
 				$prt->token_id = $_nw->token_id;
 				$prt->task_id = $_nw->id;
 				$prt->participant_id = $customer_id;
-				$prt->participant_role = ParticipantCore::$DEPARTMENT;
+				$prt->participant_role = ParticipantCore::$CUSTOMER;
 				$prt->description = trim($description);
 				$prt->save();
 				
@@ -116,30 +117,51 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		return ( count ( $status ) <= 0 ? null : $status );
 	}
 	
+	public static function appendQueryFields ( ) 
+	{
+		$queryFileds = "ftsko.*, tsk.reference_no as referenceNo, tsk.start_date as startDate, (tsk.is_departed=true AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ONFIELD.") as taskOnField, (tsk.status_id =".TaskCore::$COMPLETED.") as completedTask, ((tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ACTIVE.") AND (NOT EXISTS (SELECT ord.id FROM FleetOrder  ord WHERE ord.task_id = tsk.id AND ord.token_id = tsk.token_id ))) as activeTask, ((tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ACTIVE.") AND (EXISTS (SELECT orde.id FROM FleetOrder  orde WHERE orde.task_id = tsk.id AND orde.token_id = tsk.token_id ))) as taskOnProccess ,
+		
+			tsk.destination as fleetDestination, tsk.departure_date as departDate, tsk.departure_time as departTime,tsk.is_departed as isDeparted, tsk.is_returned as isReturned, tsk.status_id as taskStatus, 
+			(tsk.is_departed=true AND tsk.is_returned=false) as canReturn, 
+			tsk.return_date as returnDate, tsk.return_time as returnTime, tsk.is_delayed as isDelayed, tsk.number_of_delay_days as noOfDelayed, tsk.service_number_of_days as fieldDays, tsk.is_delay_payable as isDelayPayable,
+			
+			(EXISTS (SELECT ford.id FROM FleetOrder  ford WHERE ford.task_id = tsk.id AND ford.token_id = tsk.token_id )) as hasFleetOrder,
+			(NOT EXISTS (SELECT tskfrd.id FROM FleetOrder  tskfrd WHERE tskfrd.task_id = tsk.id AND tskfrd.token_id = tsk.token_id )) as canDelete, 
+			
+			(EXISTS (SELECT frd.id FROM FleetOrder  frd WHERE frd.task_id = tsk.id AND frd.token_id = tsk.token_id AND frd.is_departed = true AND frd.is_returned = true )) as canContinue,
+			
+			(tsk.is_departed=true AND tsk.is_returned=false AND tsk.status_id=".TaskCore::$ONFIELD.") as canReturn,
+			(tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id=".TaskCore::$ACTIVE.") as canEditPassenger,
+			(tsk.is_departed=true AND tsk.is_returned=false AND tsk.status_id=".TaskCore::$ONFIELD.") as canEditItem,
+			(tsk.return_date IS NOT NULL ) as canProceed, 
+			
+			vh.is_departed as isDeparted, 
+			vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
+			
+			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.number_of_passengers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ps.payment_mode_id as paymentMode, ps.cost_amount as costAmount, tsk.total_cost as totalCost,
+			cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName, cus.name as customerName, cus.alias as customerAlias, cus.project_no as projectNo, prt.full_name as fullName,
+			atskor.id as assignmentOrderID,
+			
+			 
+			 ";
+		
+		return $queryFileds;
+	}
+	
 	public static function processObject ( $_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("ftsko.*, tsk.reference_no as referenceNo, tsk.start_date as startDate, (tsk.is_departed=true AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ONFIELD.") as taskOnField, (tsk.status_id =".TaskCore::$COMPLETED.") as completedTask, ((tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ACTIVE.") AND (NOT EXISTS (SELECT ord.id FROM FleetOrder  ord WHERE ord.task_id = tsk.id AND ord.token_id = tsk.token_id ))) as activeTask, ((tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ACTIVE.") AND (EXISTS (SELECT orde.id FROM FleetOrder  orde WHERE orde.task_id = tsk.id AND orde.token_id = tsk.token_id ))) as taskOnProccess ,
-			tsk.destination as fleetDestination, tsk.departure_date as departDate, tsk.departure_time as departTime,tsk.is_departed as isDeparted, tsk.is_returned as isReturned, tsk.status_id as taskStatus, (tsk.is_departed=true) as canReturn, tsk.return_date as returnDate, tsk.return_time as returnTime, tsk.is_delayed as isDelayed, tsk.number_of_delay_days as noOfDelayed, tsk.service_number_of_days as fieldDays,
-			(EXISTS (SELECT ford.id FROM FleetOrder  ford WHERE ford.task_id = tsk.id AND ford.token_id = tsk.token_id )) as hasFleetOrder,
-			(NOT EXISTS (SELECT tskfrd.id FROM FleetOrder  tskfrd WHERE tskfrd.task_id = tsk.id AND tskfrd.token_id = tsk.token_id )) as canDelete, 
-			(EXISTS (SELECT frd.id FROM FleetOrder  frd WHERE frd.task_id = tsk.id AND frd.token_id = tsk.token_id AND frd.is_departed = true AND frd.is_returned = true )) as canContinue,
-			avh.is_departed as isDeparted, prt.full_name as fullName, 
-			vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
-			
-			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.number_of_passangers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ps.payment_mode_id as paymentMode, ps.cost_amount as costAmount, tsk.total_cost as totalCost,
-			cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName, cus.name as customerName, cus.project_no as projectNo
-			")
+			->select(self::appendQueryFields())
 			->from("FleetServiceTask tsk")   
-			->innerJoin("tsk.fleetTaskOrderTasks ftsko")
-			->innerJoin("ftsko.AssignedVehicle avh")    
-			->innerJoin("avh.Vehicle vh")     
-			->innerJoin("avh.Participant drv")    
-			->innerJoin("avh.Participant prt")  
-			->innerJoin("vh.FuelType ft")    
-			->innerJoin("vh.VehicleType vt")  
-			->innerJoin("tsk.Participant cus ")
-			->innerJoin("tsk.PaymentSetting ps on tsk.payment_mode_id = ps.id")
+			->leftJoin("tsk.fleetTaskOrderTasks ftsko") 
+			->leftJoin("ftsko.Vehicle vh")     
+			->leftJoin("vh.FuelType ft")    
+			->leftJoin("vh.VehicleType vt")   
+			->leftJoin("vh.assignmentTaskOrderVehicles atskor on atskor.vehicle_id = vh.id")   
+			->leftJoin("atskor.Participant prt")    
+			->leftJoin("prt.participantDrivers dr") 
+			->leftJoin("tsk.Participant cus ")  
+			->leftJoin("tsk.PaymentSetting ps on tsk.payment_mode_id = ps.id")
 			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
 			->fetchOne ( );
 		return ( ! $q ? null : $q ); 
@@ -149,23 +171,15 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	{
 		//$task_order = "(COUNT(SELECT ord1.id FROM FleetOrder  ord1 WHERE ord1.task_id = tsk.id AND ord1.token_id = tsk.token_id ))";
 		$q= Doctrine_Query::create()
-			->select("ftsko.*, tsk.reference_no as referenceNo, tsk.start_date as startDate, (tsk.is_departed=true AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ONFIELD.") as taskOnField, (tsk.status_id =".TaskCore::$COMPLETED.") as completedTask, ((tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ACTIVE.") AND (NOT EXISTS (SELECT ord.id FROM FleetOrder  ord WHERE ord.task_id = tsk.id AND ord.token_id = tsk.token_id ))) as activeTask, ((tsk.is_departed=false AND tsk.is_returned=false AND tsk.status_id =".TaskCore::$ACTIVE.") AND (EXISTS (SELECT orde.id FROM FleetOrder  orde WHERE orde.task_id = tsk.id AND orde.token_id = tsk.token_id ))) as taskOnProccess ,
-			(NOT EXISTS (SELECT tskfrd.id FROM FleetOrder  tskfrd WHERE tskfrd.task_id = tsk.id AND tskfrd.token_id = tsk.token_id )) as canDelete,
-			tsk.destination as fleetDestination, tsk.departure_date as departDate, tsk.departure_time as departTime,tsk.is_departed as isDeparted, tsk.is_returned as isReturned, tsk.status_id as taskStatus, (tsk.is_departed=true) as canReturn, tsk.return_date as returnDate, tsk.return_time as returnTime, tsk.is_delayed as isDelayed, tsk.number_of_delay_days as noOfDelayed,
-			avh.is_departed as isDeparted, prt.full_name as fullName, 
-			vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake,
-			
-			ftsko.departure_mileage as departMileage, ftsko.return_mileage as returnMileage, ftsko.number_of_passangers as noOfPassengers, ftsko.fuel_amount as fuelAmount, ps.payment_mode_id as paymentMode, ps.cost_amount as costAmount, tsk.total_cost as totalCost,
-			cus.name as firstName, cus.father_name as fatherName, cus.grand_father_name as grandFatherName, cus.name as customerName, cus.project_no as projectNo
-			")
+			->select(self::appendQueryFields())
 			->from("FleetServiceTask tsk")   
-			->leftJoin("tsk.fleetTaskOrderTasks ftsko")
-			->leftJoin("ftsko.AssignedVehicle avh")    
-			->leftJoin("avh.Vehicle vh")     
-			->leftJoin("avh.Participant drv")    
-			->leftJoin("avh.Participant prt")  
+			->leftJoin("tsk.fleetTaskOrderTasks ftsko") 
+			->leftJoin("ftsko.Vehicle vh")     
 			->leftJoin("vh.FuelType ft")    
 			->leftJoin("vh.VehicleType vt")   
+			->leftJoin("vh.assignmentTaskOrderVehicles atskor on atskor.vehicle_id = vh.id")   
+			->leftJoin("atskor.Participant prt")    
+			->leftJoin("prt.participantDrivers dr") 
 			->leftJoin("tsk.Participant cus ")  
 			->leftJoin("tsk.PaymentSetting ps on tsk.payment_mode_id = ps.id")
 			->offset($offset)
@@ -180,12 +194,54 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	public static function processTaskParticipantSelection($task_id, $token_id, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tskprt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName ")
+			->select("tskprt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName,
+				vh.plate_code as plateCode, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, (tskprt.vehicle_id IS NOT NULL) as assignedVehicle
+			")
 			->from("TaskParticipant tskprt") 
-			->innerJoin("tskprt.Participant prt on tskprt.participant_id = prt.id")
+			->leftJoin("tskprt.Participant prt")
+			->leftJoin("tskprt.Vehicle vh ")
 			->offset($offset)
 			->limit($limit)
 			->where('tskprt.task_id = ? AND tskprt.token_id = ?', array($task_id, $token_id))
+			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processTaskPassengerSelection($task_id, $token_id, $keyword=null, $order_id=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("tskprt.*,
+				vh.plate_code as plateCode, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, vh.id as assignedVehicle,
+				fltord.id as orderID
+			")
+			->from("TaskPassengers tskprt")  
+			->leftJoin("tskprt.FleetOrder fltord ")
+			->leftJoin("fltord.Vehicle vh ")
+			->offset($offset)
+			->limit($limit)
+			->where("tskprt.task_id = ? AND tskprt.token_id = ?", array($task_id, $token_id));
+			if(!is_null($order_id))
+				$q = $q->addWhere("tskprt.fleet_order_id = ?", $order_id);
+				
+			$q = $q->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processTaskItemSelection($task_id, $token_id, $keyword=null, $offset=0, $limit=10) 
+	{
+		$q= Doctrine_Query::create()
+			->select("itm.*, itm.item_name as itemName, itm.quantity as itemQuantity,
+				vh.plate_code as plateCode, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, vh.id as assignedVehicle,
+				fltord.id as orderID
+			")
+			->from("ItemAcquiredAttachment itm")  
+			->leftJoin("itm.FleetOrder fltord ")
+			->leftJoin("fltord.Vehicle vh ")
+			->offset($offset)
+			->limit($limit)
+			->where('itm.task_id = ? AND itm.token_id = ?', array($task_id, $token_id))
 			->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
@@ -207,17 +263,19 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 	public static function processCandidateVehicleSelection($task_id, $token_id, $is_departed=null, $is_returned=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 			$exclusion = array();
-			$orders = FleetOrderTable::processSelection ( $task_id, $token_id, null, null, $status, $keyword, 0, 10);
+			$orders = FleetOrderTable::processSelection ( $task_id, $token_id, true, $is_returned, $status, $keyword, $offset, $limit);
 		
 			foreach($orders as $order)
 			{
-				$exclusion[] = $order->assigned_id;
+				$exclusion[] = $order->vehicle_id;
 			}
 			
-		return AssignedVehicleTable::processSelection ( false, $is_returned, $exclusion, $status, $keyword, $offset, $limit); 
+		return VehicleTable::processSelection ( $is_departed, $is_returned,true, $exclusion, $type, $status, $keyword, $offset=0, $limit=10);
 	}
+	
 	public static function processReturnCandidateVehicleSelection($task_id, $token_id, $is_departed=true, $is_returned=false, $status=null, $keyword=null, $offset=0, $limit=10 ) 
 	{
+			
 		return FleetOrderTable::processSelection ($task_id, $token_id, true, false, $status, $keyword, $offset, $limit ); 
 	}
 	
@@ -241,6 +299,23 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		return FleetOrderTable::processSelection ( $task_id, $token_id, true, true, $status, $keyword, $offset, $limit) ;
 	}
 	
+	public static function processPassengerVehicles ( $task_id, $token_id, $is_departed=null, $is_returned=null,$offset=0, $limit=10)  
+	{
+			$exclusion = array();
+			$orders = FleetOrderTable::processSelection ( $task_id, $token_id, true, $is_returned, $status, $keyword, $offset, $limit);
+		
+			foreach($orders as $order)
+			{
+				$no_of_passengers = $order->noOfPassengers;
+				$order_id = $order->id;
+				$passengers = self::processTaskPassengerSelection ($task_id, $token_id, $order_id, $keyword, $offset, 100) ;
+				$pass = count($passengers);
+				if($pass >= $no_of_passengers )  
+					$exclusion[] = $order->id;  
+			}
+			
+		return FleetOrderTable::processCandidateVehicles ( $task_id, $token_id, true, $is_returned, $exclusion, $offset, $limit);
+	}
 	public static function processCreateTaskAttachment ( $task_id, $token_id, $certificate_type, $ref_no, $num_pages, $folder_stored, $description)
 	{
 		try {
@@ -287,6 +362,51 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 		}
 		
 	}
+	public static function processCreatePassenger ($task_id, $token_id, $full_name, $order_id, $role, $description)
+	{
+		try {
+				
+			$prt = new TaskPassengers();
+			$prt->task_id = $task_id;
+			$prt->token_id = $token_id;
+			$prt->full_name = trim($full_name);
+			$prt->passenger_role = $role;
+			$prt->fleet_order_id = $order_id;
+			$prt->description = trim($description);
+			$prt->save();
+			 
+			return true;
+		}
+		catch ( Exception $e) 
+		{
+			return false;
+		}
+		
+	}
+	
+	public static function processCreateItem ($task_id, $token_id, $item_name, $order_id, $quantity, $description)
+	{
+		//try {
+			if(!$quantity)
+				$quantity = 1;
+				
+			$prt = new ItemAcquiredAttachment();
+			$prt->task_id = $task_id;
+			$prt->token_id = $token_id;
+			$prt->item_name = trim($item_name);
+			$prt->quantity = $quantity;
+			$prt->fleet_order_id = $order_id;
+			$prt->description = trim($description);
+			$prt->save();
+			 
+			return true;
+		//}
+		///catch ( Exception $e) 
+		//{
+			//return false;
+		//}
+		
+	}
 	
 	public static function processReturnFleetOrder ($task_id, $token_id, $order_id, $mileage )
 	{
@@ -327,27 +447,23 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 			
 			foreach($orders as $order)
 			{
-				$_id = $order->assignedID;
-				$token_id = $order->assignedTokenID;
-				$assigned = AssignedVehicleTable::processObject($_id, $token_id);	
-				$v_id = $assigned->vehicleID;
-				$t_id = $assigned->vehicleTokenID;
-				$vehicle = VehicleTable::processObject($v_id, $t_id );				
-				$assigned->processDeparture();	
-				$curr_mileage = $vehicle->currentMileage; 
-				$depart_mileage = $order->departMileage;
-				$diff_mileage = $depart_mileage-$curr_mileage;
+				$v_id = $order->vehicleID;
+				$t_id = $order->vehicleTokenID;
+				$vehicle = VehicleTable::processObject($v_id, $t_id );	
+				
+				$depart_mileage = $order->departMileage;				
+				$curr_mileage = $vehicle->current_mileage; 				
 				$curr_traveled_km = $vehicle->traveled_km; 
-				$traveled_km = $curr_traveled_km + $diff_mileage; 
-				
-				$vehicle->setCurrentMileage($order->departMileage);
-				$vehicle->setTraveledKm($traveled_km);
-				$vehicle->save();
-				$vehicle->processDeparture();	
-				
-			}
+				$traveled_km = 0;
 			
-			$task->processDeparture(); 	
+				$km = ($depart_mileage-$curr_mileage);
+				$traveled_km = $curr_traveled_km+$km; 
+				$vehicle->current_mileage = $depart_mileage;	
+				$vehicle->traveled_km = $traveled_km;	
+				$vehicle->save();
+				$vehicle->processDeparture();	 	
+			}			
+			$task->processDeparture();	
 						
 		return true;	
 	}
@@ -362,6 +478,7 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 			$mode = $task->payment_mode_id;
 			$cost = $task->costAmount;
 			$sum = 0;
+			$cost_sum_delay = 0;
 			$cost_sum;
 			$orders = FleetOrderTable::processSelection ( $task_id, $token_id, true, true, $status, $keyword, 0, 10);
 			$per_km = PaymentSettingTable::processValue(PaymentSettingTable::$PER_KM);
@@ -369,35 +486,43 @@ class FleetServiceTaskTable extends PluginFleetServiceTaskTable
 			
 			foreach($orders as $order)
 			{
-				$_id = $order->assignedID;
-				$token_id = $order->assignedTokenID;
-				$assigned = AssignedVehicleTable::processObject($_id, $token_id);				
-				$assigned->processReturn();
-				
-				$v_id = $assigned->vehicleID;
-				$t_id = $assigned->vehicleTokenID;
-				$vehicle = VehicleTable::processObject($v_id, $t_id );	 
-				$diff_mileage = $order->difference_mileage;				
+				$cost_sum = 0;
+				$v_id = $order->vehicleID;
+				$t_id = $order->vehicleTokenID;
+				$vehicle = VehicleTable::processObject($v_id, $t_id );		
+				$vehicle = VehicleTable::processObject($v_id, $t_id );			
+				$depart_mileage = $order->departMileage;				
 				$return_mileage = $order->returnMileage;				
-				$curr_traveled_km = $vehicle->traveled_km; 				
-				$traveled_km = ($curr_traveled_km + $order->difference_mileage); 
-				
-				$vehicle->setCurrentMileage($return_mileage);
-				$vehicle->setTraveledKm($traveled_km);
+				$curr_mileage = $vehicle->current_mileage; 				
+				$curr_traveled_km = $vehicle->traveled_km; 
+				$traveled_km = 0;
+				 
+				$km = ($return_mileage-$curr_mileage);
+				$traveled_km = $curr_traveled_km+$km;
+				 	
+				$vehicle->current_mileage = $return_mileage;	
+				$vehicle->traveled_km = $traveled_km;	
 				$vehicle->save();
 				$vehicle->processReturn();	
 				
 				switch($mode) {
 				case PaymentSettingTable::$PER_KM:
-					$cost_sum =  $cost * $order->difference_mileage;
+					$cost_km =  $cost * $order->difference_mileage;
+					if($task->isDelayPayable )						
+						$cost_sum_delay = $per_day*$task->noOfDelayed;
+					$cost_sum += ($cost_km+$cost_sum_delay);
 				break;
 				case PaymentSettingTable::$PER_DAY:
-					$cost_sum =  $cost * $task->fieldDays;
-				break;
-				case PaymentSettingTable::$PER_DAY_AND_KM:										
-					$cost_sum_km =  $per_km * $order->difference_mileage;
 					$cost_sum_day =  $per_day*$task->fieldDays;
-					$cost_sum_delay =  $per_day*$task->noOfDelayed;
+					if($task->isDelayPayable )						
+						$cost_sum_delay = $per_day*$task->noOfDelayed;
+					$cost_sum += ($cost_sum_day+$cost_sum_delay);
+				break;
+				case PaymentSettingTable::$PER_DAY_AND_KM:	
+					$cost_sum_km =  $per_km*$order->difference_mileage;
+					$cost_sum_day =  $per_day*$task->fieldDays;
+					if($task->isDelayPayable )						
+						$cost_sum_delay = $per_day*$task->noOfDelayed;
 					$cost_sum += ($cost_sum_km+$cost_sum_day+$cost_sum_delay);
 				break;
 				case PaymentSettingTable::$OTHER:

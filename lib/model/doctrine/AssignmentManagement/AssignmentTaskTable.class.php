@@ -37,7 +37,7 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 				//default task participant
 				$prt = new TaskParticipant ();
 				$prt->token_id = $_nw->token_id;
-				$prt->task_id = $n_nww->id;
+				$prt->task_id = $_nw->id;
 				$prt->participant_id = $_pid;
 				$prt->participant_role = ParticipantCore::$DATA_INCODER;
 				$prt->description = trim($description);
@@ -121,10 +121,7 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 	
 	public static function processCandidateVehicleSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
- 
-		return VehicleTable::processSelection ( false, $type, 4, $keyword, $offset, $limit) ; 
- 
-		//return VehicleTable::processCandidateSelection ( 4, $type, $status, $keyword, $offset, $limit); 
+		return VehicleTable::processSelection ( $is_departed, $is_returned, false, $exclusion, $type, $status, $keyword, $offset, $limit) ; 
 	}
 	
 	public static function processCandidateDriverSelection($offset=0, $limit=10, $keyword=null, $type_id=null) 

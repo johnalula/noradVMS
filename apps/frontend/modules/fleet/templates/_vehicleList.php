@@ -31,8 +31,8 @@
 				<img src="<?php echo image_path('new_icons/car_small') ?>">
 				<?php echo '( '. $vehicle->plateCodeNo.' ) '.$vehicle->plateCode .' - '.$vehicle->plateNo.' ( '.$vehicle->vehicleMake.' ) ' ?>
 			</td>
-			<td class="" style="width:140px;min-width:140px;"> 
-				<img style="vertical-align:bottom;margin-right:5px;" src="<?php echo image_path('setting/vehicle_driver_small') ?>"><?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>
+			<td class="" style="width:160px;min-width:160px;"> 
+				<img style="vertical-align:bottom;margin-right:5px!important;" src="<?php echo image_path('setting/vehicle_driver_small') ?>"><?php echo $vehicle->firstName.' '.$vehicle->fatherName.' '.$vehicle->grandFatherName ?>
 			</td>
 			<td class="" style="width:120px;min-width:120px;"> 
 				<?php echo $vehicle->departMileage ?>
@@ -41,10 +41,10 @@
 				<?php echo $vehicle->vehicleType ?>
 			</td> 
 			<td class="" style="width:50px;min-width:50px;"> 
-				<?php echo $vehicle->fuelType ?>
+				<?php echo $vehicle->noOfPassengers ?>
 			</td> 
 			<td class="" style="width:80px;min-width:80px;"> 
-				<?php echo $vehicle->acquiredFuelType.' litter' ?>
+				<?php echo $vehicle->fuelAmount.' litter' ?>
 			</td> 
 			 
 			<td  class="" style="padding:0px 0px 0px 2px;width:22px;min-width:22px;border-right:0px solid #ddd;"> 

@@ -96,9 +96,11 @@
 					<li><a href="<?php echo url_for('fleet/view?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
 				</ul>
 				</ul>
+				<?php if($task->canProceed): ?>
 				<ul class="ui-right-button">
 					<li><a href="<?php echo url_for('fleet/return_process?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
 				</ul>
+				<?php endif; ?>
 				<div class="clearFix"></div>
 			</div>
 		

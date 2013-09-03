@@ -14,16 +14,20 @@ abstract class BaseItemAcquiredAttachmentFormFilter extends BaseFormFilterDoctri
   {
     $this->setWidgets(array(
       'task_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
-      'item_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Item'), 'add_empty' => true)),
+      'token_id'           => new sfWidgetFormFilterInput(),
+      'fleet_order_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FleetOrder'), 'add_empty' => true)),
       'item_name'          => new sfWidgetFormFilterInput(),
+      'quantity'           => new sfWidgetFormFilterInput(),
       'attachment_purpose' => new sfWidgetFormFilterInput(),
       'description'        => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'task_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
-      'item_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Item'), 'column' => 'id')),
+      'token_id'           => new sfValidatorPass(array('required' => false)),
+      'fleet_order_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FleetOrder'), 'column' => 'id')),
       'item_name'          => new sfValidatorPass(array('required' => false)),
+      'quantity'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'attachment_purpose' => new sfValidatorPass(array('required' => false)),
       'description'        => new sfValidatorPass(array('required' => false)),
     ));
@@ -47,8 +51,10 @@ abstract class BaseItemAcquiredAttachmentFormFilter extends BaseFormFilterDoctri
     return array(
       'id'                 => 'Number',
       'task_id'            => 'ForeignKey',
-      'item_id'            => 'ForeignKey',
+      'token_id'           => 'Text',
+      'fleet_order_id'     => 'ForeignKey',
       'item_name'          => 'Text',
+      'quantity'           => 'Number',
       'attachment_purpose' => 'Text',
       'description'        => 'Text',
     );

@@ -35,10 +35,9 @@
  * @property Participant $Participant
  * @property Campus $Campus
  * @property Employee $Employee
- * @property Doctrine_Collection $vehicleDriverParticipants
- * @property Doctrine_Collection $fleetTaskParticipants
- * @property Doctrine_Collection $vehicleAssignDriverParticipant
+ * @property Doctrine_Collection $participantTemporaryAssignments
  * @property Doctrine_Collection $assignmentTaskOrderParticipants
+ * @property Doctrine_Collection $fleetTaskParticipants
  * @property Doctrine_Collection $transferTaskTransferee
  * @property Doctrine_Collection $vehicleReturnParticipants
  * @property Doctrine_Collection $taskParticipants
@@ -218,21 +217,17 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('AssignedVehicle as vehicleDriverParticipants', array(
+        $this->hasMany('TemporaryAssignment as participantTemporaryAssignments', array(
+             'local' => 'id',
+             'foreign' => 'participant_id'));
+
+        $this->hasMany('AssignmentOrder as assignmentTaskOrderParticipants', array(
              'local' => 'id',
              'foreign' => 'participant_id'));
 
         $this->hasMany('FleetServiceTask as fleetTaskParticipants', array(
              'local' => 'id',
              'foreign' => 'customer_id'));
-
-        $this->hasMany('AssignmentTask as vehicleAssignDriverParticipant', array(
-             'local' => 'id',
-             'foreign' => 'driver_id'));
-
-        $this->hasMany('AssignmentOrder as assignmentTaskOrderParticipants', array(
-             'local' => 'id',
-             'foreign' => 'participant_id'));
 
         $this->hasMany('TransferTask as transferTaskTransferee', array(
              'local' => 'id',

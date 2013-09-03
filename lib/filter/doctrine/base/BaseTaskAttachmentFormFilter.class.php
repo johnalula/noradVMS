@@ -15,6 +15,7 @@ abstract class BaseTaskAttachmentFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'token_id'         => new sfWidgetFormFilterInput(),
       'task_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
+      'fleet_order_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FleetOrder'), 'add_empty' => true)),
       'certificate_type' => new sfWidgetFormFilterInput(),
       'reference_number' => new sfWidgetFormFilterInput(),
       'num_pages'        => new sfWidgetFormFilterInput(),
@@ -25,6 +26,7 @@ abstract class BaseTaskAttachmentFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'token_id'         => new sfValidatorPass(array('required' => false)),
       'task_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
+      'fleet_order_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FleetOrder'), 'column' => 'id')),
       'certificate_type' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'reference_number' => new sfValidatorPass(array('required' => false)),
       'num_pages'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -52,6 +54,7 @@ abstract class BaseTaskAttachmentFormFilter extends BaseFormFilterDoctrine
       'id'               => 'Number',
       'token_id'         => 'Text',
       'task_id'          => 'ForeignKey',
+      'fleet_order_id'   => 'ForeignKey',
       'certificate_type' => 'Number',
       'reference_number' => 'Text',
       'num_pages'        => 'Number',

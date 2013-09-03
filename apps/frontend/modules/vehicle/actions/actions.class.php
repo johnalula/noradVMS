@@ -24,8 +24,8 @@ class vehicleActions extends sfActions
     $type = null;
     $is_assigned = null;
     
-    $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, $offset, $limit);
-    $this->allVehicles = VehicleTable::processAllVehicleSelection ($is_assigned=false, $type=null, $status=null, $keyword=null);
+    $this->vehicles = VehicleTable::processSelection ( $is_departed, $is_returned,$is_assigned, $exclusion, $type, $status, $keyword, $offset, $limit);
+    $this->allVehicles = VehicleTable::processAllVehicleSelection ($is_assigned, $type, $status, $keyword);
   }
   
   public function executeView(sfWebRequest $request)
@@ -93,9 +93,12 @@ class vehicleActions extends sfActions
 		if(!$status) $status = null;
 		if(!$type)  $type = null;
 		if(!$is_assigned)  $is_assigned = null;
-		//$is_assigned =true;
+		if(!$is_departed)  $is_departed = null;
+		if(!$is_returned)  $is_returned = null;
+		if(!$exclusion)  $exclusion = null;
+		//$exclusion =true;
 		
-		 $this->vehicles = VehicleTable::processSelection ( $is_assigned, $type, $status, $keyword, $offset, $limit );
+		$this->vehicles = VehicleTable::processSelection ( $is_departed, $is_returned, $is_assigned, $exclusion, $type, $status, $keyword, $offset, $limit);
 		 $this->allVehicles = VehicleTable::processAllVehicleSelection($is_assigned, $type, $status, $keyword);
 		 
 		return $this->renderPartial('list', array('vehicles' => $this->vehicles, 'allVehicles' => $this->allVehicles ));		

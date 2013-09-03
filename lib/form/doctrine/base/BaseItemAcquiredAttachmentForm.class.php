@@ -17,8 +17,10 @@ abstract class BaseItemAcquiredAttachmentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
       'task_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
-      'item_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Item'), 'add_empty' => true)),
+      'token_id'           => new sfWidgetFormInputText(),
+      'fleet_order_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FleetOrder'), 'add_empty' => true)),
       'item_name'          => new sfWidgetFormInputText(),
+      'quantity'           => new sfWidgetFormInputText(),
       'attachment_purpose' => new sfWidgetFormInputText(),
       'description'        => new sfWidgetFormTextarea(),
     ));
@@ -26,8 +28,10 @@ abstract class BaseItemAcquiredAttachmentForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                 => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'task_id'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'required' => false)),
-      'item_id'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Item'), 'required' => false)),
+      'token_id'           => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'fleet_order_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('FleetOrder'), 'required' => false)),
       'item_name'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'quantity'           => new sfValidatorNumber(array('required' => false)),
       'attachment_purpose' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'        => new sfValidatorString(array('required' => false)),
     ));

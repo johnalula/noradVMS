@@ -178,38 +178,48 @@ class VehicleTable extends PluginVehicleTable
 		
 	}
 	
+	public static function appendQueryFields()
+	{
+		$queryFields ="vh.*, vh.plate_code as plateCode, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.seating_capacity as seatCapacity, vt.name as vehicleType, vh.vehicle_model as modelNo, vh.vehicle_make as vehicleMake, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.vehicle_weight as vehicleWeight, vh.vehicle_model as vehicleModel, vt.id as vehicleTypeID, vt.name as vehicleType, ft.id as fuelTypeID, ft.name as fuelType, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.service_year as serviceYear, vh.no_of_doors as noOfDoors, vh.initial_mileage as purchasedMileage, vh.current_mileage as currentMileage, vh.litter_per_km as literPerKM, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.purchased_date as purchasedDate, vh.purchased_type as purchasedType, vh.service_type_id as serviceTypeID,
+		(vh.service_year >5000) as partialChackUp, (vh.service_year >10000) as fullChackUp, 		
+		vh.is_departed as isDeparted, 
+		tsk.reference_no as refNo, tsk.id as taskID, tsk.start_date as startDate, tsk.effective_date as effectiveDate,
+		(vh.is_departed=false AND vh.is_returned=false AND vh.vehicle_status=".self::$ACTIVE.") as activeVehicle,
+		
+		 asor.participant_id as partyID, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName
+		 
+		 ";
+		
+		return $queryFields;
+	}
 	
-	
-	public static function processSelection ( $is_assigned=null, $type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
+	public static function processSelection ( $is_departed=null, $is_returned=null,$is_assigned=null, $exclusions=null, $type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q = Doctrine_Query::create()
-					->select("vh.*, vh.plate_code as plateCode, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.seating_capacity as seatCapacity, vt.name as vehicleType, vh.vehicle_model as modelNo, vh.vehicle_make as vehicleMake, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.vehicle_weight as vehicleWeight, vh.vehicle_model as vehicleModel, vt.id as vehicleTypeID, vt.name as vehicleType, ft.id as fuelTypeID, ft.name as fuelType, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.service_year as serviceYear, vh.no_of_doors as noOfDoors, vh.initial_mileage as purchasedMileage, vh.current_mileage as currentMileage, vh.litter_per_km as literPerKM, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.purchased_date as purchasedDate, vh.purchased_type as purchasedType, , vh.service_type_id as serviceTypeID,
-				
-					asvh.is_departed as isDeparted, 
-					tsk.reference_no as refNo, tsk.id as taskID, tsk.start_date as startDate, tsk.effective_date as effectiveDate,
-					(asvh.is_departed=false AND asvh.is_returned=false ) as activeVehicle,
-					
-					 asvh.participant_id as partyID, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName
-				 
-				")
+				->select(self::appendQueryFields())
 				->from("Vehicle vh") 
-				//->leftJoin("vh.assignmentTaskOrderVehicles asso")
 				->innerJoin("vh.Category cat")
 				->innerJoin("vh.FuelType ft")
 				->innerJoin("vh.VehicleType vt")
-				->leftJoin("vh.assignedVehicle asvh") 
-				->leftJoin("asvh.Participant prt")
-				->leftJoin("prt.participantDrivers dr")
-				->leftJoin("vh.Task tsk")
+				->leftJoin("vh.assignmentTaskOrderVehicles asor")
+				->leftJoin("asor.Task tsk")
+				->leftJoin("asor.Participant prt")
+				->leftJoin("prt.participantDrivers dr") 
 				->offset($offset)
 				->limit($limit)
-				->where('vh.clss = ?', PropertyClassCore::$VEHICLE);
+				->where("vh.clss = ?", PropertyClassCore::$VEHICLE);
+			 if(!is_null($is_departed))
+				$q = $q->addWhere("vh.is_departed = ?", $is_departed);
+			 if(!is_null($is_returned))
+				$q = $q->addWhere("vh.is_returned = ?", $is_returned);
 			 if(!is_null($type))
-				$q = $q->addWhere('vh.vehicle_type_id = ?', $type);
+				$q = $q->addWhere("vh.vehicle_type_id = ?", $type);
 			 if(!is_null($is_assigned))
-				$q = $q->addWhere('vh.is_assigned = ?', $is_assigned);
+				$q = $q->addWhere("vh.is_assigned = ?", $is_assigned);
+			if(! is_null($exclusions))
+					$q = $q->andWhereNotIn("vh.id", $exclusions ); 
 			 if(!is_null($status))
-				$q = $q->addWhere('vh.vehicle_status = ?', $status);
+				$q = $q->addWhere("vh.vehicle_status = ?", $status);
 			if(!is_null($keyword) )
 				$q = $q->andWhere("vh.plate_number LIKE ? OR vh.vehicle_model LIKE ? OR vh.vehicle_make LIKE ? OR ft.name LIKE ? OR vh.description LIKE ? OR prt.full_name LIKE ?", array($keyword,$keyword,$keyword,$keyword,$keyword,$keyword));
 				
@@ -221,26 +231,17 @@ class VehicleTable extends PluginVehicleTable
 	public static function processObject ($_id, $token_id ) 
 	{
 		$q = Doctrine_Query::create()
-					->select("vh.*, vh.plate_code as plateCode, vh.plate_number as plateNo, vh.plate_code_no as plateCodeNo, vh.vehicle_make as vehicleMake, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.seating_capacity as seatCapacity, vt.name as vehicleType, vh.vehicle_model as modelNo, vh.vehicle_make as vehicleMake, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.vehicle_weight as vehicleWeight, vh.vehicle_model as vehicleModel, vt.id as vehicleTypeID, vt.name as vehicleType, ft.id as fuelTypeID, ft.name as fuelType, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.service_year as serviceYear, vh.no_of_doors as noOfDoors, vh.initial_mileage as purchasedMileage, vh.current_mileage as currentMileage, vh.litter_per_km as literPerKM, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.purchased_date as purchasedDate, vh.purchased_type as purchasedType, , vh.service_type_id as serviceTypeID,
-				
-					asvh.is_departed as isDeparted, 
-					tsk.reference_no as refNo, tsk.id as taskID, tsk.start_date as startDate, tsk.effective_date as effectiveDate,
-					(asvh.is_departed=false AND asvh.is_returned=false ) as activeVehicle,
-					
-					 asvh.participant_id as partyID, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName
-				 
-				")
+				->select(self::appendQueryFields())
 				->from("Vehicle vh") 
-				->leftJoin("vh.assignmentTaskOrderVehicles asso")
-				->leftJoin("vh.Category cat")
-				->leftJoin("vh.FuelType ft")
-				->leftJoin("vh.VehicleType vt")
-				->leftJoin("vh.assignedVehicle asvh") 
-				->leftJoin("asvh.Participant prt")
-				->leftJoin("prt.participantDrivers dr")
-				->leftJoin("vh.Task tsk")
-			->where('vh.id = ? AND vh.token_id = ?', array($_id, $token_id))
-			->fetchOne ( );
+				->innerJoin("vh.Category cat")
+				->innerJoin("vh.FuelType ft")
+				->innerJoin("vh.VehicleType vt")
+				->leftJoin("vh.assignmentTaskOrderVehicles asor")
+				->leftJoin("asor.Task tsk")
+				->leftJoin("asor.Participant prt")
+				->leftJoin("prt.participantDrivers dr") 
+				->where('vh.id = ? AND vh.token_id = ?', array($_id, $token_id))
+				->fetchOne ( );
 			
 		return ( ! $q ? false : $q ); 
 	}
@@ -248,16 +249,17 @@ class VehicleTable extends PluginVehicleTable
 	public static function findObject ($_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("vh.*, vh.plate_code as plateCode, vh.plate_number as plateNo, vh.is_assigned as isAssigned, vh.vehicle_color as vehicleColor, vh.serial_no as serialNo, vh.pin_num as pinNo, vh.seating_capacity as seatCapacity, vh.vehicle_type_id as vehicleType, vh.fuel_type_id as fuelType, vh.vehicle_model as modelNo, vh.vehicle_make as vehicleMake, vh.engine_number as engineNo, vh.chesis_number as chesisNo, vh.vehicle_weight as vehicleWeight,  
-			asso.participant_id as partID, asso.task_id as taskID, dr.employee_id as empID, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, tsk.reference_no as refNo, tsk.start_date as startDate, tsk.effective_date as effectiveDate, asvh.is_departed as isDeparted")
-			->from("Vehicle vh") 
-			->leftJoin("vh.assignmentTaskOrderVehicles asso")
-			->leftJoin("asso.Driver dr")
-			->leftJoin("dr.Participant prt on prt.id = dr.employee_id")
-			->leftJoin("vh.assignedVehicle asvh") 
-			->leftJoin("vh.Task tsk")
-			->where('vh.id = ? AND vh.token_id = ?', array($_id, $token_id))
-			->fetchOne ( );
+			->select(self::appendQueryFields())
+				->from("Vehicle vh") 
+				->innerJoin("vh.Category cat")
+				->innerJoin("vh.FuelType ft")
+				->innerJoin("vh.VehicleType vt")
+				->leftJoin("vh.assignmentTaskOrderVehicles asor")
+				->leftJoin("asor.Task tsk")
+				->leftJoin("asor.Participant prt")
+				->leftJoin("prt.participantDrivers dr") 
+				->where('vh.id = ? AND vh.token_id = ?', array($_id, $token_id))
+				->fetchOne ( );
 			
 		return ( ! $q ? false : $q ); 
 	}
@@ -313,28 +315,11 @@ class VehicleTable extends PluginVehicleTable
 			
 			$vehicle = self::processObject ($vehicle_id, $token );
 			$vehicle->vehicle_status = self::$ACTIVE;
+			$vehicle->is_assigned = true;
 			$vehicle->save();
-			
-			if(!$vehicle->isAssigned)
-			{
-				$vehicle->assignVehicle();
-				$vehicle->activateVehicle();
-			}
-				
-			$_nw = new AssignedVehicle ( ); 
-			$_nw->task_id = $order->task_id; 
-			$_nw->token_id = $order->token_id; 
-			$_nw->assignment_order_id = $order->id;  
-			$_nw->effective_date = $order->effective_date; 
-			$_nw->vehicle_id = $order->vehicle_id; 
-			$_nw->participant_id = $order->participant_id;  
-			$_nw->is_reasigned = false; 
-			$_nw->save();
 
 			$flag = AssignmentTaskTable::processCreateTaskParticipant ( $task_id, $token_id, $part_id, $role, null);
 			
-				
-			 
 			return true; 
 		//} catch ( Exception $e ) {
 		//	return false; 
@@ -384,6 +369,18 @@ class VehicleTable extends PluginVehicleTable
 			
 		return ( ! $q ? false : $q ); 
 		
+	}
+	
+	public static function processUpdateMilealge($v_id, $t_id, $traveled_km, $mileage )
+   {		
+		$q = Doctrine_Query::create( )
+			->update('Vehicle vh')
+			->set('vh.current_mileage', '?', $mileage)  
+			->set('vh.traveled_km', '?', $traveled_km)  
+			->where('vh.id = ? AND vh.token_id = ?', array($v_id, $t_id))
+			->execute();	
+		
+		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
 	
 	public static function getInstance()

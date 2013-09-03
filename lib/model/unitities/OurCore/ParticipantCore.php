@@ -109,7 +109,7 @@ class ParticipantCore {
 		public static function fetchParticipantRoleID ( $value ) 
 		{
 			try {
-					foreach( self::$ALL_PARTICIPANT_ROLEs as $key=> $role ){
+					foreach( self::$ALL_PARTICIPANT_ROLES as $key=> $role ){
 						if( strcmp($role, $value) == 0 )
 						  return $key; 
 				}			
@@ -122,7 +122,7 @@ class ParticipantCore {
 		public static function fetchParticipantRoleValue  (  $id )
 		{
 			try{
-					foreach( self::$ALL_PARTICIPANT_ROLEs as $key=> $role ){
+					foreach( self::$ALL_PARTICIPANT_ROLES as $key=> $role ){
 					  if( $key == $id )
 							return $role; 
 				}

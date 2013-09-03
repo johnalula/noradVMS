@@ -7,12 +7,14 @@
  * 
  * @property string $token_id
  * @property integer $task_id
+ * @property integer $fleet_order_id
  * @property integer $certificate_type
  * @property string $reference_number
  * @property integer $num_pages
  * @property string $folder_stored
  * @property string $description
  * @property Task $Task
+ * @property FleetOrder $FleetOrder
  * 
  * @package    noradVMS
  * @subpackage model
@@ -31,6 +33,9 @@ abstract class BaseTaskAttachment extends sfDoctrineRecord
         $this->hasColumn('task_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('fleet_order_id', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('certificate_type', 'integer', null, array(
              'type' => 'integer',
@@ -59,6 +64,11 @@ abstract class BaseTaskAttachment extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Task', array(
              'local' => 'task_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('FleetOrder', array(
+             'local' => 'fleet_order_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
     }

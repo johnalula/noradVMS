@@ -17,9 +17,8 @@
 
 	<?php //$flags = FuelTypeTable::processCreate ( 'eadas', 'asdfasdf' ); 
 		
-		
-			
-			
+		 //$task_orders = FleetOrderTable::processSelection ( 4, 'f554d9d74060ca37f7794603ae258989', $is_departed=null, $is_returned=null, $status=null, /$keyword=null, $offset=0, $limit=10);
+		//echo count($task_orders);
 	/*	$offset = 0;
 		$limit = 10;
 		$status = null;

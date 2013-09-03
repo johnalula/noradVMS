@@ -120,18 +120,16 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
    public static function processObject($_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID, asvh.id as assignedID, asvh.token_id assignedTokenID, asvh.is_departed as isDeparted, asvh.is_returned as isReturned,
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID, vh.is_departed as isDeparted, vh.is_returned as isReturned,
 			 prt.full_name as fullName,
 			vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID
 			
 			")
 			->from("AssignmentOrder tsko")  
-			->innerJoin("tsko.Task tsk")
-			//->innerJoin("tsko.Driver dr")
+			->innerJoin("tsko.Task tsk") 
+			->innerJoin("tsko.Vehicle vh") 
 			->leftJoin("tsko.Participant prt")
-			->leftJoin("prt.participantDrivers dr")
-			->leftJoin("tsko.Vehicle vh")    
-			->leftJoin("tsko.assignedVehicles asvh")    
+			->leftJoin("prt.participantDrivers dr") 
 			->where('tsko.id = ? AND tsko.token_id = ?', array($_id, $token_id))
 			->fetchOne ( );
 			
@@ -141,17 +139,16 @@ class AssignmentOrderTable extends PluginAssignmentOrderTable
 	public static function processSelection ( $task_id, $token_id, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID, asvh.id as assignedID, asvh.token_id assignedTokenID, asvh.is_departed as isDeparted, asvh.is_returned as isReturned, prt.full_name as fullName,
+			->select("tsko.*,  prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, prt.id as empID, vh.plate_number as plateNo, vh.plate_code as plateCode, vh.plate_code_no as plateCodeNo,vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID, vh.is_departed as isDeparted, vh.is_returned as isReturned,
+			 prt.full_name as fullName,
 			vh.id as vehicleID, vh.token_id as vehicleTokenID, dr.id as driverID, dr.token_id as driverTokenID
 			
 			")
-				->from("AssignmentOrder tsko")  
-			->innerJoin("tsko.Task tsk")
-			//->innerJoin("tsko.Driver dr")
+			->from("AssignmentOrder tsko")  
+			->innerJoin("tsko.Task tsk") 
+			->innerJoin("tsko.Vehicle vh") 
 			->leftJoin("tsko.Participant prt")
-			->leftJoin("prt.participantDrivers dr")
-			->leftJoin("tsko.Vehicle vh")    
-			->leftJoin("tsko.assignedVehicles asvh")    
+			->leftJoin("prt.participantDrivers dr") 
 			->offset($offset)
 			->limit($limit)
 			->where('tsko.task_id = ? AND tsko.token_id = ?', array($task_id, $token_id))

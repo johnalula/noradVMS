@@ -25,7 +25,7 @@
 				<td class="" style="text-align:right;"><?php echo $order->departMileage ?></td>
 				<td class="" style="text-align:right;"><?php echo $order->departMileage ?></td>
 				<td class="" style="text-align:right;"><?php echo $order->diffMileage ?></td>
-				<td class="" style="width:120px;"></td>
+				<td class="" style="width:160px;"><?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?></td>
 				<td class=""></td>
 			</tr>
 			<?php $total +=$order->diffMileage; ?>

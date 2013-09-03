@@ -96,13 +96,13 @@ class DriverTable extends PluginDriverTable
 	public static function processCandidateEmployeeSelection ($type=null, $status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$exclusion = array(); 
-		$excls =  EmployeeTable::processSelection($status, $keyword, $exclusion, ParticipantCore::$DRIVER, $type, $offset, $limit ) ; 
+		$excls =  self::processSelection( $offset, $limit, $keyword, $type_id, $is_assigned ); ; 
 		foreach ($excls as $excl)
 		{
-			$exclusion[] = $excl->id;
+			$exclusion[] = $excl->employee_id;
 		}
 		
-		return EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit ) ; 
+		return EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit ); 
 	}
 	
 	public static function isDuplicated ($_id) 

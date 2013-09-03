@@ -7,11 +7,14 @@
  * 
  * @property string $token_id
  * @property integer $task_id
+ * @property integer $vehicle_id
  * @property integer $participant_role
  * @property integer $participant_id
  * @property clob $description
+ * @property boolean $is_default
  * @property Task $Task
  * @property Participant $Participant
+ * @property Vehicle $Vehicle
  * 
  * @package    noradVMS
  * @subpackage model
@@ -30,6 +33,9 @@ abstract class BaseTaskParticipant extends sfDoctrineRecord
         $this->hasColumn('task_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('vehicle_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('participant_role', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -38,6 +44,10 @@ abstract class BaseTaskParticipant extends sfDoctrineRecord
              ));
         $this->hasColumn('description', 'clob', null, array(
              'type' => 'clob',
+             ));
+        $this->hasColumn('is_default', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
              ));
     }
 
@@ -51,6 +61,11 @@ abstract class BaseTaskParticipant extends sfDoctrineRecord
 
         $this->hasOne('Participant', array(
              'local' => 'participant_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Vehicle', array(
+             'local' => 'vehicle_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
     }

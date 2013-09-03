@@ -26,7 +26,6 @@ class CategoryTable extends PluginCategoryTable
    public static function processCreate ($name, $group_id, $class_id, $description )
 	{
 		$is_duplicated = self::isNameDuplicated ( $name );
-		
 		try {
 			
 			if($is_duplicated)

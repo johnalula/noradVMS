@@ -127,54 +127,15 @@
 								<div class="ui-tab-container-box" style="">
 									<div id="tabs" class="ui-tab-detail-list-box">
 											<ul class="ui-tab-list" > 
-												<li><a href="#ui-tab-one" class="active" data-toggle="tab"><?php echo ('Attachment') ?></a></li>
-												<li ><a href="#ui-tab-two" data-toggle="tab"><?php echo ('Participant') ?></a></li> 
+												<li><a href="#ui-tab-one" class="active" data-toggle="tab"><?php echo ('Participant') ?></a></li>
+												<li ><a href="#ui-tab-two" data-toggle="tab"><?php echo ('Attachments') ?></a></li> 
 												 
 											</ul>
 											<div class="clearFix"></div>
 											
 										<div class="ui-detail-tab-list" >
-											<div id="ui-tab-one" class="ui-tab" style="">
-												<div class="ui-tab-content-frame">
-													 <div class="ui-tab-content-container-box" style="border:0px;">
-													<div class="ui-main-content-list" style="border:0px;"> 
-														<div class="ui-main-content-cont"  style="border:0px;">
-															<div class="ui-content-list-box"  style="border:0px;">
-																<div class="ui-list-filter-cont">
-																	<div class="ui-list-batch-actions"> 
-																		<ul>
-																			<li><a href=""><img src="<?php echo image_path('icons/delete_small') ?>">Delete</a></li>
-																			<li></li> 
-																		</ul>  
-																	</div>
-																	<div class="ui-filter-list"> 
-																		<ul>
-																			<li><img src="<?php echo image_path('icons/find_small') ?>"></li>
-																			<li><input type="text"></li>
-																			<li><select><option>name</option><option>father name</option></select></li> 
-																		</ul>  
-																	</div>
-																	<div class="clearFix"></div>
-																</div>
-																<div class="ui-content-lists">
-																	<?php include_partial('attachmentForm', array('attachments' => $attachments )) ?>
-																</div><!-- end of ui-content-lists -->
-															</div><!-- end of ui-content-list-box -->
-														</div><!-- end of ui-main-content-cont --> 
-													</div><!-- end of ui-main-content-list --> 
-													
-													
-													<div class="ui-list-footer">				
-														  &nbsp; 
-													</div><!-- end of ui-list-header -->
-													
-													<div class="ui-list-pagination-cont">
-														&nbsp;
-													</div><!-- ui-list-pagination-cont -->
-												</div><!-- end of ui-content-container-box -->
-													 </div>
-											</div>
-										<div id="ui-tab-two" class="ui-tab" style="">
+											
+										<div id="ui-tab-one" class="ui-tab" style="">
 											<div class="ui-tab-content-frame">
 												 <div class="ui-tab-content-container-box" style="border:0px;">
 												<div class="ui-main-content-list" style="border:0px;"> 
@@ -214,7 +175,47 @@
 											</div><!-- end of ui-content-container-box -->
 												 </div>
 										</div>
-									
+										
+										<div id="ui-tab-two" class="ui-tab" style="">
+												<div class="ui-tab-content-frame">
+													 <div class="ui-tab-content-container-box" style="border:0px;">
+													<div class="ui-main-content-list" style="border:0px;"> 
+														<div class="ui-main-content-cont"  style="border:0px;">
+															<div class="ui-content-list-box"  style="border:0px;">
+																<div class="ui-list-filter-cont">
+																	<div class="ui-list-batch-actions"> 
+																		<ul>
+																			<li><a href=""><img src="<?php echo image_path('icons/delete_small') ?>">Delete</a></li>
+																			<li></li> 
+																		</ul>  
+																	</div>
+																	<div class="ui-filter-list"> 
+																		<ul>
+																			<li><img src="<?php echo image_path('icons/find_small') ?>"></li>
+																			<li><input type="text"></li>
+																			<li><select><option>name</option><option>father name</option></select></li> 
+																		</ul>  
+																	</div>
+																	<div class="clearFix"></div>
+																</div>
+																<div class="ui-content-lists">
+																	<?php include_partial('attachmentForm', array('attachments' => $attachments )) ?>
+																</div><!-- end of ui-content-lists -->
+															</div><!-- end of ui-content-list-box -->
+														</div><!-- end of ui-main-content-cont --> 
+													</div><!-- end of ui-main-content-list --> 
+													
+													
+													<div class="ui-list-footer">				
+														  &nbsp; 
+													</div><!-- end of ui-list-header -->
+													
+													<div class="ui-list-pagination-cont">
+														&nbsp;
+													</div><!-- ui-list-pagination-cont -->
+												</div><!-- end of ui-content-container-box -->
+													 </div>
+											</div>
 									 </div>
 									<div class="clearFix"></div>
 									</div>
@@ -237,7 +238,7 @@
 					<li><a href="<?php echo url_for('fleet/index') ?>"><button class="ui-back-button"><img src="<?php echo image_path('new_icons/back') ?>">Back</button></a></li>
 				</ul>
 				<ul class="ui-right-button">
-					<?php if(!$taskObj->canReturn): ?>
+					<?php if($task->canReturn): ?>
 					<li><a href="<?php echo url_for('fleet/return_order?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>
 					<?php else: ?>
 					<li><a href="<?php echo url_for('fleet/order?task_id='.$sf_request->getParameter('task_id').'&token_id='.$sf_request->getParameter('token_id')) ?>"><button class="ui-next-button"><img src="<?php echo image_path('new_icons/next') ?>">Next</button></a></li>

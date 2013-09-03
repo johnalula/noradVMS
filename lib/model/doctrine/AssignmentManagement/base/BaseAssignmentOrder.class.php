@@ -15,7 +15,6 @@
  * @property Task $Task
  * @property Participant $Participant
  * @property Vehicle $Vehicle
- * @property Doctrine_Collection $assignedVehicles
  * 
  * @package    noradVMS
  * @subpackage model
@@ -73,10 +72,6 @@ abstract class BaseAssignmentOrder extends sfDoctrineRecord
              'local' => 'vehicle_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
-
-        $this->hasMany('AssignedVehicle as assignedVehicles', array(
-             'local' => 'id',
-             'foreign' => 'assignment_order_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

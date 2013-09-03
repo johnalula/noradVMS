@@ -34,7 +34,7 @@ class fleetActions extends sfActions
 		$service_type = $request->getParameter('service_type');
 		$service_reason = $request->getParameter('service_reason');
 		$customer_id = $request->getParameter('customer_id');
-		$delay_payable = $request->getParameter('delay_payable');
+		$delay_payable = $request->getParameter('delay_payable') ? 1:0;
 		$pID = $this->getUser()->getAttribute('PID');
 		
 		$task = FleetServiceTaskTable::processCreate ( $date, $description, $ref_no, $customer_id, $destination, $no_of_days, $service_type, $service_reason, $pID, $payment_mode, $departure_date, $departure_time, $delay_payable );
@@ -54,8 +54,8 @@ class fleetActions extends sfActions
 		
 		$this->task = FleetServiceTaskTable::processObject ($task_id, $token_id );
 		
-		$this->attachments = FleetServiceTaskTable::processTaskAttachmentSelection ($_id, $token_id, $keyword, $offset, $limit) ;
-		$this->participants = FleetServiceTaskTable::processTaskParticipantSelection ($_id, $token_id, $keyword, $offset, $limit) ;
+		$this->participants = FleetServiceTaskTable::processTaskParticipantSelection($task_id, $token_id, $keyword, $offset, $limit);
+		$this->attachments = FleetServiceTaskTable::processTaskAttachmentSelection ($task_id, $token_id, $keyword, $offset, $limit) ;
 		$this->customers = FleetServiceTaskTable::processCandidateCustomerSelection ($status, $keyword, $offset, $limit);
   }
   
@@ -148,12 +148,43 @@ class fleetActions extends sfActions
 		$task_id = $request->getParameter('task_id');
 		$token_id = $request->getParameter('token_id');
 	
-	/// $this->task_orders = TaskOrderTable::processSelection ($status=null, $keyword=null, $offset=0, $limit=10);
-    //$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
 		$this->vehicles = FleetOrderTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
 		$this->task = FleetServiceTaskTable::processObject ( $task_id, $token_id) ;
+		$this->participants = FleetServiceTaskTable::processTaskParticipantSelection($task_id, $token_id, $keyword, $offset, $limit);
+		$this->attachments = FleetServiceTaskTable::processTaskAttachmentSelection ($task_id, $token_id, $keyword, $offset, $limit) ;
+		$this->passengers = FleetServiceTaskTable::processTaskPassengerSelection ($task_id, $token_id, $keyword, $order_id, $offset, $limit) ;
+		$this->items = FleetServiceTaskTable::processTaskItemSelection ($task_id, $token_id, $keyword, $offset, $limit) ;
+		$this->candidates = FleetServiceTaskTable::processPassengerVehicles ( $task_id, $token_id,  true, $is_returned, $offset, $limit) ;
 	}
 	
+   public function executeCreatePassenger(sfWebRequest $request)
+	{
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$full_name = $request->getParameter('full_name');
+		$order_id = $request->getParameter('order_id');
+		$role = $request->getParameter('role');
+		$description = $request->getParameter('description');
+	
+		$flag = FleetServiceTaskTable::processCreatePassenger ($task_id, $token_id, $full_name, $order_id, $role, $description);
+		
+		return $flag;
+	}
+	
+   public function executeCreateItem(sfWebRequest $request)
+	{
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+		$item_name = $request->getParameter('item_name');
+		$order_id = $request->getParameter('order_id');
+		$quantity = $request->getParameter('quantity');
+		$description = $request->getParameter('description');
+	
+		$flag = FleetServiceTaskTable::processCreateItem ($task_id, $token_id, $item_name, $order_id, $quantity, $description);
+		
+		return $flag;
+	}
+  
    public function executeDepartureComplete(sfWebRequest $request)
 	{
 		
@@ -236,12 +267,28 @@ class fleetActions extends sfActions
 	
 		$this->vehicles = FleetOrderTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
 		$this->task = FleetServiceTaskTable::processObject ( $task_id, $token_id) ;
+		$this->participants = FleetServiceTaskTable::processTaskParticipantSelection($task_id, $token_id, $keyword, $offset, $limit);
+		$this->attachments = FleetServiceTaskTable::processTaskAttachmentSelection ($task_id, $token_id, $keyword, $offset, $limit) ;
+		$this->passengers = FleetServiceTaskTable::processTaskPassengerSelection ($task_id, $token_id, $keyword, $offset, $limit) ;
+		$this->candidates = FleetOrderTable::processCandidateVehicles ( $task_id, $token_id,  true, $is_returned, $offset, $limit) ;
+		$this->items = FleetServiceTaskTable::processTaskItemSelection ($task_id, $token_id, $keyword, $offset, $limit) ;
 	}
   
 
  
   
   public function executeField_form(sfWebRequest $request)
+  {
+		
+		$task_id = $request->getParameter('task_id');
+		$token_id = $request->getParameter('token_id');
+			$this->task = FleetServiceTaskTable::processObject ( $task_id, $token_id) ;
+		$this->task_orders = FleetOrderTable::processSelection ( $task_id, $token_id, $is_departed, $is_returned, $status, $keyword, $offset=0, $limit=10);
+		//$this->candidates = FleetServiceTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+		// $this->vehicles = VehicleTable::processSelection ( $task_id, $token_id, $status, $keyword, $offset, $limit) ;
+  }
+  
+  public function executeCost_summary(sfWebRequest $request)
   {
 		
 		$task_id = $request->getParameter('task_id');

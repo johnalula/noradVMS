@@ -9,7 +9,10 @@
 	</div>
 
 	<?php 
-	//$flag = AssignmentOrderTable::processCreate (2, '2597b1fafcf15021fb073423c1437549', 1, 7, 'asdf asdfasd', '12/5/2013');
+	
+	//$flag = AssignmentOrderTable::processObject(1, '22f2c7da7a8e540ee7257cab3d386a99' );
+	//echo $flag->id;
+	
 		//$order = AssignmentOrderTable::processObject(3, '2597b1fafcf15021fb073423c1437549');
 		echo $order->id;
 	//$flag = AssignmentTaskTable::processCreateTaskOrder (3, '7fa823ccc893042a18d4bc46e872dcd5', 2, 2, 'asdfasd', '12/09/2013' );

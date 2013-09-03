@@ -13,6 +13,7 @@
  * @property integer $reference_no
  * @property clob $description
  * @property string $type
+ * @property integer $registration_mode
  * @property integer $customer_id
  * @property float $service_agreement_cost
  * @property integer $payment_mode_id
@@ -32,14 +33,11 @@
  * @property boolean $is_returned
  * @property boolean $is_delayed
  * @property clob $delay_reason
- * @property integer $registration_mode
- * @property integer $driver_id
  * @property integer $transferer_id
  * @property integer $transferee_id
  * @property integer $new_vehicle_id
  * @property integer $returnee_id
  * @property Doctrine_Collection $itemTasks
- * @property Doctrine_Collection $vehicleAssignmentTasks
  * @property Doctrine_Collection $taskCostTransactions
  * @property Doctrine_Collection $taskOrderTasks
  * @property Doctrine_Collection $fleetTaskOrderTasks
@@ -49,6 +47,7 @@
  * @property Doctrine_Collection $ServiceAccident
  * @property Doctrine_Collection $checkupTaskOrderTasks
  * @property Doctrine_Collection $taskParticipantsTasks
+ * @property Doctrine_Collection $taskPassengers
  * @property Doctrine_Collection $taskAttachmentTasks
  * @property Doctrine_Collection $taskAttachmentTask
  * @property Doctrine_Collection $taskAccidents
@@ -94,6 +93,9 @@ abstract class BaseTask extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
+        $this->hasColumn('registration_mode', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('customer_id', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -131,7 +133,7 @@ abstract class BaseTask extends sfDoctrineRecord
              ));
         $this->hasColumn('is_delay_payable', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => 1,
+             'default' => true,
              ));
         $this->hasColumn('departure_date', 'string', 100, array(
              'type' => 'string',
@@ -164,13 +166,6 @@ abstract class BaseTask extends sfDoctrineRecord
         $this->hasColumn('delay_reason', 'clob', null, array(
              'type' => 'clob',
              ));
-        $this->hasColumn('registration_mode', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('driver_id', 'integer', 8, array(
-             'type' => 'integer',
-             'length' => 8,
-             ));
         $this->hasColumn('transferer_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => false,
@@ -187,6 +182,14 @@ abstract class BaseTask extends sfDoctrineRecord
              ));
 
         $this->setSubClasses(array(
+             'RegistrationTask' => 
+             array(
+              'type' => 3,
+             ),
+             'AssignmentTask' => 
+             array(
+              'type' => 6,
+             ),
              'FleetServiceTask' => 
              array(
               'type' => 1,
@@ -195,10 +198,6 @@ abstract class BaseTask extends sfDoctrineRecord
              array(
               'type' => 2,
              ),
-             'RegistrationTask' => 
-             array(
-              'type' => 3,
-             ),
              'FuelingTask' => 
              array(
               'type' => 4,
@@ -206,10 +205,6 @@ abstract class BaseTask extends sfDoctrineRecord
              'AccidentTask' => 
              array(
               'type' => 5,
-             ),
-             'AssignmentTask' => 
-             array(
-              'type' => 6,
              ),
              'TransferTask' => 
              array(
@@ -234,10 +229,6 @@ abstract class BaseTask extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('Item as itemTasks', array(
-             'local' => 'id',
-             'foreign' => 'task_id'));
-
-        $this->hasMany('AssignedVehicle as vehicleAssignmentTasks', array(
              'local' => 'id',
              'foreign' => 'task_id'));
 
@@ -274,6 +265,10 @@ abstract class BaseTask extends sfDoctrineRecord
              'foreign' => 'task_id'));
 
         $this->hasMany('TaskParticipant as taskParticipantsTasks', array(
+             'local' => 'id',
+             'foreign' => 'task_id'));
+
+        $this->hasMany('TaskPassengers as taskPassengers', array(
              'local' => 'id',
              'foreign' => 'task_id'));
 

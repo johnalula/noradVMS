@@ -9,16 +9,18 @@
  * @property VehicleServiceType $VehicleServiceType
  * @property FuelType $FuelType
  * @property ServiceType $ServiceType
- * @property Doctrine_Collection $assignedVehicle
+ * @property Doctrine_Collection $vehicleTemporaryAssignments
  * @property Doctrine_Collection $vehicleCheckupSettings
  * @property Doctrine_Collection $vehicleCheckupPeriod
+ * @property Doctrine_Collection $assignmentTaskOrderVehicles
+ * @property Doctrine_Collection $vehicleFleetOrders
  * @property Doctrine_Collection $serviceVehicleCosts
  * @property Doctrine_Collection $serviceVehicleItemAcquiredAttachments
  * @property Doctrine_Collection $serviceVehicleAttachmentVehicles
  * @property Doctrine_Collection $serviceVehicleAccidentVehicles
- * @property Doctrine_Collection $assignmentTaskOrderVehicles
  * @property Doctrine_Collection $vehicleReplacementVehicle
  * @property Doctrine_Collection $vhicleCheckupSettingTaskOrders
+ * @property Doctrine_Collection $vehicleTaskParticipants
  * @property Doctrine_Collection $taskAccidentVehicle
  * @property Doctrine_Collection $taskIncidentVehicle
  * 
@@ -51,7 +53,7 @@ abstract class BaseVehicle extends Item
              'local' => 'service_type_id',
              'foreign' => 'id'));
 
-        $this->hasMany('AssignedVehicle as assignedVehicle', array(
+        $this->hasMany('TemporaryAssignment as vehicleTemporaryAssignments', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
@@ -60,6 +62,14 @@ abstract class BaseVehicle extends Item
              'foreign' => 'vehicle_id'));
 
         $this->hasMany('VehicleChakupPeriod as vehicleCheckupPeriod', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('AssignmentOrder as assignmentTaskOrderVehicles', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('FleetOrder as vehicleFleetOrders', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
@@ -79,15 +89,15 @@ abstract class BaseVehicle extends Item
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
-        $this->hasMany('AssignmentOrder as assignmentTaskOrderVehicles', array(
-             'local' => 'id',
-             'foreign' => 'vehicle_id'));
-
         $this->hasMany('ReplacementTask as vehicleReplacementVehicle', array(
              'local' => 'id',
              'foreign' => 'new_vehicle_id'));
 
         $this->hasMany('CheckUpOrder as vhicleCheckupSettingTaskOrders', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('TaskParticipant as vehicleTaskParticipants', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

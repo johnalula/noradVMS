@@ -25,8 +25,8 @@
 				 <span class="" style=""><a href='#' class='locationModal' rel='#locationPrompts'>
 				<button class="ui-add-button">...</button></a> </span> 	
 			</th> 
-			<th class="ui-inpu-box" style="width:140px;min-width:140px;">
-				<select id="particiapnt_role" style="width:140px;min-width:140px;" >
+			<th class="ui-inpu-box" style="width:180px;min-width:180px;">
+				<select id="particiapnt_role" style="width:188px;min-width:188px;" >
 					<?php foreach($roles as $key => $role ): ?>
 					<option value="<?php echo $key ?>"><?php echo $role ?></option>
 					<?php endforeach; ?>
@@ -35,9 +35,9 @@
 			<th class="ui-inpu-box" style="width:98%;min-width:50px;">
 				<input type="text" style="width:98%;min-width:50px;" id="description" name="description">
 			</th>  
-			<th class="" style="padding:0px 1px;text-align:center;border-left:1px solid #ccc;">
-				 <span class="" style=""><a href='#' onclick="Javascript:createTaskParticipant();" class='' rel='#'>
-				<button class="ui-action-button"  >...</button></a> </span>	
+			<th class="" style="padding:0px 0px;text-align:left;border-left:1px solid #ccc;">
+				 <span class="" style="padding:0px!important;"><a href='#' onclick="Javascript:createTaskParticipant();" class='' rel='#'>
+				<button class="ui-action-button" style="padding:0px 4px!important!;" ><img style="float:left!important;vertical-align:middle!important;width:16px!important;height:16px!important;margin:0px!important!;" src="<?php echo image_path('new_icons/user_add')  ?>" ></button></a> </span>	
 			</th>
 			<th class="ui-table-border" style="width:8px;border-left:0px solid #bbb;padding:4px 8px;"></th>
 		</tr>				 
@@ -61,31 +61,26 @@
 				 <span class="" style=""><a href='#' class='locationModal' rel='#locationPrompts' >
 				<button class="ui-add-button">...</button></a> </span> 	
 			</td>  
-			<td class="ui-input-body-box" style="width:140px;min-width:140px;">
-				<select id="certificate_type" style="width:140px;min-width:140px;" >
-					<option value="1"><?php echo 'Project' ?></option>
-					<option value="2"><?php echo 'Donated' ?></option>
-					<option value="3"><?php echo 'Purchased' ?></option>
-				</select>
+			<td class="ui-input-body-box" style="width:180px;min-width:180px;">
+				<input type="text" style="width:180px;min-width:180px;" id="description" disabled name="description" value="<?php echo ParticipantCore::fetchParticipantRoleValue($participant->participant_role) ?>">
 			</td>   
 			<td class="ui-input-body-box" style="width:98%;min-width:50px;">
 				<input type="text" style="width:98%;min-width:50px;" id="description" name="description">
 			</td>  
-			<td  class="" style="padding:0px 2px 0px 2px;width:50px;min-width:50px;border-left:1px solid #ddd;background:#dfe2e7;"> 
-				<div class="ui-list-action" style="width:50px;min-width:50px;padding:0x 2px;text-align:center;">
+			<td  class="" style="padding:0px 0px 0px 2px;width:42px;min-width:42px;border-right:0px solid #ddd;"> 
+				<div class="ui-list-action" style="width:42px;min-width:42px;padding:0x 0px;text-align:center;">
 					<ul>
 						<li>
-							<a href="<?php echo url_for('category/view?participant_id='.$participant->id) ?>" class="" rel="<?php echo $participant->id ?>">	
-								<button class="ui-button"  >
-									<img style="margin:0px;" src="<?php echo image_path('new_icons/save_small')  ?>" >
-								</button> 
+							<a href="#" class="ui-action-button" onclick="Javascript:deleteParticipant(<?php echo $participant->id ?>);" rel="<?php echo $participant->id ?>">									 
+									<img src="<?php echo image_path('new_icons/save_small')  ?>" >								 
 							</a>
 						</li> 
-						<li> 												
-							<button class="ui-button" onClick="Javascript:deleteTaskParticipant(<?php echo $participant->id ?>);">
-								<img src="<?php echo image_path('icons/delete_small')  ?>" >
-							</button>
-						</a>
+						<li> 
+							<a href="#" class="ui-action-button" onclick="Javascript:deleteParticipant(<?php echo $participant->id ?>);" rel="<?php echo $participant->id ?>">	
+								 
+									<img src="<?php echo image_path('icons/delete')  ?>" >
+								 
+							</a>
 						</li>
 					</ul>
 				</div>

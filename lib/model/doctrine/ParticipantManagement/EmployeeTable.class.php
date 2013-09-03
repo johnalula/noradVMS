@@ -131,7 +131,7 @@ class EmployeeTable extends PluginEmployeeTable
 		return ( $q > 0 );   
 	}
 
-   public static function processDelete()
+   public static function processDelete($_id, $token_id)
    {
 		$q = Doctrine_Query::create()
 			->select("prt.*, to.id as TOID")
@@ -174,13 +174,14 @@ class EmployeeTable extends PluginEmployeeTable
 	{
 		$q = Doctrine_Query::create()
 				->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.employment_type_id as employmentType, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName,
-				dr.id as driverID, dr.token_id as driverTokenID
+				dr.id as driverID, dr.token_id as driverTokenID,
+				pt.name as parentName, pt.alias as parentAlias
 				
 				")
 				->from("Employee prt") 
 				->leftJoin("prt.Participant pt") 
 				->leftJoin("prt.participantContacts prtcnt")
-					->leftJoin("prt.participantDrivers dr")
+				->leftJoin("prt.participantDrivers dr")
 				->leftJoin("prt.Campus cmps")
 				->offset($offset)
 				->limit($limit)

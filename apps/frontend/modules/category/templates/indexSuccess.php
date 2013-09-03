@@ -206,9 +206,11 @@
 		location.reload().delay(3000);
 	}
 	
-	function showError()
+	function showError(data)
 	{
 		$('#ui-display-error-cont').removeClass('displayNone');
+		$('.ui-error-list').html(data);
+		
 	}
 	
 	function deleteSuccess()
@@ -242,7 +244,8 @@
 					showSuccess(); 
 				},
 				error: function(msg) {
-					showError();
+					//showError(msg);
+					alert(msg);
 				},
 			
 				async: false

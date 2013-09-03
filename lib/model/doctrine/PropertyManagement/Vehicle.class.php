@@ -28,6 +28,7 @@ class Vehicle extends PluginVehicle
 	public function processDeparture()
 	{
 		$this->vehicle_status = VehicleTable::$ON_FIELD;
+		$this->is_departed = true;
 		$this->save();
 			
 	}
@@ -38,15 +39,22 @@ class Vehicle extends PluginVehicle
 			
 	}
 	
-	public function processDeparure()
-	{
-		$this->is_departed = true;
-		$this->save();
-	}
-	
 	public function processReturn()
 	{
 		$this->vehicle_status = VehicleTable::$ACTIVE;
+		$this->is_returned = false;
+		$this->is_departed = false;
+		$this->save();
+	}
+	
+	public function processUpdateMilealge($mileage )
+	{
+		$this->current_mileage = $mileage;
+		$this->save();
+	}
+	public function processUpdateKM($traveled_km)
+	{
+		$this->traveled_km = $traveled_km;
 		$this->save();
 	}
 }

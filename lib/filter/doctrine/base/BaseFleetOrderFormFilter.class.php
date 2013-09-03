@@ -13,13 +13,13 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'assigned_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AssignedVehicle'), 'add_empty' => true)),
+      'vehicle_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Vehicle'), 'add_empty' => true)),
       'token_id'             => new sfWidgetFormFilterInput(),
       'task_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Task'), 'add_empty' => true)),
       'order_cost'           => new sfWidgetFormFilterInput(),
       'payment_mode_id'      => new sfWidgetFormFilterInput(),
       'effective_date'       => new sfWidgetFormFilterInput(),
-      'number_of_passangers' => new sfWidgetFormFilterInput(),
+      'number_of_passengers' => new sfWidgetFormFilterInput(),
       'departure_mileage'    => new sfWidgetFormFilterInput(),
       'return_mileage'       => new sfWidgetFormFilterInput(),
       'difference_mileage'   => new sfWidgetFormFilterInput(),
@@ -31,13 +31,13 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'assigned_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AssignedVehicle'), 'column' => 'id')),
+      'vehicle_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Vehicle'), 'column' => 'id')),
       'token_id'             => new sfValidatorPass(array('required' => false)),
       'task_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Task'), 'column' => 'id')),
       'order_cost'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'payment_mode_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'effective_date'       => new sfValidatorPass(array('required' => false)),
-      'number_of_passangers' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'number_of_passengers' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'departure_mileage'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'return_mileage'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'difference_mileage'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -66,13 +66,13 @@ abstract class BaseFleetOrderFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                   => 'Number',
-      'assigned_id'          => 'ForeignKey',
+      'vehicle_id'           => 'ForeignKey',
       'token_id'             => 'Text',
       'task_id'              => 'ForeignKey',
       'order_cost'           => 'Number',
       'payment_mode_id'      => 'Number',
       'effective_date'       => 'Text',
-      'number_of_passangers' => 'Number',
+      'number_of_passengers' => 'Number',
       'departure_mileage'    => 'Number',
       'return_mileage'       => 'Number',
       'difference_mileage'   => 'Number',

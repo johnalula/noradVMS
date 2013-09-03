@@ -23,6 +23,7 @@
  * @property integer $status
  * @property clob $description
  * @property string $type
+ * @property string $assigned_date
  * @property string $plate_number
  * @property string $plate_code
  * @property integer $plate_code_no
@@ -48,14 +49,18 @@
  * @property integer $checkup_period_id
  * @property integer $vehicle_status
  * @property integer $fuel_setting_id
+ * @property boolean $is_temporary_assigned
  * @property boolean $is_assigned
+ * @property boolean $is_departed
+ * @property boolean $is_returned
+ * @property boolean $is_maintened
+ * @property boolean $is_reasigned
  * @property string $spare_Identification
  * @property Category $Category
  * @property Task $Task
  * @property TaskOrder $TaskOrder
  * @property Unit $Unit
  * @property Doctrine_Collection $ServiceVehicleItemAcqAssignmentOrderuired
- * @property Doctrine_Collection $taskAttachmentItems
  * 
  * @package    noradVMS
  * @subpackage model
@@ -137,6 +142,10 @@ abstract class BaseItem extends sfDoctrineRecord
         $this->hasColumn('type', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('assigned_date', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('plate_number', 'string', 255, array(
              'type' => 'string',
@@ -231,7 +240,27 @@ abstract class BaseItem extends sfDoctrineRecord
         $this->hasColumn('fuel_setting_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('is_temporary_assigned', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
         $this->hasColumn('is_assigned', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('is_departed', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('is_returned', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('is_maintened', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('is_reasigned', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 0,
              ));
@@ -276,10 +305,6 @@ abstract class BaseItem extends sfDoctrineRecord
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('ServiceVehicleItemAcqAssignmentOrderuired', array(
-             'local' => 'id',
-             'foreign' => 'item_id'));
-
-        $this->hasMany('ItemAcquiredAttachment as taskAttachmentItems', array(
              'local' => 'id',
              'foreign' => 'item_id'));
     }

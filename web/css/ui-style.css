@@ -82,8 +82,14 @@ padding:6px 0px 0px 0px;margin:-3px 4px 0px 5px;}
 .ui-content-lists table thead tr.ui-input-header th.ui-inpu-box {padding:0px!important;border-right:1px solid #ddd;border-bottom:1px solid #ddd;}
 .ui-content-lists table thead tr.ui-input-header th input {background:#fff;margin:0px!important;padding:3px 3px!important;font-size:11px!important;-webkit-border-radius:1px 1px 1px 1px;-moz-border-radius:1px 1px 1px 1px;border-radius:1px 1px 1px 1px;border:1px solid #aaa;}
 .ui-content-lists table thead tr.ui-input-header th select {background:#fff;margin:0px!important;padding:2px 3px!important;font-size:11px!important;-webkit-border-radius:1px 1px 1px 1px;-moz-border-radius:1px 1px 1px 1px;border-radius:1px 1px 1px 1px;border:1px solid #aaa;}
+
 .ui-content-lists table thead tr.ui-input-header th a button.ui-action-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;padding:2px 8px;
 border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;}
+
+.ui-content-lists table thead tr.ui-input-header th.ui-action-triger div.ui-action-triger-button a {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:4px 4px 4px 4px;-moz-border-radius:4px 4px 4px 4px;border-radius:4px 4px 4px 4px;padding:4px 13px;
+border:1px solid #aaa;-webkit-box-shadow:0 0px 1px #ddd;-moz-box-shadow:0 0px 1px #ddd;box-shadow:0 0px 1px #ddd;background:#f7f7f7;margin-left:0px!important;}
+
+.ui-content-lists table thead tr.ui-input-header th.ui-action-triger div.ui-action-triger-button a img {vertical-align:top;width:20px;height:20px;}
 
 
 .ui-content-lists table thead tr.ui-input-header th.ui-add-button-action button.ui-add-button {border:0px solid #f00;margin:0px!important;font-size:10px;font-weight:bold;-webkit-border-radius:2px 2px 2px 2px;-moz-border-radius:2px 2px 2px 2px;border-radius:2px 2px 2px 2px;padding:2px 4px;

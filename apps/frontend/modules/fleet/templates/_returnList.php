@@ -31,7 +31,7 @@
 				<input type="text" style="width:130px;min-width:130px;" id="" value="<?php echo '( '. $order->plateCodeNo.' ) '.$order->plateCode .' - '.$order->plateNo.' ( '.$order->vehicleMake.' ) ' ?>">
 			</td>
 			<td class="ui-input-body-box" style="width:130px;min-width:130px;"> 
-				<input type="text" style="width:130px;min-width:130px;" id="" value="<?php echo $order->fullName ?>">
+				<input type="text" style="width:130px;min-width:130px;" id="" value="<?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>">
 			</td>
 			<td class="ui-input-body-box" style="width:105px;min-width:105px;"> 
 				<input type="text" style="width:105px;min-width:105px;" id="" value="<?php echo $order->departMileage ?>">

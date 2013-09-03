@@ -31,7 +31,7 @@
 				<input type="text" style="width:160px;min-width:160px;" id="" value="<?php echo '( '. $order->plateCodeNo.' ) '.$order->plateCode .' - '.$order->plateNo.' ( '.$order->vehicleMake.' ) ' ?>">
 			</td>
 			<td class="ui-input-body-box" style="width:150px;min-width:130px;"> 
-				<input type="text" style="width:150px;min-width:150px;" id="" value="<?php echo $order->fullName ?>">
+				<input type="text" style="width:150px;min-width:150px;" disabled id="" value="<?php echo $order->firstName.' '.$order->fatherName.' '.$order->grandFatherName ?>">
 			</td>
 			<td class="ui-input-body-box" style="width:110px;min-width:100px;"> 
 				<input type="text" style="width:110px;min-width:100px;" id="" value="<?php echo $order->departMileage ?>">
@@ -40,7 +40,7 @@
 				<input type="text" style="width:110px;min-width:100px;" id="" value="<?php echo $order->fuelAmount.'  litter' ?>">
 			</td>
 			<td class="ui-input-body-box" style="width:80px;min-width:80px;"> 
-				<input type="text" style="width:80px;min-width:80px;" disabled id="" value="<?php echo $order->noOfPassengers ?>"> 
+				<input type="text" style="width:80px;min-width:80px;text-align:center;" disabled id="" value="<?php echo $order->noOfPassengers ?>"> 
 			</td>
 			<td class="ui-input-body-box" style="width:95%;min-width:40px;"> 
 				<input type="text" style="width:95%;min-width:40px;" id="" value="<?php echo $order->description  ?> ">
