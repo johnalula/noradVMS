@@ -307,18 +307,24 @@ class VehicleTable extends PluginVehicleTable
 			$part_id = $order->participant_id;
 			$task_id =  $order->task_id;
 			$token_id =  $order->token_id;
+			$assigned_date =  $order->effective_date;
 			$role =  ParticipantCore::$DRIVER;
 			
 			$driver = DriverTable::processObject ($driver_id, $dr_token );
 			if(!$driver->isAssigned)
 				$driver->assignDriver();
 			
+			$task = AssignmentTaskTable::processObject ($task_id, $token_id );
+			$owner_id = $task->ownerID;
 			$vehicle = self::processObject ($vehicle_id, $token );
+			//$vehicle_id = $vehicle->id;
 			$vehicle->vehicle_status = self::$ACTIVE;
+			$vehicle->owner_id = $owner_id;
+			$vehicle->assigned_date = $assigned_date;
 			$vehicle->is_assigned = true;
 			$vehicle->save();
 
-			$flag = AssignmentTaskTable::processCreateTaskParticipant ( $task_id, $token_id, $part_id, $role, null);
+			$flag = AssignmentTaskTable::processCreateTaskParticipant ( $task_id, $token_id, $part_id, $role, $vehicle_id, null);
 			
 			return true; 
 		//} catch ( Exception $e ) {

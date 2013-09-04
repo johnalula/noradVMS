@@ -23,6 +23,7 @@
  * @property integer $status
  * @property clob $description
  * @property string $type
+ * @property integer $owner_id
  * @property string $assigned_date
  * @property string $plate_number
  * @property string $plate_code
@@ -142,6 +143,9 @@ abstract class BaseItem extends sfDoctrineRecord
         $this->hasColumn('type', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
+             ));
+        $this->hasColumn('owner_id', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('assigned_date', 'string', 100, array(
              'type' => 'string',

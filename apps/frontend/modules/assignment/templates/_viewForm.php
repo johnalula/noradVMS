@@ -3,7 +3,18 @@
 <input style="width:120px;" type="hidden" id="tokenID" name="tokenID" value="<?php echo $sf_request->getParameter('token_id') ?>">		
 
 <table class="autoWidth" style="margin-left:10px;margin-top:5px;" id="detailTable" >
-	<tbody style="width:40%;"> 
+	<tbody style="width:40%;">
+		<tr>
+			<td class="rightSide"><?php echo __('Owner') ?>:<span class="ui-mandatory">*</span></td>
+			<td >				
+				<input type="text" disabled id="owner_name" style="width:160px;" value="<?php echo $taskObj->ownerAlias ? $taskObj->ownerAlias : $taskObj->ownerName ?>">
+				<input type="hidden" disabled id="ownerID" style="width:160px;" value="<?php echo $taskObj->ownerID ?>"> 
+				<span class="issue_for" style="">
+						<a href='#' class='ownerModal' rel='#ownerPrompts'>
+				<button class="ui-button"> ... </button></a> </span> 	
+				<br><span id="owner_validation" class="error_validation displayNone"><?php echo __('Owner is required!') ?></span>	
+			</td>	
+		</tr> 
 		<tr>
 			<td class="rightSide"><?php echo __('Reference No') ?>:<span class="ui-mandatory">*</span></td>
 			<td>

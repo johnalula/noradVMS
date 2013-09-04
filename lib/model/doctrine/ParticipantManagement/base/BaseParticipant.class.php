@@ -35,7 +35,9 @@
  * @property Participant $Participant
  * @property Campus $Campus
  * @property Employee $Employee
+ * @property Doctrine_Collection $ownerVehicles
  * @property Doctrine_Collection $participantTemporaryAssignments
+ * @property Doctrine_Collection $ownerAssignmentTasks
  * @property Doctrine_Collection $assignmentTaskOrderParticipants
  * @property Doctrine_Collection $fleetTaskParticipants
  * @property Doctrine_Collection $transferTaskTransferee
@@ -217,9 +219,17 @@ abstract class BaseParticipant extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
+        $this->hasMany('Vehicle as ownerVehicles', array(
+             'local' => 'id',
+             'foreign' => 'owner_id'));
+
         $this->hasMany('TemporaryAssignment as participantTemporaryAssignments', array(
              'local' => 'id',
              'foreign' => 'participant_id'));
+
+        $this->hasMany('AssignmentTask as ownerAssignmentTasks', array(
+             'local' => 'id',
+             'foreign' => 'owner_id'));
 
         $this->hasMany('AssignmentOrder as assignmentTaskOrderParticipants', array(
              'local' => 'id',

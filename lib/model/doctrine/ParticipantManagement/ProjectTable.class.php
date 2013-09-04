@@ -19,16 +19,15 @@ class ProjectTable extends PluginProjectTable
 	
  
 	
-	public static function processCreate ( $parent_id, $leader_id, $name, $project_director, $project_code, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processCreate ( $parent_id, $name, $project_code, $status, $project_no, $alias, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$token = trim($name).trim($project_no).rand('11111', '99999');
 		$_nw = new Project(); //
 		$_nw->token_id = MD5($token);
-		$_nw->participant_type_id = ParticipantTable::$INSTITUTION;
-		$_nw->leader_participant_id = $leader_id;
+		$_nw->participant_type = ParticipantCore::$PROJECT; 
 		$_nw->name = trim($name); 
 		$_nw->project_code = trim($project_code); 
-		$_nw->project_director = trim($project_director); 
+		$_nw->alias = trim($alias); 
 		$_nw->status_id = $status; 
 		$_nw->project_no = trim($project_no);
 		$_nw->vat_number = trim($vat_number);
@@ -41,13 +40,12 @@ class ProjectTable extends PluginProjectTable
 		return true; 
 	}
 
-	public static function processUpdate($_id, $token_id, $parent_id, $leader_id, $name, $project_director, $project_code, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
+	public static function processUpdate($_id, $token_id, $parent_id, $name, $project_code, $status, $project_no, $vat_number, $description, $street_no, $house_no, $pobox_no, $mobile_no, $phone_no, $fax_no, $email, $website)
 	{
 		$q = Doctrine_Query::create( )
 			->update('Project prt')
-			->set('prt.participant_type_id', '?', ParticipantTable::$PROJECT )
+			->set('prt.participant_type', '?', ParticipantCore::$PROJECT )
 			->set('prt.name', '?', trim($name))
-			->set('prt.leader_participant_id', '?',  $leader_id )
 			->set('prt.project_code', '?', trim($project_code)) 
 			->set('prt.project_director', '?', trim($project_director)) 
 			->set('prt.status_id', '?', trim($status)) 
@@ -66,12 +64,17 @@ class ProjectTable extends PluginProjectTable
 	public static function processObject($_id, $token_id)
 	{
 		$q = Doctrine_Query::create()
-			->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, 	prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.employment_type_id as employmentType, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName,
+			 
+				pt.name as parentName, pt.alias as parentAlias
+				
+				")
+				
 				->from("Project prt") 
 				->leftJoin("prt.Participant pt") 
 				->leftJoin("prt.participantContacts prtcnt")
 				->leftJoin("prt.Campus cmps")
-				->where("prt.id = ? AND prt.token_id = ? AND prt.participant_type = ?", array($_id, $token_id, ParticipantCore::$SECTION) )
+				->where("prt.id = ? AND prt.token_id = ? AND prt.participant_type = ?", array($_id, $token_id, ParticipantCore::$PROJECT) )
 			->fetchOne(); 
 		return (! $q ? null : $q ); 	
 		
@@ -80,14 +83,18 @@ class ProjectTable extends PluginProjectTable
 	public static function processSelection($status=null, $keyword=null, $exclusion=null, $type=null, $offset=0, $limit=10 ) 
 	{
 		$q = Doctrine_Query::create()
-				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->select("prt.*, prt.name as firstName, prt.father_name as fatherName, prt.grand_father_name as grandFatherName, prt.full_name as fullName, 	prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.employment_type_id as employmentType, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName,
+			 
+				pt.name as parentName, pt.alias as parentAlias
+				
+				")
 				->from("Project prt") 
 				->leftJoin("prt.Participant pt") 
 				->leftJoin("prt.participantContacts prtcnt")
 				->leftJoin("prt.Campus cmps")
 				->offset($offset)
 				->limit($limit)
-				->where("prt.participant_type = ?", ParticipantCore::$SECTION);
+				->where("prt.participant_type = ?", ParticipantCore::$PROJECT);
 				if(! is_null($status))
 					$q = $q->andWhere("prt.status_id=?", $status);
 				if(! is_null($type))
@@ -103,7 +110,10 @@ class ProjectTable extends PluginProjectTable
 	public static function processUmbrellaSelection($status=null, $keyword=null, $exclusion=null, $type=null, $offset=0, $limit=10 )
 	{
 		$q = Doctrine_Query::create()
-				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName")
+				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName,
+				pt.name as parentName, pt.alias as parentAlias
+				
+				")
 				->from("Participant prt") 
 				->leftJoin("prt.Participant pt") 
 				->leftJoin("prt.participantContacts prtcnt")
@@ -121,6 +131,10 @@ class ProjectTable extends PluginProjectTable
 				$q = $q->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	public static function processCandidateDirectorsSelection($status=null, $keyword=null, $exclusion=null, $emp_type=null, $type=null, $offset=0, $limit=10 )
+	{
+		 return EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit );
 	}
     
 	public static function processStatusSelection ()

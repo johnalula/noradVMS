@@ -8,6 +8,7 @@
  * @property VehicleType $VehicleType
  * @property VehicleServiceType $VehicleServiceType
  * @property FuelType $FuelType
+ * @property Participant $Participant
  * @property ServiceType $ServiceType
  * @property Doctrine_Collection $vehicleTemporaryAssignments
  * @property Doctrine_Collection $vehicleCheckupSettings
@@ -46,6 +47,11 @@ abstract class BaseVehicle extends Item
 
         $this->hasOne('FuelType', array(
              'local' => 'fuel_type_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Participant', array(
+             'local' => 'owner_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

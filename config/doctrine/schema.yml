@@ -41,6 +41,7 @@ Vehicle:
     keyField: type
     keyValue: 1
   columns:  
+    owner_id: { type: integer }
     assigned_date: { type: string(100) }
     plate_number: { type: string(255) }
     plate_code: { type: string(255), default: 'ET' }
@@ -78,6 +79,7 @@ Vehicle:
    VehicleType: { onDelete: CASCADE, local: vehicle_type_id, foreign: id, foreignAlias: vehicleTypes }
    VehicleServiceType: { onDelete: CASCADE, local: service_type_id, foreign: id, foreignAlias: vehicleTypes }
    FuelType: { onDelete: CASCADE, local: fuel_type_id, foreign: id, foreignAlias: vehicleTypes }  
+   Participant: { onDelete: CASCADE, local: owner_id, foreign: id, foreignAlias: ownerVehicles } 
     
 Sparepart:
   package: PropertyManagement
@@ -250,6 +252,10 @@ AssignmentTask:
     type: concrete
     keyField: type
     keyValue: 6 
+  columns:
+    owner_id: { type: integer }
+  relations:
+    Participant: { onDelete: CASCADE, local: owner_id, foreign: id, foreignAlias: ownerAssignmentTasks }
 
 AssignmentOrder:
   package: AssignmentManagement

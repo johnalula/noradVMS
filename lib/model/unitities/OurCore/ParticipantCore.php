@@ -103,8 +103,9 @@ class ParticipantCore {
 		public static $COORDINATOR = 15;
 		public static $WITNES = 16;
 		public static $DATA_INCODER = 17;
-		public static $OTHER_ROLE = 18;
-		public static $ALL_PARTICIPANT_ROLES = array( 1 => "President", 2 => "Director", 3 => "Dean", 4 => "Head", 5 => "Project Leader", 6 => "Staff", 7 => "Committee Leader", 8 => "Approval ", 9 => "Authorize",10 => "Section Leader", 11 => "Vehicle Driver" , 12 => "Customer", 13 => "Company Owner", 14 => "Passanger", 15 => "Cordinator", 16 => "Witnes", 17 => "Data Incoder", 18 => "Other Role");
+		public static $OWNER = 18;
+		public static $OTHER_ROLE = 19;
+		public static $ALL_PARTICIPANT_ROLES = array( 1 => "President", 2 => "Director", 3 => "Dean", 4 => "Head", 5 => "Project Leader", 6 => "Staff", 7 => "Committee Leader", 8 => "Approval ", 9 => "Authorize",10 => "Section Leader", 11 => "Vehicle Driver" , 12 => "Customer", 13 => "Company Owner", 14 => "Passanger", 15 => "Cordinator", 16 => "Witnes", 17 => "Data Incoder", 18 => "Owner", 19 => "Other Role");
 		
 		public static function fetchParticipantRoleID ( $value ) 
 		{

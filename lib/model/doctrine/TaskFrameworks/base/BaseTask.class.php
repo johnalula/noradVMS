@@ -14,6 +14,7 @@
  * @property clob $description
  * @property string $type
  * @property integer $registration_mode
+ * @property integer $owner_id
  * @property integer $customer_id
  * @property float $service_agreement_cost
  * @property integer $payment_mode_id
@@ -94,6 +95,9 @@ abstract class BaseTask extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('registration_mode', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('owner_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('customer_id', 'integer', null, array(

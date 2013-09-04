@@ -24,7 +24,7 @@
 			<td class="" style="width:15px;min-width:15px;padding:2px 8px;"> 
 				<input type="radio" class="selectDriver" rel="<?php echo  $candidate->employee_id ?>" id="selectCandidate-<?php echo $i ?>" name="selectCandidate" value="<?php echo  $candidate->employee_id. '$'.$candidate->firstName ?>">
 			</td>
-			<td class="" style="width:95%;;min-width:190px;"> 
+			<td class="" style="width:200px;min-width:200px;"> 
 				<?php echo $candidate->firstName.' '.$candidate->fatherName.' '.$candidate->grandFatherName . ' ' ?>
 			</td>
 			<td class="" style="width:60px;min-width:60px;"> 

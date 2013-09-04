@@ -14,12 +14,13 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
      */
      
      
-	public static function processCreate (  $date, $description, $ref, $_pid ) 
+	public static function processCreate($date, $description, $ref, $owner, $_pid) 
 	{      
-        try{
+       // try{
 				$token = trim($date).trim($ref).rand('11111', '99999');
 				$_nw = new AssignmentTask(); 
-				$_nw->token_id = md5($token)  ; 
+				$_nw->token_id = md5($token); 
+				$_nw->owner_id = $owner;  
 				$_nw->description = $description  ;  
 				$_nw->status_id = TaskCore::$ACTIVE; 
 				$_nw->reference_no = $ref; 
@@ -43,10 +44,18 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 				$prt->description = trim($description);
 				$prt->save();
 				
+				$prt = new TaskParticipant ();
+				$prt->token_id = $_nw->token_id;
+				$prt->task_id = $_nw->id;
+				$prt->participant_id = $owner;
+				$prt->participant_role = ParticipantCore::$OWNER;
+				$prt->description = trim($description);
+				$prt->save();
+				
             return $_nw; 
-        } catch ( Exception $e) {
-            return false; 
-        }
+      //  } catch ( Exception $e) {
+            //return false; 
+       // }
 	}
 	
 	public static function processUpdate ($_id, $token_id, $date, $description, $ref )
@@ -65,12 +74,15 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 	public static function processObject ( $_id, $token_id ) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
-			->from("Task tsk") 
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate, tsk.description as description, tsk.owner_id as ownerID,
+				prt.name as ownerName, prt.alias as ownerAlias,
+				tprt.id asa participantID, tskatt.id as attachmentID
+			
+			")
+			->from("AssignmentTask tsk") 
 			->leftJoin("tsk.taskParticipantsTasks tprt ")
-			->leftJoin("tsk.taskAttachmentTasks")
-			->leftJoin("tprt.Participant")
-			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->leftJoin("tsk.taskAttachmentTasks tskatt")
+			->leftJoin("tsk.Participant prt")
 			->where("tsk.id=? AND tsk.token_id=?", array($_id, $token_id))
 			->fetchOne ( );
 		return ( ! $q ? null : $q ); 
@@ -79,15 +91,42 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 	public static function processSelection($status=null, $keyword=null, $offset=0, $limit=10) 
 	{
 		$q= Doctrine_Query::create()
-			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate ")
+			->select("tsk.*, tsk.token_id as tokenID, tsk.reference_no as referenceNo, tsk.start_date as startDate, tsk.description as description, tsk.owner_id as ownerID,
+				prt.name as ownerName, prt.alias as ownerAlias,
+				tprt.id asa participantID, tskatt.id as attachmentID
+			
+			")
 			->from("AssignmentTask tsk") 
-			//->leftJoin("usr.userGroups grp on usr.group_id = grp.id")
-			//->leftJoin("usr.userModulePermissions usrper on usrper.user_id = usr.id")
-			//->leftJoin("grp.groupModulePermissions per on per.group_id = grp.id")
+			->leftJoin("tsk.taskParticipantsTasks tprt ")
+			->leftJoin("tsk.taskAttachmentTasks tskatt")
+			->leftJoin("tsk.Participant prt")
 			->offset($offset)
 			->limit($limit)
 			//->where('tsk.type = ?'. TaskCore::$ASSIGNMENT)
 			->execute( ); 
+
+		return ( count ( $q ) <= 0 ? null : $q ); 
+	}
+	
+	public static function processOwnerSelection($status=null, $keyword=null, $exclusion=null, $type=null, $offset=0, $limit=10 )
+	{
+		$q = Doctrine_Query::create()
+				->select("prt.*, prt.name as firstName, pt.father_name as fatherName, pt.grand_father_name as grandFatherName, pt.full_name as fullName, prt.participant_leader_id as leaderID, prt.project_no as projectNo, prt.vat_number as vatNo, prt.status_id as partyStatus, prt.campus_id, campusID, prt.alias as partyAlias, prt.parent_id as parentID, prt.token_id as tokenID, prt.participant_type as typeID, prtcnt.mobile_number as mobileNo, prtcnt.phone_number as phoneNo, prtcnt.pobox as pobox, prtcnt.email as email, prtcnt.website as website, cmps.name as campusName, pt.alias as parentAlias")
+				->from("Participant prt") 
+				->leftJoin("prt.Participant pt") 
+				->leftJoin("prt.participantContacts prtcnt")
+				->leftJoin("prt.Campus cmps")
+				->offset($offset)
+				->limit($limit)
+				->where("prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? AND prt.participant_type <> ? ", array(ParticipantCore::$EMPLOYEE, ParticipantCore::$SECTION, ParticipantCore::$COMPANY,ParticipantCore::$DRIVER, ParticipantCore::$OTHER));
+				if(! is_null($status))
+					$q = $q->andWhere("prt.status_id=?", $status);
+				if(! is_null($type))
+					$q = $q->andWhere("prt.participant_type=?", $type);
+				if(!is_null($keyword) )
+					$q = $q->andWhere("prt.name LIKE ? AND prt.project_no LIKE ? AND prt.alias LIKE ?", array( $keyword, $keyword, $keyword));
+					
+				$q = $q->execute( ); 
 
 		return ( count ( $q ) <= 0 ? null : $q ); 
 	}
@@ -124,9 +163,11 @@ class AssignmentTaskTable extends PluginAssignmentTaskTable
 		return VehicleTable::processSelection ( $is_departed, $is_returned, false, $exclusion, $type, $status, $keyword, $offset, $limit) ; 
 	}
 	
-	public static function processCandidateDriverSelection($offset=0, $limit=10, $keyword=null, $type_id=null) 
+	public static function processCandidateDriverSelection($task_id, $token_id, $offset=0, $limit=10, $keyword=null, $parent_id, $type_id=null) 
 	{
-		return DriverTable::processSelection( $offset, $limit, $keyword, $type_id, false); 
+		$task = self::processObject ( $task_id, $token_id );
+		$parent_id = $task->ownerID;
+		return DriverTable::processSelection( $offset, $limit, $keyword, $type_id, $parent_id, false); 
 	}
 	
 	public static function processCreateTaskOrder ($task_id, $token_id, $vehicle_id, $driver_id, $description, $date )

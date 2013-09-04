@@ -18,18 +18,18 @@ class assignmentActions extends sfActions
 		$keyword = null;
 		
 		$this->tasks = AssignmentTaskTable::processSelection ($status, $keyword, $offset, $limit);
-		//$this->candidates = AssignmentTaskTable::processCandidateSelection ($group_id, $class_id, $keyword, $offset, $limit);
+		$this->parents = AssignmentTaskTable::processOwnerSelection($status, $keyword, $exclusion, $type, $offset, $limit );
   }
 
   public function executeCreateTask(sfWebRequest $request)
   {
-		//$mode = $request->getParameter('mode');
+		$owner_id = $request->getParameter('owner_id');
 		$date = $request->getParameter('date');
 		$ref_no = $request->getParameter('reference_no');
 		$description = $request->getParameter('description');
-		$pID = $this->getUser()->getAttribute('pID');
+		$pID = $this->getUser()->getAttribute('PID');
 		
-		$task = AssignmentTaskTable::processCreate ( $date, $description, $ref_no, $pID );
+		$task = AssignmentTaskTable::processCreate($date, $description, $ref_no, $owner_id, $pID );
 		
 		$this->redirect('assignment/view?task_id='.$task->id.'&token_id='.$task->token_id);
     
@@ -117,7 +117,7 @@ class assignmentActions extends sfActions
 		
 		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
 		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
-		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($task_id, $token_id, $offset, $limit, $keyword, $parent, $type_id) ;
   }
   
   public function executeCreateTaskOrder(sfWebRequest $request)
@@ -145,7 +145,7 @@ class assignmentActions extends sfActions
 	
 		$this->task_orders = AssignmentTaskTable::processTaskOrderSelection ($task_id, $token_id, $status, $keyword, $offset, $limit);
 		$this->vehicles = AssignmentTaskTable::processCandidateVehicleSelection ($type, $status, $keyword, $offset, $limit);
-		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($offset, $limit, $keyword, $type_id) ;
+		$this->drivers = AssignmentTaskTable::processCandidateDriverSelection ($task_id, $token_id, $offset, $limit, $keyword, $parent, $type_id) ;
   }
   
    public function executeSelection(sfWebRequest $request)

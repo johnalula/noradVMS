@@ -12,68 +12,80 @@ class projectActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->projects = Doctrine_Core::getTable('Project')
-      ->createQuery('a')
-      ->execute();
+   	$offset = 0;
+		$limit = 10;
+		
+   	
+		$this->projects = ProjectTable::processSelection($status, $keyword, $exclusion, $type, $offset, $limit )  ;
+		//$this->directors = ProjectTable::processCandidateDirectorsSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit );
+		$this->parents = ProjectTable::processUmbrellaSelection($status, $keyword, $exclusion, $type, $offset, $limit );
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->project);
-  }
+   public function executeCreateProject(sfWebRequest $request)
+	{		
+		$parent_id = $request->getParameter('parent_id');
+		$name = $request->getParameter('name');
+		$alias = $request->getParameter('alias');
+		$project_code = $request->getParameter('project_code');
+		$project_no = $request->getParameter('project_no');
+		$vat_no = $request->getParameter('vat_no');
+		$status = $request->getParameter('status');
+		$phone_no = $request->getParameter('phone_no');
+		$mobile_no = $request->getParameter('mobile_no');
+		$pobox = $request->getParameter('pobox');
+		$fax_no = $request->getParameter('fax_no');
+		$email = $request->getParameter('email');
+		$website = $request->getParameter('website');
+		$description = $request->getParameter('description');
+		
+		$flag = ProjectTable::processCreate ( $parent_id, $name, $project_code, $status, $project_no, $alias, $description, $street_no, $house_no, $pobox, $mobile_no, $phone_no, $fax_no, $email, $website);
+		
+		return $flag;
+			 
+	}
+	
+	public function executePagination(sfWebRequest $request)
+	{ 
+		$offset = $request->getParameter('offset');
+		$limit = intval($request->getParameter('limit'));
+		//$status = $request->getParameter('status_id');
+		$type = intval($request->getParameter('type_id'));
+		$keyword = $request->getParameter('keyword');
+		//$keyword = '%'.$keyword.'%';
+		
+		if(!$offset || $offset=='')	$offset = 0;			
+		if(!$limit || $limit=='' ) $limit = 10;			
+		if(!$type || $type=='' ) $type = null;			
+		if(!$status || $status=='' )	$status = null;			
+		if(!$keyword || $keyword=='' )	$keyword = null;
+		if(!$exclusion || $exclusion=='' )	$exclusion = null;
+		if(!$emp_type || $emp_type=='' )	$emp_type = null;
+		
+		$this->employees = EmployeeTable::processSelection($status, $keyword, $exclusion, $emp_type, $type, $offset, $limit );
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new ProjectForm();
-  }
+		return $this->renderPartial('list', array('employees' => $this->employees));	 
+	}
 
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+	public function executeParentPagination(sfWebRequest $request)
+	{ 
+		$offset = $request->getParameter('offset');
+		$limit = intval($request->getParameter('limit'));
+		//$status = $request->getParameter('status_id');
+		$type = intval($request->getParameter('type_id'));
+		$keyword = $request->getParameter('keyword');
+		//$keyword = '%'.$keyword.'%';
+		
+		if(!$offset || $offset=='')	$offset = 0;			
+		if(!$limit || $limit=='' ) $limit = 10;			
+		if(!$type || $type=='' ) $type = null;			
+		if(!$status || $status=='' )	$status = null;			
+		if(!$keyword || $keyword=='' )	$keyword = null;
+		if(!$exclusion || $exclusion=='' )	$exclusion = null;
+		
+		$this->parents = EmployeeTable::processUmbrellaSelection($status, $keyword, $exclusion, $type, $offset, $limit );
 
-    $this->form = new ProjectForm();
+		return $this->renderPartial('departmentList', array('parents' => $this->parents));	 
+	}
 
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-  }
-
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id'))), sprintf('Object project does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ProjectForm($project);
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id'))), sprintf('Object project does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ProjectForm($project);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id'))), sprintf('Object project does not exist (%s).', $request->getParameter('id')));
-    $project->delete();
-
-    $this->redirect('project/index');
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $project = $form->save();
-
-      $this->redirect('project/edit?id='.$project->getId());
-    }
-  }
+  
 }

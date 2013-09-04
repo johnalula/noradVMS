@@ -56,13 +56,15 @@ class DriverTable extends PluginDriverTable
 		return ( $q > 0 );   
 	}
 	
-	public static function processSelection( $offset=0, $limit=10, $keyword=null, $type_id=null, $is_assigned=null )
+	public static function processSelection( $offset=0, $limit=10, $keyword=null, $type_id=null, $parent_id=null, $is_assigned=null )
 	{
 		$q= Doctrine_Query::create()
-			->select("dr.*,  prt.name as firstName, prt.full_name as fullName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description")
+			->select("dr.*,  prt.name as firstName, prt.full_name as fullName, prt.father_name as fatherName, prt.grand_father_name  as grandFatherName, dr.desctiption as description,
+			prnt.name as parentName, prnt.alias as parentAlias,
+			")
 			->from("Driver dr") 
 			->leftJoin("dr.Participant prt")
-			//->innerJoin("vh.TaskOrder tsko")
+			->innerJoin("prt.Participant prnt")
 			//->innerJoin("vh.Category cat on vh.category_id = cat.id")
 			//->innerJoin("tsko.Unit unt on tsko.unit_id = unt.id")
 			//->innerJoin("tsko.Currency crr on tsko.currency_id = crr.id") 
@@ -70,6 +72,8 @@ class DriverTable extends PluginDriverTable
 			->limit($limit);
 			if(!is_null($is_assigned))
 				$q = $q->addWhere('dr.is_assigned = ?', $is_assigned);
+			if(!is_null($is_assigned))
+				$q = $q->addWhere('prt.parent_id = ?', $parent_id);
 			
 			$q = $q->execute( ); 
 			
